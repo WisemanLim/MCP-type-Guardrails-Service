@@ -846,10 +846,205 @@ Rules:
 
 ---
 
-## 18. 참고
+## 18. 도메인 확장 로드맵 (ISIC/KSIC/NACE/NAICS 기반)
+
+본 서비스의 도메인 키는 **ISIC Rev.4 Section/Division** 구조와 1:1 매핑되며, 동일 노드에 KSIC·NACE·NAICS 코드를 함께 태깅한다. 단계적 확장은 (a) 산업 분류상 인접성, (b) 규제 압력(개인정보·안전), (c) 시장 수요 우선순위 기준으로 정한다.
+
+참고: `.doc/Perplexity-ISIC,KSIC,NACE,NAICS 분류 조사 및 정리.md`.
+
+### 18.1 도메인 키 — 산업분류 매핑 원칙
+
+```
+domain_key                          ISIC Rev.4    KSIC      NACE Rev.2   NAICS
+─────────────────────────────────── ───────────   ──────    ─────────    ──────
+global                              —             —         —            —
+manufacturing                       Section C     C         C            31-33
+manufacturing-food                  10            10        10           311
+manufacturing-beverage              11            11        11           312
+manufacturing-tobacco               12            12        12           3122
+manufacturing-textile               13            13        13           313-314
+manufacturing-apparel               14            14        14           315
+manufacturing-chemical              20            20        20           325
+manufacturing-pharma                21            21        21           3254
+manufacturing-rubber-plastics       22            22        22           326
+manufacturing-metal-primary         24            24        24           331
+manufacturing-electronics           26            26        26           334
+manufacturing-electrical            27            28        27           335
+manufacturing-machinery             28            29        28           333
+manufacturing-automotive            29            30        29           3361-3363
+manufacturing-other-transport       30            31        30           3364-3369
+finance-banking                     64            64        64           522
+finance-insurance                   65            65        65           524
+finance-securities-misc             66            66        66           523
+healthcare-clinical                 86            86        86           621-622
+healthcare-residential-welfare      87            87        87           623
+healthcare-non-residential-welfare  88            88        88           624
+public-administration               84            84        84           92
+ict-software                        62            62        62           5415
+ict-info-services                   63            63        63           519
+retail-wholesale                    46            46        46           42
+retail-stores                       47            47        47           44-45
+transport-logistics                 49-53         49-53     49-53        48-49
+energy-utilities                    35            35        35           22
+construction                        41-43         41-43     41-43        23
+education                           85            85        85           61
+arts-recreation                     90-93         90-92     90-93        71
+agriculture                         01-03         01-03     01-03        11
+```
+
+명명 규칙(PRD §4.1.2): `<industry>-<sub_industry>[-<function>]`. 더 세분화 필요시 `<industry>-<sub>-<class>` 추가(예: `manufacturing-automotive-battery`).
+
+### 18.2 단계별 확장 로드맵
+
+각 phase는 (a) 도메인 키, (b) ISIC/KSIC 매핑, (c) 적용 규제, (d) 시드 룰 목표 수, (e) 합쳐 배포 가능한 phase 조합을 명시한다. Phase 간 독립 배포 보장 (이전 phase 결과물 단독 구동 가능, `docker-compose.<phase>.yml` overlay 추가만으로 확장).
+
+#### Phase 1 — `global` (Privacy & Common Safety) ✅
+
+- ISIC: 모든 Section에 공통 적용 (cross-cutting)
+- 규제: KR_PIPA, EU_GDPR (Art.5 / Art.9 / Art.10), US_HIPAA, US_CCPA, JP_APPI, COPPA, PCI_DSS
+- 시드 룰: **211개** (input/output 각각, ko-KR / en) — `scripts/privacy.{kr,en}.json`
+- 카테고리: pii / financial / credentials / health / location / biometrics / sensitive / children / scope / compliance / hallucination
+- 배포: `docker-compose.yml + docker-compose.privacy.yml`
+- 상태: **GA (Phase 1 완료)**
+
+#### Phase 2 — `manufacturing-food` (KSIC 10 / ISIC 10) 🛠
+
+- ISIC C10, KSIC 10, NACE 10, NAICS 311
+- 규제: KR_FSC(식품위생법), 식품 표시광고법, KR_OSH, US_FDA(FALCPA/HACCP), EU_FOOD, TRADE_SECRET
+- 시드 룰: **53개** 초안 — `scripts/manufacturing-food.{kr,en}.json` (pii=23, compliance=14, ip=10, safety=6)
+- 추가 작업 (M5):
+  - 도메인 특화 100+ 룰까지 확장 (식품위생법 세조항 매핑)
+  - whitelist (식품 일반 용어, 법령 인용)
+  - 테스트 케이스 100+ (정상/edge/우회 6:3:1)
+- 배포 조합:
+  - 단독: `docker-compose.yml + docker-compose.privacy.yml + docker-compose.food.yml`
+  - 머지 순서: `global → manufacturing → manufacturing-food`
+- 상태: **개발 중 (1차 초안)**
+
+#### Phase 3 — `manufacturing-chemical` (KSIC 20 / ISIC 20)
+
+- ISIC C20, KSIC 20, NACE 20, NAICS 325
+- 규제: 화학물질관리법, REACH, US_TSCA, MSDS, OSHA HazCom, KR_OSH
+- 시드 룰 목표: ~120개
+- 핵심 sub_category:
+  - 위험물 운반·보관 SOP 우회 차단
+  - MSDS 변조·은폐 차단
+  - 환경 배출 보고 위·변조 차단
+  - 공정 비밀(촉매 비율, 반응 조건) 보호
+  - 임직원 노출 데이터(혈중 농도) PII 보호
+- 배포 조합: P1 + P2 + P3 또는 P1 + P3 (식품 안 쓰는 조직)
+
+#### Phase 4 — `manufacturing-pharma` (KSIC 21 / ISIC 21)
+
+- ISIC C21, KSIC 21, NACE 21, NAICS 3254
+- 규제: 약사법, GMP, US_FDA(21 CFR Part 11), EU_EMA, ICH-GCP, US_HIPAA(임상)
+- 시드 룰 목표: ~140개
+- 핵심 sub_category:
+  - 임상시험 피험자 식별(IND/CTA) 보호
+  - 적응증 외 사용(off-label) 권유 차단
+  - 부작용·SAE 누락 보고 차단
+  - 의약품 광고 효능 과장 차단
+  - 제조처방·공정 비밀 보호 (rare disease drug 등)
+
+#### Phase 5 — `manufacturing-automotive` (KSIC 30 / ISIC 29)
+
+- ISIC C29, KSIC 30, NACE 29, NAICS 3361-3363
+- 규제: 자동차관리법, 리콜 규정, UNECE WP.29, ISO 26262(Functional Safety), SOTIF
+- 시드 룰 목표: ~110개
+- 핵심 sub_category:
+  - 안전 결함 은폐 권유 차단
+  - 배출가스 조작 권유 차단
+  - 자율주행 책임 회피 권유 차단
+  - 협력사 도면·BOM 비밀 보호
+
+#### Phase 6 — `manufacturing-electronics` (KSIC 26 / ISIC 26)
+
+- ISIC C26, KSIC 26, NACE 26, NAICS 334
+- 규제: 전기용품안전관리법, KR_RoHS, EU_RoHS, EU_CE, US_FCC, export control(EAR/ITAR)
+- 시드 룰 목표: ~100개
+- 핵심 sub_category:
+  - 반도체 공정 레시피 비밀 보호
+  - 수출통제 품목 우회 차단
+  - 부품 위조·인증 위반 차단
+
+#### Phase 7 — `finance-banking` / `finance-insurance` / `finance-securities` (KSIC 64-66)
+
+- ISIC K, KSIC K, NACE K, NAICS 52
+- 규제: 자본시장법, 금융소비자보호법, 전자금융거래법, FATCA, MiFID II, GLBA, AML/KYC
+- 시드 룰 목표: 도메인 합산 ~250개
+- 핵심 sub_category:
+  - 투자 권유·확정 수익 표현 차단
+  - AML/KYC 우회 권유 차단
+  - 시세조종·내부자거래 권유 차단
+  - 보험 약관 설명의무 우회 차단
+
+#### Phase 8 — `healthcare-clinical` (KSIC 86 / ISIC 86)
+
+- ISIC Q86, KSIC 86, NACE 86, NAICS 621-622
+- 규제: 의료법, US_HIPAA, EU_GDPR Art.9, 원격의료 규제, FDA SaMD
+- 시드 룰 목표: ~180개
+- 핵심 sub_category:
+  - 진단·처방 직접 안내 차단
+  - 자살·자해 정보 차단 + 지원 채널 안내
+  - PHI/EMR 보호
+  - 임상 가이드라인 환각 차단
+
+#### Phase 9 — `public-administration` (KSIC 84 / ISIC 84)
+
+- ISIC O84, KSIC 84, NACE 84, NAICS 92
+- 규제: 행정절차법, 정보공개법, 개인정보보호법, 청탁금지법
+- 시드 룰 목표: ~120개
+
+#### Phase 10+ — 추가 도메인
+
+- `ict-software` (KSIC 62), `ict-info-services` (KSIC 63)
+- `retail-stores` (KSIC 47), `retail-wholesale` (KSIC 46)
+- `transport-logistics` (KSIC H), `energy-utilities` (KSIC 35)
+- `education` (KSIC 85): US_FERPA, KR_PIPA(학생)
+- `construction` (KSIC F), `agriculture` (KSIC A)
+
+### 18.3 Phase 조합 배포 매트릭스
+
+도메인 키는 직교(orthogonal)하므로, 한 조직이 운영하는 사업 portfolio에 따라 phase를 조합 배포한다. Compose overlay 1장씩 추가하면 즉시 활성화.
+
+| 조직 유형 | Phase 조합 | 환경 변수 |
+| :-- | :-- | :-- |
+| 식품 제조 중소기업 | P1 + P2 | `GUARDRAILS_ENABLED_DOMAINS=global,manufacturing-food` |
+| 식품 + 화학 복합 그룹 | P1 + P2 + P3 | `global,manufacturing-food,manufacturing-chemical` |
+| 제약 기업 | P1 + P4 | `global,manufacturing-pharma` |
+| 종합 제조 (자동차+전자) | P1 + P5 + P6 | `global,manufacturing-automotive,manufacturing-electronics` |
+| 은행 + 증권 + 보험 | P1 + P7(3종) | `global,finance-banking,finance-insurance,finance-securities-misc` |
+| 종합병원 + 보건소 | P1 + P8 | `global,healthcare-clinical` |
+| 핀테크 (은행+IT) | P1 + P7 + P10(ict) | `global,finance-banking,ict-software` |
+| 공공기관 | P1 + P9 | `global,public-administration` |
+
+Phase 머지 충돌 해소 (PRD §4.1.4): 더 엄격한 action 우선 (block > redact > warn > allow), 동률 시 priority 큰 쪽 + 더 specific 도메인 우선.
+
+### 18.4 도메인 신규 추가 / 회수 절차
+
+신규 추가:
+1. ISIC/KSIC division 결정 → domain_key 부여
+2. `policies/<domain_key>/{privacy,compliance,safety,ip,...}/{input,output}.{locale}.json` 시드 작성 (최소 50 rules)
+3. `whitelists/<domain_key>.<locale>.json` 예외 표현 정의
+4. `tests/<domain_key>/` 회귀 테스트 100+ 케이스
+5. Detection Engine `src/detectors/<domain_module>.py` 도메인 사전 추가 (필요시)
+6. Compose overlay `docker-compose.<domain>.yml` 추가 (`GUARDRAILS_ENABLED_DOMAINS` 머지)
+7. Staging 회귀 → 정책 버전 `active` 승격 → 캐시 무효화
+
+회수(deprecation):
+- domain 레지스트리 status `deprecated`로 변경
+- compose overlay 제거
+- 정책 버전은 `archived` 보존, 신규 평가 시 머지에서 제외
+
+---
+
+## 19. 참고
 
 - `.doc/Perplexity-Guardrails for LLM,RAG, 도메인별.md` — 도메인 분류, Privacy 240+ 룰, 식품 제조 도메인 40룰, MCP 통합 방안 원본
+- `.doc/Perplexity-ISIC,KSIC,NACE,NAICS 분류 조사 및 정리.md` — 산업분류 체계 비교, 제조업 division 매핑
+- `scripts/privacy.{kr,en}.json` — Phase 1 시드 룰 (각 211개)
+- `scripts/manufacturing-food.{kr,en}.json` — Phase 2 시드 룰 (각 53개)
 - NVIDIA NeMo Guardrails, Guardrails AI, MS Presidio
 - OWASP Top 10 for LLM Applications
-- GDPR Art.5/Art.9, KR PIPA, HIPAA, COPPA
+- GDPR Art.5/Art.9, KR PIPA, HIPAA, COPPA, PCI_DSS
 - Model Context Protocol Specification (modelcontextprotocol.io)

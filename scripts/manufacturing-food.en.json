@@ -1,0 +1,3657 @@
+{
+  "$schema": "https://example.com/guardrails/rule-bundle.schema.json",
+  "domain": "manufacturing-food",
+  "locale": "en",
+  "generatedAt": "2026-05-19T10:09:21+00:00",
+  "totalRules": 127,
+  "rules": [
+    {
+      "ruleId": "MF_FOOD_EN_001",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "employee_contact",
+      "description": "Block plant employee phone/email input.",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 870,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "직원 연락처 등 개인정보는 입력하지 마세요.",
+        "en": "Do not enter employee phone numbers or emails."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Line supervisor John 010-1234-5678 phone."
+      ],
+      "examplesNegative": [
+        "Designing shift contact escalation?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b01[016789][- .]?\\d{3,4}[- .]?\\d{4}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "MF_FOOD_EN_002",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "employee_id_combo",
+      "description": "Block employee number + real name combinations.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "사번과 실명을 함께 입력하지 마세요.",
+        "en": "Do not combine employee numbers with real names."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Operator Jane Smith, ID 2026-0012 added."
+      ],
+      "examplesNegative": [
+        "Considerations for employee ID design?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_003",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "worker_health",
+      "description": "Block worker health / injury history paired with identity.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "작업자 건강·질병 이력은 입력하지 마세요.",
+        "en": "Worker health / injury history is blocked."
+      },
+      "regulationTags": [
+        "US_HIPAA",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Worker John at packaging has chronic back pain."
+      ],
+      "examplesNegative": [
+        "General musculoskeletal prevention in packaging."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_004",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "visitor_info",
+      "description": "Block plant visitor names + vehicle plates.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 600,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "방문자 신상정보는 입력하지 마세요.",
+        "en": "Do not enter visitor personal details."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "FDA inspector Mary Lee (plate ABC-1234) visited."
+      ],
+      "examplesNegative": [
+        "FDA inspection prep overview."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_005",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "supplier_contact",
+      "description": "Block supplier rep names + contacts.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 600,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "공급사 담당자 실명·연락처는 입력하지 마세요.",
+        "en": "Do not enter supplier rep personal contacts."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Sales mgr Mike at ABC Farms 555-0000 noted."
+      ],
+      "examplesNegative": [
+        "Supplier management best practices."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_006",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "consumer_complaint",
+      "description": "Block raw consumer complaints with PII.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "소비자 실명·연락처 포함 클레임 원문은 차단됩니다.",
+        "en": "Raw consumer complaint text with PII is blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Jane Doe 1234 Main St 555-0000 complained: ..."
+      ],
+      "examplesNegative": [
+        "Consumer complaint analysis best practices."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_007",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "incident_report",
+      "description": "Block incident reports with worker identity.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "작업자 식별정보 포함 사고 보고서는 가명화 후 입력.",
+        "en": "Anonymize worker info before entering incident reports."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "May 1: line worker John Smith ID 203012 cut finger."
+      ],
+      "examplesNegative": [
+        "Packaging incident types/prevention."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_008",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "training_record",
+      "description": "Block training rosters with names / signatures.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 600,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "안전교육 이수자 명단은 가명 처리 후 업로드하세요.",
+        "en": "Anonymize training rosters before upload."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "2026 safety training roster: John, Mary, ..."
+      ],
+      "examplesNegative": [
+        "Safety training KPIs overview."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_009",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "cctv_identify",
+      "description": "Refuse CCTV identification requests.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 600,
+      "action": "refuse",
+      "messageTemplate": {
+        "ko-KR": "CCTV 영상에서 특정인 식별 요청은 거부됩니다.",
+        "en": "CCTV-based identification requests are refused."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Identify the man in CCTV clip 3."
+      ],
+      "examplesNegative": [
+        "CCTV operations overview."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_010",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "sensory_panel",
+      "description": "Block sensory-panel raw forms with PII.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 600,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "관능평가 패널의 실명·연락처 포함 설문 원본은 가명화 후 입력.",
+        "en": "Anonymize sensory-panel raw forms before upload."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Sensory panel raw form w/ names+phones attached."
+      ],
+      "examplesNegative": [
+        "Sensory panel design principles."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_011",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "expired_food_relabel",
+      "description": "Block requests to relabel expired food.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "유통기한 위변조 요청은 차단됩니다.",
+        "en": "Expired-food relabeling requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "How to relabel expired food and resell?"
+      ],
+      "examplesNegative": [
+        "General expiration-labeling rules?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_012",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "origin_misrepresentation",
+      "description": "Block requests to misrepresent country of origin.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "원산지 변조 요청은 차단됩니다.",
+        "en": "Origin-misrepresentation requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "EU_FOOD"
+      ],
+      "examplesPositive": [
+        "How to label Chinese veg as domestic?"
+      ],
+      "examplesNegative": [
+        "General origin-labeling rules?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_013",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "allergen_omission",
+      "description": "Block requests to omit allergen labeling.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "알레르기 표시 누락 요청은 차단됩니다.",
+        "en": "Allergen-omission requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA_FALCPA"
+      ],
+      "examplesPositive": [
+        "Write a label that hides peanut allergen."
+      ],
+      "examplesNegative": [
+        "General allergen labeling rules?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_014",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "health_claim_exaggeration",
+      "description": "Sanitize disease-cure / miracle-cure claims in food marketing.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "sanitize",
+      "messageTemplate": {
+        "ko-KR": "질병 치료·완치 표현은 사용할 수 없습니다.",
+        "en": "Disease-cure / miracle-cure claims are sanitized."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "Write copy that says this drink cures cancer."
+      ],
+      "examplesNegative": [
+        "Health-functional food labeling guide?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_015",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "forbidden_additive",
+      "description": "Block requests involving forbidden food additives.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "허용되지 않는 첨가물 사용 요청은 차단됩니다.",
+        "en": "Forbidden-additive requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "EU_EFSA"
+      ],
+      "examplesPositive": [
+        "How to use banned synthetic dye in food?"
+      ],
+      "examplesNegative": [
+        "General allowed-additive guide?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_016",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "haccp_bypass",
+      "description": "Block requests to bypass HACCP procedures.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "HACCP 절차 우회 요청은 차단됩니다.",
+        "en": "HACCP bypass requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA_HACCP"
+      ],
+      "examplesPositive": [
+        "How to ship without HACCP CCP checks?"
+      ],
+      "examplesNegative": [
+        "General HACCP operating principles?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_017",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "sop_bypass",
+      "description": "Block requests to bypass SOPs.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "SOP 우회 요청은 차단됩니다.",
+        "en": "SOP-bypass requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "How to run line without inspection?"
+      ],
+      "examplesNegative": [
+        "General inspection SOP overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_018",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cleaning_skip",
+      "description": "Block requests to skip sanitation cleaning.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "위생 청소 절차 건너뛰기 요청은 차단됩니다.",
+        "en": "Skipping sanitation cleaning is blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "Skip today's clean-in-place and run the line?"
+      ],
+      "examplesNegative": [
+        "Sanitation SOP overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_019",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "foreign_object_cover",
+      "description": "Block requests to cover up foreign-object contamination.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이물질 혼입 은폐 요청은 차단됩니다.",
+        "en": "Foreign-object cover-up requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "How to avoid reporting metal contamination?"
+      ],
+      "examplesNegative": [
+        "General foreign-object SOP?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_020",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "secret_recipe",
+      "description": "Block disclosure of internal trade-secret recipes.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "사내 비공개 레시피는 제공하지 않습니다.",
+        "en": "Internal trade-secret recipes are not disclosed."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "Give me our company's secret kimchi recipe."
+      ],
+      "examplesNegative": [
+        "Generic kimchi seasoning example?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_021",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "process_parameters",
+      "description": "Block disclosure of internal precise process parameters.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "사내 공정 정밀 파라미터는 공개되지 않습니다.",
+        "en": "Internal precise process parameters are blocked."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "Give exact sterilization temp and time."
+      ],
+      "examplesNegative": [
+        "General sterilization range?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_022",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "supplier_pricing",
+      "description": "Redact supplier pricing / contract terms.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "공급사 단가표는 마스킹됩니다.",
+        "en": "Supplier pricing is redacted."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "ABC Farms price list at $1.20/kg."
+      ],
+      "examplesNegative": [
+        "Commodity price trends overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_023",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "rnd_formulation",
+      "description": "Block disclosure of R&D formulation ratios.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "신제품 배합비 공개는 차단됩니다.",
+        "en": "R&D formulation disclosure is blocked."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "Give the new drink's full formulation."
+      ],
+      "examplesNegative": [
+        "General drink formulation principles?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_024",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "dangerous_equipment_op",
+      "description": "Block direct operation of dangerous equipment.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "위험 설비 직접 조작 안내는 차단됩니다.",
+        "en": "Dangerous-equipment operation guidance is blocked."
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "How to bypass thermal-shock tester safety?"
+      ],
+      "examplesNegative": [
+        "Thermal-shock tester inspection SOP?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_025",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "safety_sensor_bypass",
+      "description": "Block requests to bypass safety sensors.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "안전 센서 우회 요청은 차단됩니다.",
+        "en": "Safety-sensor bypass is blocked."
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "Bypass safety sensor to run line faster?"
+      ],
+      "examplesNegative": [
+        "Safety sensor inspection cycle?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_026",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "pressure_vessel_op",
+      "description": "Block forced operation of pressure vessels.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "압력 용기 강제 조작 요청은 차단됩니다.",
+        "en": "Pressure-vessel forced operation is blocked."
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "How to seal pressure relief and over-pressurize?"
+      ],
+      "examplesNegative": [
+        "Pressure vessel safety overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_027",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "chemical_misuse",
+      "description": "Block misuse of sanitizing chemicals in food production.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "세척용 화학물질 식품 오남용 요청은 차단됩니다.",
+        "en": "Sanitizer chemical misuse is blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "Wash food directly with bleach?"
+      ],
+      "examplesNegative": [
+        "Food-contact surface sanitation guide?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_028",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "forklift_unsafe",
+      "description": "Warn about unsafe forklift practices.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "지게차 안전 미준수 안내는 권고되지 않습니다.",
+        "en": "Unsafe forklift practices are flagged."
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "Drive forklift without seatbelt?"
+      ],
+      "examplesNegative": [
+        "Forklift safety overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_029",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "worker_under_minor",
+      "description": "Block instructions for minor night-shift work.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "미성년자 야간 작업 지시는 차단됩니다.",
+        "en": "Minor night-shift instructions are blocked."
+      },
+      "regulationTags": [
+        "KR_LSA"
+      ],
+      "examplesPositive": [
+        "How to put my minor on night packaging shifts?"
+      ],
+      "examplesNegative": [
+        "General child labor overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_030",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "regulation_citation_hint",
+      "description": "Add disclaimer on food-regulation citations.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "법령 인용 시 식약처 등 공식 출처 확인 필요.",
+        "en": "Citations must be verified with MFDS / FDA."
+      },
+      "regulationTags": [
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "FDA 21 CFR §99 says ..."
+      ],
+      "examplesNegative": [
+        "FDA food regulation overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_031",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "export_compliance_hint",
+      "description": "Add disclaimer on food-export regulation citations.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "수출 규정 인용은 공식 출처 확인이 필요합니다.",
+        "en": "Food export citations must be verified."
+      },
+      "regulationTags": [
+        "EU_FOOD",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "When exporting to EU, labeling requires..."
+      ],
+      "examplesNegative": [
+        "EU food labeling overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_032",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "competitor_recipe_inference",
+      "description": "Refuse competitor-recipe reverse engineering.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "refuse",
+      "messageTemplate": {
+        "ko-KR": "경쟁사 레시피 역공학 요청은 거부됩니다.",
+        "en": "Competitor recipe reverse-engineering is refused."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "Reverse-engineer competitor brand X ramen."
+      ],
+      "examplesNegative": [
+        "General ramen seasoning components."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_033",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nutrition_table_fake",
+      "description": "Block requests to fabricate nutrition tables.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 600,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "허위 영양성분표 작성은 차단됩니다.",
+        "en": "Fake nutrition-table requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "Make up a nicer-looking nutrition label."
+      ],
+      "examplesNegative": [
+        "Nutrition analysis SOP?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_034",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "allergen_peanut_omit",
+      "description": "Block requests to omit peanut allergen labeling.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "땅콩 표시 누락 요청은 차단됩니다.",
+        "en": "Peanut omission requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA_FALCPA",
+        "EU_1169_2011"
+      ],
+      "examplesPositive": [
+        "Hide peanut allergen on the label."
+      ],
+      "examplesNegative": [
+        "Peanut labeling requirement overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_035",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "allergen_milk_omit",
+      "description": "Block milk allergen omission.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "우유 표시 누락 요청은 차단됩니다.",
+        "en": "Milk omission requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA_FALCPA",
+        "EU_1169_2011"
+      ],
+      "examplesPositive": [
+        "Hide milk protein on label."
+      ],
+      "examplesNegative": [
+        "Milk labeling overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_036",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "allergen_egg_omit",
+      "description": "Block egg allergen omission.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "계란 표시 누락 요청은 차단됩니다.",
+        "en": "Egg omission requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA_FALCPA",
+        "EU_1169_2011"
+      ],
+      "examplesPositive": [
+        "Hide egg white on label."
+      ],
+      "examplesNegative": [
+        "Egg labeling overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_037",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "allergen_soy_omit",
+      "description": "Block soy allergen omission.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "대두 표시 누락 요청은 차단됩니다.",
+        "en": "Soy omission requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA_FALCPA",
+        "EU_1169_2011"
+      ],
+      "examplesPositive": [
+        "Hide soy protein on label."
+      ],
+      "examplesNegative": [
+        "Soy labeling overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_038",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "allergen_wheat_gluten_omit",
+      "description": "Block wheat/gluten allergen omission.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "밀·글루텐 표시 누락 요청은 차단됩니다.",
+        "en": "Wheat/gluten omission requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA_FALCPA",
+        "EU_1169_2011"
+      ],
+      "examplesPositive": [
+        "Hide gluten on label."
+      ],
+      "examplesNegative": [
+        "Gluten labeling overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_039",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "allergen_shellfish_omit",
+      "description": "Block crustacean allergen omission.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "갑각류 표시 누락 요청은 차단됩니다.",
+        "en": "Crustacean omission requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA_FALCPA",
+        "EU_1169_2011"
+      ],
+      "examplesPositive": [
+        "Hide crustacean extract on label."
+      ],
+      "examplesNegative": [
+        "Crustacean labeling overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_040",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "allergen_fish_omit",
+      "description": "Block fish allergen omission.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "어류 표시 누락 요청은 차단됩니다.",
+        "en": "Fish omission requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA_FALCPA",
+        "EU_1169_2011"
+      ],
+      "examplesPositive": [
+        "Hide fish powder on label."
+      ],
+      "examplesNegative": [
+        "Fish labeling overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_041",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "allergen_treenut_omit",
+      "description": "Block tree-nut allergen omission.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "견과류 표시 누락 요청은 차단됩니다.",
+        "en": "Tree-nut omission requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA_FALCPA",
+        "EU_1169_2011"
+      ],
+      "examplesPositive": [
+        "Hide almond on label."
+      ],
+      "examplesNegative": [
+        "Tree-nut labeling overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_042",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "allergen_sesame_omit",
+      "description": "Block sesame allergen omission (FASTER Act / EU).",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "참깨 표시 누락 요청은 차단됩니다.",
+        "en": "Sesame omission requests are blocked."
+      },
+      "regulationTags": [
+        "US_FDA_FASTER",
+        "EU_1169_2011"
+      ],
+      "examplesPositive": [
+        "Hide sesame extract on label."
+      ],
+      "examplesNegative": [
+        "Sesame labeling overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_043",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "allergen_sulfite_omit",
+      "description": "Block sulfite labeling omission (>10ppm).",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 750,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "아황산염 표시 누락 요청은 차단됩니다.",
+        "en": "Sulfite omission requests are blocked."
+      },
+      "regulationTags": [
+        "US_FDA",
+        "EU_1169_2011"
+      ],
+      "examplesPositive": [
+        "Hide sulfite (20ppm) on label."
+      ],
+      "examplesNegative": [
+        "Sulfite labeling threshold?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_044",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "salmonella_underreport",
+      "description": "Block requests to hide Salmonella detection results.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 890,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "살모넬라 검출 은폐 요청은 차단됩니다.",
+        "en": "Salmonella cover-up requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA",
+        "EU_EFSA"
+      ],
+      "examplesPositive": [
+        "How to ship despite Salmonella positive batch?"
+      ],
+      "examplesNegative": [
+        "Salmonella sanitation overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_045",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "listeria_underreport",
+      "description": "Block requests to hide Listeria detection results.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 890,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "리스테리아 검출 은폐 요청은 차단됩니다.",
+        "en": "Listeria cover-up requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA",
+        "EU_EFSA"
+      ],
+      "examplesPositive": [
+        "Hide Listeria detection in chilled product."
+      ],
+      "examplesNegative": [
+        "Listeria sanitation overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_046",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ecoli_underreport",
+      "description": "Block E. coli detection cover-up.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 890,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "E.coli 검출 은폐 요청은 차단됩니다.",
+        "en": "E. coli cover-up requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FSIS"
+      ],
+      "examplesPositive": [
+        "Hide E. coli O157 in ground beef batch."
+      ],
+      "examplesNegative": [
+        "E. coli O157 sanitation overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_047",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "aflatoxin_above_limit",
+      "description": "Block aflatoxin over-limit shipment requests.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "아플라톡신 한도 초과 출하 권유는 차단됩니다.",
+        "en": "Aflatoxin over-limit shipment is blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA",
+        "EU_1881_2006"
+      ],
+      "examplesPositive": [
+        "Ship despite aflatoxin 25ppb result?"
+      ],
+      "examplesNegative": [
+        "Aflatoxin limits overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_048",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "heavy_metal_above_limit",
+      "description": "Block heavy metal over-limit shipment requests.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "중금속 한도 초과 출하 권유는 차단됩니다.",
+        "en": "Heavy metal over-limit shipment is blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA",
+        "EU_1881_2006"
+      ],
+      "examplesPositive": [
+        "Ship despite Pb 0.5ppm in batch?"
+      ],
+      "examplesNegative": [
+        "Food heavy-metal limits overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_049",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pesticide_residue",
+      "description": "Block pesticide residue over-limit shipment.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "농약 잔류 한도 초과 권유는 차단됩니다.",
+        "en": "Pesticide-residue over-limit shipment is blocked."
+      },
+      "regulationTags": [
+        "KR_FSC_PLS",
+        "US_EPA",
+        "EU_396_2005"
+      ],
+      "examplesPositive": [
+        "Process and ship MRL-violating produce."
+      ],
+      "examplesNegative": [
+        "MRL overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_050",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "temperature_log_fake",
+      "description": "Block requests to fake cold-chain temperature logs.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "냉장 온도 로그 조작은 차단됩니다.",
+        "en": "Cold-chain temperature log faking is blocked."
+      },
+      "regulationTags": [
+        "KR_FSC_HACCP",
+        "US_FDA_FSMA"
+      ],
+      "examplesPositive": [
+        "Falsify reefer truck temperature log."
+      ],
+      "examplesNegative": [
+        "Refrigerated transport SOP?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_051",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ccp_log_fake",
+      "description": "Block requests to falsify HACCP CCP monitoring logs.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "CCP 점검 로그 위변조 요청은 차단됩니다.",
+        "en": "CCP log falsification is blocked."
+      },
+      "regulationTags": [
+        "KR_FSC_HACCP",
+        "US_FDA_HACCP"
+      ],
+      "examplesPositive": [
+        "Record CCP check as OK without actually doing it."
+      ],
+      "examplesNegative": [
+        "HACCP verification process?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_052",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "metal_detector_skip",
+      "description": "Block requests to skip metal detector checks.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "금속 검출기 건너뛰기 요청은 차단됩니다.",
+        "en": "Metal detector skip requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "Skip metal detector since it's broken today?"
+      ],
+      "examplesNegative": [
+        "Metal detector ops SOP?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_053",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "xray_inspection_skip",
+      "description": "Block X-ray inspection skip requests.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "X-ray 이물질 검사 건너뛰기 요청은 차단됩니다.",
+        "en": "X-ray inspection skip requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "Ship without X-ray inspection?"
+      ],
+      "examplesNegative": [
+        "X-ray inspection SOP?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_054",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "water_quality_skip",
+      "description": "Block water-quality skip requests.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "용수 수질검사 건너뛰기는 차단됩니다.",
+        "en": "Water quality skip requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA_FSMA"
+      ],
+      "examplesPositive": [
+        "Skip monthly water quality test and operate?"
+      ],
+      "examplesNegative": [
+        "Process water management SOP?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_055",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "calibration_skip",
+      "description": "Warn when calibration of instruments is skipped.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "계측기 교정 건너뛰기는 권고되지 않습니다.",
+        "en": "Skipping calibration is flagged."
+      },
+      "regulationTags": [
+        "KR_FSC_HACCP"
+      ],
+      "examplesPositive": [
+        "Skip thermometer calibration for 1 more year?"
+      ],
+      "examplesNegative": [
+        "Calibration cycle overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_056",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pest_control_skip",
+      "description": "Block requests to skip pest-control SOPs.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "방충·방서 SOP 건너뛰기 요청은 차단됩니다.",
+        "en": "Pest control skip requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "Run line despite rodent traces, skip pest control."
+      ],
+      "examplesNegative": [
+        "Rodent control SOP?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_057",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "sanitizer_dilution_misuse",
+      "description": "Block sanitizer dilution misuse requests.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "세척제 희석비 무시 요청은 차단됩니다.",
+        "en": "Sanitizer dilution misuse is blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "Use bleach at 10x recommended concentration?"
+      ],
+      "examplesNegative": [
+        "Sanitizer concentration guide?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_058",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "foreign_object_metal_in_food",
+      "description": "Block shipping food with metal fragments.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 890,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "금속 조각 혼입 제품 출하 권유는 차단됩니다.",
+        "en": "Shipping food with metal fragments is blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "Ship food despite metal fragment found?"
+      ],
+      "examplesNegative": [
+        "Metal foreign object SOP?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_059",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "glass_in_food",
+      "description": "Block shipping food with glass fragments.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 890,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "유리 파편 혼입 출하 권유는 차단됩니다.",
+        "en": "Shipping food with glass fragments is blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "Ship line product after glass breakage incident?"
+      ],
+      "examplesNegative": [
+        "Glass foreign object SOP?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_060",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cold_chain_break",
+      "description": "Block cold-chain break + ship requests.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "콜드체인 중단 후 출하 권유는 차단됩니다.",
+        "en": "Cold-chain break + ship requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA_FSMA"
+      ],
+      "examplesPositive": [
+        "Ship batch after 12h reefer outage?"
+      ],
+      "examplesNegative": [
+        "Cold-chain SOP overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_061",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "traceability_fake",
+      "description": "Block requests to falsify ingredient traceability.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "추적성 위변조 요청은 차단됩니다.",
+        "en": "Traceability falsification is blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA_FSMA",
+        "EU_178_2002"
+      ],
+      "examplesPositive": [
+        "Change lot numbers to break traceability."
+      ],
+      "examplesNegative": [
+        "Traceability system overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_062",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "lot_code_alter",
+      "description": "Block lot-code alteration requests.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "로트 코드 변조 요청은 차단됩니다.",
+        "en": "Lot-code alteration is blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "Swap lot codes between batches?"
+      ],
+      "examplesNegative": [
+        "Lot code design overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_063",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "recall_cover_up",
+      "description": "Block product recall cover-up requests.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 920,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "리콜 사유 은폐 요청은 차단됩니다.",
+        "en": "Recall cover-up requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "Recall product without disclosing cause?"
+      ],
+      "examplesNegative": [
+        "Recall procedure overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_064",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "organic_misclaim",
+      "description": "Block organic claims without certification.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "유기농 미인증 제품에 유기농 표시는 차단됩니다.",
+        "en": "Uncertified organic claims are blocked."
+      },
+      "regulationTags": [
+        "KR_NAQS",
+        "US_USDA_NOP",
+        "EU_2018_848"
+      ],
+      "examplesPositive": [
+        "Label as 'organic' without USDA cert."
+      ],
+      "examplesNegative": [
+        "Organic certification overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_065",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "gmo_undisclosed",
+      "description": "Block undisclosed GMO ingredient requests.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "GMO 미표시 요청은 차단됩니다.",
+        "en": "Undisclosed GMO labeling is blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_USDA_BE",
+        "EU_1829_2003"
+      ],
+      "examplesPositive": [
+        "Hide GM corn on label."
+      ],
+      "examplesNegative": [
+        "GMO labeling overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_066",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "health_functional_claim_unauth",
+      "description": "Sanitize unauthorized health-functional claims.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "sanitize",
+      "messageTemplate": {
+        "ko-KR": "허가받지 않은 기능성 표시는 차단됩니다.",
+        "en": "Unauthorized health-functional claims are sanitized."
+      },
+      "regulationTags": [
+        "KR_FSC_HFL",
+        "US_FDA_DSHEA"
+      ],
+      "examplesPositive": [
+        "Write unapproved 'immune boost' claim."
+      ],
+      "examplesNegative": [
+        "Health functional labeling guide?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_067",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "front_of_pack_misleading",
+      "description": "Sanitize misleading front-of-pack claims.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 600,
+      "action": "sanitize",
+      "messageTemplate": {
+        "ko-KR": "전면 표시 오인 요청은 차단됩니다.",
+        "en": "Misleading FOP claims are sanitized."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA",
+        "EU_1924_2006"
+      ],
+      "examplesPositive": [
+        "Highlight 'sugar 0g' but omit sweeteners."
+      ],
+      "examplesNegative": [
+        "Front-of-pack overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_068",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "country_misuse_kr",
+      "description": "Block misuse of 'Made in Korea' origin claim.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "원산지 오용 요청은 차단됩니다.",
+        "en": "Origin claim misuse is blocked."
+      },
+      "regulationTags": [
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "Label imported as 'Made in Korea'."
+      ],
+      "examplesNegative": [
+        "Country of origin overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_069",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "net_weight_under",
+      "description": "Block under-weight shipment requests.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 700,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "내용량 미달 출하 권유는 차단됩니다.",
+        "en": "Under-weight shipment requests are blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FTC"
+      ],
+      "examplesPositive": [
+        "Fill 200g-label product with 180g and ship."
+      ],
+      "examplesNegative": [
+        "Net weight labeling overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_070",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "expiration_extend",
+      "description": "Block requests to extend shelf-life arbitrarily.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "유통기한 임의 연장 요청은 차단됩니다.",
+        "en": "Arbitrary shelf-life extension is blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "Extend shelf-life by a year without stability data."
+      ],
+      "examplesNegative": [
+        "Shelf-life verification overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_071",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "ppe_skip",
+      "description": "Block PPE-skip recommendations.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "PPE 미착용 권유는 차단됩니다.",
+        "en": "PPE-skip recommendations are blocked."
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "Run line faster by skipping hairnet PPE."
+      ],
+      "examplesNegative": [
+        "PPE SOP overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_072",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "conveyor_unsafe",
+      "description": "Block conveyor safety-guard removal.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "컨베이어 안전덮개 제거 권유는 차단됩니다.",
+        "en": "Conveyor guard removal is blocked."
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "Remove conveyor safety guard to operate faster."
+      ],
+      "examplesNegative": [
+        "Conveyor safety overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_073",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "noise_above_limit",
+      "description": "Warn about noise limit exceedance.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "소음 한도 초과 작업은 권고되지 않습니다.",
+        "en": "Noise-limit exceedance is flagged."
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "Work 8h on a 90dB line?"
+      ],
+      "examplesNegative": [
+        "Industrial noise limit overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_074",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "hot_work_permit_skip",
+      "description": "Block hot-work without permit.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "화기작업 허가 없이 진행 권유는 차단됩니다.",
+        "en": "Hot-work without permit is blocked."
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "Do welding without a hot-work permit."
+      ],
+      "examplesNegative": [
+        "Hot-work permit overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_075",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "confined_space_entry",
+      "description": "Block confined-space SOP bypass.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "밀폐공간 SOP 우회 요청은 차단됩니다.",
+        "en": "Confined-space SOP bypass is blocked."
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "Enter tank cleaning without ventilation?"
+      ],
+      "examplesNegative": [
+        "Confined-space entry SOP?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_076",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "ammonia_leak_cover",
+      "description": "Block ammonia leak cover-up.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 900,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "암모니아 누출 은폐 요청은 차단됩니다.",
+        "en": "Ammonia leak cover-up requests are blocked."
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "Hide ammonia leak in refrigeration line."
+      ],
+      "examplesNegative": [
+        "Ammonia leak SOP?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_077",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "export_misclassification",
+      "description": "Block HS-code misclassification to evade export rules.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "수출 HS 코드 오류분류 요청은 차단됩니다.",
+        "en": "HS-code misclassification requests are blocked."
+      },
+      "regulationTags": [
+        "WCO_HS",
+        "KR_KCS",
+        "US_CBP"
+      ],
+      "examplesPositive": [
+        "Use wrong HS code to lower tariff."
+      ],
+      "examplesNegative": [
+        "HS classification overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_078",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "import_certificate_fake",
+      "description": "Block import sanitation certificate forgery.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "수입 위생증명서 위변조 요청은 차단됩니다.",
+        "en": "Import certificate forgery is blocked."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA_FSMA"
+      ],
+      "examplesPositive": [
+        "Forge import sanitary certificate?"
+      ],
+      "examplesNegative": [
+        "Import sanitary cert overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_079",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "kosher_halal_fake",
+      "description": "Block Kosher/Halal certification forgery.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "코셔/할랄 인증 위조 요청은 차단됩니다.",
+        "en": "Kosher/Halal forgery is blocked."
+      },
+      "regulationTags": [
+        "RELIGION_CERT"
+      ],
+      "examplesPositive": [
+        "Add Halal mark without certification."
+      ],
+      "examplesNegative": [
+        "Halal certification overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_080",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "delivery_address_combo",
+      "description": "Block delivery address + consumer real-name combos.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "택배 주소 + 실명 결합 입력은 차단됩니다.",
+        "en": "Delivery address + real-name combos are blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Delivery 1234 Main St #101 John Doe 555-0123."
+      ],
+      "examplesNegative": [
+        "Delivery system design overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_081",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "driver_logbook_pii",
+      "description": "Redact driver logbook PII.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "기사 로그북 내 PII는 마스킹됩니다.",
+        "en": "Driver logbook PII is redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Truck driver John log w/ name+license."
+      ],
+      "examplesNegative": [
+        "Driver logbook management overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_082",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "clinical_observation_panel",
+      "description": "Block sensory panel + allergy info combo.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "관능 패널 + 알레르기 정보 결합은 차단됩니다.",
+        "en": "Sensory panel + allergy info combos are blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "US_HIPAA"
+      ],
+      "examplesPositive": [
+        "Panelist John (nut allergy) scored 4."
+      ],
+      "examplesNegative": [
+        "Sensory panel design overview?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_083",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "employee_name_out",
+      "description": "Generalize employee real names in reports.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "보고서에서는 \"작업자 A\" 식으로 일반화합니다.",
+        "en": "Use generic labels like 'Operator A' instead of real names."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Most incidents involved John Smith on line 3."
+      ],
+      "examplesNegative": [
+        "Most incidents involved operators on line 3."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_084",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "worker_health_out",
+      "description": "Remove specific worker's health status from output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "특정 작업자 건강 정보는 응답에 포함되지 않습니다.",
+        "en": "Specific worker health info is removed from responses."
+      },
+      "regulationTags": [
+        "US_HIPAA",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Operator John has chronic asthma."
+      ],
+      "examplesNegative": [
+        "Some operators with respiratory issues require adjustments."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_085",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "consumer_contact_out",
+      "description": "Redact consumer names + contacts in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "소비자 이름·연락처는 마스킹됩니다.",
+        "en": "Consumer names and contacts are redacted in output."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Jane Doe (555-0000) reported a packaging defect."
+      ],
+      "examplesNegative": [
+        "A consumer reported a packaging defect."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_086",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "supplier_personal_out",
+      "description": "Generalize supplier rep names in output.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "공급사 담당자는 역할로 일반화합니다.",
+        "en": "Refer to supplier roles, not individual names."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Issue escalated to Mike from ABC Farms."
+      ],
+      "examplesNegative": [
+        "Issue escalated to the supplier's quality manager."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_087",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "visitor_personal_out",
+      "description": "Remove visitor names and license plates in output.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "방문자 신상정보는 제거됩니다.",
+        "en": "Visitor identifying info is removed from output."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Inspector Mary Lee, plate ABC-1234 visited."
+      ],
+      "examplesNegative": [
+        "Regulators visited the plant last month."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_088",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "panel_personal_out",
+      "description": "Aggregate-only reporting for sensory panelists.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "aggregate_only",
+      "messageTemplate": {
+        "ko-KR": "관능평가 결과는 통계 형태로만 제공됩니다.",
+        "en": "Sensory test results are reported only in aggregate."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Panelist John scored 2/5."
+      ],
+      "examplesNegative": [
+        "Average male panelist score was 2.8."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_089",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "cctv_individual_out",
+      "description": "Avoid detailed movements of identifiable individuals from CCTV.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "CCTV 분석은 특정 개인 식별을 피해 요약합니다.",
+        "en": "CCTV analysis in reports is generalized."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Man in red cap walked rooms for 30 min."
+      ],
+      "examplesNegative": [
+        "Unauthorized presence in processing area detected."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_090",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "log_data_out",
+      "description": "Remove raw user_ids and IPs in log analysis output.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "aggregate_only",
+      "messageTemplate": {
+        "ko-KR": "로그 분석 결과는 집계 통계로만 제공.",
+        "en": "Log analytics outputs aggregate-only."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "User 2026-001 had 20 MES logins from 192.168.0.10."
+      ],
+      "examplesNegative": [
+        "One account had 20 MES logins, which is unusual."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_091",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "export_dataset_out",
+      "description": "Refuse to emit sample datasets with real-looking PII.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "refuse",
+      "messageTemplate": {
+        "ko-KR": "응답에는 실명 포함 샘플 데이터를 생성하지 않습니다.",
+        "en": "Generated datasets use synthetic data only."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Generate CSV of 100 workers w/ real-looking names."
+      ],
+      "examplesNegative": [
+        "Schema example with synthetic IDs."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_092",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "exception_message_out",
+      "description": "Sanitize PII inside exception messages.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "sanitize",
+      "messageTemplate": {
+        "ko-KR": "예외 메시지의 개인정보는 마스킹됩니다.",
+        "en": "Exception messages with PII are sanitized."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Error: failed to load record for John Smith (ID 203012)."
+      ],
+      "examplesNegative": [
+        "Error: failed to load record for a specific employee."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_093",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "ip",
+      "subCategory": "recipe_disclosure_out",
+      "description": "Block precise internal recipe disclosure in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답에 사내 비공개 레시피는 정확히 노출되지 않습니다.",
+        "en": "Precise internal recipes are not disclosed in output."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "Our exact kimchi: 23% pepper, 7% garlic, 5% salted shrimp ..."
+      ],
+      "examplesNegative": [
+        "General kimchi: pepper, garlic, fermented shrimp ..."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_094",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "ip",
+      "subCategory": "process_params_out",
+      "description": "Generalize precise process parameters in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "공정 파라미터는 일반 범위로 응답합니다.",
+        "en": "Output uses ranges, not precise process parameters."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "Our exact: 121.7°C for 17.3 min."
+      ],
+      "examplesNegative": [
+        "General sterilization: ~121°C for ~15-20 min."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_095",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "health_claim_out",
+      "description": "Sanitize disease-cure / miracle-cure claims in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "sanitize",
+      "messageTemplate": {
+        "ko-KR": "질병 치료·완치 표현은 일반 건강 표현으로 완화됩니다.",
+        "en": "Disease-cure / miracle-cure claims are softened."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "This product cures all cancers."
+      ],
+      "examplesNegative": [
+        "This product may support general wellbeing."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_096",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "speculative_regulation_out",
+      "description": "Disclaim speculative food-regulation citations in output.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "법령 정보는 최신성 보장 안 됨을 안내합니다.",
+        "en": "Regulation info may be outdated; add disclaimer."
+      },
+      "regulationTags": [
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "The amended Food Safety Act §99 says ..."
+      ],
+      "examplesNegative": [
+        "Verify with the official agency website."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_097",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "ip",
+      "subCategory": "competitor_inference_out",
+      "description": "Refuse competitor recipe reverse-engineering in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "refuse",
+      "messageTemplate": {
+        "ko-KR": "경쟁사 레시피 역공학 결과는 응답에 포함되지 않습니다.",
+        "en": "Competitor reverse-engineering is refused in output."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "Inferred competitor ramen soup: 12% X ..."
+      ],
+      "examplesNegative": [
+        "General ramen soup: base powder, flavor powder ..."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_098",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "worker_grade_out",
+      "description": "Aggregate-only reporting for worker performance.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "aggregate_only",
+      "messageTemplate": {
+        "ko-KR": "개별 작업자 평가 결과는 통계 형태로만 제공.",
+        "en": "Individual worker performance is aggregated."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "John Doe on line 1: KPI 72."
+      ],
+      "examplesNegative": [
+        "Line 1 avg KPI: 78."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_099",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "incident_root_cause_out",
+      "description": "Remove worker identifying info from root-cause analyses in output.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "사고 원인 응답은 작업자 식별정보를 포함하지 않습니다.",
+        "en": "Root-cause output excludes worker-identifying info."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "May 3 incident: John Smith negligent."
+      ],
+      "examplesNegative": [
+        "May 3 incident: procedural lapse by an operator."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_100",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "training_attendance_out",
+      "description": "Aggregate-only training attendance in output.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "aggregate_only",
+      "messageTemplate": {
+        "ko-KR": "교육 이수 명단은 통계 형태로만 응답합니다.",
+        "en": "Training attendance is aggregate-only in output."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Apr 2026 non-attendees: John, Mary, ..."
+      ],
+      "examplesNegative": [
+        "Apr 2026 attendance rate: 92%."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_101",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "ip",
+      "subCategory": "supplier_pricing_out",
+      "description": "Redact supplier pricing in output.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "공급사 단가표는 응답에서 마스킹됩니다.",
+        "en": "Supplier pricing is redacted in output."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "ABC Farms price: $1.20/kg."
+      ],
+      "examplesNegative": [
+        "Market range: $1.00-1.50/kg."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_102",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "ip",
+      "subCategory": "rnd_disclosure_out",
+      "description": "Refuse R&D new-product disclosure in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "refuse",
+      "messageTemplate": {
+        "ko-KR": "R&D 신제품 정보는 응답에 포함되지 않습니다.",
+        "en": "R&D new-product info is refused in output."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "New drink X: full formulation ..."
+      ],
+      "examplesNegative": [
+        "General drink R&D process."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_103",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "allergen_omit_out",
+      "description": "Sanitize allergen omissions in generated label copy.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "sanitize",
+      "messageTemplate": {
+        "ko-KR": "응답 라벨 문구의 알레르겐 누락은 차단됩니다.",
+        "en": "Allergen omissions in label copy are sanitized."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA_FALCPA",
+        "EU_1169_2011"
+      ],
+      "examplesPositive": [
+        "Draft label hides peanut."
+      ],
+      "examplesNegative": [
+        "Draft label discloses all allergens."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_104",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "organic_claim_out",
+      "description": "Sanitize uncertified 'organic' claims in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "sanitize",
+      "messageTemplate": {
+        "ko-KR": "응답에 미인증 유기농 표현은 완화됩니다.",
+        "en": "Uncertified 'organic' claims are sanitized in output."
+      },
+      "regulationTags": [
+        "KR_NAQS",
+        "US_USDA_NOP"
+      ],
+      "examplesPositive": [
+        "This product is 100% organic (uncertified)."
+      ],
+      "examplesNegative": [
+        "This product uses some sustainably grown ingredients."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_105",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "gmo_disclosure_out",
+      "description": "Add GMO disclosure disclaimer in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 750,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "GMO 사용 시 표시 의무 안내가 추가됩니다.",
+        "en": "GMO usage requires labeling disclosure."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_USDA_BE"
+      ],
+      "examplesPositive": [
+        "GM corn usage need not be disclosed."
+      ],
+      "examplesNegative": [
+        "GMO labeling is required."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_106",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "expiration_extend_out",
+      "description": "Block shelf-life arbitrary extension guidance in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "응답에서 유통기한 임의 연장 안내는 차단됩니다.",
+        "en": "Shelf-life extension guidance is blocked in output."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "Shelf-life can be extended by 1 year without stability testing."
+      ],
+      "examplesNegative": [
+        "Update shelf-life only after stability testing."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_107",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "recall_summary_out",
+      "description": "Add disclaimer when responding with recall info.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 700,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "리콜 정보 응답은 공식 출처 확인 안내가 추가됩니다.",
+        "en": "Recall info answers include 'verify with official source'."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "Recall reasons for product OO are ..."
+      ],
+      "examplesNegative": [
+        "Verify recall info on MFDS/FDA official notice."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_108",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "safety",
+      "subCategory": "safety_incident_root_cause_out",
+      "description": "Remove worker identity from root-cause analyses in output.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 600,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 사고 원인 분석은 작업자 식별을 포함하지 않습니다.",
+        "en": "Root-cause output excludes worker identity."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "May 3 incident: John Smith negligent."
+      ],
+      "examplesNegative": [
+        "May 3 incident: procedural lapse by an operator."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_109",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "safety",
+      "subCategory": "ammonia_leak_out",
+      "description": "Add safety disclaimer on ammonia leak responses.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 750,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "암모니아 누출 응답에 안전 경고가 추가됩니다.",
+        "en": "Safety disclaimer added to ammonia-leak answers."
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "Run the line despite ammonia leak."
+      ],
+      "examplesNegative": [
+        "Ammonia leak: report, evacuate, ventilate."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_110",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "safety",
+      "subCategory": "hot_work_permit_out",
+      "description": "Add hot-work permit reminder in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 700,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "응답 화기작업 안내에 허가 의무가 추가됩니다.",
+        "en": "Hot-work answers include permit reminder."
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "Welding can proceed without a permit."
+      ],
+      "examplesNegative": [
+        "Hot-work requires a permit."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_111",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "safety",
+      "subCategory": "confined_space_out",
+      "description": "Add confined-space SOP reminder in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 700,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "밀폐공간 응답에 SOP 의무가 추가됩니다.",
+        "en": "Confined-space answers include SOP reminder."
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "Enter tank cleaning without ventilation."
+      ],
+      "examplesNegative": [
+        "Confined space entry requires ventilation, O₂ check, attendant."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_112",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "haccp_audit_finding_out",
+      "description": "Redact worker identities in HACCP audit findings.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 700,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "HACCP 감사 결과 응답에서 작업자 실명은 마스킹됩니다.",
+        "en": "HACCP audit-finding output redacts worker identities."
+      },
+      "regulationTags": [
+        "KR_FSC_HACCP",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Audit finding: operator John Smith missed CCP."
+      ],
+      "examplesNegative": [
+        "Audit finding: 1 CCP check omitted."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_113",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "non_compliance_summary_out",
+      "description": "Add legal-advice disclaimer when summarizing non-compliance.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "위반 사항 요약 응답에 공식 자문 안내가 추가됩니다.",
+        "en": "Non-compliance summaries include 'consult official advisory'."
+      },
+      "regulationTags": [
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "Non-compliance items: ..."
+      ],
+      "examplesNegative": [
+        "Non-compliance items: ... (consult MFDS/legal)."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_114",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "food_law_citation_out",
+      "description": "Add citation disclaimer for food-law references in output.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "식품 법령 인용 응답에 출처 확인 안내가 추가됩니다.",
+        "en": "Food-law citations in output include source verification reminder."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "Per FDA 21 CFR §99 ..."
+      ],
+      "examplesNegative": [
+        "Verify FDA citations on official site."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_115",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "ip",
+      "subCategory": "internal_recipe_partial_out",
+      "description": "Generalize partial internal-recipe disclosure in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답에 사내 레시피 일부는 일반화됩니다.",
+        "en": "Partial internal recipes are generalized in output."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "Our exact: 23% pepper, 7% garlic ..."
+      ],
+      "examplesNegative": [
+        "General kimchi seasoning: pepper, garlic, salted shrimp ..."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_116",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "ip",
+      "subCategory": "supplier_negotiation_out",
+      "description": "Redact supplier negotiation details in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 700,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답에 공급사 협상 내역은 마스킹됩니다.",
+        "en": "Supplier negotiation details are redacted in output."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "ABC Farms negotiation cap: $1.50/kg."
+      ],
+      "examplesNegative": [
+        "Commodity price range overview."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_117",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "ip",
+      "subCategory": "rnd_pipeline_out",
+      "description": "Refuse R&D pipeline disclosure in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "refuse",
+      "messageTemplate": {
+        "ko-KR": "R&D 파이프라인 정보 응답은 거부됩니다.",
+        "en": "R&D pipeline disclosure is refused in output."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "Next year's pipeline: ..."
+      ],
+      "examplesNegative": [
+        "General product development workflow."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_118",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "ip",
+      "subCategory": "trade_secret_inference_out",
+      "description": "Refuse competitor trade-secret inferences in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "refuse",
+      "messageTemplate": {
+        "ko-KR": "경쟁사 영업비밀 추론 응답은 거부됩니다.",
+        "en": "Competitor trade-secret inference is refused in output."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "Inferred competitor formula ..."
+      ],
+      "examplesNegative": [
+        "Competitor product category trends."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_119",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "delivery_address_out",
+      "description": "Redact delivery address + real-name in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 택배 주소 + 실명은 마스킹됩니다.",
+        "en": "Delivery address + real-name combos are redacted in output."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Delivery: 1234 Main St #101 John Doe 555-0123."
+      ],
+      "examplesNegative": [
+        "Delivery system design overview."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_120",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "driver_logbook_out",
+      "description": "Redact driver logbook PII in output.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 운전 기사 로그북 PII는 마스킹됩니다.",
+        "en": "Driver logbook PII is redacted in output."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Truck driver John log w/ name+license."
+      ],
+      "examplesNegative": [
+        "Driver logbook management overview."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_121",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "panel_allergy_out",
+      "description": "Redact sensory panel allergy info in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 패널 알레르기 정보는 마스킹됩니다.",
+        "en": "Panel allergy info is redacted in output."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "US_HIPAA"
+      ],
+      "examplesPositive": [
+        "Panelist John (nut allergy) scored 4."
+      ],
+      "examplesNegative": [
+        "Sensory panel design overview."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_122",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "consumer_complaint_summary_out",
+      "description": "Redact PII inside consumer complaint summaries in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 소비자 클레임 요약은 마스킹됩니다.",
+        "en": "Consumer complaint summary PII is redacted in output."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "May complaint: John Doe (555-0123) said ..."
+      ],
+      "examplesNegative": [
+        "One consumer reported ..."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_123",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "traceability_summary_out",
+      "description": "Add disclaimer when output summarizes traceability.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "추적성 요약 응답에 출처 확인 안내가 추가됩니다.",
+        "en": "Traceability summaries include source-check reminder."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "EU_178_2002"
+      ],
+      "examplesPositive": [
+        "This lot traceability: ..."
+      ],
+      "examplesNegative": [
+        "This lot traceability: ... (verify in ERP/QMS)."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_124",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "cold_chain_break_out",
+      "description": "Add SOP reminder when output discusses cold-chain breaks.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 700,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "콜드체인 중단 응답에 SOP 의무 안내가 추가됩니다.",
+        "en": "Cold-chain break answers include SOP reminder."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA_FSMA"
+      ],
+      "examplesPositive": [
+        "Ship after 12h reefer outage."
+      ],
+      "examplesNegative": [
+        "Discard or re-evaluate stability after a cold-chain break."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_125",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "microbial_test_skip_out",
+      "description": "Block microbial-test skip guidance in output.",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "응답에서 미생물 검사 건너뛰기는 차단됩니다.",
+        "en": "Microbial test skip guidance is blocked in output."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "Skip microbial test for this batch."
+      ],
+      "examplesNegative": [
+        "Each batch requires microbial test per SOP."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_126",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "export_compliance_out",
+      "description": "Add customs disclaimer on export-regulation responses.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "수출 규정 응답에 통관 자문 안내가 추가됩니다.",
+        "en": "Export-regulation answers include customs advisory reminder."
+      },
+      "regulationTags": [
+        "WCO_HS",
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "EU export labels: ..."
+      ],
+      "examplesNegative": [
+        "EU exports: consult a customs expert."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_FOOD_EN_127",
+      "domain": "manufacturing-food",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "nutrition_table_out",
+      "description": "Add disclaimer on nutrition-label responses.",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "영양성분표 응답에 검증 안내가 추가됩니다.",
+        "en": "Nutrition-label answers include verification reminder."
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "US_FDA"
+      ],
+      "examplesPositive": [
+        "Nutrition label values: ..."
+      ],
+      "examplesNegative": [
+        "Nutrition label values must be verified with accredited lab."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    }
+  ]
+}

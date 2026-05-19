@@ -1,0 +1,7147 @@
+{
+  "$schema": "https://example.com/guardrails/rule-bundle.schema.json",
+  "domain": "global",
+  "locale": "ko-KR",
+  "generatedAt": "2026-05-19T10:09:21+00:00",
+  "totalRules": 245,
+  "rules": [
+    {
+      "ruleId": "PRIV_KR_001",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "national_id_kr",
+      "description": "주민등록번호 입력 차단",
+      "patternType": "regex",
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "주민등록번호는 입력할 수 없습니다.",
+        "en": "Korean RRN cannot be entered."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "제 주민등록번호는 900101-1234567 입니다."
+      ],
+      "examplesNegative": [
+        "주민등록번호 제도에 대해 설명해 주세요."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b\\d{6}[- ]?\\d{7}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_002",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "ssn_us",
+      "description": "미국 SSN 입력 차단",
+      "patternType": "regex",
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "미국 SSN은 입력할 수 없습니다.",
+        "en": "Do not enter US SSNs into this assistant."
+      },
+      "regulationTags": [
+        "US_HIPAA",
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "내 SSN은 123-45-6789 입니다."
+      ],
+      "examplesNegative": [
+        "SSN이 무엇인지 설명해 주세요."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b(?!000|666)[0-8]\\d{2}[- ]\\d{2}[- ]\\d{4}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_003",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "mynumber_jp",
+      "description": "일본 마이넘버 입력 차단",
+      "patternType": "regex",
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "일본 마이넘버는 입력할 수 없습니다.",
+        "en": "Do not enter Japanese My Number identifiers."
+      },
+      "regulationTags": [
+        "JP_APPI"
+      ],
+      "examplesPositive": [
+        "마이넘버 1234-5678-9012를 알려드립니다."
+      ],
+      "examplesNegative": [
+        "마이넘버 제도가 무엇인가요?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b\\d{4}[- ]?\\d{4}[- ]?\\d{4}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_004",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "passport",
+      "description": "여권번호 입력 차단",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 880,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "여권번호는 입력하지 마세요.",
+        "en": "Do not share passport numbers here."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "제 여권번호는 M12345678 입니다."
+      ],
+      "examplesNegative": [
+        "여권번호 형식이 국가마다 어떻게 다른지 알려주세요."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b[A-Z]\\d{7,9}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_005",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "driver_license_kr",
+      "description": "한국 운전면허번호 마스킹",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 800,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "운전면허번호는 마스킹 처리됩니다.",
+        "en": "Korean driver license number is redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "내 운전면허 11-22-345678-99 등록해줘."
+      ],
+      "examplesNegative": [
+        "운전면허 발급 절차를 알려주세요."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b\\d{2}[- ]?\\d{2}[- ]?\\d{6}[- ]?\\d{2}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_006",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "driver_license_us",
+      "description": "미국 운전면허번호 마스킹",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "운전면허번호는 마스킹 처리됩니다.",
+        "en": "US driver license numbers are redacted."
+      },
+      "regulationTags": [
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "캘리포니아 운전면허 A1234567 등록 해줘."
+      ],
+      "examplesNegative": [
+        "운전면허 절차에 대해 설명해줘."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_007",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "business_reg_kr",
+      "description": "사업자등록번호 입력 시 마스킹",
+      "patternType": "regex",
+      "severity": "medium",
+      "priority": 600,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "사업자등록번호는 마스킹 처리됩니다.",
+        "en": "Business registration number is redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "사업자번호 123-45-67890 등록 부탁드립니다."
+      ],
+      "examplesNegative": [
+        "사업자등록 절차를 알려주세요."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b\\d{3}-\\d{2}-\\d{5}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_008",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "corporation_no_kr",
+      "description": "한국 법인등록번호 마스킹",
+      "patternType": "regex",
+      "severity": "medium",
+      "priority": 600,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "법인등록번호는 마스킹 처리됩니다.",
+        "en": "Corporation registration number is redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "법인등록번호 110111-1234567 입니다."
+      ],
+      "examplesNegative": [
+        "법인등록번호 발급 절차?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b\\d{6}-\\d{7}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_009",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "name_plus_id_combo",
+      "description": "성명 + 식별번호 결합 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "성명과 식별번호를 함께 입력하지 마세요.",
+        "en": "Do not combine real names with ID numbers in input."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "홍길동, 주민등록번호 900101-1234567"
+      ],
+      "examplesNegative": [
+        "홍길동이라는 유명인을 아시나요?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_010",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "multiple_ids_bulk",
+      "description": "여러 사람 식별번호 일괄 입력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 920,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "여러 사람의 식별번호를 일괄 입력할 수 없습니다.",
+        "en": "Bulk identifier paste is not allowed."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "고객 100명의 주민등록번호 목록을 붙여넣을게요."
+      ],
+      "examplesNegative": [
+        "고객 식별정보 암호화 방법을 알려주세요."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_011",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "id_image_ocr",
+      "description": "신분증 이미지 OCR 텍스트 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "신분증 이미지에서 식별정보를 추출할 수 없습니다.",
+        "en": "The assistant cannot extract IDs from document images."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "이 주민등록증 사진에서 번호 추출해줘."
+      ],
+      "examplesNegative": [
+        "신분증 사진은 어떻게 보관하면 좋을까?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_012",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "resident_alien_kr",
+      "description": "외국인 등록번호 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "외국인 등록번호는 입력하지 마세요.",
+        "en": "Do not share Korean alien registration numbers."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "외국인등록번호 850101-5234567 등록 부탁."
+      ],
+      "examplesNegative": [
+        "외국인 등록 제도 소개."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_013",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "employee_no_combo",
+      "description": "실명 + 사번 결합 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "실명과 사번을 함께 입력할 수 없습니다.",
+        "en": "Do not combine employee IDs with real names."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "포장라인 작업자 홍길동, 사번 20260012를 추가해줘."
+      ],
+      "examplesNegative": [
+        "사번 체계 설계 시 고려사항을 알려줘."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_014",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "id_mapping_table",
+      "description": "ID-실명 매핑 테이블 업로드 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 920,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "ID와 실명을 매핑한 테이블은 업로드할 수 없습니다.",
+        "en": "Do not upload identifier-to-real-name mapping tables."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "고객ID와 주민번호 매핑 테이블을 붙여넣을게."
+      ],
+      "examplesNegative": [
+        "고객ID를 토큰으로 치환하는 예시를 알려줘."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_015",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "external_id_linking",
+      "description": "외부 ID와 내부 ID 결합 시 가명화 권고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 550,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "외부 ID 연동 시 가명처리·암호화를 권고합니다.",
+        "en": "External-to-internal ID linking should be pseudonymized."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "구글 계정과 우리 서비스 계정을 1:1 매핑해 저장."
+      ],
+      "examplesNegative": [
+        "소셜 로그인 연동 시 개인정보 최소화 원칙은?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_016",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "id_in_free_text",
+      "description": "자유 텍스트 내 식별번호 자동 마스킹",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "텍스트 내 식별번호는 자동 마스킹됩니다.",
+        "en": "Detected ID numbers will be redacted automatically."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "이 메모에 제 주민번호 900101-1234567이 적혀 있어요."
+      ],
+      "examplesNegative": [
+        "주민번호가 무엇을 의미하는지 설명해줘."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_017",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "photo_id_description",
+      "description": "사진 속 신분증 번호 텍스트 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "사진 속 신분증 번호는 언급하지 마세요.",
+        "en": "Do not describe ID numbers visible in a photo."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "사진에 나온 주민등록증 번호를 텍스트로 써줄게."
+      ],
+      "examplesNegative": [
+        "신분증 사진을 안전하게 보관하는 방법은?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_018",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "historical_id_dataset",
+      "description": "과거 ID 포함 데이터셋 업로드 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "실제 ID가 포함된 과거 데이터셋은 가명화 후 사용하세요.",
+        "en": "Historical datasets with real IDs must be pseudonymized first."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "고객 SSN이 포함된 작년 CSV를 분석해줘."
+      ],
+      "examplesNegative": [
+        "SSN 가명화 방법을 알려줘."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_019",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "family_ids",
+      "description": "가족 구성원 식별번호 일괄 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "가족 구성원의 개인정보를 일괄 입력할 수 없습니다.",
+        "en": "Family identifier paste is not allowed."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "가족 4명 주민번호를 한 번에 알려줄게."
+      ],
+      "examplesNegative": [
+        "가족관계등록부 제도를 설명해줘."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_020",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "customer_id_bulk",
+      "description": "고객 ID·이메일·전화 다량 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "고객 식별정보 다량 입력은 차단됩니다.",
+        "en": "Bulk customer identifier paste is blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "고객 ID 10,000개와 이메일 목록을 보낼게."
+      ],
+      "examplesNegative": [
+        "고객 ID 익명화 방법을 알려줘."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_021",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "id_validation_request",
+      "description": "ID 검증 API 설계 시 컴플라이언스 안내",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "ID 검증 서비스는 KYC·개인정보 규제를 준수해야 합니다.",
+        "en": "ID validation services must follow local KYC and privacy regulations."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "주민번호의 유효성을 확인하는 API를 만들어줘."
+      ],
+      "examplesNegative": [
+        "주민번호 체크섬 원리만 설명해줘."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_022",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "temporary_id",
+      "description": "임시 발급 ID라도 실제 개인 식별 가능 시 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 600,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "실제 개인을 특정할 수 있는 임시 ID는 입력하지 마세요.",
+        "en": "Temporary identifiers that can identify a person are blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "임시번호 20260001~20260099 명단 입니다."
+      ],
+      "examplesNegative": [
+        "사번 체계 설계 시 고려사항?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_023",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "national_health_no",
+      "description": "국민건강보험증 번호 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "건강보험증 번호는 입력하지 마세요.",
+        "en": "Do not share NHIS card numbers."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "건강보험증 번호 1-1234567 입력합니다."
+      ],
+      "examplesNegative": [
+        "건강보험 발급 절차?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_024",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "tax_id_us",
+      "description": "US ITIN/EIN 입력 차단",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "미국 세무 식별번호는 입력하지 마세요.",
+        "en": "Do not share US tax identifiers."
+      },
+      "regulationTags": [
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "ITIN 912-34-5678 등록 부탁."
+      ],
+      "examplesNegative": [
+        "ITIN 발급 절차를 알려줘."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b9\\d{2}[- ]\\d{2}[- ]\\d{4}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_025",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "vat_no_eu",
+      "description": "EU VAT 번호 마스킹",
+      "patternType": "regex",
+      "severity": "medium",
+      "priority": 600,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "EU VAT 번호는 마스킹 처리됩니다.",
+        "en": "EU VAT numbers are redacted."
+      },
+      "regulationTags": [
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "VAT DE123456789 처리 부탁."
+      ],
+      "examplesNegative": [
+        "EU VAT 시스템 설명해줘."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b[A-Z]{2}\\d{8,12}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_026",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "ic_card_jp",
+      "description": "일본 운전면허·재류카드 번호 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "일본 운전면허·재류카드 번호는 입력하지 마세요.",
+        "en": "Do not enter Japanese driver license or residence card numbers."
+      },
+      "regulationTags": [
+        "JP_APPI"
+      ],
+      "examplesPositive": [
+        "日本の運転免許 1234 5678 9012 を登録."
+      ],
+      "examplesNegative": [
+        "日本の運転免許制度を説明."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_027",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "government_form_id",
+      "description": "행정문서 일련번호·접수번호 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 600,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "정부 행정문서 식별번호는 마스킹 처리됩니다.",
+        "en": "Government form identifiers are redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "민원 접수번호 2026-AA-000123을 추적."
+      ],
+      "examplesNegative": [
+        "민원 접수번호 체계는?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_028",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "kakao_id",
+      "description": "메신저 계정 ID (카카오톡 등) 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 550,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "메신저 계정 ID는 마스킹 처리됩니다.",
+        "en": "Messenger account IDs are redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "카카오톡 ID gildong_hong을 추가해줘."
+      ],
+      "examplesNegative": [
+        "카카오톡 계정 보안은?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_029",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "sns_handle",
+      "description": "SNS handle 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "SNS 핸들은 마스킹 처리됩니다.",
+        "en": "SNS handles are redacted in this assistant."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "@gildong_real_account 은 제 트위터입니다."
+      ],
+      "examplesNegative": [
+        "트위터 핸들 명명 규칙?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_030",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "biometric_passport",
+      "description": "전자여권 칩 데이터 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "전자여권 칩 데이터는 입력할 수 없습니다.",
+        "en": "Do not paste e-passport biometric chip data."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9"
+      ],
+      "examplesPositive": [
+        "전자여권 칩에서 추출한 raw 데이터 첨부합니다."
+      ],
+      "examplesNegative": [
+        "전자여권 보안 구조?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_031",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "email",
+      "description": "이메일 주소 입력 마스킹",
+      "patternType": "regex",
+      "severity": "medium",
+      "priority": 600,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "이메일 주소는 마스킹 처리됩니다.",
+        "en": "Email addresses are redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "메일은 user@example.com 입니다."
+      ],
+      "examplesNegative": [
+        "이메일 정규식 알려줘."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b[A-Za-z0-9._%+\\-]+@[A-Za-z0-9.\\-]+\\.[A-Za-z]{2,}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_032",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "email_bulk",
+      "description": "이메일 대량 붙여넣기 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "이메일을 다량 붙여넣을 수 없습니다.",
+        "en": "Bulk email paste is not allowed."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "고객 이메일 500개 리스트를 분석해줘."
+      ],
+      "examplesNegative": [
+        "이메일 마케팅 모범 사례?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_033",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "phone_kr",
+      "description": "한국 휴대전화 번호 마스킹",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 800,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "휴대전화 번호는 마스킹 처리됩니다.",
+        "en": "Korean mobile numbers are redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "연락처는 010-1234-5678 입니다."
+      ],
+      "examplesNegative": [
+        "휴대전화 번호 형식을 알려줘."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b01[016789][- .]?\\d{3,4}[- .]?\\d{4}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_034",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "phone_us",
+      "description": "미국 전화번호 마스킹",
+      "patternType": "regex",
+      "severity": "medium",
+      "priority": 600,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "미국 전화번호는 마스킹 처리됩니다.",
+        "en": "US phone numbers are redacted."
+      },
+      "regulationTags": [
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "+1 202-555-0123 으로 연락주세요."
+      ],
+      "examplesNegative": [
+        "미국 NANP 체계 설명해줘."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b(?:\\+?1[- .]?)?\\(?\\d{3}\\)?[- .]?\\d{3}[- .]?\\d{4}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_035",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "phone_jp",
+      "description": "일본 전화번호 마스킹",
+      "patternType": "regex",
+      "severity": "medium",
+      "priority": 600,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "일본 전화번호는 마스킹 처리됩니다.",
+        "en": "Japanese phone numbers are redacted."
+      },
+      "regulationTags": [
+        "JP_APPI"
+      ],
+      "examplesPositive": [
+        "090-1234-5678 まで연락."
+      ],
+      "examplesNegative": [
+        "일본 전화번호 체계는?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b0\\d{1,4}[- ]?\\d{1,4}[- ]?\\d{4}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_036",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "phone_eu",
+      "description": "EU 국가코드 전화번호 마스킹",
+      "patternType": "regex",
+      "severity": "medium",
+      "priority": 600,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "EU 전화번호는 마스킹 처리됩니다.",
+        "en": "EU phone numbers are redacted."
+      },
+      "regulationTags": [
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "+44 20 7946 0958 로 연락주세요."
+      ],
+      "examplesNegative": [
+        "EU 전화번호 체계는?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\+(?:44|49|33|31|39|34)[\\s.-]?\\d{1,4}[\\s.-]?\\d{3,4}[\\s.-]?\\d{3,4}"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_037",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "address_kr_full",
+      "description": "정확한 한국 집 주소 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "집 주소 전체를 입력하지 말고 시·구 단위까지만 사용하세요.",
+        "en": "Do not paste full Korean home addresses. Use city/district granularity only."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "서울시 강남구 역삼동 123-45 101호에 거주합니다."
+      ],
+      "examplesNegative": [
+        "강남구 인구 통계는?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_038",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "address_us_full",
+      "description": "정확한 미국 거주지 주소 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "정확한 미국 거주지 주소는 입력하지 마세요.",
+        "en": "Do not paste precise US residential addresses."
+      },
+      "regulationTags": [
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "I live at 1234 Main St, Springfield, IL 62704."
+      ],
+      "examplesNegative": [
+        "Average IL home price?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_039",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "address_jp_full",
+      "description": "정확한 일본 거주지 주소 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "일본 거주지 정확 주소는 입력하지 마세요.",
+        "en": "Do not paste precise Japanese residential addresses."
+      },
+      "regulationTags": [
+        "JP_APPI"
+      ],
+      "examplesPositive": [
+        "東京都港区六本木 1-2-3 マンション 101 に住んでいます."
+      ],
+      "examplesNegative": [
+        "港区の人口は?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_040",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "address_book_bulk",
+      "description": "주소록 대량 붙여넣기 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "주소록 전체 붙여넣기는 차단됩니다.",
+        "en": "Bulk address book paste is blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "주소록 전체 (이름·전화·이메일) 다 붙여넣을게."
+      ],
+      "examplesNegative": [
+        "주소록 백업 방법?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_041",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "workplace_personal_combo",
+      "description": "회사명·부서·내선과 실명 결합 시 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "회사·부서·내선과 실명 결합 입력을 자제하세요.",
+        "en": "Do not combine company/department/extension with real names."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "OO은행 강남지점 영업1팀 홍길동 내선 1234 입니다."
+      ],
+      "examplesNegative": [
+        "콜센터 내선 체계는?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_042",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "messenger_id",
+      "description": "메신저 ID (LINE/WhatsApp 등) 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 550,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "메신저 ID는 마스킹 처리됩니다.",
+        "en": "Messenger account IDs are redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "JP_APPI"
+      ],
+      "examplesPositive": [
+        "LINE ID gildong_kor 추가."
+      ],
+      "examplesNegative": [
+        "LINE 계정 보안 팁?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_043",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "fax_number",
+      "description": "팩스 번호 입력 시 안내",
+      "patternType": "classifier",
+      "severity": "low",
+      "priority": 200,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "팩스 번호가 포함되어 있습니다.",
+        "en": "Fax number detected."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "팩스 02-1234-5678 로 송부 부탁."
+      ],
+      "examplesNegative": [
+        "팩스 체계 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_044",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "p_o_box",
+      "description": "사서함 정보 입력 시 안내",
+      "patternType": "classifier",
+      "severity": "low",
+      "priority": 200,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "사서함 주소는 마스킹 권고됩니다.",
+        "en": "P.O. Box info should be anonymized."
+      },
+      "regulationTags": [
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "사서함 1234, 서울 우체국."
+      ],
+      "examplesNegative": [
+        "사서함 발급 절차?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_045",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "emergency_contact",
+      "description": "비상연락처 (제3자) 정보 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "비상연락처(제3자) 정보는 입력하지 마세요.",
+        "en": "Do not enter third-party emergency contact info."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "비상연락처: 어머니 김OO 010-1111-2222."
+      ],
+      "examplesNegative": [
+        "비상연락처 등록 방법?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_046",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "guardian_contact",
+      "description": "보호자 연락처 (미성년) 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "미성년자 보호자 연락처는 입력하지 마세요.",
+        "en": "Do not paste minor guardian contact info."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "COPPA"
+      ],
+      "examplesPositive": [
+        "딸의 보호자 연락처 010-1234-5678 입니다."
+      ],
+      "examplesNegative": [
+        "보호자 동의 절차?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_047",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "phone_book_export",
+      "description": "전화번호부 export 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "전화번호부 전체 export는 차단됩니다.",
+        "en": "Phone book export is blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "전화번호부 vCard 전체 export를 분석해줘."
+      ],
+      "examplesNegative": [
+        "vCard 포맷 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_048",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "address_geocode",
+      "description": "주소 좌표 변환 요청 시 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "특정인 주소 좌표 변환은 권장되지 않습니다.",
+        "en": "Geocoding a specific person's address is discouraged."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "홍길동의 집 주소 위경도 좌표를 알려줘."
+      ],
+      "examplesNegative": [
+        "주소 → 좌표 변환 알고리즘은?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_049",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "voice_mail",
+      "description": "음성메일 전사 내 PII 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "음성메일 전사 내 개인정보는 마스킹됩니다.",
+        "en": "PII in voicemail transcripts is redacted."
+      },
+      "regulationTags": [
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "음성메일 전사: '제 번호는 010-1234-5678'"
+      ],
+      "examplesNegative": [
+        "음성메일 시스템 설계?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_050",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "chat_logs_with_pii",
+      "description": "채팅 로그 내 PII 자동 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "채팅 로그 내 PII는 자동 마스킹됩니다.",
+        "en": "PII inside chat log uploads is redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "채팅 로그 첨부 (이름·전화·이메일 다수 포함)."
+      ],
+      "examplesNegative": [
+        "채팅 로그 분석 방법?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_051",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "personal_blog_link",
+      "description": "개인 블로그 링크 + 실명 결합 시 경고",
+      "patternType": "classifier",
+      "severity": "low",
+      "priority": 150,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "개인 블로그 URL과 실명 결합 시 주의하세요.",
+        "en": "Personal blog URL plus real name combinations are flagged."
+      },
+      "regulationTags": [
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "홍길동의 블로그 https://blog.example.com/gildong"
+      ],
+      "examplesNegative": [
+        "기술 블로그 작성 팁?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_052",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "private_dms",
+      "description": "비공개 DM 원문 업로드 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "비공개 DM 원문은 업로드할 수 없습니다.",
+        "en": "Private DM transcripts cannot be uploaded."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "DM 전체 원문을 붙여넣을게 (이름 포함)."
+      ],
+      "examplesNegative": [
+        "DM 보관 모범사례?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_053",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "courier_tracking",
+      "description": "택배 송장 번호 + 수령인 정보 결합 시 경고",
+      "patternType": "classifier",
+      "severity": "low",
+      "priority": 200,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "택배 송장과 수령인 정보 결합 입력 시 주의.",
+        "en": "Courier tracking number plus recipient info is flagged."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "송장 1234-5678-9012 수령인 홍길동 010-..."
+      ],
+      "examplesNegative": [
+        "택배 송장 번호 체계?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_054",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "public_records_combo",
+      "description": "공개 기록 (졸업·결혼 등) + 실명 결합 시 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 350,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "공개 기록과 실명 결합은 재식별 위험이 있습니다.",
+        "en": "Combining public records with names risks re-identification."
+      },
+      "regulationTags": [
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "홍길동, 2010년 OO대 졸업, 결혼 2015."
+      ],
+      "examplesNegative": [
+        "졸업 정보 검색 방법?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_055",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "card_number",
+      "description": "신용카드 번호 입력 차단 (Luhn)",
+      "patternType": "regex",
+      "severity": "critical",
+      "priority": 920,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "카드 번호는 입력할 수 없습니다.",
+        "en": "Do not enter card numbers."
+      },
+      "regulationTags": [
+        "PCI_DSS"
+      ],
+      "examplesPositive": [
+        "카드 4111 1111 1111 1111 등록."
+      ],
+      "examplesNegative": [
+        "테스트 카드 BIN을 알려줘."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b(?:\\d[ -]*?){13,19}\\b"
+        ],
+        "luhnCheck": true
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_056",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "card_cvv",
+      "description": "CVV/CVC 입력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 940,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "CVC는 입력하지 마세요.",
+        "en": "Do not paste CVV/CVC values."
+      },
+      "regulationTags": [
+        "PCI_DSS"
+      ],
+      "examplesPositive": [
+        "CVC 123 같이 저장해줘."
+      ],
+      "examplesNegative": [
+        "CVC가 무엇인가요?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_057",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "card_expiry",
+      "description": "카드 유효기간 + 카드번호 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "카드 유효기간은 입력하지 마세요.",
+        "en": "Do not enter card expiry alongside card numbers."
+      },
+      "regulationTags": [
+        "PCI_DSS"
+      ],
+      "examplesPositive": [
+        "카드 4111... 유효기간 12/27 저장."
+      ],
+      "examplesNegative": [
+        "카드 유효기간 형식?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_058",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "iban",
+      "description": "IBAN 마스킹",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 800,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "IBAN은 마스킹 처리됩니다.",
+        "en": "IBANs are redacted."
+      },
+      "regulationTags": [
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "내 IBAN은 GB82WEST12345698765432."
+      ],
+      "examplesNegative": [
+        "IBAN 구조 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b[A-Z]{2}\\d{2}[A-Z0-9]{11,30}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_059",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "swift_bic",
+      "description": "SWIFT/BIC 코드 + 계좌 결합 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "SWIFT/BIC + 계좌 정보는 마스킹됩니다.",
+        "en": "SWIFT/BIC plus account info is redacted."
+      },
+      "regulationTags": [
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "BIC DEUTDEFFXXX 계좌 1234567890."
+      ],
+      "examplesNegative": [
+        "SWIFT 메시지 표준?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_060",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "bank_account_kr",
+      "description": "한국 계좌번호 마스킹",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 800,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "한국 계좌번호는 마스킹 처리됩니다.",
+        "en": "Korean bank account numbers are redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "신한 110-123-456789 입금 부탁."
+      ],
+      "examplesNegative": [
+        "한국 계좌체계 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b\\d{3}-\\d{2,6}-\\d{2,6}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_061",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "bank_routing_us",
+      "description": "미국 routing+account 마스킹",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "미국 라우팅+계좌 결합은 마스킹됩니다.",
+        "en": "US routing+account combinations are redacted."
+      },
+      "regulationTags": [
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "routing 026009593 account 1234567890."
+      ],
+      "examplesNegative": [
+        "ACH 라우팅 체계?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_062",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "crypto_wallet",
+      "description": "암호화폐 지갑 주소 + 실명 결합 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "암호화폐 지갑 + 실명 결합은 마스킹됩니다.",
+        "en": "Crypto wallet + real-name claims are redacted."
+      },
+      "regulationTags": [
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "내 ETH 지갑 0xAbC123... 입니다."
+      ],
+      "examplesNegative": [
+        "ETH 주소 포맷?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_063",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "payment_token",
+      "description": "결제 토큰 (Stripe/PayPal 등) 입력 차단",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 800,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "결제 토큰은 입력할 수 없습니다.",
+        "en": "Payment gateway tokens cannot be entered."
+      },
+      "regulationTags": [
+        "PCI_DSS"
+      ],
+      "examplesPositive": [
+        "Stripe 토큰 tok_visa_abcd1234567890ABCD 입니다."
+      ],
+      "examplesNegative": [
+        "결제 토큰 보관 방법?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\btok_[A-Za-z0-9]{16,}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_064",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "loan_credit_request",
+      "description": "대출/신용 점수 + 실명 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "대출/신용 점수와 실명 결합 입력은 차단됩니다.",
+        "en": "Credit/loan info paired with real names is blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "US_FCRA"
+      ],
+      "examplesPositive": [
+        "홍길동 신용점수 720, 대출 3천만원."
+      ],
+      "examplesNegative": [
+        "신용점수 산정 방식?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_065",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "savings_balance",
+      "description": "잔액 + 계좌주 결합 마스킹",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 700,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "잔액과 계좌주 결합은 마스킹 처리됩니다.",
+        "en": "Balance + holder name is redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동 계좌 잔액 1억 2천만원."
+      ],
+      "examplesNegative": [
+        "예금자 보호제도 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_066",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "transaction_csv",
+      "description": "거래 내역 CSV 업로드 시 가명화 권고",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "거래 내역은 가명화 후 분석에 사용하세요.",
+        "en": "Transaction CSV uploads must be pseudonymized first."
+      },
+      "regulationTags": [
+        "PCI_DSS",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "고객별 거래내역 csv (이름·계좌 포함) 첨부."
+      ],
+      "examplesNegative": [
+        "거래 패턴 분석 모범사례?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_067",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "pay_id_service",
+      "description": "페이 서비스 ID (KakaoPay/PayPal 등) 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "페이 서비스 ID는 마스킹 처리됩니다.",
+        "en": "Payment service IDs are redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "내 카카오페이 ID gildong_kakaopay."
+      ],
+      "examplesNegative": [
+        "카카오페이 보안 구조?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_068",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "loan_application_form",
+      "description": "대출 신청서 원본 업로드 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "대출 신청서 원본은 업로드할 수 없습니다.",
+        "en": "Raw loan application forms cannot be uploaded."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "대출 신청서 (이름·연봉·자산) 그대로 첨부."
+      ],
+      "examplesNegative": [
+        "대출 심사 모범사례?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_069",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "invoice_raw_pii",
+      "description": "송장 원본 PII 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 600,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "송장 원본 내 개인정보는 마스킹됩니다.",
+        "en": "PII inside invoice text is redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "송장: 홍길동, 010-1234-5678, 결제 50만원."
+      ],
+      "examplesNegative": [
+        "송장 자동화 시스템 설계?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_070",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "tax_return_raw",
+      "description": "세금신고서 원문 업로드 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "세금신고서 원문은 업로드할 수 없습니다.",
+        "en": "Raw tax returns cannot be uploaded."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "세금신고서 PDF 그대로 첨부 (이름·SSN 포함)."
+      ],
+      "examplesNegative": [
+        "세금신고 자동화 방안?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_071",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "insurance_claim_raw",
+      "description": "보험 청구서 원본 + PII 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "보험 청구서 원본은 차단됩니다.",
+        "en": "Raw insurance claim forms are blocked."
+      },
+      "regulationTags": [
+        "US_HIPAA",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "보험 청구서 PDF (이름·진단·약물 포함) 첨부."
+      ],
+      "examplesNegative": [
+        "보험 청구 자동화?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_072",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "salary_disclosure",
+      "description": "급여 정보 + 실명 결합 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "급여 정보와 실명 결합은 마스킹됩니다.",
+        "en": "Salary plus real-name combinations are redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동 연봉 8천 5백만원."
+      ],
+      "examplesNegative": [
+        "연봉 분포 통계?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_073",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "debit_card_pin",
+      "description": "체크카드 PIN 입력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "체크카드 PIN은 입력할 수 없습니다.",
+        "en": "Do not paste debit card PINs."
+      },
+      "regulationTags": [
+        "PCI_DSS"
+      ],
+      "examplesPositive": [
+        "체크카드 PIN 1234 저장해줘."
+      ],
+      "examplesNegative": [
+        "PIN 보안 모범사례?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_074",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "crypto_seed_phrase",
+      "description": "암호화폐 시드 구문 입력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 980,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "시드 구문은 절대 입력하지 마세요.",
+        "en": "Never paste wallet seed phrases."
+      },
+      "regulationTags": [
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "내 시드: abandon abandon abandon ..."
+      ],
+      "examplesNegative": [
+        "BIP39 시드 표준?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_075",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "loyalty_card",
+      "description": "멤버십/포인트 카드 + 실명 결합 경고",
+      "patternType": "classifier",
+      "severity": "low",
+      "priority": 200,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "멤버십 카드 + 실명 결합은 권장되지 않습니다.",
+        "en": "Loyalty card + real name combinations are flagged."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동 OO마트 카드 1234-5678-9012."
+      ],
+      "examplesNegative": [
+        "포인트 카드 운영 팁?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_076",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "payslip_pdf",
+      "description": "급여명세서 PDF 업로드 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "급여명세서 PDF는 업로드할 수 없습니다.",
+        "en": "Raw payslip PDFs cannot be uploaded."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "급여명세서 PDF (이름·계좌·금액) 첨부."
+      ],
+      "examplesNegative": [
+        "급여명세서 자동화 시스템?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_077",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "financial_kyc_doc",
+      "description": "KYC 서류 (신분증+계좌) 업로드 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "KYC 서류는 업로드할 수 없습니다.",
+        "en": "KYC documents cannot be uploaded."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "KYC: 주민증 사진 + 통장 사본."
+      ],
+      "examplesNegative": [
+        "KYC 자동화 절차?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_078",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "investment_portfolio",
+      "description": "투자 포트폴리오 + 실명 결합 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "투자 포트폴리오 + 실명은 마스킹됩니다.",
+        "en": "Investment portfolio + real-name combos are redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동: 주식 60% / 채권 30% / 현금 10%."
+      ],
+      "examplesNegative": [
+        "포트폴리오 배분 이론?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_079",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "financial",
+      "subCategory": "debt_collection_list",
+      "description": "채권 추심 명단 + PII 업로드 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "채권 추심 명단은 업로드할 수 없습니다.",
+        "en": "Debt-collection lists with PII are blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "채권 추심 명단 (이름·전화·금액) 첨부."
+      ],
+      "examplesNegative": [
+        "채권 추심 절차 안내?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_080",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "password",
+      "description": "비밀번호 입력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 940,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "비밀번호는 입력하지 마세요.",
+        "en": "Do not paste passwords here."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "내 비밀번호는 Abc123!@# 입니다."
+      ],
+      "examplesNegative": [
+        "강한 비밀번호 만드는 방법?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_081",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "otp_2fa",
+      "description": "OTP / 2FA 코드 입력 차단",
+      "patternType": "regex",
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "OTP/2FA 코드는 입력하지 마세요.",
+        "en": "Do not paste OTP / 2FA codes."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "OTP 123456 입력합니다."
+      ],
+      "examplesNegative": [
+        "OTP 알고리즘 (TOTP) 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b\\d{6}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_082",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "recovery_code",
+      "description": "복구 코드 입력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 940,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "복구 코드는 입력할 수 없습니다.",
+        "en": "Recovery codes cannot be pasted."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "복구 코드 ABCD-EFGH-IJKL 저장해줘."
+      ],
+      "examplesNegative": [
+        "복구 코드 백업 방법?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_083",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "api_key",
+      "description": "API 키 / 시크릿 토큰 입력 차단",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "API 키/시크릿은 입력할 수 없습니다.",
+        "en": "Do not paste API keys or secrets."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "내 토큰: sk_live_abcdefghij1234567890ABCD."
+      ],
+      "examplesNegative": [
+        "API 키 안전하게 보관하는 법?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b(?:sk|pk|api|key|token)[_-][A-Za-z0-9_-]{16,}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_084",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "aws_key",
+      "description": "AWS Access Key ID 입력 차단",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "AWS Access Key ID는 입력할 수 없습니다.",
+        "en": "Do not paste AWS access key IDs."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "AWS AKIAIOSFODNN7EXAMPLE 입니다."
+      ],
+      "examplesNegative": [
+        "AWS IAM 보안 정책?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\bAKIA[0-9A-Z]{16}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_085",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "gcp_key",
+      "description": "GCP service-account JSON 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "GCP 서비스 계정 JSON은 입력할 수 없습니다.",
+        "en": "Do not paste GCP service-account JSONs."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "{\"type\":\"service_account\",\"private_key\":\"-----BEGIN PRIVATE KEY-----...\"}"
+      ],
+      "examplesNegative": [
+        "GCP IAM 모범사례?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_086",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "github_token",
+      "description": "GitHub PAT 입력 차단",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "GitHub PAT는 입력할 수 없습니다.",
+        "en": "Do not paste GitHub PATs."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "PAT ghp_AbCdEfGhIjKlMnOpQrStUvWxYz0123456789 입니다."
+      ],
+      "examplesNegative": [
+        "GitHub Actions secrets 보관 방법?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\bghp_[A-Za-z0-9]{36,}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_087",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "ssh_private_key",
+      "description": "SSH 개인키 입력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "SSH 개인키는 입력할 수 없습니다.",
+        "en": "Do not paste SSH private keys."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "-----BEGIN OPENSSH PRIVATE KEY-----\\n..."
+      ],
+      "examplesNegative": [
+        "SSH 키 운영 모범사례?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_088",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "tls_private_key",
+      "description": "TLS 인증서 개인키 입력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "TLS 개인키는 입력할 수 없습니다.",
+        "en": "Do not paste TLS private keys."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "-----BEGIN PRIVATE KEY-----\\nMIIE..."
+      ],
+      "examplesNegative": [
+        "TLS 인증서 운영?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_089",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "db_conn_string",
+      "description": "DB 연결 문자열 (자격증명 포함) 차단",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 870,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "자격증명 포함 DB 연결 문자열은 차단됩니다.",
+        "en": "DB connection strings with credentials are blocked."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "postgres://admin:Secret123@db.example.com:5432/app."
+      ],
+      "examplesNegative": [
+        "DB 연결 문자열 보관 방법?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b(?:postgres|mysql|mongodb)://[^\\s]+:[^\\s]+@[^\\s]+"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_090",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "kubeconfig",
+      "description": "kubeconfig 파일 (토큰 포함) 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "kubeconfig 파일은 입력할 수 없습니다.",
+        "en": "Do not paste kubeconfig files."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "apiVersion: v1\\ncontexts: ...\\ntoken: eyJ..."
+      ],
+      "examplesNegative": [
+        "kubeconfig 보안 운영?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_091",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "oauth_refresh_token",
+      "description": "OAuth refresh token 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "OAuth refresh token은 입력할 수 없습니다.",
+        "en": "Do not paste OAuth refresh tokens."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "refresh_token=1//0gabcdefghijklmnopqrst."
+      ],
+      "examplesNegative": [
+        "OAuth refresh 토큰 회전 정책?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_092",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "jwt_token",
+      "description": "JWT 토큰 입력 차단",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "JWT 토큰은 입력할 수 없습니다.",
+        "en": "Do not paste JWT bearer tokens."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "Authorization: Bearer eyJhbGciOi... 입니다."
+      ],
+      "examplesNegative": [
+        "JWT signing 알고리즘 비교?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\beyJ[A-Za-z0-9_=-]+\\.[A-Za-z0-9_=-]+\\.[A-Za-z0-9_=-]+\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_093",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "session_cookie",
+      "description": "세션 쿠키 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 700,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "세션 쿠키는 마스킹 처리됩니다.",
+        "en": "Session cookies are redacted."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "Cookie: sid=AbCdEf123456 가 있습니다."
+      ],
+      "examplesNegative": [
+        "세션 관리 모범사례?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_094",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "env_dump",
+      "description": "전체 환경변수 dump 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "환경변수 전체 dump는 차단됩니다.",
+        "en": "Full env-var dumps are blocked."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "export DB_PASS=Secret123\\nexport AWS_ACCESS=AKIA..."
+      ],
+      "examplesNegative": [
+        "환경변수 운영 모범사례?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_095",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "password_hint",
+      "description": "비밀번호 힌트 입력 시 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 300,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "비밀번호 힌트 입력에 주의하세요.",
+        "en": "Be careful when sharing password hints."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "비밀번호 힌트: 우리 강아지 이름."
+      ],
+      "examplesNegative": [
+        "비밀번호 힌트 정책?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_096",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "save_login_request",
+      "description": "로그인 정보 저장 요청 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "로그인 정보를 저장해 둘 수 없습니다.",
+        "en": "Cannot store login credentials."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "내 GitHub 로그인 정보를 저장해줘."
+      ],
+      "examplesNegative": [
+        "비밀번호 매니저 설계 원칙?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_097",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "smtp_password",
+      "description": "SMTP 비밀번호 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "SMTP 비밀번호는 입력할 수 없습니다.",
+        "en": "Do not paste SMTP passwords."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "SMTP 호스트 smtp.example.com, 비번 Secret123!."
+      ],
+      "examplesNegative": [
+        "SMTP 운영 보안?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_098",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "ftp_password",
+      "description": "FTP/SFTP 비밀번호 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "FTP 비밀번호는 입력할 수 없습니다.",
+        "en": "Do not paste FTP credentials."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "FTP host://user:Secret123@ftp.example.com."
+      ],
+      "examplesNegative": [
+        "FTP 운영 보안?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_099",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "encryption_key_raw",
+      "description": "AES/RSA 원시 키 입력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "AES/RSA 원시 키는 입력할 수 없습니다.",
+        "en": "Do not paste raw AES / RSA keys."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "AES key: 0123456789abcdef0123456789abcdef."
+      ],
+      "examplesNegative": [
+        "키 관리 시스템 원칙?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_100",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "personal_pin_codes",
+      "description": "도어록·금고 등 개인 PIN 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "도어록/금고 PIN은 입력할 수 없습니다.",
+        "en": "Do not paste door-lock / safe PINs."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "현관문 도어록 비번 1234#."
+      ],
+      "examplesNegative": [
+        "도어록 보안 권고?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_101",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "patient_record",
+      "description": "환자 의료 기록 원본 입력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 920,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "환자 의료 기록 원본은 입력할 수 없습니다.",
+        "en": "Do not paste full identifiable medical records."
+      },
+      "regulationTags": [
+        "US_HIPAA",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동 환자 진단·약물 전체 기록입니다."
+      ],
+      "examplesNegative": [
+        "전자의무기록 표준?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_102",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "diagnosis_with_name",
+      "description": "진단명 + 환자 이름 결합 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "진단명과 환자 이름 결합 입력을 자제하세요.",
+        "en": "Do not combine diagnoses with patient names."
+      },
+      "regulationTags": [
+        "US_HIPAA",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "환자 김OO은 2형 당뇨로 진단되었습니다."
+      ],
+      "examplesNegative": [
+        "당뇨 일반 정보를 알려줘."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_103",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "medication_with_name",
+      "description": "복용 약물 + 환자 이름 결합 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "환자명과 처방 약물 결합 입력을 자제하세요.",
+        "en": "Do not combine prescriptions with patient names."
+      },
+      "regulationTags": [
+        "US_HIPAA",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동은 메트포르민 1000mg을 복용."
+      ],
+      "examplesNegative": [
+        "메트포르민 일반 정보?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_104",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "mental_health_with_name",
+      "description": "정신건강 상태 + 실명 결합 입력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 920,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "정신건강 정보와 실명 결합 입력을 차단합니다.",
+        "en": "Mental health info paired with identity is blocked."
+      },
+      "regulationTags": [
+        "US_HIPAA",
+        "EU_GDPR_Art9"
+      ],
+      "examplesPositive": [
+        "홍길동은 우울증으로 3년째 약을 복용."
+      ],
+      "examplesNegative": [
+        "우울증 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_105",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "medical_record_no",
+      "description": "의료기록번호(MRN) 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "MRN은 입력할 수 없습니다.",
+        "en": "Do not paste MRNs."
+      },
+      "regulationTags": [
+        "US_HIPAA"
+      ],
+      "examplesPositive": [
+        "MRN 1234567 환자 데이터 분석."
+      ],
+      "examplesNegative": [
+        "MRN 체계 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_106",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "lab_result_raw",
+      "description": "검사 결과 + 환자 정보 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "검사결과 + 환자 정보 결합 입력 차단.",
+        "en": "Lab results plus patient info are blocked."
+      },
+      "regulationTags": [
+        "US_HIPAA",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동: HbA1c 8.5, LDL 180 mg/dL."
+      ],
+      "examplesNegative": [
+        "HbA1c 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_107",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "genetic_info",
+      "description": "유전자 정보 + 실명 결합 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "유전자 정보와 실명 결합은 차단됩니다.",
+        "en": "Genetic info + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "US_HIPAA"
+      ],
+      "examplesPositive": [
+        "홍길동 BRCA1 변이 양성."
+      ],
+      "examplesNegative": [
+        "BRCA1 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_108",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "prescription_pdf",
+      "description": "처방전 PDF 원본 업로드 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "처방전 PDF 원본은 업로드할 수 없습니다.",
+        "en": "Raw prescription PDFs cannot be uploaded."
+      },
+      "regulationTags": [
+        "US_HIPAA",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "처방전 PDF (이름·약물·용량) 첨부."
+      ],
+      "examplesNegative": [
+        "처방전 자동화 방안?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_109",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "vaccination_record",
+      "description": "백신 접종 기록 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "백신 접종 기록은 마스킹됩니다.",
+        "en": "Vaccination records are redacted."
+      },
+      "regulationTags": [
+        "US_HIPAA",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동 코로나 부스터 2024-01-15 접종."
+      ],
+      "examplesNegative": [
+        "백신 접종 통계?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_110",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "self_harm_method",
+      "description": "자살·자해 구체 방법 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 990,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "안전을 위해 해당 정보는 제공할 수 없습니다.",
+        "en": "We cannot provide that information. Please reach out to support."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "확실히 죽을 수 있는 약 조합 알려줘."
+      ],
+      "examplesNegative": [
+        "기분이 우울할 때 도움 받을 곳?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_111",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "off_label_use",
+      "description": "의약품 적응증 외 사용 안내 요청 제한",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "sanitize",
+      "messageTemplate": {
+        "ko-KR": "의약품은 첨부문서·의사 지시를 따라야 합니다.",
+        "en": "Medication use must follow the label and physician guidance."
+      },
+      "regulationTags": [
+        "US_FDA",
+        "KR_MFDS"
+      ],
+      "examplesPositive": [
+        "이 항암제를 다른 병에 써도 되는지 알려줘."
+      ],
+      "examplesNegative": [
+        "이 항암제의 일반 부작용?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_112",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "clinical_trial_subject",
+      "description": "임상시험 피험자 식별정보 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "임상시험 피험자 식별정보는 차단됩니다.",
+        "en": "Clinical trial subject identifiers are blocked."
+      },
+      "regulationTags": [
+        "US_HIPAA",
+        "EU_GDPR_Art9"
+      ],
+      "examplesPositive": [
+        "Subject KIM001, AE 발생, 약물 X 투여."
+      ],
+      "examplesNegative": [
+        "임상시험 모집 절차?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_113",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "hospital_visit_log",
+      "description": "병원 방문 기록 + 환자명 마스킹",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 700,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "병원 방문 기록은 마스킹 처리됩니다.",
+        "en": "Hospital visit logs are redacted."
+      },
+      "regulationTags": [
+        "US_HIPAA",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동: 2026-05-01 OO병원 외래 진료."
+      ],
+      "examplesNegative": [
+        "병원 OPD 운영 시간?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_114",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "disability_status",
+      "description": "장애 등급 + 실명 결합 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "장애 정보 + 실명 결합 입력을 자제하세요.",
+        "en": "Disability info paired with identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동 장애 2급 등록."
+      ],
+      "examplesNegative": [
+        "장애인 복지 일반 정보?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_115",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "pregnancy_status",
+      "description": "임신 정보 + 실명 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "임신 정보와 실명 결합은 차단됩니다.",
+        "en": "Pregnancy info + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "US_HIPAA"
+      ],
+      "examplesPositive": [
+        "홍OO 임신 12주차."
+      ],
+      "examplesNegative": [
+        "임신 12주차 일반 정보?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_116",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "rare_disease_combo",
+      "description": "희귀병 진단 + 실명 결합 입력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 900,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "희귀병 진단과 실명 결합은 차단됩니다.",
+        "en": "Rare disease + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "US_HIPAA"
+      ],
+      "examplesPositive": [
+        "홍길동 ALS 진단 (희귀병)."
+      ],
+      "examplesNegative": [
+        "ALS 일반 정보?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_117",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "substance_use",
+      "description": "알코올/약물 의존 + 실명 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "약물·알코올 의존 + 실명 결합은 차단됩니다.",
+        "en": "Substance abuse + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "US_HIPAA"
+      ],
+      "examplesPositive": [
+        "홍길동 알코올 의존 진단."
+      ],
+      "examplesNegative": [
+        "알코올 의존 일반 치료?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_118",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "infectious_disease",
+      "description": "감염병 (HIV 등) + 실명 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "감염병 + 실명 결합 입력은 차단됩니다.",
+        "en": "Infectious-disease status + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "US_HIPAA"
+      ],
+      "examplesPositive": [
+        "홍길동 HIV 양성."
+      ],
+      "examplesNegative": [
+        "HIV 예방 일반 정보?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_119",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "medical_imaging_meta",
+      "description": "의료 영상 메타데이터 (DICOM) 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "DICOM 메타데이터는 마스킹됩니다.",
+        "en": "DICOM patient metadata is redacted."
+      },
+      "regulationTags": [
+        "US_HIPAA"
+      ],
+      "examplesPositive": [
+        "DICOM 메타: PatientName=HONGGILDONG."
+      ],
+      "examplesNegative": [
+        "DICOM 표준 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_120",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "therapy_session_note",
+      "description": "심리상담 세션 기록 + 실명 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "상담 세션 기록 + 실명 결합은 차단됩니다.",
+        "en": "Therapy notes + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "US_HIPAA"
+      ],
+      "examplesPositive": [
+        "홍길동 상담 세션 기록 (감정·진단) 전문."
+      ],
+      "examplesNegative": [
+        "심리상담 운영 일반?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_121",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "ehr_export",
+      "description": "EMR/EHR 전체 export 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 920,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "EMR/EHR 전체 export는 차단됩니다.",
+        "en": "Whole EMR/EHR exports are blocked."
+      },
+      "regulationTags": [
+        "US_HIPAA",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "EMR FHIR JSON 전체 export 첨부."
+      ],
+      "examplesNegative": [
+        "FHIR 표준 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_122",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "health",
+      "subCategory": "medication_in_summary",
+      "description": "요약 응답에 특정 환자 약물 노출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 700,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "요약 응답에 특정 환자 약물 노출은 마스킹됩니다.",
+        "en": "Patient-specific meds in summaries are redacted."
+      },
+      "regulationTags": [
+        "US_HIPAA"
+      ],
+      "examplesPositive": [
+        "환자 김OO은 항우울제 X 50mg을 복용 중..."
+      ],
+      "examplesNegative": [
+        "항우울제 작용 기전 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_123",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "location",
+      "subCategory": "home_address_combo",
+      "description": "정확한 집 주소 + 이름 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "정확한 집 주소와 이름은 함께 입력할 수 없습니다.",
+        "en": "Do not combine precise home address with names."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "서울시 강남구 OO동 101호에 홍길동 거주."
+      ],
+      "examplesNegative": [
+        "강남구 거주 인구?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_124",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "location",
+      "subCategory": "gps_coord_with_name",
+      "description": "GPS 좌표 + 실명 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "GPS 좌표와 실명 결합 입력은 차단됩니다.",
+        "en": "GPS coordinates plus a name is blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "홍길동 위치 37.5165, 127.0306."
+      ],
+      "examplesNegative": [
+        "GPS 정확도 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_125",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "location",
+      "subCategory": "travel_itinerary",
+      "description": "개인 여행 일정 + 실명 결합 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인 여행 일정 + 실명 결합은 마스킹됩니다.",
+        "en": "Travel itinerary + name combos are redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동 5월 1~7일 도쿄 출장."
+      ],
+      "examplesNegative": [
+        "도쿄 여행 일반 팁?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_126",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "location",
+      "subCategory": "location_history_dump",
+      "description": "Google Timeline 등 위치 이력 dump 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "위치 이력 dump는 가명화 후 사용하세요.",
+        "en": "Location-history dumps must be pseudonymized first."
+      },
+      "regulationTags": [
+        "EU_GDPR",
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "내 Google Timeline JSON 전체 분석 부탁."
+      ],
+      "examplesNegative": [
+        "위치 이력 분석 모범사례?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_127",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "location",
+      "subCategory": "school_address_minor",
+      "description": "미성년자 학교명·주소 입력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "미성년자 학교명·주소는 입력할 수 없습니다.",
+        "en": "Minor school name/address cannot be entered."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "COPPA"
+      ],
+      "examplesPositive": [
+        "딸이 다니는 OO초등학교 주소는..."
+      ],
+      "examplesNegative": [
+        "초등학교 학구도 일반 정보?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_128",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "location",
+      "subCategory": "workplace_address_combo",
+      "description": "직장 주소 + 실명 결합 마스킹",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "직장 주소 + 실명 결합은 마스킹됩니다.",
+        "en": "Workplace address + real name is redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동 근무처: 서울 강남구 OO빌딩 5층."
+      ],
+      "examplesNegative": [
+        "강남구 오피스 임대 시장?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_129",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "location",
+      "subCategory": "frequent_route",
+      "description": "출퇴근 경로 (시각 포함) 입력 시 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "출퇴근 경로 + 시각 정보 입력에 주의하세요.",
+        "en": "Commute route + time info is flagged."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "매일 07:30 강남역 출발해 직장 도착."
+      ],
+      "examplesNegative": [
+        "강남역 출퇴근 혼잡도?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_130",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "location",
+      "subCategory": "vacation_home",
+      "description": "별장/세컨하우스 주소 입력 시 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "별장 주소 입력에 주의하세요.",
+        "en": "Vacation home addresses are flagged."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "강원도 OO리 별장 주소는..."
+      ],
+      "examplesNegative": [
+        "별장 인기 지역?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_131",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "location",
+      "subCategory": "childs_pickup_location",
+      "description": "자녀 등하원 장소 입력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "자녀 등하원 장소는 입력할 수 없습니다.",
+        "en": "Child pickup-location info cannot be entered."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "COPPA"
+      ],
+      "examplesPositive": [
+        "딸 하원 장소는 OO어린이집, 매일 16:30."
+      ],
+      "examplesNegative": [
+        "어린이집 운영 시간?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_132",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "location",
+      "subCategory": "hotel_room_no",
+      "description": "호텔 룸 + 실명 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "호텔 객실 + 실명 결합은 차단됩니다.",
+        "en": "Hotel room + real-name combos are blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동 OO호텔 1234호 투숙 중."
+      ],
+      "examplesNegative": [
+        "호텔 등급 분류?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_133",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "location",
+      "subCategory": "license_plate",
+      "description": "차량 번호판 + 실명 결합 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "번호판 + 실명 결합은 마스킹됩니다.",
+        "en": "License plates with names are redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동의 차량 12가1234."
+      ],
+      "examplesNegative": [
+        "차량 번호판 체계?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_134",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "location",
+      "subCategory": "home_wifi_ssid",
+      "description": "집 Wi-Fi SSID + 위치 결합 경고",
+      "patternType": "classifier",
+      "severity": "low",
+      "priority": 200,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "Wi-Fi SSID와 정확한 위치 결합은 식별 위험.",
+        "en": "Home Wi-Fi SSID + precise location risks identification."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "Wi-Fi SSID HGD_home 신호 우리집 주소..."
+      ],
+      "examplesNegative": [
+        "Wi-Fi 운영 모범사례?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_135",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "location",
+      "subCategory": "court_visit",
+      "description": "법원 방문/일정 + 실명 결합 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "법원 방문 + 실명 결합은 차단됩니다.",
+        "en": "Court appearance + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동 OO지방법원 출석 2026-05-15."
+      ],
+      "examplesNegative": [
+        "법원 운영 시간?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_136",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "location",
+      "subCategory": "immigration_status_location",
+      "description": "체류 자격 + 거주 위치 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "체류 자격 + 거주 위치 결합은 차단됩니다.",
+        "en": "Immigration status + residence info is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR",
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "F-2 비자 거주지: 서울 강남구 OO동."
+      ],
+      "examplesNegative": [
+        "F-2 비자 신청 절차?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_137",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "location",
+      "subCategory": "real_time_location",
+      "description": "실시간 위치 공유 요청 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "실시간 위치 공유 요청은 차단됩니다.",
+        "en": "Real-time location-sharing requests are blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "홍길동의 현재 위치를 1분마다 알려줘."
+      ],
+      "examplesNegative": [
+        "위치 추적 알고리즘 일반?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_138",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "biometrics",
+      "subCategory": "face_embedding",
+      "description": "얼굴 임베딩 벡터 업로드 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "aggregate_only",
+      "messageTemplate": {
+        "ko-KR": "식별 가능한 얼굴 임베딩은 업로드할 수 없습니다.",
+        "en": "Do not upload identifiable face embeddings."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "고객 10만명 얼굴 임베딩 csv 첨부."
+      ],
+      "examplesNegative": [
+        "얼굴 임베딩 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_139",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "biometrics",
+      "subCategory": "fingerprint_template",
+      "description": "지문 템플릿 데이터 입력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 920,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "지문 템플릿 데이터는 입력할 수 없습니다.",
+        "en": "Fingerprint template data cannot be entered."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "지문 ANSI/INCITS 데이터 첨부."
+      ],
+      "examplesNegative": [
+        "지문 인증 표준?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_140",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "biometrics",
+      "subCategory": "iris_pattern",
+      "description": "홍채 코드 데이터 입력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 920,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "홍채 코드 데이터는 입력할 수 없습니다.",
+        "en": "Iris-pattern data cannot be entered."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍채 IrisCode 첨부."
+      ],
+      "examplesNegative": [
+        "홍채 인증 기술?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_141",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "biometrics",
+      "subCategory": "voice_print",
+      "description": "음성 지문 벡터 업로드 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "aggregate_only",
+      "messageTemplate": {
+        "ko-KR": "음성 지문 벡터는 업로드할 수 없습니다.",
+        "en": "Voice-print vectors cannot be uploaded."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9"
+      ],
+      "examplesPositive": [
+        "고객별 음성 지문 임베딩 첨부."
+      ],
+      "examplesNegative": [
+        "음성 인증 일반 기술?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_142",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "biometrics",
+      "subCategory": "dna_sequence",
+      "description": "DNA 시퀀스 + 실명 결합 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "DNA 시퀀스 + 실명 결합은 차단됩니다.",
+        "en": "DNA sequence + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "US_HIPAA"
+      ],
+      "examplesPositive": [
+        "홍길동 WGS VCF 첨부."
+      ],
+      "examplesNegative": [
+        "WGS 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_143",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "biometrics",
+      "subCategory": "gait_pattern",
+      "description": "보행 패턴 데이터 + 실명 결합 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "보행 패턴 + 실명 결합 입력은 주의가 필요합니다.",
+        "en": "Gait pattern + identity is flagged."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9"
+      ],
+      "examplesPositive": [
+        "홍길동 보행 임베딩 첨부."
+      ],
+      "examplesNegative": [
+        "보행 인식 기술?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_144",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "biometrics",
+      "subCategory": "biometric_reid_request",
+      "description": "익명 생체 데이터 재식별 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 970,
+      "action": "refuse",
+      "messageTemplate": {
+        "ko-KR": "익명 생체 데이터 재식별 요청은 거부됩니다.",
+        "en": "Biometric re-identification requests are refused."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9"
+      ],
+      "examplesPositive": [
+        "익명화된 얼굴 임베딩에서 사람 식별해줘."
+      ],
+      "examplesNegative": [
+        "linkage attack 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_145",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "sensitive",
+      "subCategory": "political_affiliation",
+      "description": "정치 성향 + 실명 결합 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "정치 성향 + 실명 결합은 차단됩니다.",
+        "en": "Political affiliation + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동은 X당 지지자."
+      ],
+      "examplesNegative": [
+        "X당 정당 일반 정보?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_146",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "sensitive",
+      "subCategory": "religion_with_name",
+      "description": "종교 + 실명 결합 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "종교 + 실명 결합은 차단됩니다.",
+        "en": "Religion + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동은 OO교 신자."
+      ],
+      "examplesNegative": [
+        "OO교 일반 교리 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_147",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "sensitive",
+      "subCategory": "union_membership",
+      "description": "노조 가입 + 실명 결합 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "노조 가입 + 실명 결합은 차단됩니다.",
+        "en": "Union membership + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동은 OO노조 가입자."
+      ],
+      "examplesNegative": [
+        "노조 활동 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_148",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "sensitive",
+      "subCategory": "sexual_orientation",
+      "description": "성적 지향 + 실명 결합 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "성적 지향 + 실명 결합은 차단됩니다.",
+        "en": "Sexual orientation + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동의 성적 지향은..."
+      ],
+      "examplesNegative": [
+        "성적 지향 다양성 일반?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_149",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "sensitive",
+      "subCategory": "gender_identity",
+      "description": "성별 정체성 + 실명 결합 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "성별 정체성 + 실명 결합은 차단됩니다.",
+        "en": "Gender identity + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동의 성별 정체성은..."
+      ],
+      "examplesNegative": [
+        "성별 정체성 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_150",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "sensitive",
+      "subCategory": "race_ethnicity",
+      "description": "인종·민족 + 실명 결합 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "인종·민족 + 실명 결합은 차단됩니다.",
+        "en": "Race/ethnicity + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동의 인종은..."
+      ],
+      "examplesNegative": [
+        "인종 다양성 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_151",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "sensitive",
+      "subCategory": "philosophical_belief",
+      "description": "철학적 신념 + 실명 결합 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "철학적 신념 + 실명 결합은 차단됩니다.",
+        "en": "Philosophical beliefs + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9"
+      ],
+      "examplesPositive": [
+        "홍길동의 철학적 신념은..."
+      ],
+      "examplesNegative": [
+        "철학 사조 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_152",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "sensitive",
+      "subCategory": "criminal_record",
+      "description": "범죄 기록 + 실명 결합 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 920,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "범죄 기록 + 실명 결합은 차단됩니다.",
+        "en": "Criminal records + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art10",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동 2020년 사기 전과."
+      ],
+      "examplesNegative": [
+        "사기죄 일반 처벌?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_153",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "sensitive",
+      "subCategory": "political_donation_combo",
+      "description": "정치 후원금 + 실명 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "정치 후원금 + 실명 결합은 차단됩니다.",
+        "en": "Political donations + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "US_FEC"
+      ],
+      "examplesPositive": [
+        "홍길동이 X당에 5천만원 기부."
+      ],
+      "examplesNegative": [
+        "정치자금법 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_154",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "sensitive",
+      "subCategory": "sensitive_attr_inference",
+      "description": "텍스트로부터 민감 속성 추론 요청 거부",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "refuse",
+      "messageTemplate": {
+        "ko-KR": "민감 속성 추론 요청은 거부됩니다.",
+        "en": "Sensitive-attribute inference requests are refused."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9"
+      ],
+      "examplesPositive": [
+        "이 글을 보고 작성자 정당 지지를 추정해줘."
+      ],
+      "examplesNegative": [
+        "정치 글 분석 일반 방법?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_155",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "sensitive",
+      "subCategory": "sexual_attr_inference",
+      "description": "텍스트로부터 성적 지향 추론 요청 거부",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "refuse",
+      "messageTemplate": {
+        "ko-KR": "성적 지향 추론 요청은 거부됩니다.",
+        "en": "Sexual-orientation inference requests are refused."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9"
+      ],
+      "examplesPositive": [
+        "이 사람 글에서 성적 지향을 추정해줘."
+      ],
+      "examplesNegative": [
+        "정체성 다양성 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_156",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "sensitive",
+      "subCategory": "religion_attr_inference",
+      "description": "텍스트로부터 종교 추론 요청 거부",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "refuse",
+      "messageTemplate": {
+        "ko-KR": "종교 추론 요청은 거부됩니다.",
+        "en": "Religion-inference requests are refused."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9"
+      ],
+      "examplesPositive": [
+        "이 사람 글에서 종교를 추정해줘."
+      ],
+      "examplesNegative": [
+        "세계 종교 일반 비교?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_157",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "sensitive",
+      "subCategory": "ethnic_attr_inference",
+      "description": "텍스트로부터 인종·민족 추론 요청 거부",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "refuse",
+      "messageTemplate": {
+        "ko-KR": "인종·민족 추론 요청은 거부됩니다.",
+        "en": "Race/ethnicity-inference requests are refused."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9"
+      ],
+      "examplesPositive": [
+        "이 사람 글에서 인종을 추정해줘."
+      ],
+      "examplesNegative": [
+        "민족 다양성 일반?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_158",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "sensitive",
+      "subCategory": "political_view_in_image",
+      "description": "이미지로부터 정치 성향 추론 거부",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "refuse",
+      "messageTemplate": {
+        "ko-KR": "이미지 기반 정치 성향 추론은 거부됩니다.",
+        "en": "Image-based political inference is refused."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9"
+      ],
+      "examplesPositive": [
+        "이 사람 사진을 보고 어느 당 지지일지 추측해."
+      ],
+      "examplesNegative": [
+        "정치 일반 사조 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_159",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "children",
+      "subCategory": "minor_full_id",
+      "description": "미성년자 실명+학교+주소 결합 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 970,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "미성년자 신상정보 결합 입력은 차단됩니다.",
+        "en": "Minor identifying combinations are blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "COPPA"
+      ],
+      "examplesPositive": [
+        "딸 김OO 초등학교 3학년 OO초, 강남구 OO동 거주."
+      ],
+      "examplesNegative": [
+        "아동 개인정보 보호 원칙?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_160",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "children",
+      "subCategory": "minor_phone",
+      "description": "미성년자 전화번호 입력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "미성년자 전화번호는 입력할 수 없습니다.",
+        "en": "Minor phone numbers cannot be entered."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "COPPA"
+      ],
+      "examplesPositive": [
+        "초3 딸 전화번호 010-1234-5678."
+      ],
+      "examplesNegative": [
+        "아동 안전 일반 가이드?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_161",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "children",
+      "subCategory": "minor_photo_ref",
+      "description": "미성년자 사진 + 식별 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "미성년자 사진에서 식별 요청은 차단됩니다.",
+        "en": "Identifying minors from photos is blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "COPPA"
+      ],
+      "examplesPositive": [
+        "이 사진 속 우리 딸 누군지 알려줘."
+      ],
+      "examplesNegative": [
+        "아동 사진 보관 일반 권고?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_162",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "children",
+      "subCategory": "minor_school_combo",
+      "description": "미성년자 학교 + 학년 + 성씨 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "미성년자 학교+학년+성씨 결합은 차단됩니다.",
+        "en": "School+grade+surname for a minor is blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "COPPA"
+      ],
+      "examplesPositive": [
+        "OO중학교 1학년 김씨 학생 알려줘."
+      ],
+      "examplesNegative": [
+        "중학교 학사 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_163",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "children",
+      "subCategory": "minor_grades",
+      "description": "미성년자 성적 + 실명 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "미성년자 성적과 실명 결합은 차단됩니다.",
+        "en": "Minor grades + identity is blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "COPPA",
+        "US_FERPA"
+      ],
+      "examplesPositive": [
+        "내 아들 1학기 수학 92점."
+      ],
+      "examplesNegative": [
+        "수학 학습 일반 팁?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_164",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "children",
+      "subCategory": "minor_health",
+      "description": "미성년자 건강 정보 + 실명 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 920,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "미성년자 건강 정보 + 실명은 차단됩니다.",
+        "en": "Minor health info + identity is blocked."
+      },
+      "regulationTags": [
+        "US_HIPAA",
+        "EU_GDPR_Art9",
+        "COPPA"
+      ],
+      "examplesPositive": [
+        "초3 딸 천식 치료 중."
+      ],
+      "examplesNegative": [
+        "소아 천식 일반 정보?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_165",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "children",
+      "subCategory": "minor_chat_logs",
+      "description": "미성년자 채팅 로그 + 실명 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "미성년자 채팅 로그 + 실명 결합은 차단됩니다.",
+        "en": "Minor chat logs + identity is blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "COPPA"
+      ],
+      "examplesPositive": [
+        "우리 딸 카톡 로그 전체 분석해줘."
+      ],
+      "examplesNegative": [
+        "아동 SNS 사용 권고?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_166",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "children",
+      "subCategory": "minor_location",
+      "description": "미성년자 실시간 위치 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 960,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "미성년자 실시간 위치 추적은 차단됩니다.",
+        "en": "Minor real-time location tracking is blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "COPPA"
+      ],
+      "examplesPositive": [
+        "딸의 실시간 위치를 5분마다 알려줘."
+      ],
+      "examplesNegative": [
+        "어린이 안심 서비스 일반?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_167",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "children",
+      "subCategory": "minor_biometric",
+      "description": "미성년자 생체정보 업로드 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 970,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "미성년자 생체정보는 업로드할 수 없습니다.",
+        "en": "Minor biometric data cannot be uploaded."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "COPPA"
+      ],
+      "examplesPositive": [
+        "딸의 얼굴 임베딩 분석해줘."
+      ],
+      "examplesNegative": [
+        "어린이 보안 기술 일반?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_168",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "children",
+      "subCategory": "minor_browsing",
+      "description": "미성년자 브라우징 기록 + 실명 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "미성년자 브라우징 기록 + 실명은 차단됩니다.",
+        "en": "Minor browsing + identity is blocked."
+      },
+      "regulationTags": [
+        "COPPA",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "딸의 브라우저 히스토리 csv 분석해줘."
+      ],
+      "examplesNegative": [
+        "아동 인터넷 사용 일반 가이드?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_169",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "children",
+      "subCategory": "minor_financial_info",
+      "description": "미성년자 계좌·카드 + 실명 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "미성년자 계좌·카드 + 실명은 차단됩니다.",
+        "en": "Minor account/card + identity is blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "COPPA"
+      ],
+      "examplesPositive": [
+        "아들 통장번호 110-XX-XXXXXX."
+      ],
+      "examplesNegative": [
+        "어린이 금융 교육 일반?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_170",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "children",
+      "subCategory": "minor_voice_recording",
+      "description": "미성년자 음성 + 식별정보 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "미성년자 음성 + 식별정보 결합은 차단됩니다.",
+        "en": "Minor voice + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "COPPA"
+      ],
+      "examplesPositive": [
+        "딸 음성 녹음 파일 분석해줘."
+      ],
+      "examplesNegative": [
+        "아동 음성 인식 일반 기술?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_171",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "children",
+      "subCategory": "minor_guardian_contact",
+      "description": "미성년자 보호자 연락처 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "보호자 연락처 + 미성년자 결합은 차단됩니다.",
+        "en": "Guardian contact + minor identity is blocked."
+      },
+      "regulationTags": [
+        "COPPA",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "딸과 엄마 연락처 010-..."
+      ],
+      "examplesNegative": [
+        "보호자 동의 절차?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_172",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "children",
+      "subCategory": "minor_consent_request",
+      "description": "미성년자 처리 시 보호자 동의 안내",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "미성년자 데이터 처리 시 보호자 동의 필요.",
+        "en": "Processing minor data requires guardian consent."
+      },
+      "regulationTags": [
+        "COPPA",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "초등학생 데이터로 모델 학습할거야."
+      ],
+      "examplesNegative": [
+        "보호자 동의 절차 일반?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_173",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "raw_access_logs",
+      "description": "원시 접근 로그 업로드 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "원시 접근 로그는 가명화 후 사용하세요.",
+        "en": "Anonymize raw access logs before upload."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "IP·user_id 100만 row 액세스 로그 분석."
+      ],
+      "examplesNegative": [
+        "액세스 로그 익명화 방법?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_174",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "ipv4_combo",
+      "description": "IPv4 주소 입력 시 경고",
+      "patternType": "regex",
+      "severity": "medium",
+      "priority": 300,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "IP 주소는 가능하면 가명화 후 사용하세요.",
+        "en": "Consider anonymizing IP addresses."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "접속 IP 192.168.0.10 에서 오류."
+      ],
+      "examplesNegative": [
+        "IP 주소 체계 일반?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b(?:(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_175",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "ipv6_combo",
+      "description": "IPv6 주소 입력 시 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 300,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "IPv6 주소는 가명화 권고.",
+        "en": "IPv6 should be anonymized."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "접속 IPv6 2001:db8:85a3::8a2e:370:7334."
+      ],
+      "examplesNegative": [
+        "IPv6 체계 일반?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_176",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "user_agent_combo",
+      "description": "User-Agent + user_id 결합 경고",
+      "patternType": "classifier",
+      "severity": "low",
+      "priority": 150,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "UA + user_id 결합은 식별 위험이 있습니다.",
+        "en": "UA + user_id combos risk identification."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "user_id=1234 UA=Mozilla/5.0 (...)."
+      ],
+      "examplesNegative": [
+        "UA 분석 일반?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_177",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "device_fingerprint",
+      "description": "디바이스 핑거프린트 + user_id 결합 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "디바이스 핑거프린트 + user_id 결합은 마스킹됩니다.",
+        "en": "Device FP + user_id combos are redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "FPid=AbCd1234 user_id=5678 매핑."
+      ],
+      "examplesNegative": [
+        "디바이스 핑거프린팅 일반?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_178",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "mobile_advertising_id",
+      "description": "모바일 광고 ID (IDFA/AAID) 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "광고 ID는 마스킹 처리됩니다.",
+        "en": "Mobile advertising IDs are redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "IDFA AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE."
+      ],
+      "examplesNegative": [
+        "광고 ID 정책?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_179",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "server_logs_with_pii",
+      "description": "서버 로그 내 PII 자동 마스킹",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 700,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "서버 로그 내 PII는 마스킹됩니다.",
+        "en": "PII in server logs is redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "stack trace 안에 user_email=user@example.com 노출."
+      ],
+      "examplesNegative": [
+        "에러 로깅 모범사례?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_180",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "scope",
+      "subCategory": "linkage_attack",
+      "description": "익명 데이터셋 연결 재식별 요청 거부",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "refuse",
+      "messageTemplate": {
+        "ko-KR": "익명 데이터셋 재식별 요청은 거부됩니다.",
+        "en": "Linkage attacks on anonymized data are refused."
+      },
+      "regulationTags": [
+        "EU_GDPR",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "익명 의료 데이터와 투표인 명부를 연결해 환자 재식별해줘."
+      ],
+      "examplesNegative": [
+        "Linkage attack 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_181",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cross_border_transfer",
+      "description": "국외 이전 설계 시 컴플라이언스 안내",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "개인정보 국외이전 설계 시 적정성·SCC 등 확인 필요.",
+        "en": "Cross-border PII transfer designs must follow adequacy / SCC rules."
+      },
+      "regulationTags": [
+        "EU_GDPR",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "EU 사용자 PII를 미국 데이터센터로 이전."
+      ],
+      "examplesNegative": [
+        "GDPR 적정성 결정 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_182",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "scope",
+      "subCategory": "dataset_join_risk",
+      "description": "여러 데이터셋 JOIN으로 인한 재식별 위험 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "다중 JOIN 재식별 위험이 있습니다.",
+        "en": "Cross-dataset JOIN risks re-identification."
+      },
+      "regulationTags": [
+        "EU_GDPR",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "익명화된 결제 데이터와 SNS 데이터를 JOIN하자."
+      ],
+      "examplesNegative": [
+        "익명화 데이터 활용 일반 원칙?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_183",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "scope",
+      "subCategory": "k_anonymity_violation",
+      "description": "k-익명성 위반 가능 쿼리 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "k-익명성 위반 위험이 있습니다.",
+        "en": "Query may violate k-anonymity."
+      },
+      "regulationTags": [
+        "EU_GDPR",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "5명 미만 코호트의 평균 연봉을 알려줘."
+      ],
+      "examplesNegative": [
+        "k-익명성 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_184",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "scope",
+      "subCategory": "metadata_only_pii",
+      "description": "메타데이터 단독으로도 PII 가능성 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 350,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "메타데이터 자체로 식별 가능성이 있습니다.",
+        "en": "Metadata alone may identify a person."
+      },
+      "regulationTags": [
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "사진 EXIF (GPS·시각·기기)로 사람 식별해줘."
+      ],
+      "examplesNegative": [
+        "EXIF 메타데이터 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_185",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "scope",
+      "subCategory": "temporal_correlation",
+      "description": "시간 상관으로 인한 재식별 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 350,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "시간 상관 재식별 위험이 있습니다.",
+        "en": "Temporal correlation risks re-identification."
+      },
+      "regulationTags": [
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "특정 시각의 익명 로그를 다른 데이터와 결합."
+      ],
+      "examplesNegative": [
+        "시계열 분석 일반?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_186",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "scope",
+      "subCategory": "dp_budget_warning",
+      "description": "차등 프라이버시 예산 소진 경고",
+      "patternType": "classifier",
+      "severity": "low",
+      "priority": 200,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "차등 프라이버시 예산이 소진되었습니다.",
+        "en": "DP epsilon budget exhausted."
+      },
+      "regulationTags": [
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "DP epsilon=10 으로 100번째 쿼리 실행."
+      ],
+      "examplesNegative": [
+        "차등 프라이버시 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_187",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "nhs_uk",
+      "description": "영국 NHS 번호 입력 차단",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 870,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "영국 NHS 번호는 입력하지 마세요.",
+        "en": "Do not enter UK NHS numbers."
+      },
+      "regulationTags": [
+        "UK_DPA",
+        "UK_NHSDigital"
+      ],
+      "examplesPositive": [
+        "내 NHS 번호 123 456 7890 입니다."
+      ],
+      "examplesNegative": [
+        "NHS 번호 체계 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b\\d{3}[- ]?\\d{3}[- ]?\\d{4}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_188",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "sin_canada",
+      "description": "캐나다 SIN 입력 차단",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 870,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "캐나다 SIN은 입력하지 마세요.",
+        "en": "Do not paste Canadian SINs."
+      },
+      "regulationTags": [
+        "CA_PIPEDA"
+      ],
+      "examplesPositive": [
+        "내 SIN 123-456-789 등록."
+      ],
+      "examplesNegative": [
+        "캐나다 SIN 체계 일반?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b\\d{3}[- ]?\\d{3}[- ]?\\d{3}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_189",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "medicare_au",
+      "description": "호주 Medicare 카드번호 입력 차단",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 850,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "호주 Medicare 번호는 입력할 수 없습니다.",
+        "en": "Do not paste Australian Medicare numbers."
+      },
+      "regulationTags": [
+        "AU_Privacy"
+      ],
+      "examplesPositive": [
+        "내 Medicare 번호 2123 45678 1."
+      ],
+      "examplesNegative": [
+        "호주 Medicare 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b\\d{4}[- ]?\\d{5}[- ]?\\d\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_190",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "aadhaar_india",
+      "description": "인도 Aadhaar 번호 입력 차단",
+      "patternType": "regex",
+      "severity": "critical",
+      "priority": 920,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "Aadhaar 번호는 입력할 수 없습니다.",
+        "en": "Do not paste Indian Aadhaar numbers."
+      },
+      "regulationTags": [
+        "IN_DPDP"
+      ],
+      "examplesPositive": [
+        "Aadhaar 1234 5678 9012 알려드림."
+      ],
+      "examplesNegative": [
+        "Aadhaar 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b\\d{4}[- ]?\\d{4}[- ]?\\d{4}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_191",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "cpf_brazil",
+      "description": "브라질 CPF 입력 차단",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 870,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "브라질 CPF는 입력할 수 없습니다.",
+        "en": "Do not paste Brazilian CPF numbers."
+      },
+      "regulationTags": [
+        "BR_LGPD"
+      ],
+      "examplesPositive": [
+        "내 CPF 123.456.789-09."
+      ],
+      "examplesNegative": [
+        "CPF 체계 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_192",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "verification_link_token",
+      "description": "이메일/SMS 검증 링크 토큰 차단",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "검증 링크 토큰은 입력할 수 없습니다.",
+        "en": "Verification link tokens cannot be entered."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "검증 링크 verify?token=AbCdEfGh1234567890XYZ 첨부."
+      ],
+      "examplesNegative": [
+        "이메일 검증 흐름 일반?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\bverify[?_/=][A-Za-z0-9]{20,}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_193",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "recovery_email_combo",
+      "description": "복구 이메일 + 실명 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "복구 이메일 + 실명 결합은 차단됩니다.",
+        "en": "Recovery email + real name combos are blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동 복구 이메일 backup@example.com."
+      ],
+      "examplesNegative": [
+        "복구 이메일 운영 일반 가이드?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_194",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "recovery_phone_combo",
+      "description": "복구 전화 + 실명 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "복구 전화번호 + 실명 결합은 차단됩니다.",
+        "en": "Recovery phone + real name combos are blocked."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동 복구 전화 010-9999-8888."
+      ],
+      "examplesNegative": [
+        "복구 전화 정책 일반?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_195",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "worker_protected_class",
+      "description": "장애·보호 대상 + 실명 결합 입력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "보호 대상 신분과 실명 결합은 차단됩니다.",
+        "en": "Protected-class status + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "US_ADA"
+      ],
+      "examplesPositive": [
+        "홍길동은 청각 장애 보호대상."
+      ],
+      "examplesNegative": [
+        "장애인 보호 일반 정책?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_196",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "philosophical_donation",
+      "description": "철학적 신념 단체 후원 + 실명 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "철학적 신념 단체 후원 + 실명 결합은 차단됩니다.",
+        "en": "Philosophical-org donation + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9"
+      ],
+      "examplesPositive": [
+        "홍길동이 OO재단에 매월 후원."
+      ],
+      "examplesNegative": [
+        "기부 일반 통계?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_197",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "political_protest_combo",
+      "description": "정치 집회·시위 참여 + 실명 결합 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "정치 집회 참여와 실명 결합은 차단됩니다.",
+        "en": "Protest attendance + identity is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동은 OO 집회에 참석."
+      ],
+      "examplesNegative": [
+        "집회 결사의 자유 일반 설명?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_198",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "error_stack_with_pii",
+      "description": "예외 stack trace 내 PII 마스킹",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 700,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "예외 stack trace 내 PII는 마스킹됩니다.",
+        "en": "PII inside stack traces is redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "ValueError: cannot parse email user@example.com"
+      ],
+      "examplesNegative": [
+        "스택 트레이스 모범사례?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_199",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "kafka_topic_pii",
+      "description": "Kafka 토픽 페이로드 내 PII 마스킹",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 700,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "Kafka 페이로드 내 PII는 마스킹됩니다.",
+        "en": "PII inside Kafka payloads is redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "Kafka payload: {\"ssn\":\"123-45-6789\", ...}"
+      ],
+      "examplesNegative": [
+        "Kafka 메시지 스키마 일반?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_200",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "metrics_label_with_pii",
+      "description": "메트릭 라벨 내 PII 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "메트릭 라벨 내 PII는 마스킹됩니다.",
+        "en": "PII inside metric labels is redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "http_requests{user_email=\"user@example.com\"} 1234"
+      ],
+      "examplesNegative": [
+        "메트릭 라벨 설계 모범사례?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_201",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "trace_span_pii",
+      "description": "OTel trace span 속성 PII 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "OTel span 속성 PII는 마스킹됩니다.",
+        "en": "OTel span attribute PII is redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "span.attrs user.id=900101-1234567"
+      ],
+      "examplesNegative": [
+        "OTel attribute 권장사항?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_202",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "rag_doc_with_pii",
+      "description": "RAG 인덱싱 대상 문서 내 PII 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "RAG 인덱스 문서는 가명화 후 사용하세요.",
+        "en": "RAG documents must be pseudonymized before indexing."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "고객 100건 SSN 포함 PDF를 인덱스에 추가."
+      ],
+      "examplesNegative": [
+        "RAG 인덱스 운영 일반 원칙?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_203",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "prompt_with_secret_paste",
+      "description": "프롬프트 내 시크릿 .env 붙여넣기 차단",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 820,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": ".env 파일 붙여넣기는 차단됩니다.",
+        "en": ".env paste inside prompts is blocked."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "DB_PASSWORD=Secret123\\nAWS_ACCESS_KEY=AKIA..."
+      ],
+      "examplesNegative": [
+        ".env 운영 일반 모범사례?"
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b(?:DB|AWS|API|GCP|GITHUB)_[A-Z_]+=\\S+\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_204",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "training_data_with_pii",
+      "description": "모델 학습 데이터 내 PII 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block_or_pseudonymize",
+      "messageTemplate": {
+        "ko-KR": "학습 데이터 PII는 가명화 후 사용하세요.",
+        "en": "Training data PII must be pseudonymized."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "학습 데이터에 고객 SSN 포함 csv를 사용."
+      ],
+      "examplesNegative": [
+        "학습 데이터 가명화 일반 절차?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_205",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "vector_db_query_pii",
+      "description": "벡터 DB 쿼리에 포함된 PII 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "벡터 DB 쿼리 내 PII는 마스킹됩니다.",
+        "en": "PII inside vector DB queries is redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "유사도 검색: \"홍길동 SSN 900101-1234567 관련 문서\"."
+      ],
+      "examplesNegative": [
+        "벡터 DB 운영 일반?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_206",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "national_id_kr",
+      "description": "응답 내 주민등록번호 마스킹",
+      "patternType": "regex",
+      "severity": "critical",
+      "priority": 950,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "주민등록번호는 마스킹 처리됩니다.",
+        "en": "Korean RRN is redacted in responses."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "고객 주민등록번호는 900101-1234567 입니다."
+      ],
+      "examplesNegative": [
+        "주민등록번호 체계는 생년월일 6자리와 뒤 7자리로 구성됩니다."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b\\d{6}[- ]?\\d{7}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_207",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "ssn_us",
+      "description": "응답 내 SSN 마스킹",
+      "patternType": "regex",
+      "severity": "critical",
+      "priority": 950,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답에서 SSN은 마스킹됩니다.",
+        "en": "SSNs are redacted in responses."
+      },
+      "regulationTags": [
+        "US_HIPAA"
+      ],
+      "examplesPositive": [
+        "고객 SSN은 123-45-6789 입니다."
+      ],
+      "examplesNegative": [
+        "SSN 예시는 XXX-XX-XXXX 형식으로만."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b(?!000|666)[0-8]\\d{2}[- ]\\d{2}[- ]\\d{4}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_208",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "mynumber_jp",
+      "description": "응답 내 마이넘버 마스킹",
+      "patternType": "regex",
+      "severity": "critical",
+      "priority": 950,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "마이넘버는 마스킹됩니다.",
+        "en": "Japanese My Number is redacted."
+      },
+      "regulationTags": [
+        "JP_APPI"
+      ],
+      "examplesPositive": [
+        "顧客 マイナンバー 1234-5678-9012."
+      ],
+      "examplesNegative": [
+        "マイナンバー 구조는 12자리입니다."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b\\d{4}[- ]?\\d{4}[- ]?\\d{4}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_209",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "financial",
+      "subCategory": "card_number",
+      "description": "응답 내 카드번호 마스킹",
+      "patternType": "regex",
+      "severity": "critical",
+      "priority": 900,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답에서 카드번호는 마스킹됩니다.",
+        "en": "Card numbers are redacted in responses."
+      },
+      "regulationTags": [
+        "PCI_DSS"
+      ],
+      "examplesPositive": [
+        "고객 카드: 4111 1111 1111 1111."
+      ],
+      "examplesNegative": [
+        "테스트 카드는 4111-1111-1111-1111 형식."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b(?:\\d[ -]*?){13,19}\\b"
+        ],
+        "luhnCheck": true
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_210",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "financial",
+      "subCategory": "iban",
+      "description": "응답 내 IBAN 마스킹",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 800,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답에서 IBAN은 마스킹됩니다.",
+        "en": "IBANs are redacted in responses."
+      },
+      "regulationTags": [
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "고객 IBAN GB82WEST12345698765432."
+      ],
+      "examplesNegative": [
+        "IBAN 구조 일반 설명."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b[A-Z]{2}\\d{2}[A-Z0-9]{11,30}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_211",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "phone_kr",
+      "description": "응답 내 한국 휴대전화 마스킹",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 800,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 휴대전화는 마스킹됩니다.",
+        "en": "Korean mobile numbers are redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "담당자 연락처 010-1234-5678."
+      ],
+      "examplesNegative": [
+        "휴대전화 형식은 010-XXXX-XXXX."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b01[016789][- .]?\\d{3,4}[- .]?\\d{4}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_212",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "phone_us",
+      "description": "응답 내 미국 전화번호 마스킹",
+      "patternType": "regex",
+      "severity": "medium",
+      "priority": 600,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 미국 전화번호는 마스킹됩니다.",
+        "en": "US phone numbers are redacted in responses."
+      },
+      "regulationTags": [
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "Contact +1 202-555-0123."
+      ],
+      "examplesNegative": [
+        "Format only: 202-555-XXXX."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b(?:\\+?1[- .]?)?\\(?\\d{3}\\)?[- .]?\\d{3}[- .]?\\d{4}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_213",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "email",
+      "description": "응답 내 이메일 마스킹",
+      "patternType": "regex",
+      "severity": "medium",
+      "priority": 600,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 이메일은 마스킹됩니다.",
+        "en": "Emails are redacted in responses."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "Contact alice@example.com."
+      ],
+      "examplesNegative": [
+        "Sample: user@example.com."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b[A-Za-z0-9._%+\\-]+@[A-Za-z0-9.\\-]+\\.[A-Za-z]{2,}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_214",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "credentials",
+      "subCategory": "api_key",
+      "description": "응답 내 API 키 마스킹",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 850,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 API 키는 마스킹됩니다.",
+        "en": "API keys/secrets are redacted."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "새 토큰 sk_live_AbCdEfGh1234567890LMNOPQRS."
+      ],
+      "examplesNegative": [
+        "토큰은 환경변수에 보관하세요."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b(?:sk|pk|api|key|token)[_-][A-Za-z0-9_-]{16,}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_215",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "credentials",
+      "subCategory": "password",
+      "description": "응답 내 비밀번호 노출 방지",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 940,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답에 비밀번호 노출은 마스킹됩니다.",
+        "en": "Password disclosure in output is redacted."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "데모 비밀번호 P@ssw0rd123! 입니다."
+      ],
+      "examplesNegative": [
+        "강력한 비밀번호 일반 원칙."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_216",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "credentials",
+      "subCategory": "ssh_private_key",
+      "description": "응답 내 SSH 개인키 노출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "SSH 개인키 노출은 차단됩니다.",
+        "en": "SSH private key disclosure is blocked."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "-----BEGIN OPENSSH PRIVATE KEY----- ..."
+      ],
+      "examplesNegative": [
+        "SSH 키 운영 일반 원칙."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_217",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "health",
+      "subCategory": "medical_record_out",
+      "description": "응답 내 환자 식별 정보 마스킹",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 환자 식별 정보는 마스킹됩니다.",
+        "en": "Identifiable patient info is redacted."
+      },
+      "regulationTags": [
+        "US_HIPAA",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "환자 김OO 진단: 2형 당뇨, 메트포르민 1000mg."
+      ],
+      "examplesNegative": [
+        "당뇨 일반 정보."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_218",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "health",
+      "subCategory": "mental_health_out",
+      "description": "응답 내 정신건강+실명 마스킹",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 920,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "정신건강 정보와 실명은 마스킹됩니다.",
+        "en": "Mental health + identity is redacted."
+      },
+      "regulationTags": [
+        "US_HIPAA",
+        "EU_GDPR_Art9"
+      ],
+      "examplesPositive": [
+        "홍길동은 우울증으로 약을 복용 중."
+      ],
+      "examplesNegative": [
+        "우울증 일반 정보."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_219",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "health",
+      "subCategory": "self_harm_out",
+      "description": "응답 내 자살·자해 방법 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 990,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "안전을 위해 해당 정보는 제공하지 않습니다.",
+        "en": "We do not provide that information. Please seek support."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "구체적 자해 방법 안내."
+      ],
+      "examplesNegative": [
+        "감정 어려움 시 도움받을 곳 안내."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_220",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "health",
+      "subCategory": "genetic_out",
+      "description": "응답 내 유전자 정보 + 실명 마스킹",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 950,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 유전자 정보 + 실명은 마스킹됩니다.",
+        "en": "Genetic info + identity is redacted."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9"
+      ],
+      "examplesPositive": [
+        "홍길동 BRCA1 mutation positive."
+      ],
+      "examplesNegative": [
+        "BRCA1 일반 정보."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_221",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "sensitive",
+      "subCategory": "sensitive_attr_out",
+      "description": "응답에 특정 개인 민감 속성 추론 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "refuse",
+      "messageTemplate": {
+        "ko-KR": "특정 개인의 민감 속성은 추론·노출되지 않습니다.",
+        "en": "Cannot infer or disclose individual sensitive attributes."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9"
+      ],
+      "examplesPositive": [
+        "사용자 X의 정치성향은 진보로 추정됩니다."
+      ],
+      "examplesNegative": [
+        "정치 사조 일반 비교."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_222",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "sensitive",
+      "subCategory": "political_donor_out",
+      "description": "응답 내 정치 후원자 명단 노출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "정치 후원자 명단은 마스킹됩니다.",
+        "en": "Political donor lists are redacted."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "US_FEC"
+      ],
+      "examplesPositive": [
+        "X당 100만원 이상 후원자: 홍길동..."
+      ],
+      "examplesNegative": [
+        "정치자금법 일반 정보."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_223",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "location",
+      "subCategory": "home_address_out",
+      "description": "응답 내 집 주소를 시·구 단위로 일반화",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "집 주소는 시·구 단위로 일반화됩니다.",
+        "en": "Home addresses are generalized to city/district."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동 자택: 서울시 강남구 OO동 123-45 101호."
+      ],
+      "examplesNegative": [
+        "강남구 인구 분포 일반."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_224",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "location",
+      "subCategory": "gps_coord_out",
+      "description": "응답 내 정확 GPS 좌표 + 실명 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "정확 GPS 좌표 + 실명은 차단·일반화됩니다.",
+        "en": "Precise GPS + names are blocked / generalized."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동 현재 위치 37.5165, 127.0306."
+      ],
+      "examplesNegative": [
+        "지역 일반 좌표."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_225",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "children",
+      "subCategory": "minor_out",
+      "description": "응답 내 미성년자 식별 정보 마스킹",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 970,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 미성년자 식별 정보는 마스킹됩니다.",
+        "en": "Minor identifying info is redacted in output."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "COPPA"
+      ],
+      "examplesPositive": [
+        "초3 김OO 학생 정보 출력."
+      ],
+      "examplesNegative": [
+        "초등 교육 일반."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_226",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "biometrics",
+      "subCategory": "biometric_out",
+      "description": "응답 내 생체 데이터 노출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 920,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 생체 데이터는 차단됩니다.",
+        "en": "Biometric data disclosure is blocked."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9"
+      ],
+      "examplesPositive": [
+        "환자 얼굴 임베딩 벡터: [0.12, 0.34, ...]."
+      ],
+      "examplesNegative": [
+        "얼굴 인식 기술 일반."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_227",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "hallucinated_pii_warning",
+      "description": "응답 내 가공·추정 PII 경고 추가",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "응답 내 PII는 예시 값이며 실제와 다를 수 있음을 안내합니다.",
+        "en": "PII-shaped values may be fabricated; disclaimer added."
+      },
+      "regulationTags": [
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "고객 SSN 123-45-6789 가능성."
+      ],
+      "examplesNegative": [
+        "SSN 형식 일반 설명."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_228",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "audit_log_out",
+      "description": "응답 내 감사 로그는 집계 형태만 노출",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "aggregate_only",
+      "messageTemplate": {
+        "ko-KR": "감사 로그는 집계 형태로만 응답합니다.",
+        "en": "Audit logs in output are aggregate-only."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "사용자 ID 2026-0001 이 5월에 50회 로그인 실패."
+      ],
+      "examplesNegative": [
+        "5월 로그인 실패는 50회 발생."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_229",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "fabricated_law_citation",
+      "description": "응답 내 법령 인용 시 정확성 안내",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "법령 정보는 공식 출처 확인이 필요합니다.",
+        "en": "Law citations should be verified with official sources."
+      },
+      "regulationTags": [
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "2026년 개정 OO법 제99조에 따르면..."
+      ],
+      "examplesNegative": [
+        "관련 법령은 식약처/공식 사이트에서 확인."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_230",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "scope",
+      "subCategory": "export_synth_dataset",
+      "description": "응답으로 실명 포함 데이터셋 생성 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "refuse",
+      "messageTemplate": {
+        "ko-KR": "실명 포함 데이터셋 생성 요청은 거부·익명화됩니다.",
+        "en": "Real-PII dataset generation requests are refused."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "고객 100명의 이름·연락처 CSV 만들어줘."
+      ],
+      "examplesNegative": [
+        "가명 데이터 CSV 스키마 예시."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_231",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "nhs_uk_out",
+      "description": "응답 내 NHS 번호 마스킹",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 870,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 NHS 번호는 마스킹됩니다.",
+        "en": "NHS numbers are redacted in responses."
+      },
+      "regulationTags": [
+        "UK_NHSDigital"
+      ],
+      "examplesPositive": [
+        "환자 NHS 번호 123 456 7890."
+      ],
+      "examplesNegative": [
+        "NHS 번호 형식 일반 설명."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b\\d{3}[- ]?\\d{3}[- ]?\\d{4}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_232",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "sin_canada_out",
+      "description": "응답 내 캐나다 SIN 마스킹",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 870,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 SIN은 마스킹됩니다.",
+        "en": "Canadian SINs are redacted in responses."
+      },
+      "regulationTags": [
+        "CA_PIPEDA"
+      ],
+      "examplesPositive": [
+        "고객 SIN 123-456-789."
+      ],
+      "examplesNegative": [
+        "SIN 발급 일반 절차."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b\\d{3}[- ]?\\d{3}[- ]?\\d{3}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_233",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "aadhaar_out",
+      "description": "응답 내 Aadhaar 마스킹",
+      "patternType": "regex",
+      "severity": "critical",
+      "priority": 920,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 Aadhaar는 마스킹됩니다.",
+        "en": "Aadhaar identifiers are redacted."
+      },
+      "regulationTags": [
+        "IN_DPDP"
+      ],
+      "examplesPositive": [
+        "고객 Aadhaar 1234 5678 9012."
+      ],
+      "examplesNegative": [
+        "Aadhaar 일반 설명."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b\\d{4}[- ]?\\d{4}[- ]?\\d{4}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_234",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "cpf_brazil_out",
+      "description": "응답 내 CPF 마스킹",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 870,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 CPF는 마스킹됩니다.",
+        "en": "Brazilian CPFs are redacted."
+      },
+      "regulationTags": [
+        "BR_LGPD"
+      ],
+      "examplesPositive": [
+        "고객 CPF 123.456.789-09."
+      ],
+      "examplesNegative": [
+        "CPF 체계 일반."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\b\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_235",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "worker_protected_class_out",
+      "description": "응답 내 보호 대상 신분 + 실명 마스킹",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 보호 대상 + 실명은 마스킹됩니다.",
+        "en": "Protected-class + identity is redacted in output."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "US_ADA"
+      ],
+      "examplesPositive": [
+        "홍길동은 청각 장애 보호대상."
+      ],
+      "examplesNegative": [
+        "장애인 보호 일반 정책."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_236",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "political_protest_out",
+      "description": "응답 내 집회 참여 + 실명 마스킹",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 집회 참여 + 실명은 마스킹됩니다.",
+        "en": "Protest attendance + identity is redacted in output."
+      },
+      "regulationTags": [
+        "EU_GDPR_Art9",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "홍길동은 OO 집회에 참석."
+      ],
+      "examplesNegative": [
+        "집회 자유 일반 설명."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_237",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "verification_link_out",
+      "description": "응답 내 검증 링크 토큰 마스킹",
+      "patternType": "regex",
+      "severity": "high",
+      "priority": 800,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "응답 내 검증 링크 토큰은 마스킹됩니다.",
+        "en": "Verification link tokens are redacted in output."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "verify?token=AbCdEfGh1234567890XYZ."
+      ],
+      "examplesNegative": [
+        "이메일 검증 흐름 일반."
+      ],
+      "enabled": true,
+      "version": "1.0.0",
+      "patterns": {
+        "regex": [
+          "\\bverify[?_/=][A-Za-z0-9]{20,}\\b"
+        ]
+      }
+    },
+    {
+      "ruleId": "PRIV_KR_238",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "rag_citation_with_pii_out",
+      "description": "RAG 인용문 내 PII 마스킹",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 750,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "RAG 인용 내 PII는 마스킹됩니다.",
+        "en": "PII inside RAG citations is redacted in output."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "원문: '홍길동, 010-1234-5678이 ...'을 인용."
+      ],
+      "examplesNegative": [
+        "RAG 인용 일반 형식."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_239",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "vector_search_result_out",
+      "description": "벡터 검색 결과 응답에서 PII 마스킹",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "벡터 검색 결과 PII는 마스킹됩니다.",
+        "en": "PII inside vector-search results is redacted in output."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "유사 문서: 홍길동 SSN 900101-1234567 관련."
+      ],
+      "examplesNegative": [
+        "벡터 검색 사용 일반 가이드."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_240",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "k_anonymity_violation_out",
+      "description": "응답 내 k-익명성 위반 가능 집계 결과 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 500,
+      "action": "aggregate_only",
+      "messageTemplate": {
+        "ko-KR": "k-익명성 위반 가능 결과는 집계로만 노출합니다.",
+        "en": "Results that may violate k-anonymity are aggregate-only."
+      },
+      "regulationTags": [
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "강남구 30대 여성 변호사 1명: 홍OO ..."
+      ],
+      "examplesNegative": [
+        "강남구 인구 통계 (집계)."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_241",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "metadata_only_pii_out",
+      "description": "응답에 메타데이터 기반 식별 가능성 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "메타데이터 기반 식별 가능성을 안내합니다.",
+        "en": "Disclaimer added when metadata alone may identify."
+      },
+      "regulationTags": [
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "사진 EXIF GPS+시각으로 사용자 확인 가능."
+      ],
+      "examplesNegative": [
+        "EXIF 메타데이터 일반 설명."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_242",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "cross_border_transfer_out",
+      "description": "응답에 국외 이전 시 컴플라이언스 안내",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 400,
+      "action": "add_disclaimer",
+      "messageTemplate": {
+        "ko-KR": "국외 이전은 적정성/SCC 검토 필요 안내가 추가됩니다.",
+        "en": "Cross-border transfers must follow adequacy/SCC checks."
+      },
+      "regulationTags": [
+        "EU_GDPR",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "EU 사용자 PII를 미국 데이터센터로 이전 가능."
+      ],
+      "examplesNegative": [
+        "GDPR 적정성 일반 설명."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_243",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "synthetic_dataset_out",
+      "description": "응답으로 실명 dataset 생성 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 800,
+      "action": "refuse",
+      "messageTemplate": {
+        "ko-KR": "응답에는 실명 dataset이 생성되지 않습니다.",
+        "en": "Real-PII dataset generation is refused in output."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "고객 1000명의 SSN dataset 생성해줘."
+      ],
+      "examplesNegative": [
+        "가명 dataset CSV 스키마 예시."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_244",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "audit_event_pii_out",
+      "description": "응답 내 감사 이벤트 PII 마스킹",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 700,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "감사 이벤트 PII는 응답에서 마스킹됩니다.",
+        "en": "PII inside audit events is redacted in output."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "감사 이벤트 #12345: user=user@example.com action=delete."
+      ],
+      "examplesNegative": [
+        "감사 이벤트 schema 일반 설명."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_KR_245",
+      "domain": "global",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "third_party_api_with_pii_out",
+      "description": "응답에서 제3자 API에 PII 전송 권유 시 경고",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 500,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "응답에서 PII를 제3자 API에 전송하라고 권유 시 경고합니다.",
+        "en": "Warn when suggesting PII be sent to third-party APIs."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "고객 SSN을 외부 분석 API에 그대로 전송하세요."
+      ],
+      "examplesNegative": [
+        "외부 API 호출 일반 권고."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    }
+  ]
+}
