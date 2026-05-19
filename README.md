@@ -112,19 +112,40 @@ open http://localhost:3001
 
 ## 단계적 배포 — 명령 매트릭스
 
-| 단계 | 도메인 | Production | Local |
-| :-- | :-- | :-- | :-- |
-| P1 | `global` (privacy) | `make up-p1` | `make up-p1-local` |
-| P1 + P2 | + `manufacturing-food` | `make up-p1-p2` | `make up-p1-p2-local` |
-| P1 + Admin | + Admin API (8084) | `make up-p1-admin` *(=`up-admin`)* | `make up-p1-admin-local` *(=`up-admin-local`)* |
-| P1 + Admin + Web | + Admin Web (3001) | `make up-p1-admin-web` *(=`up-admin-web`)* | `make up-p1-admin-web-local` *(=`up-admin-web-local`)* |
+모든 명령은 **Phase × Suffix** 조합으로 자동 생성. 패턴:
 
-룰 수: P1 = 245/245 (ko/en), P2 = +127/127 (ko/en).
+```
+up-<phase>[-<suffix>]
+down-<phase>[-<suffix>]
+```
+
+- **Phase**: `p1` (privacy), `p1-p2` (+ manufacturing-food). 향후 `p1-p2-p3` 등 확장
+- **Suffix** (생략 가능, 조합 순서 고정):
+  - 없음 → main stack만
+  - `admin` → + Admin API
+  - `admin-web` → + Admin API + Admin Web (Web은 Admin 필수)
+  - `local` → SQLite 모드 (Postgres/Redis 제거)
+  - `admin-local`, `admin-web-local` → admin/web을 local 모드로
+
+### 전체 24 타겟 매트릭스 (12 up + 12 down)
+
+| Phase | Production (기본, Postgres+Redis) | Local (SQLite) |
+| :-- | :-- | :-- |
+| P1 | `make up-p1` | `make up-p1-local` |
+| P1 + Admin | `make up-p1-admin` *(=`up-admin`)* | `make up-p1-admin-local` *(=`up-admin-local`)* |
+| P1 + Admin + Web | `make up-p1-admin-web` *(=`up-admin-web`)* | `make up-p1-admin-web-local` *(=`up-admin-web-local`)* |
+| P1 + P2 | `make up-p1-p2` | `make up-p1-p2-local` |
+| P1 + P2 + Admin | `make up-p1-p2-admin` | `make up-p1-p2-admin-local` |
+| P1 + P2 + Admin + Web | `make up-p1-p2-admin-web` | `make up-p1-p2-admin-web-local` |
+
+각 `up-*`는 동일 이름의 `down-*` 짝을 가짐 (`down-p1-p2-admin-web-local` 등). `-local` 포함 시 `down`은 자동으로 `-v` 적용 → SQLite 볼륨 제거.
+
+룰 수 (DB 자동 시드): P1 = 245/245 (ko/en), P2 = +127/127 (ko/en). 부팅 시 `seedIfNeeded()`가 비어있는 도메인에만 `INSERT OR IGNORE`로 적재 → custom 룰 보존.
 
 **모드 구분 원칙**
-- **Production** (default): Postgres + Redis. `make up-p1`, `make up-p1-admin`, `make up-p1-admin-web`, …
-- **Local**: SQLite 단독, daemon 없음. 동일 명령에 `-local` suffix.
-- **Standalone**: Admin이 main stack과 독립 운영. 별도 섹션.
+- **Production** (default): Postgres + Redis. `-local` suffix 없음
+- **Local**: SQLite 단독, daemon 없음. `-local` suffix
+- **Standalone**: Admin이 main stack과 독립 운영. 별도 섹션
 
 **Alias 규칙**
 - `make up-admin` ≡ `make up-p1-admin`
@@ -133,6 +154,13 @@ open http://localhost:3001
 - `make up-admin-web-local` ≡ `make up-p1-admin-web-local`
 - Admin-Web은 항상 Admin을 포함 (Web → Admin API 의존)
 - `down-*` 패밀리는 `up-*`와 1:1 대응
+
+**생성된 전체 타겟 목록 확인**
+
+```bash
+make list-targets    # 24개 up/down 정렬 출력
+make help            # 카테고리별 요약
+```
 
 **Only 패밀리** — main stack 기동 후 Admin/Web만 lifecycle 제어:
 
