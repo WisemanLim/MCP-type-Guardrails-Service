@@ -24,9 +24,10 @@ MCP-type-Guardrails-Service/
 ├── docker-compose.food.yml        # Phase 2 overlay (manufacturing-food)
 ├── docker-compose.local.yml       # 경량 overlay (SQLite, Postgres/Redis 제거)
 ├── docker-compose.admin.yml       # Admin overlay — main stack과 co-located
+├── docker-compose.admin-local.yml # Admin local 모드 override (admin + local 동시 사용 시)
 ├── docker-compose.admin-standalone.yml  # Admin standalone (독립 호스트 배포)
 ├── docker-compose.admin-web.yml   # Admin Console (Next.js) overlay
-├── Makefile                       # up-p1 / up-admin / up-admin-web / up-admin-standalone / ...
+├── Makefile                       # up-p1[-local] / up-p1-admin[-local] / up-p1-admin-web[-local] / ...
 ├── .env.example
 ├── scripts/
 │   ├── init-db.sql                # Postgres 스키마 (자동 적재) — rules + admin tables 포함
@@ -47,14 +48,21 @@ MCP-type-Guardrails-Service/
 
 ## 빠른 시작
 
+명령은 **production** (postgres + redis)과 **local** (sqlite 단독) 두 모드로 분리. `-local` suffix가 없으면 production, 있으면 local.
+
 ```bash
 cp .env.example .env
 
-# Phase 1 (privacy) + Postgres + Redis
+# Production — phase 1 (postgres + redis)
 make up-p1
 make smoke
 make logs
 make down
+
+# Local — 동일 phase 1을 SQLite로 (postgres / redis 없음)
+make up-p1-local
+make smoke
+make down-local
 ```
 
 `http://localhost:8080` (MCP):
@@ -68,8 +76,14 @@ make down
 Admin API + Web Console 포함 기동 (옵션):
 
 ```bash
-make up-admin              # main + Admin API (8084)
-make up-admin-web          # main + Admin API + Admin Console (3001)
+# Production (Postgres + Redis)
+make up-p1-admin           # alias: make up-admin       (Phase 1 + Admin API)
+make up-p1-admin-web       # alias: make up-admin-web   (Phase 1 + Admin API + Web)
+
+# Local (SQLite)
+make up-p1-admin-local     # alias: make up-admin-local
+make up-p1-admin-web-local # alias: make up-admin-web-local
+
 curl http://localhost:8084/admin/health
 open http://localhost:3001
 ```
@@ -96,15 +110,38 @@ open http://localhost:3001
 
 ---
 
-## 단계적 배포
+## 단계적 배포 — 명령 매트릭스
 
-| 단계        | 도메인                          | 명령                                                                                                       | 룰 수            |
-| :---------- | :------------------------------ | :--------------------------------------------------------------------------------------------------------- | ---------------: |
-| P1          | `global` (privacy)              | `make up-p1`                                                                                               |  245/245 (ko/en) |
-| P1 + P2     | `global` + `manufacturing-food` | `make up-p1-p2`                                                                                            | + 127/127 (ko/en) |
-| P1 + Admin  | P1 + Admin API (8084)           | `make up-admin`                                                                                            |  (관리용)        |
-| P1 + Admin + Web | P1 + Admin API + Console (3001) | `make up-admin-web`                                                                                  |  (관리 UI)       |
-| P1 + P3+    | `global` + `<P3..>`             | `docker compose -f docker-compose.yml -f docker-compose.privacy.yml -f docker-compose.<phase>.yml up -d`   |       per-phase |
+| 단계 | 도메인 | Production | Local |
+| :-- | :-- | :-- | :-- |
+| P1 | `global` (privacy) | `make up-p1` | `make up-p1-local` |
+| P1 + P2 | + `manufacturing-food` | `make up-p1-p2` | `make up-p1-p2-local` |
+| P1 + Admin | + Admin API (8084) | `make up-p1-admin` *(=`up-admin`)* | `make up-p1-admin-local` *(=`up-admin-local`)* |
+| P1 + Admin + Web | + Admin Web (3001) | `make up-p1-admin-web` *(=`up-admin-web`)* | `make up-p1-admin-web-local` *(=`up-admin-web-local`)* |
+
+룰 수: P1 = 245/245 (ko/en), P2 = +127/127 (ko/en).
+
+**모드 구분 원칙**
+- **Production** (default): Postgres + Redis. `make up-p1`, `make up-p1-admin`, `make up-p1-admin-web`, …
+- **Local**: SQLite 단독, daemon 없음. 동일 명령에 `-local` suffix.
+- **Standalone**: Admin이 main stack과 독립 운영. 별도 섹션.
+
+**Alias 규칙**
+- `make up-admin` ≡ `make up-p1-admin`
+- `make up-admin-web` ≡ `make up-p1-admin-web`
+- `make up-admin-local` ≡ `make up-p1-admin-local`
+- `make up-admin-web-local` ≡ `make up-p1-admin-web-local`
+- Admin-Web은 항상 Admin을 포함 (Web → Admin API 의존)
+- `down-*` 패밀리는 `up-*`와 1:1 대응
+
+**Only 패밀리** — main stack 기동 후 Admin/Web만 lifecycle 제어:
+
+| 명령 | 효과 |
+| :-- | :-- |
+| `make up-admin-only` / `down-admin-only` | admin-service만 (re)생성/종료 (production) |
+| `make up-admin-only-local` / `down-admin-only-local` | 동일, local 모드 |
+| `make up-admin-web-only` / `down-admin-web-only` | admin + admin-web만 (production) |
+| `make up-admin-web-only-local` / `down-admin-web-only-local` | 동일, local 모드 |
 
 각 phase overlay 한 장 추가만으로 합쳐짐. 코어 `docker-compose.yml`은 phase 간 불변. 머지 우선순위 + 충돌 해소는 PRD §4.1.4.
 
@@ -114,11 +151,13 @@ open http://localhost:3001
 
 ## DB 백엔드 (Postgres / SQLite)
 
-| 모드                          | 명령           | 용도                              |
-| :---------------------------- | :------------- | :-------------------------------- |
-| Postgres + Redis (production) | `make up-p1`   | 정식 운영, RBAC, 감사             |
-| SQLite single-file (local)    | `make up-local` | 개발, PoC, 데몬 없는 환경         |
-| Postgres + Admin              | `make up-admin` | 운영 + 자가 관리 콘솔 API         |
+| 모드 | Phase 1 명령 | 용도 |
+| :-- | :-- | :-- |
+| Production (Postgres + Redis) | `make up-p1` | 정식 운영, RBAC, 감사 |
+| Local (SQLite 단독) | `make up-p1-local` | 개발, PoC, 데몬 없는 환경 |
+| Production + Admin | `make up-p1-admin` | 운영 + 자가 관리 콘솔 API |
+| Local + Admin | `make up-p1-admin-local` | 가벼운 PoC + Admin |
+| Local + Admin + Web | `make up-p1-admin-web-local` | 가장 가벼운 풀 스택 (4 컨테이너) |
 
 ENV 스위치 (서비스별 자동 인식):
 

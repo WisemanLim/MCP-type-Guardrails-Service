@@ -13,6 +13,11 @@ services:
   policy-engine:
     environment:
       GUARDRAILS_ENABLED_DOMAINS: "global,manufacturing-food"
+    volumes:
+      # Phase 2 seed (127 ko-KR + 127 en rules). Same seed-on-first-boot
+      # semantics as Phase 1 — see docker-compose.privacy.yml.
+      - ./scripts/manufacturing-food.kr.json:/app/policies/manufacturing-food/manufacturing-food.kr.json:ro
+      - ./scripts/manufacturing-food.en.json:/app/policies/manufacturing-food/manufacturing-food.en.json:ro
 
   detection-engine:
     environment:

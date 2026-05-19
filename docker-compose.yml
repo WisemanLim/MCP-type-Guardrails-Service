@@ -98,11 +98,16 @@ services:
       <<: *common-env
       PORT: 8082
       POLICY_DIR: /app/policies
+      SEEDS_DIR: /app/seeds
       GUARDRAILS_ENABLED_DOMAINS: ${GUARDRAILS_ENABLED_DOMAINS:-global}
     volumes:
       # Built-in package policies (image-baked) are at /app/policies.
       # Phase overlays mount additional bundles READ-ONLY at /app/policies/<domain>.
       - policy-cache:/app/.cache
+      # Flat seed bundles produced by scripts/gen-rules.py. Read-only.
+      # Policy Engine ingests these on boot and (if rules table is empty for
+      # a given domain) bulk-INSERTs them with source='file'. Idempotent.
+      - ./scripts:/app/seeds:ro
     ports:
       - "${POLICY_EXPOSED_PORT:-8082}:8082"
     depends_on:

@@ -1,0 +1,27 @@
+# Local-mode override for the Admin service.
+#
+# Applied on TOP of docker-compose.admin.yml + docker-compose.local.yml so
+# admin-service uses SQLite (single-file DB) and drops its Postgres
+# dependency. This overlay is split from local.yml because local.yml is
+# also used by stacks that do NOT include admin-service — referencing a
+# nonexistent service in local.yml would cause compose validation errors.
+#
+# Admin and Policy Engine SHARE the same SQLite file (/app/var/guardrails.db)
+# via the `gr-sqlite` volume, so rule CRUD via Admin is immediately visible
+# to Policy Engine on its next refresh / cache invalidation.
+#
+# Always combine with docker-compose.admin.yml. Order must be:
+#   ... docker-compose.admin.yml docker-compose.local.yml docker-compose.admin-local.yml
+# so the !reset on depends_on wins.
+
+services:
+  admin-service:
+    environment:
+      DB_DRIVER: sqlite
+      SQLITE_PATH: /app/var/guardrails.db
+    volumes:
+      - gr-sqlite:/app/var
+    depends_on: !reset []
+
+volumes:
+  gr-sqlite:

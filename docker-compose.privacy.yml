@@ -7,9 +7,14 @@ services:
     environment:
       GUARDRAILS_ENABLED_DOMAINS: "global"
     volumes:
-      # No external mount needed — `global/privacy` is image-baked.
-      # Add a host-mounted override here if compliance team needs hot updates:
-      # - ./overrides/global/privacy:/app/policies/global/privacy:ro
+      # Mount the canonical generator output as Phase 1 seed data. Files are
+      # placed inside the global domain directory so loadPoliciesFromDir
+      # picks them up alongside any other bundles that ship in the image.
+      # On first boot, PoliciesService.seedIfNeeded() upserts these rules
+      # into the rules table (source='file'); subsequent boots see rows
+      # already present and leave the DB alone (preserving Admin edits).
+      - ./scripts/privacy.kr.json:/app/policies/global/privacy.kr.json:ro
+      - ./scripts/privacy.en.json:/app/policies/global/privacy.en.json:ro
       - policy-cache:/app/.cache
 
   detection-engine:

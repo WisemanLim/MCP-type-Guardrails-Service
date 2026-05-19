@@ -1,162 +1,161 @@
 SHELL := /bin/bash
 
-# Compose stack definitions.
-COMPOSE_BASE       := -f docker-compose.yml
-COMPOSE_PRIVACY    := $(COMPOSE_BASE) -f docker-compose.privacy.yml
-COMPOSE_FOOD       := $(COMPOSE_PRIVACY) -f docker-compose.food.yml
-COMPOSE_LOCAL      := $(COMPOSE_PRIVACY) -f docker-compose.local.yml
-# Admin overlay sits on top of the main stack (shares postgres/redis).
-COMPOSE_ADMIN      := $(COMPOSE_PRIVACY) -f docker-compose.admin.yml
-# Admin in local (SQLite) mode — for dev / lightweight ops without Postgres.
-# IMPORTANT: local.yml MUST load AFTER admin.yml so its `admin-service:
-# depends_on: !reset []` overrides admin.yml's postgres dependency. Compose
-# merges later files on top of earlier ones.
-COMPOSE_ADMIN_LOCAL := $(COMPOSE_PRIVACY) -f docker-compose.admin.yml -f docker-compose.local.yml
-# Admin + Web overlay (Next.js console).
-COMPOSE_ADMIN_WEB  := $(COMPOSE_ADMIN) -f docker-compose.admin-web.yml
-# Admin + Web in local (SQLite) mode (same order rule).
-COMPOSE_ADMIN_WEB_LOCAL := $(COMPOSE_ADMIN_LOCAL) -f docker-compose.admin-web.yml
-# Admin standalone is a self-contained compose file (no base merge).
-COMPOSE_STANDALONE := -f docker-compose.admin-standalone.yml
-# Standalone + Web (Web is reusable as overlay).
-COMPOSE_STANDALONE_WEB := $(COMPOSE_STANDALONE) -f docker-compose.admin-web.yml
+# ─────────────────────────────────────────────────────────────────────
+# Compose file building blocks
+# ─────────────────────────────────────────────────────────────────────
+COMPOSE_BASE    := -f docker-compose.yml
+COMPOSE_PRIVACY := $(COMPOSE_BASE) -f docker-compose.privacy.yml
+COMPOSE_FOOD    := $(COMPOSE_PRIVACY) -f docker-compose.food.yml
+
+# Overlay fragments
+COMPOSE_LOCAL_OV       := -f docker-compose.local.yml
+COMPOSE_ADMIN_OV       := -f docker-compose.admin.yml
+COMPOSE_ADMIN_LOCAL_OV := -f docker-compose.admin-local.yml
+COMPOSE_WEB_OV         := -f docker-compose.admin-web.yml
+COMPOSE_STANDALONE     := -f docker-compose.admin-standalone.yml
+
+# ─────────────────────────────────────────────────────────────────────
+# Production stacks (postgres + redis)
+# ─────────────────────────────────────────────────────────────────────
+# p1            = phase 1 (privacy)
+# p1-p2         = + phase 2 (food)
+# p1-admin      = + Admin API
+# p1-admin-web  = + Admin API + Admin Web Console
+COMPOSE_P1            := $(COMPOSE_PRIVACY)
+COMPOSE_P1_P2         := $(COMPOSE_FOOD)
+COMPOSE_P1_ADMIN      := $(COMPOSE_P1)     $(COMPOSE_ADMIN_OV)
+COMPOSE_P1_ADMIN_WEB  := $(COMPOSE_P1_ADMIN) $(COMPOSE_WEB_OV)
+
+# ─────────────────────────────────────────────────────────────────────
+# Local stacks (sqlite, no postgres/redis)
+#
+# CRITICAL ORDER: local.yml MUST load LAST so its admin-service
+# `depends_on: !reset []` overrides admin.yml's postgres dependency.
+# ─────────────────────────────────────────────────────────────────────
+COMPOSE_P1_LOCAL            := $(COMPOSE_P1)            $(COMPOSE_LOCAL_OV)
+COMPOSE_P1_P2_LOCAL         := $(COMPOSE_P1_P2)         $(COMPOSE_LOCAL_OV)
+COMPOSE_P1_ADMIN_LOCAL      := $(COMPOSE_P1_ADMIN)      $(COMPOSE_LOCAL_OV) $(COMPOSE_ADMIN_LOCAL_OV)
+COMPOSE_P1_ADMIN_WEB_LOCAL  := $(COMPOSE_P1_ADMIN_WEB)  $(COMPOSE_LOCAL_OV) $(COMPOSE_ADMIN_LOCAL_OV)
 
 .PHONY: help \
-        up-p1 up-p1-p2 up-local \
-        up-admin up-p1-admin up-admin-only \
-        up-admin-local up-admin-web-local \
-        up-admin-web up-admin-web-only up-admin-standalone-web \
-        up-admin-standalone up-admin-standalone-db \
+        up-p1 up-p1-p2 \
+        up-p1-local up-p1-p2-local \
+        up-p1-admin up-p1-admin-web up-admin up-admin-web \
+        up-p1-admin-local up-p1-admin-web-local up-admin-local up-admin-web-local \
+        up-admin-only up-admin-web-only \
+        up-admin-only-local up-admin-web-only-local \
         restart-admin restart-admin-web \
-        down down-local down-admin down-admin-only \
-        down-admin-local down-admin-web-local \
-        down-admin-web down-admin-web-only down-admin-standalone \
+        up-admin-standalone up-admin-standalone-db up-admin-standalone-web \
+        down down-local \
+        down-p1-admin down-p1-admin-web \
+        down-p1-admin-local down-p1-admin-web-local \
+        down-admin down-admin-web down-admin-local down-admin-web-local \
+        down-admin-only down-admin-web-only \
+        down-admin-only-local down-admin-web-only-local \
+        down-admin-standalone \
         logs admin-logs admin-web-logs admin-standalone-logs \
-        ps ps-admin ps-standalone \
+        ps ps-admin ps-admin-web ps-local ps-standalone \
         build rebuild build-admin build-admin-web \
         psql redis-cli \
         smoke smoke-admin smoke-admin-web smoke-admin-standalone \
         test clean
 
 help:
-	@echo "── Main stack ────────────────────────────────────────────────"
-	@echo "  up-p1                    Postgres + Redis + Phase 1 (privacy)."
-	@echo "  up-p1-p2                 Phase 1 + Phase 2 (food) [stub]."
-	@echo "  up-local                 SQLite-only mode (no Postgres / Redis)."
-	@echo "  down                     Stop and remove main-stack containers."
-	@echo "  down-local               Stop and remove SQLite-mode containers."
-	@echo "── Admin co-located (overlay on main stack) ──────────────────"
-	@echo "  up-admin                 main stack + Admin API (alias up-p1-admin)."
-	@echo "  up-p1-admin              Same as up-admin."
-	@echo "  up-admin-only            Only (re)start admin-service (no other svc)."
-	@echo "  restart-admin            Restart only admin-service."
-	@echo "  down-admin               Stop ALL containers including admin."
-	@echo "  down-admin-only          Stop ONLY the admin-service container."
-	@echo "  up-admin-local           Admin in SQLite mode (no Postgres)."
-	@echo "  down-admin-local         Stop SQLite-mode Admin stack."
-	@echo "── Admin Web (Next.js console) ───────────────────────────────"
-	@echo "  up-admin-web-local       Admin + Web in SQLite mode (lightest)."
-	@echo "  down-admin-web-local     Stop SQLite Admin + Web stack."
-	@echo "  up-admin-web             main stack + Admin API + Admin Web (3001)."
-	@echo "  up-admin-web-only        Only (re)start admin-web container."
-	@echo "  restart-admin-web        Restart only admin-web."
-	@echo "  down-admin-web           Stop ALL containers including admin + web."
-	@echo "  down-admin-web-only      Stop ONLY the admin-web container."
-	@echo "  up-admin-standalone-web  Standalone Admin + Web (own host / VPN)."
-	@echo "── Admin standalone (separate host / network) ────────────────"
-	@echo "  up-admin-standalone      Standalone Admin, external DB via env."
-	@echo "  up-admin-standalone-db   Standalone Admin + bundled Postgres (port 5433)."
-	@echo "  down-admin-standalone    Stop standalone Admin stack."
-	@echo "── Diagnostics / smoke ──────────────────────────────────────"
+	@echo "── PRODUCTION (postgres + redis) ────────────────────────────"
+	@echo "  up-p1                       Phase 1 (privacy)."
+	@echo "  up-p1-p2                    Phase 1 + Phase 2 (food)."
+	@echo "  up-p1-admin (= up-admin)    Phase 1 + Admin API."
+	@echo "  up-p1-admin-web (= up-admin-web)"
+	@echo "                              Phase 1 + Admin API + Admin Web (3001)."
+	@echo "  up-admin-only               (Re)create only admin-service in a"
+	@echo "                              running production stack."
+	@echo "  up-admin-web-only           (Re)create only admin-service +"
+	@echo "                              admin-web in a running production stack."
+	@echo ""
+	@echo "── LOCAL (sqlite, no postgres/redis) ────────────────────────"
+	@echo "  up-p1-local                 Phase 1 (privacy) in SQLite mode."
+	@echo "  up-p1-p2-local              Phase 1 + Phase 2 (food) in SQLite."
+	@echo "  up-p1-admin-local (= up-admin-local)"
+	@echo "                              Phase 1 + Admin API in SQLite mode."
+	@echo "  up-p1-admin-web-local (= up-admin-web-local)"
+	@echo "                              Phase 1 + Admin API + Admin Web in SQLite."
+	@echo "  up-admin-only-local         (Re)create only admin-service in a"
+	@echo "                              running local stack."
+	@echo "  up-admin-web-only-local     (Re)create only admin-service +"
+	@echo "                              admin-web in a running local stack."
+	@echo ""
+	@echo "── STANDALONE (Admin lives on its own host / network) ───────"
+	@echo "  up-admin-standalone         Standalone Admin, external DB via env."
+	@echo "  up-admin-standalone-db      Standalone Admin + bundled Postgres (5433)."
+	@echo "  up-admin-standalone-web     Standalone Admin + Web."
+	@echo ""
+	@echo "── DOWN (mirror of up-*) ────────────────────────────────────"
+	@echo "  down / down-local"
+	@echo "  down-p1-admin / down-p1-admin-web (= down-admin / down-admin-web)"
+	@echo "  down-p1-admin-local / down-p1-admin-web-local"
+	@echo "       (= down-admin-local / down-admin-web-local)"
+	@echo "  down-admin-only / down-admin-web-only"
+	@echo "  down-admin-only-local / down-admin-web-only-local"
+	@echo "  down-admin-standalone"
+	@echo ""
+	@echo "── DIAGNOSTICS / SMOKE ──────────────────────────────────────"
 	@echo "  logs / admin-logs / admin-web-logs / admin-standalone-logs"
-	@echo "  ps  / ps-admin / ps-standalone"
-	@echo "  smoke                    MCP HTTP smoke."
-	@echo "  smoke-admin              /admin/health on the co-located admin."
-	@echo "  smoke-admin-web          /login on the admin-web console."
-	@echo "  smoke-admin-standalone   /admin/health on the standalone admin."
-	@echo "── Build / data plane ───────────────────────────────────────"
+	@echo "  ps / ps-admin / ps-admin-web / ps-local / ps-standalone"
+	@echo "  smoke / smoke-admin / smoke-admin-web / smoke-admin-standalone"
+	@echo ""
+	@echo "── BUILD / DATA PLANE ───────────────────────────────────────"
 	@echo "  build / rebuild / build-admin / build-admin-web"
-	@echo "  psql / redis-cli / test / clean"
+	@echo "  psql / redis-cli / restart-admin / restart-admin-web / test / clean"
 
 # ─────────────────────────────────────────────────────────────────────
-# Main stack
+# Production: up
 # ─────────────────────────────────────────────────────────────────────
 up-p1:
-	docker compose $(COMPOSE_PRIVACY) up -d
+	docker compose $(COMPOSE_P1) up -d
 
 up-p1-p2:
-	docker compose $(COMPOSE_FOOD) up -d
+	docker compose $(COMPOSE_P1_P2) up -d
 
-up-local:
-	docker compose $(COMPOSE_LOCAL) up -d
-
-down:
-	docker compose $(COMPOSE_BASE) down
-
-down-local:
-	docker compose $(COMPOSE_LOCAL) down -v
-
-# ─────────────────────────────────────────────────────────────────────
-# Admin co-located
-# ─────────────────────────────────────────────────────────────────────
-up-admin: up-p1-admin
 up-p1-admin:
-	docker compose $(COMPOSE_ADMIN) up -d
+	docker compose $(COMPOSE_P1_ADMIN) up -d
 
-# Start ONLY admin-service in the existing main stack.
+up-p1-admin-web:
+	docker compose $(COMPOSE_P1_ADMIN_WEB) up -d
+
+# Aliases (Admin-Web requires Admin → admin is included automatically).
+up-admin:      up-p1-admin
+up-admin-web:  up-p1-admin-web
+
+# Only-mode: touch only the specified service(s) in the production stack.
 up-admin-only:
-	docker compose $(COMPOSE_ADMIN) up -d --no-deps admin-service
+	docker compose $(COMPOSE_P1_ADMIN) up -d --no-deps admin-service
 
-restart-admin:
-	docker compose $(COMPOSE_ADMIN) restart admin-service
-
-down-admin:
-	docker compose $(COMPOSE_ADMIN) down
-
-down-admin-only:
-	docker compose $(COMPOSE_ADMIN) stop admin-service
-	docker compose $(COMPOSE_ADMIN) rm -f admin-service
-
-# Admin in SQLite (local) mode — no Postgres, no Redis, single-host.
-# Combines privacy + local + admin overlays so admin-service picks up
-# DB_DRIVER=sqlite and the disabled postgres profile.
-up-admin-local:
-	docker compose $(COMPOSE_ADMIN_LOCAL) up -d
-
-down-admin-local:
-	docker compose $(COMPOSE_ADMIN_LOCAL) down -v
-
-# Admin + Web in SQLite mode — the lightest fully-featured stack
-# (postgres / redis are both off, admin DB is /app/var/admin.db, web on 3001).
-up-admin-web-local:
-	docker compose $(COMPOSE_ADMIN_WEB_LOCAL) up -d
-
-down-admin-web-local:
-	docker compose $(COMPOSE_ADMIN_WEB_LOCAL) down -v
-
-# ─────────────────────────────────────────────────────────────────────
-# Admin Web (Next.js)
-# ─────────────────────────────────────────────────────────────────────
-up-admin-web:
-	docker compose $(COMPOSE_ADMIN_WEB) up -d
-
-# (Re)start only admin-web. Other services stay untouched.
 up-admin-web-only:
-	docker compose $(COMPOSE_ADMIN_WEB) up -d --no-deps admin-web
+	docker compose $(COMPOSE_P1_ADMIN_WEB) up -d --no-deps admin-service admin-web
 
-restart-admin-web:
-	docker compose $(COMPOSE_ADMIN_WEB) restart admin-web
+# ─────────────────────────────────────────────────────────────────────
+# Local: up
+# ─────────────────────────────────────────────────────────────────────
+up-p1-local:
+	docker compose $(COMPOSE_P1_LOCAL) up -d
 
-down-admin-web:
-	docker compose $(COMPOSE_ADMIN_WEB) down
+up-p1-p2-local:
+	docker compose $(COMPOSE_P1_P2_LOCAL) up -d
 
-down-admin-web-only:
-	docker compose $(COMPOSE_ADMIN_WEB) stop admin-web
-	docker compose $(COMPOSE_ADMIN_WEB) rm -f admin-web
+up-p1-admin-local:
+	docker compose $(COMPOSE_P1_ADMIN_LOCAL) up -d
 
-# Standalone Admin + Web, talking to external Policy Engine via ENV.
-up-admin-standalone-web:
-	docker compose $(COMPOSE_STANDALONE_WEB) up -d
+up-p1-admin-web-local:
+	docker compose $(COMPOSE_P1_ADMIN_WEB_LOCAL) up -d
+
+up-admin-local:      up-p1-admin-local
+up-admin-web-local:  up-p1-admin-web-local
+
+up-admin-only-local:
+	docker compose $(COMPOSE_P1_ADMIN_LOCAL) up -d --no-deps admin-service
+
+up-admin-web-only-local:
+	docker compose $(COMPOSE_P1_ADMIN_WEB_LOCAL) up -d --no-deps admin-service admin-web
 
 # ─────────────────────────────────────────────────────────────────────
 # Admin standalone
@@ -167,8 +166,62 @@ up-admin-standalone:
 up-admin-standalone-db:
 	docker compose $(COMPOSE_STANDALONE) --profile with-db up -d
 
+up-admin-standalone-web:
+	docker compose $(COMPOSE_STANDALONE) $(COMPOSE_WEB_OV) up -d
+
+# ─────────────────────────────────────────────────────────────────────
+# Down (mirrors up-* exactly)
+# ─────────────────────────────────────────────────────────────────────
+down:
+	docker compose $(COMPOSE_P1) down
+
+down-local:
+	docker compose $(COMPOSE_P1_LOCAL) down -v
+
+down-p1-admin:
+	docker compose $(COMPOSE_P1_ADMIN) down
+down-admin: down-p1-admin
+
+down-p1-admin-web:
+	docker compose $(COMPOSE_P1_ADMIN_WEB) down
+down-admin-web: down-p1-admin-web
+
+down-p1-admin-local:
+	docker compose $(COMPOSE_P1_ADMIN_LOCAL) down -v
+down-admin-local: down-p1-admin-local
+
+down-p1-admin-web-local:
+	docker compose $(COMPOSE_P1_ADMIN_WEB_LOCAL) down -v
+down-admin-web-local: down-p1-admin-web-local
+
+# Only mode: stop and remove just the targeted service(s).
+down-admin-only:
+	docker compose $(COMPOSE_P1_ADMIN) stop admin-service
+	docker compose $(COMPOSE_P1_ADMIN) rm -f admin-service
+
+down-admin-web-only:
+	docker compose $(COMPOSE_P1_ADMIN_WEB) stop admin-web admin-service
+	docker compose $(COMPOSE_P1_ADMIN_WEB) rm -f admin-web admin-service
+
+down-admin-only-local:
+	docker compose $(COMPOSE_P1_ADMIN_LOCAL) stop admin-service
+	docker compose $(COMPOSE_P1_ADMIN_LOCAL) rm -f admin-service
+
+down-admin-web-only-local:
+	docker compose $(COMPOSE_P1_ADMIN_WEB_LOCAL) stop admin-web admin-service
+	docker compose $(COMPOSE_P1_ADMIN_WEB_LOCAL) rm -f admin-web admin-service
+
 down-admin-standalone:
 	docker compose $(COMPOSE_STANDALONE) --profile with-db down -v
+
+# ─────────────────────────────────────────────────────────────────────
+# Restart
+# ─────────────────────────────────────────────────────────────────────
+restart-admin:
+	docker compose $(COMPOSE_P1_ADMIN) restart admin-service
+
+restart-admin-web:
+	docker compose $(COMPOSE_P1_ADMIN_WEB) restart admin-web
 
 # ─────────────────────────────────────────────────────────────────────
 # Diagnostics
@@ -177,10 +230,10 @@ logs:
 	docker compose $(COMPOSE_BASE) logs -f --tail=200
 
 admin-logs:
-	docker compose $(COMPOSE_ADMIN) logs -f --tail=200 admin-service
+	docker compose $(COMPOSE_P1_ADMIN) logs -f --tail=200 admin-service
 
 admin-web-logs:
-	docker compose $(COMPOSE_ADMIN_WEB) logs -f --tail=200 admin-web
+	docker compose $(COMPOSE_P1_ADMIN_WEB) logs -f --tail=200 admin-web
 
 admin-standalone-logs:
 	docker compose $(COMPOSE_STANDALONE) logs -f --tail=200 admin-service
@@ -189,7 +242,13 @@ ps:
 	docker compose $(COMPOSE_BASE) ps
 
 ps-admin:
-	docker compose $(COMPOSE_ADMIN) ps
+	docker compose $(COMPOSE_P1_ADMIN) ps
+
+ps-admin-web:
+	docker compose $(COMPOSE_P1_ADMIN_WEB) ps
+
+ps-local:
+	docker compose $(COMPOSE_P1_LOCAL) ps
 
 ps-standalone:
 	docker compose $(COMPOSE_STANDALONE) ps
@@ -204,10 +263,10 @@ rebuild:
 	docker compose $(COMPOSE_BASE) build --no-cache
 
 build-admin:
-	docker compose $(COMPOSE_ADMIN) build admin-service
+	docker compose $(COMPOSE_P1_ADMIN) build admin-service
 
 build-admin-web:
-	docker compose $(COMPOSE_ADMIN_WEB) build admin-web
+	docker compose $(COMPOSE_P1_ADMIN_WEB) build admin-web
 
 # ─────────────────────────────────────────────────────────────────────
 # Smoke
@@ -239,7 +298,7 @@ test:
 	@echo "  Policy-Engine  : cd ../Guardrails-Service-Policy-Engine  && npm test"
 	@echo "  Audit-Service  : cd ../Guardrails-Service-Audit-Service  && npm test"
 	@echo "  Admin          : cd ../Guardrails-Service-Admin          && npm test"
-	@echo "  Admin-Web      : cd ../Guardrails-Service-Admin-Web      && npm run build (smoke)"
+	@echo "  Admin-Web      : cd ../Guardrails-Service-Admin-Web      && npm run build"
 	@echo "  Detection-Eng. : cd ../../DA(Python,R,...)/Guardrails-Service-Detection-Engine && pytest"
 
 clean:

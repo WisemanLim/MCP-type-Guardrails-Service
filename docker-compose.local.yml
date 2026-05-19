@@ -9,11 +9,14 @@
 #
 # Or skip Docker entirely and just set DB_DRIVER=sqlite in each service's
 # .env, then `npm run start:dev` per service. The same code path is exercised.
+#
+# IMPORTANT: Policy Engine writes the `rules` table to the SHARED file
+# `/app/var/guardrails.db`. Admin (when also overlaid) reads/writes the
+# same file, so rule mutations are visible to both sides without an
+# explicit sync step.
 
 services:
   postgres:
-    # Postgres is not started in local mode. Keep the service so other overlays
-    # can still reference it, but block it from launching.
     profiles: ["__disabled__"]
 
   redis:
@@ -22,11 +25,10 @@ services:
   policy-engine:
     environment:
       DB_DRIVER: sqlite
-      SQLITE_PATH: /app/var/policy-engine.db
-      # Redis is gone — the client falls back to cache-less mode.
+      SQLITE_PATH: /app/var/guardrails.db
       REDIS_HOST: ""
     volumes:
-      - policy-sqlite:/app/var
+      - gr-sqlite:/app/var
     depends_on: !reset []
 
   audit-service:
@@ -46,19 +48,6 @@ services:
       detection-engine: { condition: service_healthy }
       audit-service: { condition: service_healthy }
 
-  # If the Admin overlay (docker-compose.admin.yml) is also merged on top
-  # of local mode, push Admin onto SQLite too so it does not try to dial
-  # the disabled Postgres. When admin is NOT in the merge, this stanza is
-  # simply ignored.
-  admin-service:
-    environment:
-      DB_DRIVER: sqlite
-      SQLITE_PATH: /app/var/admin.db
-    volumes:
-      - admin-sqlite:/app/var
-    depends_on: !reset []
-
 volumes:
-  policy-sqlite:
+  gr-sqlite:
   audit-sqlite:
-  admin-sqlite:
