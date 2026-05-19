@@ -1,0 +1,23 @@
+# Phase 2 (STUB — not yet implemented) — Manufacturing.Food domain bundle.
+# Combine with privacy:
+#   docker compose -f docker-compose.yml \
+#                  -f docker-compose.privacy.yml \
+#                  -f docker-compose.food.yml up -d
+#
+# When phase 2 ships, drop the actual bundles into
+#   <Policy-Engine>/policies/manufacturing-food/{privacy,compliance,safety,ip}/...json
+# and the loader will pick them up at boot. The overlay only flips the
+# enabled-domains list; no service changes required.
+
+services:
+  policy-engine:
+    environment:
+      GUARDRAILS_ENABLED_DOMAINS: "global,manufacturing-food"
+
+  detection-engine:
+    environment:
+      GUARDRAILS_ENABLED_DOMAINS: "global,manufacturing-food"
+
+  mcp-server:
+    environment:
+      GUARDRAILS_ENABLED_DOMAINS: "global,manufacturing-food"

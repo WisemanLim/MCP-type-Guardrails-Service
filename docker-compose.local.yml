@@ -1,0 +1,51 @@
+# Local / lightweight overlay — drops Postgres, runs Policy Engine + Audit
+# Service on SQLite single-file DBs. Redis is also removed since both Policy
+# Engine and MCP Server fall back to cache-less mode when Redis is missing.
+#
+# Combine with any phase overlay:
+#   docker compose -f docker-compose.yml \
+#                  -f docker-compose.privacy.yml \
+#                  -f docker-compose.local.yml up -d
+#
+# Or skip Docker entirely and just set DB_DRIVER=sqlite in each service's
+# .env, then `npm run start:dev` per service. The same code path is exercised.
+
+services:
+  postgres:
+    # Postgres is not started in local mode. Keep the service so other overlays
+    # can still reference it, but block it from launching.
+    profiles: ["__disabled__"]
+
+  redis:
+    profiles: ["__disabled__"]
+
+  policy-engine:
+    environment:
+      DB_DRIVER: sqlite
+      SQLITE_PATH: /app/var/policy-engine.db
+      # Redis is gone — the client falls back to cache-less mode.
+      REDIS_HOST: ""
+    volumes:
+      - policy-sqlite:/app/var
+    depends_on: !reset []
+
+  audit-service:
+    environment:
+      DB_DRIVER: sqlite
+      SQLITE_PATH: /app/var/audit.db
+    volumes:
+      - audit-sqlite:/app/var
+    depends_on: !reset []
+
+  detection-engine:
+    depends_on: !reset []
+
+  mcp-server:
+    depends_on:
+      policy-engine: { condition: service_healthy }
+      detection-engine: { condition: service_healthy }
+      audit-service: { condition: service_healthy }
+
+volumes:
+  policy-sqlite:
+  audit-sqlite:

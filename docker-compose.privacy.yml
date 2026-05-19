@@ -1,0 +1,21 @@
+# Phase 1 — Privacy (domain-agnostic).
+# Activates the built-in `global/privacy` rule bundle.
+# This overlay can be combined with any later domain overlay (food, chemical, etc.).
+
+services:
+  policy-engine:
+    environment:
+      GUARDRAILS_ENABLED_DOMAINS: "global"
+    volumes:
+      # No external mount needed — `global/privacy` is image-baked.
+      # Add a host-mounted override here if compliance team needs hot updates:
+      # - ./overrides/global/privacy:/app/policies/global/privacy:ro
+      - policy-cache:/app/.cache
+
+  detection-engine:
+    environment:
+      GUARDRAILS_ENABLED_DOMAINS: "global"
+
+  mcp-server:
+    environment:
+      GUARDRAILS_ENABLED_DOMAINS: "global"

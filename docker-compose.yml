@@ -1,0 +1,177 @@
+# Core stack — infrastructure + all 4 services (domain-agnostic skeleton).
+# Phase overlays inject domain-specific policy mounts and env:
+#   P1 (privacy):  docker-compose.privacy.yml
+#   P2 (food):     docker-compose.food.yml         (added when phase 2 ships)
+#   P3/P4 ...      docker-compose.<domain>.yml
+#
+# Usage:
+#   # Phase 1 only (default)
+#   docker compose -f docker-compose.yml -f docker-compose.privacy.yml up -d
+#
+#   # Phase 1 + Phase 2 (food)
+#   docker compose \
+#     -f docker-compose.yml \
+#     -f docker-compose.privacy.yml \
+#     -f docker-compose.food.yml up -d
+#
+# Each overlay only contributes ADDITIONAL volumes and ENV concatenation.
+# Core never changes between phases.
+
+x-common-env: &common-env
+  NODE_ENV: ${NODE_ENV:-production}
+  LOG_LEVEL: ${LOG_LEVEL:-info}
+  POSTGRES_HOST: postgres
+  POSTGRES_PORT: 5432
+  POSTGRES_DB: ${POSTGRES_DB:-guardrails}
+  POSTGRES_USER: ${POSTGRES_USER:-guardrails}
+  POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-guardrails}
+  REDIS_HOST: redis
+  REDIS_PORT: 6379
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: gr-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-guardrails}
+      POSTGRES_USER: ${POSTGRES_USER:-guardrails}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-guardrails}
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    ports:
+      - "${POSTGRES_EXPOSED_PORT:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-guardrails} -d ${POSTGRES_DB:-guardrails}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks: [gr-net]
+
+  redis:
+    image: redis:7-alpine
+    container_name: gr-redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    ports:
+      - "${REDIS_EXPOSED_PORT:-6379}:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [gr-net]
+
+  detection-engine:
+    build:
+      context: ../../DA(Python,R,...)/Guardrails-Service-Detection-Engine
+      dockerfile: Dockerfile
+    container_name: gr-detection
+    restart: unless-stopped
+    environment:
+      <<: *common-env
+      PORT: 8081
+      # Phase overlays append to this CSV via ENV substitution at compose merge time.
+      GUARDRAILS_ENABLED_DOMAINS: ${GUARDRAILS_ENABLED_DOMAINS:-global}
+      GUARDRAILS_LOCALES: ${GUARDRAILS_LOCALES:-ko-KR,en}
+    ports:
+      - "${DETECTION_EXPOSED_PORT:-8081}:8081"
+    depends_on:
+      redis: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8081/health').status==200 else 1)"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [gr-net]
+
+  policy-engine:
+    build:
+      context: ../Guardrails-Service-Policy-Engine
+      dockerfile: Dockerfile
+    container_name: gr-policy
+    restart: unless-stopped
+    environment:
+      <<: *common-env
+      PORT: 8082
+      POLICY_DIR: /app/policies
+      GUARDRAILS_ENABLED_DOMAINS: ${GUARDRAILS_ENABLED_DOMAINS:-global}
+    volumes:
+      # Built-in package policies (image-baked) are at /app/policies.
+      # Phase overlays mount additional bundles READ-ONLY at /app/policies/<domain>.
+      - policy-cache:/app/.cache
+    ports:
+      - "${POLICY_EXPOSED_PORT:-8082}:8082"
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://127.0.0.1:8082/health',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    networks: [gr-net]
+
+  audit-service:
+    build:
+      context: ../Guardrails-Service-Audit-Service
+      dockerfile: Dockerfile
+    container_name: gr-audit
+    restart: unless-stopped
+    environment:
+      <<: *common-env
+      PORT: 8083
+    ports:
+      - "${AUDIT_EXPOSED_PORT:-8083}:8083"
+    depends_on:
+      postgres: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://127.0.0.1:8083/health',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    networks: [gr-net]
+
+  mcp-server:
+    build:
+      context: ../Guardrails-Service-Server
+      dockerfile: Dockerfile
+    container_name: gr-mcp
+    restart: unless-stopped
+    environment:
+      <<: *common-env
+      PORT: 8080
+      MCP_TRANSPORT: ${MCP_TRANSPORT:-http}
+      POLICY_ENGINE_URL: http://policy-engine:8082
+      DETECTION_ENGINE_URL: http://detection-engine:8081
+      AUDIT_SERVICE_URL: http://audit-service:8083
+      GUARDRAILS_ENABLED_DOMAINS: ${GUARDRAILS_ENABLED_DOMAINS:-global}
+      GUARDRAILS_LOCALES: ${GUARDRAILS_LOCALES:-ko-KR,en}
+      GUARDRAILS_API_KEY: ${GUARDRAILS_API_KEY:-dev-key-please-change}
+    ports:
+      - "${MCP_EXPOSED_PORT:-8080}:8080"
+    depends_on:
+      policy-engine: { condition: service_healthy }
+      detection-engine: { condition: service_healthy }
+      audit-service: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://127.0.0.1:8080/health',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    networks: [gr-net]
+
+volumes:
+  pg-data:
+  redis-data:
+  policy-cache:
+
+networks:
+  gr-net:
+    driver: bridge
