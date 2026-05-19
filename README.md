@@ -419,45 +419,86 @@ ruleId scheme: `<PREFIX>_<NNN>` (예: `PRIV_KR_245`, `MF_FOOD_EN_127`). 마지�
 
 ## MCP 클라이언트 연결
 
-### Claude Desktop (stdio)
+### Claude Desktop (권장: Docker stdio, 빌드 불필요)
+
+전제: `make up-p1-admin-web-local` 또는 `make up-p1-p2-admin-web-local`가 호스트에서 기동 중. `mcp-type-guardrails-service-mcp-server:latest` 이미지가 로컬에 존재. Claude Desktop이 컨테이너를 stdio 모드로 spawn → 컨테이너가 `host.docker.internal:8081-8083` 다운스트림 호출.
+
+설정 파일:
+- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+
+P1 단독 (`global`):
 
 ```json
 {
   "mcpServers": {
     "guardrails": {
-      "command": "node",
-      "args": ["/path/to/Guardrails-Service-Server/dist/main.js"],
-      "env": {
-        "MCP_TRANSPORT": "stdio",
-        "POLICY_ENGINE_URL": "http://localhost:8082",
-        "DETECTION_ENGINE_URL": "http://localhost:8081",
-        "AUDIT_SERVICE_URL": "http://localhost:8083",
-        "GUARDRAILS_ENABLED_DOMAINS": "global",
-        "GUARDRAILS_LOCALES": "ko-KR,en"
-      }
+      "command": "docker",
+      "args": [
+        "run", "--rm", "-i",
+        "--add-host=host.docker.internal:host-gateway",
+        "-e", "MCP_TRANSPORT=stdio",
+        "-e", "POLICY_ENGINE_URL=http://host.docker.internal:8082",
+        "-e", "DETECTION_ENGINE_URL=http://host.docker.internal:8081",
+        "-e", "AUDIT_SERVICE_URL=http://host.docker.internal:8083",
+        "-e", "GUARDRAILS_ENABLED_DOMAINS=global",
+        "-e", "GUARDRAILS_LOCALES=ko-KR,en",
+        "mcp-type-guardrails-service-mcp-server:latest"
+      ]
     }
   }
 }
 ```
 
-복수 도메인 (P1 + P2):
+P1+P2 (`global,manufacturing-food`):
 
 ```jsonc
-"env": {
-  "GUARDRAILS_ENABLED_DOMAINS": "global,manufacturing-food",
-  "GUARDRAILS_LOCALES": "ko-KR,en"
-}
+"env": [
+  "MCP_TRANSPORT=stdio",
+  "POLICY_ENGINE_URL=http://host.docker.internal:8082",
+  "DETECTION_ENGINE_URL=http://host.docker.internal:8081",
+  "AUDIT_SERVICE_URL=http://host.docker.internal:8083",
+  "GUARDRAILS_ENABLED_DOMAINS=global,manufacturing-food",
+  "GUARDRAILS_LOCALES=ko-KR,en"
+]
 ```
 
-### Gemini CLI (`~/.gemini/settings.json`)
+설정 적용 후 Claude Desktop **완전 종료 후 재실행**.
+
+검증 (호스트 셸):
+
+```bash
+(printf '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}\n{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}\n'; sleep 3) \
+  | docker run --rm -i --add-host=host.docker.internal:host-gateway \
+    -e MCP_TRANSPORT=stdio \
+    -e POLICY_ENGINE_URL=http://host.docker.internal:8082 \
+    -e DETECTION_ENGINE_URL=http://host.docker.internal:8081 \
+    -e AUDIT_SERVICE_URL=http://host.docker.internal:8083 \
+    -e GUARDRAILS_ENABLED_DOMAINS=global,manufacturing-food \
+    mcp-type-guardrails-service-mcp-server:latest 2>/dev/null
+# → 8 tools (validate_input, validate_output, ...) 반환
+```
+
+### Claude Desktop (대안: native node, 빌드 필요)
+
+`Guardrails-Service-Server`를 호스트에서 빌드한 경우:
+
+```bash
+cd ../Guardrails-Service-Server
+npm install && npm run build
+```
 
 ```json
 {
   "mcpServers": {
     "guardrails": {
       "command": "node",
-      "args": ["/opt/guardrails/dist/main.js"],
+      "args": ["/abs/path/to/Guardrails-Service-Server/dist/main.js"],
       "env": {
+        "MCP_TRANSPORT": "stdio",
+        "POLICY_ENGINE_URL": "http://localhost:8082",
+        "DETECTION_ENGINE_URL": "http://localhost:8081",
+        "AUDIT_SERVICE_URL": "http://localhost:8083",
         "GUARDRAILS_ENABLED_DOMAINS": "global,manufacturing-food",
         "GUARDRAILS_LOCALES": "ko-KR,en"
       }
@@ -466,19 +507,39 @@ ruleId scheme: `<PREFIX>_<NNN>` (예: `PRIV_KR_245`, `MF_FOOD_EN_127`). 마지�
 }
 ```
 
-### 원격 HTTP / SSE 브리지
+### Gemini CLI (`~/.gemini/settings.json`)
+
+Docker stdio 방식 동일 (Claude Desktop 첫 예제 그대로 복사). Native node 방식도 동일.
+
+### 원격 HTTP / SSE 브리지 (실험적)
+
+Claude Desktop에 직접 docker를 안 쓰고 mcp-remote로 HTTP transport에 연결할 경우. 현재 server의 SSE transport는 heartbeat 위주이고 full bidirectional은 mcp-server SDK 통합(M4) 후 보강 예정. Docker stdio 방식을 우선 권장.
 
 ```json
 {
   "mcpServers": {
     "guardrails": {
       "command": "npx",
-      "args": ["mcp-remote", "http://localhost:8080/mcp/sse"],
-      "env": { "GUARDRAILS_API_KEY": "dev-key-please-change" }
+      "args": [
+        "-y", "mcp-remote",
+        "http://localhost:8080/mcp/sse",
+        "--header", "x-api-key:dev-key-please-change"
+      ]
     }
   }
 }
 ```
+
+### 트러블슈팅
+
+| 증상 | 원인 / 조치 |
+| :-- | :-- |
+| Claude Desktop이 가드레일 tool을 보지 못함 | 설정 파일 저장 후 Claude Desktop 완전 종료 + 재실행 |
+| `docker: command not found` | Claude Desktop이 `docker` 바이너리 PATH 못 찾음. macOS는 `/usr/local/bin/docker` 절대경로로 변경 |
+| `Cannot connect to host.docker.internal` | Linux 환경. `--add-host=host.docker.internal:host-gateway` 인자 누락 확인 |
+| `image not found` | `make up-p1-admin-web-local` 또는 `make build`로 이미지 빌드 먼저 |
+| 모든 호출이 `db: available=false` | 다운스트림(policy/detection/audit) 컨테이너가 healthy 상태인지 `docker ps` 확인 |
+| MCP server stdio 즉시 종료 | `docker run -i` 의 `-i` flag 누락. stdin 닫히면 컨테이너도 종료됨 |
 
 ### 권장 시스템 프롬프트
 
