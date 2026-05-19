@@ -39,10 +39,14 @@ CREATE TABLE IF NOT EXISTS rules (
   examples_negative TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[],
   enabled           BOOLEAN NOT NULL DEFAULT TRUE,
   version           TEXT NOT NULL DEFAULT '1.0.0',
+  source            TEXT NOT NULL DEFAULT 'admin'
+                     CHECK (source IN ('file','admin','csv')),
   created_at        TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at        TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 CREATE INDEX IF NOT EXISTS idx_rules_domain_locale_io ON rules(domain, locale, io_type) WHERE enabled;
+-- Add source column on existing deployments missing it.
+ALTER TABLE rules ADD COLUMN IF NOT EXISTS source TEXT NOT NULL DEFAULT 'admin';
 
 CREATE TABLE IF NOT EXISTS policy_versions (
   id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -106,6 +110,54 @@ CREATE TABLE IF NOT EXISTS test_cases (
   tags              TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[],
   created_at        TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+-- =====================================================================
+-- Admin Service tables (opt-in deployment via docker-compose.admin.yml).
+-- =====================================================================
+
+CREATE TABLE IF NOT EXISTS admin_users (
+  id            UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email         TEXT NOT NULL UNIQUE,
+  password_hash TEXT NOT NULL,
+  totp_secret   TEXT,
+  totp_enabled  BOOLEAN NOT NULL DEFAULT FALSE,
+  role          TEXT NOT NULL DEFAULT 'admin'
+                 CHECK (role IN ('admin','super_admin','viewer')),
+  status        TEXT NOT NULL DEFAULT 'active'
+                 CHECK (status IN ('active','disabled')),
+  created_at    TIMESTAMPTZ NOT NULL DEFAULT now(),
+  last_login_at TIMESTAMPTZ
+);
+
+CREATE TABLE IF NOT EXISTS admin_login_history (
+  id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id    UUID REFERENCES admin_users(id) ON DELETE SET NULL,
+  email      TEXT NOT NULL,
+  ip         TEXT,
+  user_agent TEXT,
+  success    BOOLEAN NOT NULL,
+  reason     TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_admin_login_user_time
+  ON admin_login_history(user_id, created_at DESC);
+
+CREATE TABLE IF NOT EXISTS admin_audit_log (
+  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  actor_id    UUID REFERENCES admin_users(id) ON DELETE SET NULL,
+  actor_email TEXT,
+  action      TEXT NOT NULL,
+  target_type TEXT,
+  target_id   TEXT,
+  payload     JSONB,
+  ip          TEXT,
+  user_agent  TEXT,
+  created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_admin_audit_actor_time
+  ON admin_audit_log(actor_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_admin_audit_action_time
+  ON admin_audit_log(action, created_at DESC);
 
 -- Seed the always-on `global` domain. Sub-domains are seeded by Policy Engine at boot
 -- by reading <POLICY_DIR>/<domain>/<category>/<io>.<locale>.json bundles.

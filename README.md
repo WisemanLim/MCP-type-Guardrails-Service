@@ -6,6 +6,7 @@
 ../Guardrails-Service-Server                                  # MCP Server (NestJS + TS)
 ../Guardrails-Service-Policy-Engine                           # Policy Engine (NestJS + TS) + 정책 번들
 ../Guardrails-Service-Audit-Service                           # Audit Service (NestJS + TS)
+../Guardrails-Service-Admin                                   # Admin API (NestJS + TS) — opt-in
 ../../DA(Python,R,...)/Guardrails-Service-Detection-Engine    # Detection Engine (Python + FastAPI)
 ```
 
@@ -21,10 +22,12 @@ MCP-type-Guardrails-Service/
 ├── docker-compose.privacy.yml     # Phase 1 overlay (global/privacy)
 ├── docker-compose.food.yml        # Phase 2 overlay (manufacturing-food)
 ├── docker-compose.local.yml       # 경량 overlay (SQLite, Postgres/Redis 제거)
-├── Makefile                       # up-p1 / up-p1-p2 / up-local / smoke / clean
+├── docker-compose.admin.yml       # Admin overlay — main stack과 co-located
+├── docker-compose.admin-standalone.yml  # Admin standalone (독립 호스트 배포)
+├── Makefile                       # up-p1 / up-admin / up-admin-only / up-admin-standalone / ...
 ├── .env.example
 ├── scripts/
-│   ├── init-db.sql                # Postgres 스키마 (자동 적재)
+│   ├── init-db.sql                # Postgres 스키마 (자동 적재) — rules + admin tables 포함
 │   ├── gen-rules.py               # 정책 룰 generator (4개 JSON 산출)
 │   ├── privacy.kr.json            # Phase 1 ko-KR, 245 rules
 │   ├── privacy.en.json            # Phase 1 en, 245 rules
@@ -52,7 +55,7 @@ make logs
 make down
 ```
 
-`http://localhost:8080`:
+`http://localhost:8080` (MCP):
 
 - `GET  /health`
 - `GET  /mcp/tools`
@@ -60,15 +63,33 @@ make down
 - `POST /mcp` (JSON-RPC 2.0)
 - `GET  /mcp/sse` (SSE 브리지)
 
+Admin API 포함 기동 (옵션):
+
+```bash
+make up-admin
+# 또는 동일: make up-p1-admin
+curl http://localhost:8084/admin/health
+```
+
+`http://localhost:8084` (Admin, opt-in):
+
+- `GET  /admin/health`
+- `POST /admin/auth/register` (이메일+비밀번호+TOTP QR)
+- `POST /admin/auth/login`
+- `GET  /admin/auth/me`, `/admin/auth/totp/qr`, `POST /admin/auth/totp/enable`
+- `GET  /admin/audit/login-history`, `/admin/audit/actions`
+- `GET|POST|PUT|DELETE /admin/rules*` — 카테고리별 룰 CRUD + CSV import + bulk delete
+
 ---
 
 ## 단계적 배포
 
-| 단계     | 도메인                          | 명령                                                                                                       | 룰 수            |
-| :------- | :------------------------------ | :--------------------------------------------------------------------------------------------------------- | ---------------: |
-| P1       | `global` (privacy)              | `make up-p1`                                                                                               |  245/245 (ko/en) |
-| P1 + P2  | `global` + `manufacturing-food` | `make up-p1-p2`                                                                                            | + 127/127 (ko/en) |
-| P1 + P3+ | `global` + `<P3..>`             | `docker compose -f docker-compose.yml -f docker-compose.privacy.yml -f docker-compose.<phase>.yml up -d`   |       per-phase |
+| 단계        | 도메인                          | 명령                                                                                                       | 룰 수            |
+| :---------- | :------------------------------ | :--------------------------------------------------------------------------------------------------------- | ---------------: |
+| P1          | `global` (privacy)              | `make up-p1`                                                                                               |  245/245 (ko/en) |
+| P1 + P2     | `global` + `manufacturing-food` | `make up-p1-p2`                                                                                            | + 127/127 (ko/en) |
+| P1 + Admin  | P1 + Admin API (8084)           | `make up-admin`                                                                                            |  (관리용)        |
+| P1 + P3+    | `global` + `<P3..>`             | `docker compose -f docker-compose.yml -f docker-compose.privacy.yml -f docker-compose.<phase>.yml up -d`   |       per-phase |
 
 각 phase overlay 한 장 추가만으로 합쳐짐. 코어 `docker-compose.yml`은 phase 간 불변. 머지 우선순위 + 충돌 해소는 PRD §4.1.4.
 
@@ -82,6 +103,7 @@ make down
 | :---------------------------- | :------------- | :-------------------------------- |
 | Postgres + Redis (production) | `make up-p1`   | 정식 운영, RBAC, 감사             |
 | SQLite single-file (local)    | `make up-local` | 개발, PoC, 데몬 없는 환경         |
+| Postgres + Admin              | `make up-admin` | 운영 + 자가 관리 콘솔 API         |
 
 ENV 스위치 (서비스별 자동 인식):
 
@@ -92,7 +114,131 @@ DB_DRIVER=sqlite
 SQLITE_PATH=./var/policy-engine.db   # service-side override
 ```
 
-SQLite 모드는 `docker-compose.local.yml` overlay가 postgres/redis 비활성화 + 컨테이너 내 `/app/var` 볼륨 mount. Policy Engine + Audit Service 모두 동일한 `DbService` facade로 양 backend 지원 (TEXT[] / JSONB → JSON 인코딩 자동 변환).
+SQLite 모드는 `docker-compose.local.yml` overlay가 postgres/redis 비활성화 + 컨테이너 내 `/app/var` 볼륨 mount. Policy Engine + Audit Service + Admin 모두 동일한 `DbService` facade로 양 backend 지원 (TEXT[] / JSONB → JSON 인코딩 자동 변환).
+
+---
+
+## Admin API (옵션 컴포넌트)
+
+기본 배포 미포함. 4가지 모드 지원, 각 모드별 **독립 up/down** 가능. 동일 호스트의 main stack과 co-locate 하거나 완전히 다른 호스트에 standalone 배포할 수 있음.
+
+### 모드 A — Co-located (main stack 안에 함께)
+
+`docker-compose.admin.yml`이 main stack 위에 overlay. Postgres/Redis 공유.
+
+```bash
+# 풀 스택 (main + admin) 한 번에
+make up-admin              # = make up-p1-admin
+make down-admin            # 전체 종료
+
+# main stack은 그대로 두고 admin-service만 추가/교체/제거
+make up-admin-only         # admin-service만 (re)생성 (--no-deps), 다른 서비스 안 건드림
+make restart-admin         # admin-service만 재시작
+make down-admin-only       # admin-service만 종료
+```
+
+### 모드 B — Standalone (외부 DB / Policy Engine)
+
+`docker-compose.admin-standalone.yml`은 main과 별도 compose. 같은 호스트의 다른 네트워크에서, 혹은 완전히 다른 호스트에서 운영 가능. 외부 Postgres + 외부 Policy Engine을 ENV로 지정.
+
+```bash
+POSTGRES_HOST=db.internal \
+POSTGRES_PASSWORD=*** \
+POLICY_ENGINE_URL=https://policy.guardrails.internal \
+ADMIN_JWT_SECRET=*** \
+make up-admin-standalone
+
+make smoke-admin-standalone
+make down-admin-standalone
+```
+
+### 모드 C — Standalone + 자체 Postgres 동봉
+
+격리 환경에서 외부 DB 없이 Admin만 1대 운영. `--profile with-db`가 활성화되어 별도 Postgres가 함께 기동 (host port 5433 — main stack 5432와 충돌 방지).
+
+```bash
+make up-admin-standalone-db
+make smoke-admin-standalone
+make down-admin-standalone
+```
+
+### 모드 D — 로컬 dev (Docker 없음, SQLite)
+
+```bash
+cd ../Guardrails-Service-Admin
+npm install
+DB_DRIVER=sqlite SQLITE_PATH=./var/admin.db npm run start:dev
+```
+
+### 모드 비교
+
+| 모드 | 명령 | DB | Policy Engine | 영향 범위 |
+| :-- | :-- | :-- | :-- | :-- |
+| Co-located (full) | `make up-admin` | shared Postgres | shared (compose) | 풀 스택 up/down |
+| Co-located (admin only) | `make up-admin-only` / `make down-admin-only` | shared | shared | admin-service만 |
+| Standalone (external) | `make up-admin-standalone` | external (ENV) | external (ENV) | admin-service만 |
+| Standalone + DB | `make up-admin-standalone-db` | bundled (5433) | external (ENV) | admin + admin-postgres |
+| Local dev | `npm run start:dev` | SQLite | external (ENV) | host process |
+
+### 인증 흐름
+
+```text
+1. POST /admin/auth/register {email, password}
+   → totp.qrDataUrl (PNG data URL) + totp.otpauth + totp.secret 반환
+2. Authenticator 앱에서 QR 스캔
+3. POST /admin/auth/totp/enable {totp: "123456"}
+   → TOTP gate 활성화
+4. POST /admin/auth/login {email, password, totp}
+   → { token, tokenType: "Bearer", expiresIn }
+5. 이후 호출: Authorization: Bearer <token>
+```
+
+부트스트랩 super_admin (첫 부팅 시 1회):
+
+```bash
+ADMIN_BOOTSTRAP_EMAIL=admin@yourorg.com
+ADMIN_BOOTSTRAP_PASSWORD=long-and-secret
+```
+
+### 주요 엔드포인트
+
+| Method | Path | Role | 설명 |
+| :-- | :-- | :-- | :-- |
+| POST | `/admin/auth/register` | public | 가입 + TOTP QR 발급 |
+| POST | `/admin/auth/login` | public | 로그인 → JWT |
+| GET | `/admin/auth/me` | Bearer | 본인 프로필 |
+| POST | `/admin/auth/totp/enable` | Bearer | 6자리 코드로 TOTP gate ON |
+| POST | `/admin/auth/password` | Bearer | 비밀번호 변경 |
+| GET | `/admin/audit/login-history?limit=&userId=` | Bearer | 로그인 히스토리 |
+| GET | `/admin/audit/actions?limit=&action=&actorId=` | Bearer | 행위 감사 로그 (자동 기록) |
+| GET | `/admin/rules?domain=&locale=&ioType=&category=&enabledOnly=&limit=&offset=` | Bearer | 룰 리스트 (카테고리별 필터) |
+| GET | `/admin/rules/:ruleId` | Bearer | 단일 룰 조회 |
+| POST | `/admin/rules` | admin+ | 단건 추가 |
+| POST | `/admin/rules/bulk` | admin+ | 다건 upsert |
+| POST | `/admin/rules/import-csv` | admin+ | CSV 대량 import (multipart, 헤더 필수) |
+| PUT | `/admin/rules/:ruleId` | admin+ | 수정 |
+| DELETE | `/admin/rules/:ruleId` | admin+ | 단건 삭제 |
+| DELETE | `/admin/rules` | admin+ | 다건 삭제 (`{ ruleIds: [...] }` body) |
+
+`viewer` 역할은 모든 mutation에서 `403 viewer_cannot_write`. `super_admin`만 `/admin/users` + 타인 audit 조회 가능. 모든 mutating 요청은 `AuditInterceptor`가 `admin_audit_log` 자동 기록 (password/token 필드는 자동 strip).
+
+### CSV 포맷 (헤더 필수, 대소문자 구분)
+
+```
+ruleId,domain,locale,ioType,category,subCategory,severity,priority,action,patternBundle,messageTemplate,regulationTags,examplesPositive,examplesNegative,enabled,version
+```
+
+JSON 컬럼은 valid JSON 또는 pipe(`|`) 구분 문자열. 예시:
+
+```
+PRIV_KR_999,global,ko-KR,input,pii,national_id_kr,critical,950,block,{},{"ko-KR":"주민번호 차단"},KR_PIPA|EU_GDPR,예시,반례,1,1.0.0
+```
+
+### Rule mutation → Policy Engine 반영
+
+Admin은 모든 CRUD 후 `POST /policies/invalidate`를 Policy Engine에 호출. Policy Engine은 Redis bundle 캐시 flush + 파일+DB rules 재로드 → 다음 `validate_*` 호출부터 즉시 반영. Admin은 `rules` 테이블에 직접 쓰며 `source='admin'` 또는 `'csv'`로 마킹. 파일 시드(`source='file'`)와 동일 `ruleId`일 경우 DB rule이 override.
+
+자세한 내용: [`../Guardrails-Service-Admin/README.md`](../Guardrails-Service-Admin/README.md).
 
 ---
 
@@ -120,6 +266,10 @@ npm install && npm run start:dev
 cd ../Guardrails-Service-Server
 npm install && npm run start:dev                     # HTTP transport
 MCP_TRANSPORT=stdio npm run start                    # stdio transport
+
+# Admin (opt-in, 독립 배포 가능)
+cd ../Guardrails-Service-Admin
+npm install && npm run start:dev
 ```
 
 ---
@@ -142,6 +292,8 @@ python3 scripts/gen-rules.py
 ruleId scheme: `<PREFIX>_<NNN>` (예: `PRIV_KR_245`, `MF_FOOD_EN_127`). 마지막 번호 = `totalRules`.
 
 규제 태그: KR_PIPA / KR_FSC / KR_FSC_HACCP / KR_FSC_HFL / KR_FSC_PLS / KR_OSH / KR_NAQS / EU_GDPR / EU_GDPR_Art9 / EU_GDPR_Art10 / EU_1169_2011 / EU_1881_2006 / EU_396_2005 / EU_1829_2003 / EU_178_2002 / EU_2018_848 / EU_EFSA / US_HIPAA / US_CCPA / US_FDA / US_FDA_FALCPA / US_FDA_FASTER / US_FDA_FSMA / US_FDA_HACCP / US_FSIS / US_EPA / US_USDA_NOP / US_USDA_BE / JP_APPI / COPPA / PCI_DSS / WCO_HS / TRADE_SECRET / UK_NHSDigital / CA_PIPEDA / AU_Privacy / IN_DPDP / BR_LGPD.
+
+파일 시드 외에도, Admin API로 추가/수정한 룰은 `rules` 테이블에 저장되어 Policy Engine이 boot/invalidate 시 자동 머지.
 
 ---
 
@@ -270,6 +422,7 @@ KEEP_UP=1 bash 'test/Guardrails-Service-Phase#1.sh'
 | Policy Engine    | `cd ../Guardrails-Service-Policy-Engine && npm test`                          |
 | Audit Service    | `cd ../Guardrails-Service-Audit-Service && npm test`                          |
 | MCP Server       | `cd ../Guardrails-Service-Server && npm test`                                 |
+| Admin            | `cd ../Guardrails-Service-Admin && npm test`                                  |
 
 ---
 
@@ -289,6 +442,14 @@ KEEP_UP=1 bash 'test/Guardrails-Service-Phase#1.sh'
 | `POLICY_EXPOSED_PORT`         | `8082`                |                                            |
 | `DETECTION_EXPOSED_PORT`      | `8081`                |                                            |
 | `AUDIT_EXPOSED_PORT`          | `8083`                |                                            |
+| `ADMIN_EXPOSED_PORT`          | `8084`                | Admin API host port                        |
+| `ADMIN_JWT_SECRET`            | `change-me-in-prod`   | JWT 서명 키 (Admin)                        |
+| `ADMIN_JWT_EXPIRES_IN`        | `12h`                 | JWT 만료                                   |
+| `ADMIN_BCRYPT_ROUNDS`         | `10`                  | 비밀번호 해싱 rounds                       |
+| `ADMIN_TOTP_ISSUER`           | `Guardrails-Admin`    | Authenticator 앱 표시명                    |
+| `ADMIN_BOOTSTRAP_EMAIL`       | (empty)               | 첫 부팅 super_admin 시드 (옵션)            |
+| `ADMIN_BOOTSTRAP_PASSWORD`    | (empty)               | 첫 부팅 super_admin 시드 (옵션)            |
+| `ADMIN_SQLITE_PATH`           | `/app/var/admin.db`   | SQLite 모드 admin DB 경로                  |
 
 전체 목록은 `.env.example` 참고.
 
@@ -297,21 +458,59 @@ KEEP_UP=1 bash 'test/Guardrails-Service-Phase#1.sh'
 ## 운영 명령 모음 (Makefile)
 
 ```bash
-make help           # 타겟 목록
-make up-p1          # Postgres + Redis + Phase 1
-make up-p1-p2       # + Phase 2 overlay
-make up-local       # SQLite (no postgres/redis)
-make down           # Postgres 스택 종료
-make down-local     # SQLite 스택 종료
-make logs           # 전체 로그 tail
-make ps             # 컨테이너 상태
-make build          # 모든 이미지 빌드
-make rebuild        # --no-cache 빌드
-make psql           # psql 셸
-make redis-cli      # Redis CLI
-make smoke          # scripts/smoke.sh 실행
-make clean          # down -v --remove-orphans
+make help                       # 타겟 전체 목록 (섹션 분류)
+
+# ── Main stack ────────────────────────────────────────────
+make up-p1                      # Postgres + Redis + Phase 1
+make up-p1-p2                   # + Phase 2 overlay (food)
+make up-local                   # SQLite mode (no postgres/redis)
+make down                       # main stack 종료
+make down-local                 # SQLite 스택 종료
+
+# ── Admin co-located ──────────────────────────────────────
+make up-admin                   # main + admin (= up-p1-admin)
+make up-admin-only              # admin-service만 (re)생성 (--no-deps)
+make restart-admin              # admin-service만 restart
+make down-admin                 # main + admin 모두 종료
+make down-admin-only            # admin-service만 종료
+
+# ── Admin standalone ──────────────────────────────────────
+make up-admin-standalone        # 외부 DB + 외부 Policy Engine 지정 (env)
+make up-admin-standalone-db     # 자체 Postgres 동봉 (host port 5433)
+make down-admin-standalone      # standalone 종료
+
+# ── Diagnostics ───────────────────────────────────────────
+make logs                       # main stack 전체 로그
+make admin-logs                 # co-located admin-service 로그
+make admin-standalone-logs      # standalone admin-service 로그
+make ps                         # main stack ps
+make ps-admin                   # main+admin overlay ps
+make ps-standalone              # standalone ps
+make smoke                      # MCP HTTP smoke
+make smoke-admin                # /admin/health (co-located)
+make smoke-admin-standalone     # /admin/health (standalone)
+
+# ── Build / data plane ────────────────────────────────────
+make build                      # 모든 이미지 빌드
+make rebuild                    # --no-cache
+make build-admin                # admin 이미지만
+make psql                       # psql 셸
+make redis-cli                  # Redis CLI
+make test                       # per-service test 안내
+make clean                      # 모든 스택 down -v --remove-orphans
 ```
+
+배포 매트릭스:
+
+| Compose files                                                                                                  | 활성 컨테이너                                                | 용도                              |
+| :------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------- | :-------------------------------- |
+| `docker-compose.yml + privacy.yml`                                                                             | postgres, redis, mcp, policy, detection, audit               | P1 운영                           |
+| `+ food.yml`                                                                                                   | + (P2 도메인 활성)                                           | P1+P2 운영                        |
+| `+ local.yml`                                                                                                  | mcp, policy, detection, audit (SQLite, no daemon)            | 로컬 PoC                          |
+| `+ admin.yml` (co-located)                                                                                     | + admin                                                       | 운영 + 관리 API                   |
+| `admin-standalone.yml` (alone)                                                                                 | admin-service                                                 | Admin 단독 (외부 DB/Policy 사용) |
+| `admin-standalone.yml --profile with-db`                                                                       | admin-service + admin-postgres                                | Admin + 자체 DB 동봉              |
+| `privacy.yml + admin.yml + food.yml`                                                                           | 모두 결합                                                     | P1+P2+Admin                       |
 
 ---
 
@@ -319,9 +518,11 @@ make clean          # down -v --remove-orphans
 
 - HTTP transport: API Key (`x-api-key`), 추후 OAuth 2.0 Client Credentials
 - stdio transport: OS 권한 의존
+- Admin: bcrypt 비밀번호 + TOTP + JWT Bearer, `viewer/admin/super_admin` 역할, mutating 요청 자동 audit
 - 원문 비저장 기본 (`text_hash` SHA-256만)
 - 다중 도메인 충돌 해소: 더 엄격한 action 우선 (`block` > `redact` > `warn` > `allow`)
 - 정책 reload 동시성: Redis distributed lock (Postgres 모드)
+- Admin은 기본 배포에 미포함 (opt-in overlay) → 공격 표면 최소화
 - 자세한 보안 요구사항: [PRD §9](.doc/PRD.md).
 
 ---

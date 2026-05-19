@@ -1,0 +1,95 @@
+# Admin standalone deployment — Admin runs on its own, independent of the
+# main Guardrails stack. Useful for running Admin on a separate host or in
+# a separate network zone.
+#
+# This file does NOT extend docker-compose.yml. It is self-contained.
+#
+# Three modes:
+#
+#   1. External DB + external Policy Engine (default, lightest):
+#      POSTGRES_HOST=db.internal POSTGRES_PASSWORD=*** \
+#      POLICY_ENGINE_URL=https://policy.guardrails.internal \
+#      docker compose -f docker-compose.admin-standalone.yml up -d admin-service
+#
+#   2. Bundled Postgres (--profile with-db) on a different host port (5433):
+#      docker compose -f docker-compose.admin-standalone.yml \
+#        --profile with-db up -d
+#
+#   3. SQLite only (DB_DRIVER=sqlite, no Postgres at all):
+#      DB_DRIVER=sqlite ADMIN_SQLITE_PATH=/app/var/admin.db \
+#      docker compose -f docker-compose.admin-standalone.yml up -d admin-service
+
+services:
+  admin-postgres:
+    image: postgres:16-alpine
+    container_name: gr-admin-postgres
+    profiles: ["with-db"]
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-guardrails}
+      POSTGRES_USER: ${POSTGRES_USER:-guardrails}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-guardrails}
+    volumes:
+      - admin-pg-data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    ports:
+      - "${ADMIN_POSTGRES_PORT:-5433}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-guardrails} -d ${POSTGRES_DB:-guardrails}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks: [gr-admin-net]
+
+  admin-service:
+    build:
+      context: ../Guardrails-Service-Admin
+      dockerfile: Dockerfile
+    container_name: gr-admin-standalone
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PORT: 8084
+      JWT_SECRET: ${ADMIN_JWT_SECRET:-change-me-in-prod}
+      JWT_EXPIRES_IN: ${ADMIN_JWT_EXPIRES_IN:-12h}
+      BCRYPT_ROUNDS: ${ADMIN_BCRYPT_ROUNDS:-10}
+      TOTP_ISSUER: ${ADMIN_TOTP_ISSUER:-Guardrails-Admin}
+      ADMIN_BOOTSTRAP_EMAIL: ${ADMIN_BOOTSTRAP_EMAIL:-}
+      ADMIN_BOOTSTRAP_PASSWORD: ${ADMIN_BOOTSTRAP_PASSWORD:-}
+      DB_DRIVER: ${DB_DRIVER:-postgres}
+      SQLITE_PATH: ${ADMIN_SQLITE_PATH:-/app/var/admin.db}
+      # When --profile with-db is active, the bundled `admin-postgres` is reachable
+      # by service name. Otherwise the operator must point POSTGRES_HOST at an
+      # external host.
+      POSTGRES_HOST: ${POSTGRES_HOST:-admin-postgres}
+      POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+      POSTGRES_DB: ${POSTGRES_DB:-guardrails}
+      POSTGRES_USER: ${POSTGRES_USER:-guardrails}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-guardrails}
+      # Default points at host.docker.internal so Admin can talk to a Policy
+      # Engine running on the host (Mac/Windows). Override for prod.
+      POLICY_ENGINE_URL: ${POLICY_ENGINE_URL:-http://host.docker.internal:8082}
+    ports:
+      - "${ADMIN_EXPOSED_PORT:-8084}:8084"
+    volumes:
+      - admin-data:/app/var
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://127.0.0.1:8084/admin/health',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    extra_hosts:
+      # Linux containers need this manually; Docker Desktop already provides it.
+      - "host.docker.internal:host-gateway"
+    networks: [gr-admin-net]
+
+volumes:
+  admin-pg-data:
+  admin-data:
+
+networks:
+  gr-admin-net:
+    name: gr-admin-net
+    driver: bridge

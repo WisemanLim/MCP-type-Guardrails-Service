@@ -1,0 +1,58 @@
+# Opt-in Admin overlay — adds `admin-service` to the core stack.
+#
+# Combine with any other overlay. Examples:
+#   # Core + Phase 1 + Admin
+#   docker compose -f docker-compose.yml \
+#                  -f docker-compose.privacy.yml \
+#                  -f docker-compose.admin.yml up -d
+#
+#   # Admin alone, talking to a remote Policy Engine
+#   docker compose -f docker-compose.admin.yml up -d admin-service
+#     (requires POLICY_ENGINE_URL + POSTGRES_* env to reach external infra)
+#
+# Default base stack does NOT include admin-service. This file is purely
+# additive — production deployments that do not want a self-service admin
+# surface omit this overlay entirely.
+
+services:
+  admin-service:
+    build:
+      context: ../Guardrails-Service-Admin
+      dockerfile: Dockerfile
+    container_name: gr-admin
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PORT: 8084
+      JWT_SECRET: ${ADMIN_JWT_SECRET:-change-me-in-prod}
+      JWT_EXPIRES_IN: ${ADMIN_JWT_EXPIRES_IN:-12h}
+      BCRYPT_ROUNDS: ${ADMIN_BCRYPT_ROUNDS:-10}
+      TOTP_ISSUER: ${ADMIN_TOTP_ISSUER:-Guardrails-Admin}
+      ADMIN_BOOTSTRAP_EMAIL: ${ADMIN_BOOTSTRAP_EMAIL:-}
+      ADMIN_BOOTSTRAP_PASSWORD: ${ADMIN_BOOTSTRAP_PASSWORD:-}
+      DB_DRIVER: ${DB_DRIVER:-postgres}
+      SQLITE_PATH: ${ADMIN_SQLITE_PATH:-/app/var/admin.db}
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:-guardrails}
+      POSTGRES_USER: ${POSTGRES_USER:-guardrails}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-guardrails}
+      POLICY_ENGINE_URL: http://policy-engine:8082
+    ports:
+      - "${ADMIN_EXPOSED_PORT:-8084}:8084"
+    volumes:
+      - admin-data:/app/var
+    depends_on:
+      postgres: { condition: service_healthy }
+      policy-engine: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://127.0.0.1:8084/admin/health',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    networks: [gr-net]
+
+volumes:
+  admin-data:
