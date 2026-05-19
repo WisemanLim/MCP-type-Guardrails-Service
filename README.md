@@ -7,6 +7,7 @@
 ../Guardrails-Service-Policy-Engine                           # Policy Engine (NestJS + TS) + 정책 번들
 ../Guardrails-Service-Audit-Service                           # Audit Service (NestJS + TS)
 ../Guardrails-Service-Admin                                   # Admin API (NestJS + TS) — opt-in
+../Guardrails-Service-Admin-Web                               # Admin Console (Next.js 14) — opt-in
 ../../DA(Python,R,...)/Guardrails-Service-Detection-Engine    # Detection Engine (Python + FastAPI)
 ```
 
@@ -24,7 +25,8 @@ MCP-type-Guardrails-Service/
 ├── docker-compose.local.yml       # 경량 overlay (SQLite, Postgres/Redis 제거)
 ├── docker-compose.admin.yml       # Admin overlay — main stack과 co-located
 ├── docker-compose.admin-standalone.yml  # Admin standalone (독립 호스트 배포)
-├── Makefile                       # up-p1 / up-admin / up-admin-only / up-admin-standalone / ...
+├── docker-compose.admin-web.yml   # Admin Console (Next.js) overlay
+├── Makefile                       # up-p1 / up-admin / up-admin-web / up-admin-standalone / ...
 ├── .env.example
 ├── scripts/
 │   ├── init-db.sql                # Postgres 스키마 (자동 적재) — rules + admin tables 포함
@@ -63,15 +65,16 @@ make down
 - `POST /mcp` (JSON-RPC 2.0)
 - `GET  /mcp/sse` (SSE 브리지)
 
-Admin API 포함 기동 (옵션):
+Admin API + Web Console 포함 기동 (옵션):
 
 ```bash
-make up-admin
-# 또는 동일: make up-p1-admin
+make up-admin              # main + Admin API (8084)
+make up-admin-web          # main + Admin API + Admin Console (3001)
 curl http://localhost:8084/admin/health
+open http://localhost:3001
 ```
 
-`http://localhost:8084` (Admin, opt-in):
+`http://localhost:8084` (Admin API, opt-in):
 
 - `GET  /admin/health`
 - `POST /admin/auth/register` (이메일+비밀번호+TOTP QR)
@@ -79,6 +82,17 @@ curl http://localhost:8084/admin/health
 - `GET  /admin/auth/me`, `/admin/auth/totp/qr`, `POST /admin/auth/totp/enable`
 - `GET  /admin/audit/login-history`, `/admin/audit/actions`
 - `GET|POST|PUT|DELETE /admin/rules*` — 카테고리별 룰 CRUD + CSV import + bulk delete
+
+`http://localhost:3001` (Admin Console, opt-in, Next.js):
+
+- `/login` `/register` — 이메일/비밀번호 + TOTP QR 화면
+- `/dashboard` — KPI(룰 수/도메인 분포) + 최근 로그인 / 행위 감사
+- `/rules` — 필터(domain/locale/io/category) + 페이지네이션 + 체크박스 벌크 삭제 + 단건 편집·삭제
+- `/rules/new` `/rules/[ruleId]` — JSON 컬럼 편집 폼
+- `/rules/import` — CSV 업로드 + 거부 row 리포트
+- `/audit` — 로그인 / 행위 탭
+- `/users` — super_admin only
+- `/settings` — TOTP enable + 비밀번호 변경
 
 ---
 
@@ -89,6 +103,7 @@ curl http://localhost:8084/admin/health
 | P1          | `global` (privacy)              | `make up-p1`                                                                                               |  245/245 (ko/en) |
 | P1 + P2     | `global` + `manufacturing-food` | `make up-p1-p2`                                                                                            | + 127/127 (ko/en) |
 | P1 + Admin  | P1 + Admin API (8084)           | `make up-admin`                                                                                            |  (관리용)        |
+| P1 + Admin + Web | P1 + Admin API + Console (3001) | `make up-admin-web`                                                                                  |  (관리 UI)       |
 | P1 + P3+    | `global` + `<P3..>`             | `docker compose -f docker-compose.yml -f docker-compose.privacy.yml -f docker-compose.<phase>.yml up -d`   |       per-phase |
 
 각 phase overlay 한 장 추가만으로 합쳐짐. 코어 `docker-compose.yml`은 phase 간 불변. 머지 우선순위 + 충돌 해소는 PRD §4.1.4.
@@ -118,9 +133,9 @@ SQLite 모드는 `docker-compose.local.yml` overlay가 postgres/redis 비활성�
 
 ---
 
-## Admin API (옵션 컴포넌트)
+## Admin (API + Web Console, 옵션 컴포넌트)
 
-기본 배포 미포함. 4가지 모드 지원, 각 모드별 **독립 up/down** 가능. 동일 호스트의 main stack과 co-locate 하거나 완전히 다른 호스트에 standalone 배포할 수 있음.
+기본 배포 미포함. Admin은 **API 서버 (NestJS, 포트 8084)**와 **웹 콘솔 (Next.js 14, 포트 3001)** 두 부분으로 구성. 각 부분 독립 up/down 가능. 동일 호스트의 main stack과 co-locate 하거나 완전히 다른 호스트에 standalone 배포할 수 있음.
 
 ### 모드 A — Co-located (main stack 안에 함께)
 
@@ -162,12 +177,43 @@ make smoke-admin-standalone
 make down-admin-standalone
 ```
 
-### 모드 D — 로컬 dev (Docker 없음, SQLite)
+### 모드 D — Admin Web Console (Next.js)
+
+`docker-compose.admin-web.yml` overlay가 Admin API와 페어로 동작하는 Next.js 콘솔을 추가. 브라우저는 호스트 포트 8084로 Admin API를 직접 호출하므로 container 간 의존 없음 → main / standalone 어느 compose 위에도 결합 가능.
 
 ```bash
+# main + admin API + Admin Web (포트 3001)
+make up-admin-web
+make smoke-admin-web           # GET /login → HTTP 코드 확인
+make admin-web-logs
+
+# admin-web만 (re)생성 / 종료 (main + admin은 그대로)
+make up-admin-web-only
+make restart-admin-web
+make down-admin-web-only
+
+# 풀 스택 종료
+make down-admin-web
+
+# standalone Admin + Web (다른 호스트 / VPN)
+ADMIN_WEB_API_BASE_URL=https://admin.guardrails.example.com \
+make up-admin-standalone-web
+```
+
+브라우저: `http://localhost:3001`. JWT는 localStorage에 저장, 401 응답 시 자동 로그아웃.
+
+### 모드 E — 로컬 dev (Docker 없음, SQLite)
+
+```bash
+# Admin API
 cd ../Guardrails-Service-Admin
 npm install
-DB_DRIVER=sqlite SQLITE_PATH=./var/admin.db npm run start:dev
+DB_DRIVER=sqlite SQLITE_PATH=./var/admin.db npm run start:dev    # → :8084
+
+# Admin Web (별도 터미널)
+cd ../Guardrails-Service-Admin-Web
+npm install
+npm run dev                                                       # → :3001
 ```
 
 ### 모드 비교
@@ -176,8 +222,11 @@ DB_DRIVER=sqlite SQLITE_PATH=./var/admin.db npm run start:dev
 | :-- | :-- | :-- | :-- | :-- |
 | Co-located (full) | `make up-admin` | shared Postgres | shared (compose) | 풀 스택 up/down |
 | Co-located (admin only) | `make up-admin-only` / `make down-admin-only` | shared | shared | admin-service만 |
+| Co-located + Web | `make up-admin-web` | shared | shared | + admin-web |
+| Co-located Web only | `make up-admin-web-only` / `make down-admin-web-only` | shared | shared | admin-web만 |
 | Standalone (external) | `make up-admin-standalone` | external (ENV) | external (ENV) | admin-service만 |
 | Standalone + DB | `make up-admin-standalone-db` | bundled (5433) | external (ENV) | admin + admin-postgres |
+| Standalone + Web | `make up-admin-standalone-web` | external | external | admin + admin-web |
 | Local dev | `npm run start:dev` | SQLite | external (ENV) | host process |
 
 ### 인증 흐름
@@ -267,9 +316,13 @@ cd ../Guardrails-Service-Server
 npm install && npm run start:dev                     # HTTP transport
 MCP_TRANSPORT=stdio npm run start                    # stdio transport
 
-# Admin (opt-in, 독립 배포 가능)
+# Admin API (opt-in, 독립 배포 가능)
 cd ../Guardrails-Service-Admin
-npm install && npm run start:dev
+npm install && npm run start:dev                     # → :8084
+
+# Admin Web (Next.js, opt-in)
+cd ../Guardrails-Service-Admin-Web
+npm install && npm run dev                           # → :3001
 ```
 
 ---
@@ -423,6 +476,7 @@ KEEP_UP=1 bash 'test/Guardrails-Service-Phase#1.sh'
 | Audit Service    | `cd ../Guardrails-Service-Audit-Service && npm test`                          |
 | MCP Server       | `cd ../Guardrails-Service-Server && npm test`                                 |
 | Admin            | `cd ../Guardrails-Service-Admin && npm test`                                  |
+| Admin Web        | `cd ../Guardrails-Service-Admin-Web && npm run build` (build = smoke test)    |
 
 ---
 
@@ -450,6 +504,8 @@ KEEP_UP=1 bash 'test/Guardrails-Service-Phase#1.sh'
 | `ADMIN_BOOTSTRAP_EMAIL`       | (empty)               | 첫 부팅 super_admin 시드 (옵션)            |
 | `ADMIN_BOOTSTRAP_PASSWORD`    | (empty)               | 첫 부팅 super_admin 시드 (옵션)            |
 | `ADMIN_SQLITE_PATH`           | `/app/var/admin.db`   | SQLite 모드 admin DB 경로                  |
+| `ADMIN_WEB_EXPOSED_PORT`      | `3001`                | Admin Console host port                    |
+| `ADMIN_WEB_API_BASE_URL`      | `http://localhost:8084` | 브라우저가 호출할 Admin API URL (build-time 주입) |
 
 전체 목록은 `.env.example` 참고.
 
@@ -468,11 +524,19 @@ make down                       # main stack 종료
 make down-local                 # SQLite 스택 종료
 
 # ── Admin co-located ──────────────────────────────────────
-make up-admin                   # main + admin (= up-p1-admin)
+make up-admin                   # main + admin API (= up-p1-admin)
 make up-admin-only              # admin-service만 (re)생성 (--no-deps)
 make restart-admin              # admin-service만 restart
 make down-admin                 # main + admin 모두 종료
 make down-admin-only            # admin-service만 종료
+
+# ── Admin Web (Next.js Console) ──────────────────────────
+make up-admin-web               # main + admin API + Web (포트 3001)
+make up-admin-web-only          # admin-web만 (re)생성 (--no-deps)
+make restart-admin-web          # admin-web만 restart
+make down-admin-web             # 전체 종료
+make down-admin-web-only        # admin-web만 종료
+make up-admin-standalone-web    # standalone Admin + Web (외부 host)
 
 # ── Admin standalone ──────────────────────────────────────
 make up-admin-standalone        # 외부 DB + 외부 Policy Engine 지정 (env)
@@ -482,18 +546,21 @@ make down-admin-standalone      # standalone 종료
 # ── Diagnostics ───────────────────────────────────────────
 make logs                       # main stack 전체 로그
 make admin-logs                 # co-located admin-service 로그
+make admin-web-logs             # admin-web 로그
 make admin-standalone-logs      # standalone admin-service 로그
 make ps                         # main stack ps
 make ps-admin                   # main+admin overlay ps
 make ps-standalone              # standalone ps
 make smoke                      # MCP HTTP smoke
 make smoke-admin                # /admin/health (co-located)
+make smoke-admin-web            # admin-web /login HTTP 코드
 make smoke-admin-standalone     # /admin/health (standalone)
 
 # ── Build / data plane ────────────────────────────────────
 make build                      # 모든 이미지 빌드
 make rebuild                    # --no-cache
-make build-admin                # admin 이미지만
+make build-admin                # admin API 이미지만
+make build-admin-web            # admin-web 이미지만
 make psql                       # psql 셸
 make redis-cli                  # Redis CLI
 make test                       # per-service test 안내
@@ -508,9 +575,12 @@ make clean                      # 모든 스택 down -v --remove-orphans
 | `+ food.yml`                                                                                                   | + (P2 도메인 활성)                                           | P1+P2 운영                        |
 | `+ local.yml`                                                                                                  | mcp, policy, detection, audit (SQLite, no daemon)            | 로컬 PoC                          |
 | `+ admin.yml` (co-located)                                                                                     | + admin                                                       | 운영 + 관리 API                   |
+| `+ admin.yml + admin-web.yml`                                                                                  | + admin + admin-web (3001)                                    | 운영 + 관리 API + Web 콘솔        |
 | `admin-standalone.yml` (alone)                                                                                 | admin-service                                                 | Admin 단독 (외부 DB/Policy 사용) |
 | `admin-standalone.yml --profile with-db`                                                                       | admin-service + admin-postgres                                | Admin + 자체 DB 동봉              |
+| `admin-standalone.yml + admin-web.yml`                                                                         | admin + admin-web                                              | 독립 호스트 Admin + Web           |
 | `privacy.yml + admin.yml + food.yml`                                                                           | 모두 결합                                                     | P1+P2+Admin                       |
+| `privacy.yml + admin.yml + admin-web.yml + food.yml`                                                           | 모두 결합 + Web                                                | P1+P2+Admin+Web                   |
 
 ---
 
@@ -519,10 +589,11 @@ make clean                      # 모든 스택 down -v --remove-orphans
 - HTTP transport: API Key (`x-api-key`), 추후 OAuth 2.0 Client Credentials
 - stdio transport: OS 권한 의존
 - Admin: bcrypt 비밀번호 + TOTP + JWT Bearer, `viewer/admin/super_admin` 역할, mutating 요청 자동 audit
+- Admin Web: JWT localStorage (프로토타입), `AuthGuard`로 보호된 라우트, 401 시 자동 세션 정리, role 기반 사이드바
 - 원문 비저장 기본 (`text_hash` SHA-256만)
 - 다중 도메인 충돌 해소: 더 엄격한 action 우선 (`block` > `redact` > `warn` > `allow`)
 - 정책 reload 동시성: Redis distributed lock (Postgres 모드)
-- Admin은 기본 배포에 미포함 (opt-in overlay) → 공격 표면 최소화
+- Admin / Admin Web 모두 기본 배포 미포함 (opt-in overlay) → 공격 표면 최소화
 - 자세한 보안 요구사항: [PRD §9](.doc/PRD.md).
 
 ---

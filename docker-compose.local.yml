@@ -46,6 +46,19 @@ services:
       detection-engine: { condition: service_healthy }
       audit-service: { condition: service_healthy }
 
+  # If the Admin overlay (docker-compose.admin.yml) is also merged on top
+  # of local mode, push Admin onto SQLite too so it does not try to dial
+  # the disabled Postgres. When admin is NOT in the merge, this stanza is
+  # simply ignored.
+  admin-service:
+    environment:
+      DB_DRIVER: sqlite
+      SQLITE_PATH: /app/var/admin.db
+    volumes:
+      - admin-sqlite:/app/var
+    depends_on: !reset []
+
 volumes:
   policy-sqlite:
   audit-sqlite:
+  admin-sqlite:

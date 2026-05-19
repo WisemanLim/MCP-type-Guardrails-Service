@@ -1,0 +1,42 @@
+# Admin Web (Next.js console) overlay. Pairs with docker-compose.admin.yml.
+#
+# Default deployment does NOT include this overlay.
+#
+# Usage:
+#   # main stack + admin API + admin web
+#   docker compose -f docker-compose.yml \
+#                  -f docker-compose.privacy.yml \
+#                  -f docker-compose.admin.yml \
+#                  -f docker-compose.admin-web.yml up -d
+#
+#   # standalone admin + standalone web (web talks to admin via host port)
+#   docker compose -f docker-compose.admin-standalone.yml \
+#                  -f docker-compose.admin-web.yml \
+#                  --profile with-db up -d
+
+services:
+  admin-web:
+    build:
+      context: ../Guardrails-Service-Admin-Web
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_ADMIN_API_BASE_URL: ${ADMIN_WEB_API_BASE_URL:-http://localhost:8084}
+    container_name: gr-admin-web
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: 3001
+      NEXT_PUBLIC_ADMIN_API_BASE_URL: ${ADMIN_WEB_API_BASE_URL:-http://localhost:8084}
+    ports:
+      - "${ADMIN_WEB_EXPOSED_PORT:-3001}:3001"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3001/login"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    # No `networks:` — admin-web serves static / SSR HTML to the user's
+    # browser; the browser then calls the Admin API directly via the host
+    # port (NEXT_PUBLIC_ADMIN_API_BASE_URL). This means admin-web does not
+    # need container-to-container reachability to admin-service, and can
+    # safely overlay on either the main stack or the standalone stack.
