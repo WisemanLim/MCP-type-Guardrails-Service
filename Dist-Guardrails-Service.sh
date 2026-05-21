@@ -563,6 +563,20 @@ write_admin_web_base_url() {
   warn "                 build --no-cache admin-web"
   ADMIN_WEB_URL_CHANGED=1
   export ADMIN_WEB_URL_CHANGED
+
+  # admin-service reads ADMIN_CORS_ORIGINS at runtime (no rebuild needed).
+  # The browser hits admin-web at http://<ip>:3001 → fetch() to admin-service
+  # at http://<ip>:8084 is a cross-origin request → admin-service must allow
+  # the admin-web origin in CORS, otherwise the browser blocks the request.
+  local cors_value="http://${ip}:3001,http://localhost:3001"
+  if [[ -f "${envf}" ]] && grep -q '^ADMIN_CORS_ORIGINS=' "${envf}"; then
+    awk -v repl="ADMIN_CORS_ORIGINS=${cors_value}" '
+      /^ADMIN_CORS_ORIGINS=/ {print repl; next} {print}
+    ' "${envf}" > "${envf}.new" && mv "${envf}.new" "${envf}"
+  else
+    printf 'ADMIN_CORS_ORIGINS=%s\n' "${cors_value}" >> "${envf}"
+  fi
+  ok "Wrote ADMIN_CORS_ORIGINS=${cors_value} → ${envf}"
 }
 
 # ─────────────────────────────────────────────────────────────────────
