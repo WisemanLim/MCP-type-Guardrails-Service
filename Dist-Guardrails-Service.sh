@@ -365,6 +365,54 @@ sync_all_repos() {
 }
 
 # ─────────────────────────────────────────────────────────────────────
+# Known-issue fixups applied after every clone/pull. Idempotent.
+# Forces the Admin Docker build to succeed even on hosts that cloned
+# before the upstream fix landed.
+#
+# Currently handled:
+#   Guardrails-Service-Admin/
+#     - .gitignore line '*.sqlite*' masked src/db/schema.sqlite.ts so the
+#       TS source was never committed, breaking `npm run build` inside
+#       admin-service Docker image (TS2307: Cannot find module
+#       './schema.sqlite'). Patch:
+#         a) append '!src/db/schema.sqlite.ts' un-ignore exception
+#         b) if the file is missing locally, fetch it from GitHub via
+#            authenticated 'gh api' (uses raw content type)
+# ─────────────────────────────────────────────────────────────────────
+apply_repo_fixups() {
+  local admin_dir="${WORKSPACE_DIR}/Guardrails-Service-Admin"
+  [[ -d "${admin_dir}/.git" ]] || return 0
+  log "Applying known fixups for Guardrails-Service-Admin"
+
+  # Fixup 1: .gitignore exception for the TS schema source.
+  local gi="${admin_dir}/.gitignore"
+  if [[ -f "${gi}" ]] && grep -qE '^\*\.sqlite\*' "${gi}" \
+       && ! grep -qE '^!src/db/schema\.sqlite\.ts' "${gi}"; then
+    {
+      echo ""
+      echo "# Added by Dist-Guardrails-Service.sh — TS source must not match *.sqlite*"
+      echo "!src/db/schema.sqlite.ts"
+    } >> "${gi}"
+    ok "Patched ${gi} with un-ignore for src/db/schema.sqlite.ts"
+  fi
+
+  # Fixup 2: materialize the file if the remote tree still lacks it.
+  local f="${admin_dir}/src/db/schema.sqlite.ts"
+  if [[ ! -f "${f}" ]]; then
+    warn "schema.sqlite.ts missing locally — fetching via gh api"
+    mkdir -p "$(dirname "${f}")"
+    if gh api -H 'Accept: application/vnd.github.v3.raw' \
+         "repos/${GH_OWNER}/Guardrails-Service-Admin/contents/src/db/schema.sqlite.ts" \
+         > "${f}" 2>/dev/null && [[ -s "${f}" ]]; then
+      ok "Materialized ${f} via gh api"
+    else
+      rm -f "${f}"
+      warn "Could not fetch schema.sqlite.ts — upstream may not have it yet. Push the fix from the Mac dev tree, then re-run."
+    fi
+  fi
+}
+
+# ─────────────────────────────────────────────────────────────────────
 # .env writer: pin layout-dependent build-context paths
 # docker-compose.yml's detection-engine build context is now driven by
 # DETECTION_ENGINE_PATH (default = sibling layout). Auto-detect the real
@@ -552,6 +600,7 @@ main() {
   detect_os
   bootstrap_tools
   sync_all_repos
+  apply_repo_fixups
   write_compose_env
   load_compose_files
   generate_makefile
