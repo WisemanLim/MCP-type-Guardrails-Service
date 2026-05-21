@@ -676,6 +676,61 @@ dump_unhealthy_logs() {
       docker logs --tail=80 "${name}" >&2 2>&1 || true
     fi
   done <<<"${listing}"
+
+  auto_seed_missing_domains "${use_sg}"
+}
+
+# Self-heal for pg-data volumes initialised before init-db.sql learned about
+# the manufacturing / manufacturing-food domains. Triggered when gr-policy
+# logs show the FK violation against domains.domain_key. Seeds the parent
+# rows directly via `docker exec gr-postgres psql` and restarts gr-policy.
+auto_seed_missing_domains() {
+  local use_sg="${1:-0}"
+  local out
+  if (( use_sg )); then
+    out="$(sg docker -c 'docker logs --tail=200 gr-policy 2>&1' 2>/dev/null || true)"
+  else
+    out="$(docker logs --tail=200 gr-policy 2>&1 2>/dev/null || true)"
+  fi
+  grep -qE 'rules_domain_fkey|Key \(domain\)=\([^)]+\) is not present in table "domains"' <<<"${out}" || return 0
+
+  log "Detected FK violation — seeding missing domain rows into gr-postgres"
+  local psql_sql
+  read -r -d '' psql_sql <<'__SEED_SQL__' || true
+INSERT INTO domains (domain_key, parent_key, display_name, description, regulation_tags, inherits_from)
+VALUES ('manufacturing', 'global', '{"ko-KR":"제조","en":"Manufacturing"}'::jsonb,
+        'Manufacturing-industry baseline. Inherits from global.',
+        ARRAY[]::TEXT[], ARRAY['global'])
+ON CONFLICT (domain_key) DO NOTHING;
+
+INSERT INTO domains (domain_key, parent_key, display_name, description, regulation_tags, inherits_from)
+VALUES ('manufacturing-food', 'manufacturing', '{"ko-KR":"제조-식품","en":"Manufacturing - Food"}'::jsonb,
+        'Food manufacturing vertical. Inherits from manufacturing > global.',
+        ARRAY[]::TEXT[], ARRAY['manufacturing','global'])
+ON CONFLICT (domain_key) DO NOTHING;
+__SEED_SQL__
+
+  local pg_user="${POSTGRES_USER:-guardrails}"
+  local pg_db="${POSTGRES_DB:-guardrails}"
+  if (( use_sg )); then
+    if ! sg docker -c "docker exec -i gr-postgres psql -U ${pg_user} -d ${pg_db}" <<<"${psql_sql}" >&2; then
+      warn "psql seed failed — recover with: docker compose ... down -v"
+      return
+    fi
+  else
+    if ! docker exec -i gr-postgres psql -U "${pg_user}" -d "${pg_db}" <<<"${psql_sql}" >&2; then
+      warn "psql seed failed — recover with: docker compose ... down -v"
+      return
+    fi
+  fi
+  ok "Seeded manufacturing + manufacturing-food into domains table"
+
+  log "Restarting gr-policy"
+  if (( use_sg )); then
+    sg docker -c 'docker restart gr-policy' >&2 || warn "gr-policy restart failed"
+  else
+    docker restart gr-policy >&2 || warn "gr-policy restart failed"
+  fi
 }
 
 # ── Main ─────────────────────────────────────────────────────────────

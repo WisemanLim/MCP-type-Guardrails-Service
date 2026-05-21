@@ -170,3 +170,28 @@ VALUES (
   ARRAY[]::TEXT[]
 )
 ON CONFLICT (domain_key) DO NOTHING;
+
+-- Phase 2 domains. Must be seeded BEFORE Policy Engine bulk-inserts rules
+-- whose `domain` column FK-references domains.domain_key. Order matters:
+-- parent ('manufacturing') before child ('manufacturing-food').
+INSERT INTO domains (domain_key, parent_key, display_name, description, regulation_tags, inherits_from)
+VALUES (
+  'manufacturing',
+  'global',
+  '{"ko-KR":"제조","en":"Manufacturing"}'::jsonb,
+  'Manufacturing-industry baseline. Inherits from global.',
+  ARRAY[]::TEXT[],
+  ARRAY['global']
+)
+ON CONFLICT (domain_key) DO NOTHING;
+
+INSERT INTO domains (domain_key, parent_key, display_name, description, regulation_tags, inherits_from)
+VALUES (
+  'manufacturing-food',
+  'manufacturing',
+  '{"ko-KR":"제조-식품","en":"Manufacturing - Food"}'::jsonb,
+  'Food manufacturing vertical. Inherits from manufacturing > global.',
+  ARRAY[]::TEXT[],
+  ARRAY['manufacturing','global']
+)
+ON CONFLICT (domain_key) DO NOTHING;

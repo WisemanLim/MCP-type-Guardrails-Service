@@ -30,7 +30,10 @@ services:
     ports:
       - "${ADMIN_WEB_EXPOSED_PORT:-3001}:3001"
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3001/login"]
+      # Node-based probe (busybox wget in node:20-alpine can return non-zero
+      # on benign cases — redirects, no-compression, busybox quirks).
+      # Mirrors the pattern used by policy-engine / mcp-server.
+      test: ["CMD", "node", "-e", "require('http').get('http://127.0.0.1:3001/login',r=>process.exit(r.statusCode<500?0:1)).on('error',()=>process.exit(1))"]
       interval: 10s
       timeout: 5s
       retries: 10
