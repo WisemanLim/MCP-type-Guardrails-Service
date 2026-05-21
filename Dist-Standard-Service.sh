@@ -342,20 +342,31 @@ ensure_docker() {
   fi
 
   # 3. user in docker group (Linux only)
+  # Two distinct checks:
+  #   a) /etc/group via `getent group docker` — file-level membership
+  #   b) current process supplementary groups via `id -nG` (no arg) — what
+  #      the kernel actually uses for socket ACL decisions
+  # `id -nG <username>` reads /etc/group and lies about active access:
+  # after `usermod -aG` the username is in (a) but the existing shell still
+  # lacks (b) until logout/login or `newgrp`. So we treat (b) as truth for
+  # the DAEMON_NEEDS_SG decision.
   if [[ "${OS_KIND}" == "linux" ]]; then
     local me="${USER:-$(id -un)}"
-    if ! id -nG "${me}" 2>/dev/null | tr ' ' '\n' | grep -qx docker; then
-      log "Adding ${me} to 'docker' group"
-      if sudo usermod -aG docker "${me}"; then
-        DAEMON_NEEDS_SG=1
-        warn "Added ${me} to 'docker'. Change applies to NEW shells only."
-        warn "Current shell still lacks group — script will run docker via 'sg docker -c'."
-      else
+    if ! getent group docker 2>/dev/null | grep -qE "(:|,)${me}(,|\$)"; then
+      log "Adding ${me} to 'docker' group (/etc/group)"
+      if ! sudo usermod -aG docker "${me}"; then
         warn "usermod failed — docker calls may need sudo"
       fi
     else
-      ok "${me} in 'docker' group"
+      ok "${me} is in /etc/group docker"
+    fi
+    # Truth check: does THIS shell actually carry the docker group?
+    if id -nG 2>/dev/null | tr ' ' '\n' | grep -qx docker; then
+      ok "current shell has 'docker' supplementary group"
       DAEMON_NEEDS_SG=0
+    else
+      warn "Current shell lacks 'docker' supplementary group — docker socket calls will use 'sg docker -c'"
+      DAEMON_NEEDS_SG=1
     fi
   fi
   export DAEMON_NEEDS_SG
@@ -598,12 +609,13 @@ choose_and_run() {
 
   save_default "${target}"
 
-  # If current shell lacks 'docker' group (Linux), wrap exec in `sg docker -c`
-  # so the make recipes can talk to /var/run/docker.sock without a re-login.
+  # If current shell lacks 'docker' supplementary group (Linux), wrap exec
+  # in `sg docker -c` so make recipes can talk to /var/run/docker.sock
+  # without a re-login. Trust ensure_docker's DAEMON_NEEDS_SG flag.
   local cmd="make -C \"${OPS_DIR}\" ${target}"
   local wrapped="${cmd}"
   if [[ "${OS_KIND}" == "linux" ]] \
-     && ! id -nG 2>/dev/null | tr ' ' '\n' | grep -qx docker \
+     && [[ "${DAEMON_NEEDS_SG:-0}" -eq 1 ]] \
      && command -v sg >/dev/null 2>&1; then
     wrapped="sg docker -c 'cd \"${OPS_DIR}\" && make ${target}'"
   fi
@@ -618,11 +630,52 @@ choose_and_run() {
       ;;
   esac
   log "Running: ${wrapped}"
+  local exit_code=0
   if [[ "${wrapped}" == sg* ]]; then
-    eval "${wrapped}"
+    eval "${wrapped}" || exit_code=$?
   else
-    ( cd "${OPS_DIR}" && make "${target}" )
+    ( cd "${OPS_DIR}" && make "${target}" ) || exit_code=$?
   fi
+  if (( exit_code != 0 )); then
+    dump_unhealthy_logs
+    return "${exit_code}"
+  fi
+}
+
+# When make fails, surface logs from any gr-* container that isn't Up+healthy,
+# so the root cause is visible without re-running. Tail 80 lines per service.
+dump_unhealthy_logs() {
+  echo "" >&2
+  warn "Compose stack failed — collecting logs from unhealthy gr-* containers"
+  local use_sg=0
+  if [[ "${OS_KIND}" == "linux" ]] \
+     && [[ "${DAEMON_NEEDS_SG:-0}" -eq 1 ]] \
+     && command -v sg >/dev/null 2>&1; then
+    use_sg=1
+  fi
+
+  local listing
+  if (( use_sg )); then
+    listing="$(sg docker -c 'docker ps -a --filter name=gr- --format "{{.Names}}\t{{.Status}}"' 2>/dev/null || true)"
+  else
+    listing="$(docker ps -a --filter name=gr- --format '{{.Names}}\t{{.Status}}' 2>/dev/null || true)"
+  fi
+  [[ -n "${listing}" ]] || { warn "No gr-* containers found"; return; }
+
+  echo "${listing}" >&2
+  while IFS=$'\t' read -r name status; do
+    [[ -z "${name}" ]] && continue
+    if [[ "${status}" == *"(healthy)"* ]] || { [[ "${status}" == "Up "* ]] && [[ "${status}" != *"(unhealthy)"* ]]; }; then
+      continue
+    fi
+    echo "" >&2
+    log "── logs: ${name} (${status}) ──"
+    if (( use_sg )); then
+      sg docker -c "docker logs --tail=80 '${name}' 2>&1" >&2 || true
+    else
+      docker logs --tail=80 "${name}" >&2 2>&1 || true
+    fi
+  done <<<"${listing}"
 }
 
 # ── Main ─────────────────────────────────────────────────────────────
