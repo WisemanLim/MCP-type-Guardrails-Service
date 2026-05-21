@@ -514,6 +514,58 @@ __SCHEMA_SQLITE_TS__
 }
 
 # ─────────────────────────────────────────────────────────────────────
+# Detect host's primary IPv4 (non-loopback, default-route iface).
+# Used so admin-web can bake the right Admin API base URL.
+# ─────────────────────────────────────────────────────────────────────
+detect_host_ip() {
+  local ip=""
+  if command -v ip >/dev/null 2>&1; then
+    ip="$(ip -4 -o route get 8.8.8.8 2>/dev/null \
+          | awk '{for(i=1;i<=NF;i++) if($i=="src"){print $(i+1); exit}}')"
+  fi
+  if [[ -z "${ip}" ]] && command -v hostname >/dev/null 2>&1; then
+    ip="$(hostname -I 2>/dev/null | awk '{print $1}')"
+  fi
+  if [[ -z "${ip}" ]] && [[ "${OS_KIND}" == "macos" ]]; then
+    ip="$(ipconfig getifaddr en0 2>/dev/null || ipconfig getifaddr en1 2>/dev/null)"
+  fi
+  printf '%s' "${ip}"
+}
+
+# Pin ADMIN_WEB_API_BASE_URL so the Next.js bundle calls the right host
+# when the browser isn't on the same machine as admin-service. NEXT_PUBLIC_*
+# vars are baked at admin-web build time — caller must rebuild the image
+# after this env change (the function warns explicitly).
+write_admin_web_base_url() {
+  local envf="${OPS_DIR}/.env"
+  local ip; ip="$(detect_host_ip)"
+  if [[ -z "${ip}" ]]; then
+    warn "Could not detect host IP — keeping ADMIN_WEB_API_BASE_URL default (localhost)"
+    return
+  fi
+  local url="http://${ip}:8084"
+  if [[ -f "${envf}" ]] && grep -q '^ADMIN_WEB_API_BASE_URL=' "${envf}"; then
+    local cur; cur="$(grep -E '^ADMIN_WEB_API_BASE_URL=' "${envf}" | head -1)"
+    if [[ "${cur}" == "ADMIN_WEB_API_BASE_URL=${url}" ]]; then
+      ok "ADMIN_WEB_API_BASE_URL already pinned: ${url}"
+      return
+    fi
+    awk -v repl="ADMIN_WEB_API_BASE_URL=${url}" '
+      /^ADMIN_WEB_API_BASE_URL=/ {print repl; next} {print}
+    ' "${envf}" > "${envf}.new" && mv "${envf}.new" "${envf}"
+  else
+    printf 'ADMIN_WEB_API_BASE_URL=%s\n' "${url}" >> "${envf}"
+  fi
+  ok "Wrote ADMIN_WEB_API_BASE_URL=${url} → ${envf}"
+  warn "admin-web bakes NEXT_PUBLIC_* at build time — rebuild required:"
+  warn "  docker compose -f docker-compose.yml -f docker-compose.privacy.yml \\"
+  warn "                 -f docker-compose.admin.yml -f docker-compose.admin-web.yml \\"
+  warn "                 build --no-cache admin-web"
+  ADMIN_WEB_URL_CHANGED=1
+  export ADMIN_WEB_URL_CHANGED
+}
+
+# ─────────────────────────────────────────────────────────────────────
 # .env writer: pin layout-dependent build-context paths
 # docker-compose.yml's detection-engine build context is now driven by
 # DETECTION_ENGINE_PATH (default = sibling layout). Auto-detect the real
@@ -686,6 +738,20 @@ choose_and_run() {
       return
       ;;
   esac
+
+  # If ADMIN_WEB_API_BASE_URL was just changed AND the chosen target builds
+  # admin-web (any *-admin-web* target), force a no-cache rebuild so the
+  # baked NEXT_PUBLIC_* values pick up the new URL.
+  if [[ "${ADMIN_WEB_URL_CHANGED:-0}" -eq 1 ]] && [[ "${target}" == *admin-web* ]]; then
+    log "ADMIN_WEB_API_BASE_URL changed — rebuilding admin-web (no-cache)"
+    local rebuild="docker compose -f docker-compose.yml -f docker-compose.privacy.yml -f docker-compose.admin.yml -f docker-compose.admin-web.yml build --no-cache admin-web"
+    if [[ "${wrapped}" == sg* ]]; then
+      sg docker -c "cd \"${OPS_DIR}\" && ${rebuild}" >&2 || warn "admin-web rebuild failed"
+    else
+      ( cd "${OPS_DIR}" && eval "${rebuild}" ) >&2 || warn "admin-web rebuild failed"
+    fi
+  fi
+
   log "Running: ${wrapped}"
   local exit_code=0
   if [[ "${wrapped}" == sg* ]]; then
@@ -789,7 +855,36 @@ __SEED_SQL__
   else
     docker restart gr-policy >&2 || warn "gr-policy restart failed"
   fi
-  log "Run 'make ${LAST_TARGET:-up-p1-p2-admin-web}' again to verify the stack now comes up clean"
+
+  # Wait for gr-policy healthy so depends_on chain can proceed.
+  log "Waiting up to 60s for gr-policy to report healthy"
+  local i state
+  for i in {1..30}; do
+    if (( use_sg )); then
+      state="$(sg docker -c "docker inspect -f '{{.State.Health.Status}}' gr-policy" 2>/dev/null || echo unknown)"
+    else
+      state="$(docker inspect -f '{{.State.Health.Status}}' gr-policy 2>/dev/null || echo unknown)"
+    fi
+    [[ "${state}" == "healthy" ]] && break
+    sleep 2
+  done
+  if [[ "${state}" != "healthy" ]]; then
+    warn "gr-policy did not reach healthy in 60s (state=${state}) — dependents still down"
+    return
+  fi
+  ok "gr-policy healthy — bringing up dependents"
+
+  # gr-admin / gr-mcp were stuck in 'Created' because policy was unhealthy.
+  # Re-run the same make target the user picked to start them.
+  local target="${LAST_TARGET:-${target:-}}"
+  [[ -n "${target}" ]] || { warn "LAST_TARGET unknown — run 'make <target>' manually"; return; }
+  log "Re-running make ${target}"
+  if (( use_sg )); then
+    sg docker -c "cd '${OPS_DIR}' && make ${target}" >&2 || warn "follow-up make ${target} failed"
+  else
+    ( cd "${OPS_DIR}" && make "${target}" ) >&2 || warn "follow-up make ${target} failed"
+  fi
+  ok "Auto-recovery complete"
 }
 
 # ─────────────────────────────────────────────────────────────────────
@@ -802,6 +897,7 @@ main() {
   sync_all_repos
   apply_repo_fixups
   write_compose_env
+  write_admin_web_base_url
   load_compose_files
   generate_makefile
   choose_and_run

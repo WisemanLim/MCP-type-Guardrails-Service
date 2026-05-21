@@ -642,11 +642,13 @@ choose_and_run() {
   fi
 }
 
-# When make fails, surface logs from any gr-* container that isn't Up+healthy,
-# so the root cause is visible without re-running. Tail 80 lines per service.
+# When make fails, surface logs from compose-managed containers that
+# aren't Up+healthy so the root cause is visible without re-running.
+# Project-agnostic: lists every container then filters by health status.
+# Tails 80 lines per failing service.
 dump_unhealthy_logs() {
   echo "" >&2
-  warn "Compose stack failed — collecting logs from unhealthy gr-* containers"
+  warn "Compose stack failed — collecting logs from unhealthy containers"
   local use_sg=0
   if [[ "${OS_KIND}" == "linux" ]] \
      && [[ "${DAEMON_NEEDS_SG:-0}" -eq 1 ]] \
@@ -656,13 +658,12 @@ dump_unhealthy_logs() {
 
   local listing
   if (( use_sg )); then
-    listing="$(sg docker -c 'docker ps -a --filter name=gr- --format "{{.Names}}\t{{.Status}}"' 2>/dev/null || true)"
+    listing="$(sg docker -c 'docker ps -a --format "{{.Names}}\t{{.Status}}"' 2>/dev/null || true)"
   else
-    listing="$(docker ps -a --filter name=gr- --format '{{.Names}}\t{{.Status}}' 2>/dev/null || true)"
+    listing="$(docker ps -a --format '{{.Names}}\t{{.Status}}' 2>/dev/null || true)"
   fi
-  [[ -n "${listing}" ]] || { warn "No gr-* containers found"; return; }
+  [[ -n "${listing}" ]] || { warn "No containers found"; return; }
 
-  echo "${listing}" >&2
   while IFS=$'\t' read -r name status; do
     [[ -z "${name}" ]] && continue
     if [[ "${status}" == *"(healthy)"* ]] || { [[ "${status}" == "Up "* ]] && [[ "${status}" != *"(unhealthy)"* ]]; }; then
@@ -676,61 +677,6 @@ dump_unhealthy_logs() {
       docker logs --tail=80 "${name}" >&2 2>&1 || true
     fi
   done <<<"${listing}"
-
-  auto_seed_missing_domains "${use_sg}"
-}
-
-# Self-heal for pg-data volumes initialised before init-db.sql learned about
-# the manufacturing / manufacturing-food domains. Triggered when gr-policy
-# logs show the FK violation against domains.domain_key. Seeds the parent
-# rows directly via `docker exec gr-postgres psql` and restarts gr-policy.
-auto_seed_missing_domains() {
-  local use_sg="${1:-0}"
-  local out
-  if (( use_sg )); then
-    out="$(sg docker -c 'docker logs --tail=200 gr-policy 2>&1' 2>/dev/null || true)"
-  else
-    out="$(docker logs --tail=200 gr-policy 2>&1 2>/dev/null || true)"
-  fi
-  grep -qE 'rules_domain_fkey|Key \(domain\)=\([^)]+\) is not present in table "domains"' <<<"${out}" || return 0
-
-  log "Detected FK violation — seeding missing domain rows into gr-postgres"
-  local psql_sql
-  read -r -d '' psql_sql <<'__SEED_SQL__' || true
-INSERT INTO domains (domain_key, parent_key, display_name, description, regulation_tags, inherits_from)
-VALUES ('manufacturing', 'global', '{"ko-KR":"제조","en":"Manufacturing"}'::jsonb,
-        'Manufacturing-industry baseline. Inherits from global.',
-        ARRAY[]::TEXT[], ARRAY['global'])
-ON CONFLICT (domain_key) DO NOTHING;
-
-INSERT INTO domains (domain_key, parent_key, display_name, description, regulation_tags, inherits_from)
-VALUES ('manufacturing-food', 'manufacturing', '{"ko-KR":"제조-식품","en":"Manufacturing - Food"}'::jsonb,
-        'Food manufacturing vertical. Inherits from manufacturing > global.',
-        ARRAY[]::TEXT[], ARRAY['manufacturing','global'])
-ON CONFLICT (domain_key) DO NOTHING;
-__SEED_SQL__
-
-  local pg_user="${POSTGRES_USER:-guardrails}"
-  local pg_db="${POSTGRES_DB:-guardrails}"
-  if (( use_sg )); then
-    if ! sg docker -c "docker exec -i gr-postgres psql -U ${pg_user} -d ${pg_db}" <<<"${psql_sql}" >&2; then
-      warn "psql seed failed — recover with: docker compose ... down -v"
-      return
-    fi
-  else
-    if ! docker exec -i gr-postgres psql -U "${pg_user}" -d "${pg_db}" <<<"${psql_sql}" >&2; then
-      warn "psql seed failed — recover with: docker compose ... down -v"
-      return
-    fi
-  fi
-  ok "Seeded manufacturing + manufacturing-food into domains table"
-
-  log "Restarting gr-policy"
-  if (( use_sg )); then
-    sg docker -c 'docker restart gr-policy' >&2 || warn "gr-policy restart failed"
-  else
-    docker restart gr-policy >&2 || warn "gr-policy restart failed"
-  fi
 }
 
 # ── Main ─────────────────────────────────────────────────────────────
