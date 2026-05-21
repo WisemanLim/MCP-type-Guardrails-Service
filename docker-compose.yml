@@ -67,7 +67,11 @@ services:
 
   detection-engine:
     build:
-      context: ../../DA(Python,R,...)/Guardrails-Service-Detection-Engine
+      # Build context path is workspace-layout dependent. Default = sibling
+      # layout (after Dist-Standard-Service.sh / Dist-Guardrails-Service.sh).
+      # Override via .env for Mac dev tree:
+      #   DETECTION_ENGINE_PATH=../../DA(Python,R,...)/Guardrails-Service-Detection-Engine
+      context: ${DETECTION_ENGINE_PATH:-../Guardrails-Service-Detection-Engine}
       dockerfile: Dockerfile
     container_name: gr-detection
     restart: unless-stopped
