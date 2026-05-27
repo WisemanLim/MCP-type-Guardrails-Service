@@ -730,21 +730,24 @@ cache:detect:{sha256(text)}:{domain}:{locale}   -> 동일 입력 결과 캐시 (
 
 각 클라이언트의 MCP 설정에 동일한 형태로 등록.
 
-### 11.4 원격 SSE 연결
+### 11.4 원격 HTTP 연결 (Streamable HTTP)
+
+MCP Server는 `POST /mcp`에 Streamable HTTP 를 노출한다. stdio-only 클라이언트는
+`mcp-remote` 브리지로 연결한다. 인증은 `MCP_HTTP_AUTH`(optional|required)로 제어.
 
 ```json
 {
   "mcpServers": {
     "guardrails-remote": {
       "command": "npx",
-      "args": ["mcp-remote", "https://guardrails.example.com/sse"],
-      "env": {
-        "GUARDRAILS_API_KEY": "key_xxx"
-      }
+      "args": ["-y", "mcp-remote", "https://guardrails.example.com/mcp"]
     }
   }
 }
 ```
+
+`MCP_HTTP_AUTH=required` 인 경우 `--header "x-api-key:<GUARDRAILS_API_KEY>"`
+(또는 `Authorization: Bearer <key>`) 를 args에 추가한다.
 
 ### 11.5 권장 시스템 프롬프트
 

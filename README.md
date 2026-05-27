@@ -69,9 +69,11 @@ make down-local
 
 - `GET  /health`
 - `GET  /mcp/tools`
-- `POST /mcp/tools/<name>` (x-api-key 필요)
-- `POST /mcp` (JSON-RPC 2.0)
-- `GET  /mcp/sse` (SSE 브리지)
+- `POST /mcp/tools/<name>` (flat REST)
+- `POST /mcp` (JSON-RPC 2.0, Streamable HTTP — `mcp-remote` 연결 엔드포인트)
+- `GET  /mcp/sse` (레거시 SSE heartbeat)
+
+인증: `MCP_HTTP_AUTH=optional`(기본, 헤더 불필요) | `required`(`x-api-key` 또는 `Authorization: Bearer`).
 
 Admin API + Web Console 포함 기동 (옵션):
 
@@ -511,24 +513,42 @@ npm install && npm run build
 
 Docker stdio 방식 동일 (Claude Desktop 첫 예제 그대로 복사). Native node 방식도 동일.
 
-### 원격 HTTP / SSE 브리지 (실험적)
+### 원격 HTTP 연결 (`mcp-remote` → Streamable HTTP)
 
-Claude Desktop에 직접 docker를 안 쓰고 mcp-remote로 HTTP transport에 연결할 경우. 현재 server의 SSE transport는 heartbeat 위주이고 full bidirectional은 mcp-server SDK 통합(M4) 후 보강 예정. Docker stdio 방식을 우선 권장.
+`make up-p1-p2-admin-web` 등으로 Docker 스택이 떠 있으면 MCP Server는
+`http://<서버-IP>:8080/mcp`에 **Streamable HTTP** 를 노출한다. Claude Desktop 등
+stdio-only 클라이언트는 `mcp-remote` 브리지로 이 엔드포인트에 직접 연결한다.
+(컨테이너를 따로 spawn 하지 않으므로 docker stdio 방식보다 간단.)
 
 ```json
 {
   "mcpServers": {
     "guardrails": {
       "command": "npx",
-      "args": [
-        "-y", "mcp-remote",
-        "http://localhost:8080/mcp/sse",
-        "--header", "x-api-key:dev-key-please-change"
-      ]
+      "args": ["-y", "mcp-remote", "http://<서버-IP>:8080/mcp"]
     }
   }
 }
 ```
+
+- 경로는 항상 `/mcp`. 포트는 `MCP_EXPOSED_PORT`(기본 8080)에 맞춤. 로컬 단독은 `http://127.0.0.1:8080/mcp`.
+- 인증은 서버의 `MCP_HTTP_AUTH`로 제어:
+  - `optional` (기본) → 위처럼 헤더 없이 연결.
+  - `required` → `--header` 추가:
+    ```json
+    "args": ["-y", "mcp-remote", "http://<서버-IP>:8080/mcp",
+             "--header", "x-api-key:dev-key-please-change"]
+    ```
+    (`x-api-key` 값 = 서버 `GUARDRAILS_API_KEY`. `Authorization: Bearer <key>`도 허용. 콜론 뒤 공백 없이.)
+
+검증:
+```bash
+curl -s http://<서버-IP>:8080/mcp -H 'content-type: application/json' \
+  -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}'
+# → result.protocolVersion = "2025-06-18", tools/list 로 8개 tool 확인
+```
+
+설정 적용 후 Claude Desktop **완전 종료 후 재실행**.
 
 ### 트러블슈팅
 
@@ -554,6 +574,87 @@ If decision == "escalate": deliver only a generic acknowledgement.
 Active domains: ${GUARDRAILS_ENABLED_DOMAINS}.
 Active locales: ${GUARDRAILS_LOCALES}.
 ```
+
+---
+
+## API Key 발급·회전 (HTTP transport 인증)
+
+`MCP_HTTP_AUTH=required` 모드에서 HTTP 클라이언트는 서버의 `GUARDRAILS_API_KEY`와
+일치하는 `x-api-key`(또는 `Authorization: Bearer`) 헤더를 제시해야 한다. 현재는
+**단일 공유 정적 키** 모델(env 기반, 별도 발급 서버 없음). 절차:
+
+**1) 강한 키 생성**
+
+```bash
+openssl rand -hex 32          # 권장 (64 hex 문자)
+# 대안
+openssl rand -base64 32
+uuidgen | tr -d '-'
+```
+
+**2) 서버 `.env` 설정**
+
+```bash
+MCP_HTTP_AUTH=required
+GUARDRAILS_API_KEY=<생성한 키>
+```
+
+**3) 적용 — mcp-server만 무중단 재생성** (다른 서비스 안 건드림)
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.privacy.yml \
+  up -d --no-deps --force-recreate mcp-server
+# 또는 스택 전체: make up-p1-p2-admin-web
+```
+
+**4) 클라이언트 등록** (Claude Desktop 등)
+
+```json
+{
+  "mcpServers": {
+    "guardrails": {
+      "command": "npx",
+      "args": [
+        "-y", "mcp-remote", "http://<서버-IP>:8080/mcp",
+        "--header", "x-api-key:<생성한 키>"
+      ]
+    }
+  }
+}
+```
+
+`Authorization: Bearer <키>` 도 허용 — `"--header", "Authorization:Bearer <키>"`.
+> `mcp-remote`는 `key:value`를 첫 `:`에서 분리 → 콜론 뒤 **공백 없이** 작성.
+
+**5) 검증**
+
+```bash
+# 키 없이 → 401 invalid_api_key
+curl -s -o /dev/null -w '%{http_code}\n' http://<서버-IP>:8080/mcp \
+  -H 'content-type: application/json' \
+  -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}'
+
+# 키 동봉 → 200
+curl -s -o /dev/null -w '%{http_code}\n' http://<서버-IP>:8080/mcp \
+  -H 'content-type: application/json' -H 'x-api-key: <생성한 키>' \
+  -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}'
+```
+
+### 회전 (rotation)
+
+1. 새 키 생성 → `.env`의 `GUARDRAILS_API_KEY` 교체
+2. `docker compose ... up -d --no-deps --force-recreate mcp-server`
+3. **모든** 클라이언트 헤더를 새 키로 갱신
+
+단일 공유 키이므로 회전 시 전 클라이언트를 동시에 갱신해야 한다. 무중단이 필요하면
+리버스 프록시(nginx 등)에서 구·신 키를 한시적으로 둘 다 허용하다가 전환한다.
+
+### 보안 주의
+
+- `.env` 커밋 금지(`.gitignore` 확인). 키는 secret manager(Vault / AWS Secrets Manager / SSM)에 보관하고 컨테이너엔 주입만.
+- 기본값 `dev-key-please-change`는 운영에서 사용 금지. `MCP_HTTP_AUTH=optional`(기본)은 **무인증**이므로 신뢰 불가 네트워크 노출 시 반드시 `required` + TLS.
+- 키 비교는 평문 단순 일치 — 외부 구간은 `https://`(리버스 프록시 TLS) 필수.
+- 현재 = 전 클라이언트 공통 단일 키(테넌트/스코프/만료 없음). per-tenant scoped key + 해시 저장 + 만료·폐기(PRD §7.3 `api_keys` 테이블, §9 OAuth 2.0 Client Credentials)는 로드맵(M4).
 
 ---
 
@@ -714,7 +815,7 @@ make clean                      # 모든 스택 down -v --remove-orphans
 
 ## 보안 요약
 
-- HTTP transport: API Key (`x-api-key`), 추후 OAuth 2.0 Client Credentials
+- HTTP transport: `MCP_HTTP_AUTH=required` 시 API Key (`x-api-key` / `Bearer`) — 발급·회전은 [§ API Key 발급·회전](#api-key-발급회전-http-transport-인증). 추후 OAuth 2.0 Client Credentials
 - stdio transport: OS 권한 의존
 - Admin: bcrypt 비밀번호 + TOTP + JWT Bearer, `viewer/admin/super_admin` 역할, mutating 요청 자동 audit
 - Admin Web: JWT localStorage (프로토타입), `AuthGuard`로 보호된 라우트, 401 시 자동 세션 정리, role 기반 사이드바

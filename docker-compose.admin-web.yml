@@ -20,13 +20,19 @@ services:
       context: ../Guardrails-Service-Admin-Web
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_ADMIN_API_BASE_URL: ${ADMIN_WEB_API_BASE_URL:-http://localhost:8084}
+        # Empty default → browser derives API base from its own host:port at
+        # runtime (works on any IP/domain w/o rebuild). Set ADMIN_WEB_API_BASE_URL
+        # only to pin a fixed API host (e.g. behind a reverse proxy / HTTPS).
+        NEXT_PUBLIC_ADMIN_API_BASE_URL: ${ADMIN_WEB_API_BASE_URL:-}
+        NEXT_PUBLIC_ADMIN_API_PORT: ${ADMIN_EXPOSED_PORT:-8084}
     container_name: gr-admin-web
     restart: unless-stopped
     environment:
       NODE_ENV: ${NODE_ENV:-production}
       PORT: 3001
-      NEXT_PUBLIC_ADMIN_API_BASE_URL: ${ADMIN_WEB_API_BASE_URL:-http://localhost:8084}
+      # NOTE: NEXT_PUBLIC_* is baked at BUILD time; this runtime entry is inert
+      # for the client bundle. Kept only for parity/visibility.
+      NEXT_PUBLIC_ADMIN_API_BASE_URL: ${ADMIN_WEB_API_BASE_URL:-}
     ports:
       - "${ADMIN_WEB_EXPOSED_PORT:-3001}:3001"
     healthcheck:

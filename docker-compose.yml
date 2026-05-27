@@ -156,6 +156,8 @@ services:
       <<: *common-env
       PORT: 8080
       MCP_TRANSPORT: ${MCP_TRANSPORT:-http}
+      # optional (default, no header) | required (x-api-key / Bearer enforced)
+      MCP_HTTP_AUTH: ${MCP_HTTP_AUTH:-optional}
       POLICY_ENGINE_URL: http://policy-engine:8082
       DETECTION_ENGINE_URL: http://detection-engine:8081
       AUDIT_SERVICE_URL: http://audit-service:8083
