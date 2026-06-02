@@ -193,6 +193,13 @@ help:
 	@echo "  build / rebuild / build-admin / build-admin-web"
 	@echo "  psql / redis-cli / test / clean"
 	@echo ""
+	@echo "── SEED (load scripts/*.json into rules, no Policy needed) ──"
+	@echo "  seed          load scripts/*.json -> rules (idempotent)"
+	@echo "  reseed        replace source='file' rows (admin rows kept)"
+	@echo "  seed-sql      render SQL to build/seed-rules.sql (no DB write)"
+	@echo "  seed-verify   print rule counts per domain"
+	@echo "  reset-rules   DANGER: delete ALL source='file' rows"
+	@echo ""
 	@echo "Run 'make list-targets' to print every generated target."
 
 # Auxiliary: list all generated up/down targets so users can grep.
@@ -258,6 +265,42 @@ psql:
 
 redis-cli:
 	docker compose $(COMPOSE_BASE) exec redis redis-cli
+
+# ─────────────────────────────────────────────────────────────────────
+# Seed loading — load scripts/*.json bundles straight into the `rules`
+# table WITHOUT a running Policy Engine. Normally Policy seeds on first
+# boot (seedIfNeeded); use these when you brought up only Postgres/Redis,
+# or Policy could not reach the DB and `rules` stayed empty.
+#
+# scripts/load-seeds.py is stdlib-only and never connects to Postgres — it
+# renders idempotent SQL (source='file', ON CONFLICT (rule_id) DO NOTHING,
+# same column mapping as DbService.bulkInsertRules) which we pipe into the
+# running container's psql. No host psql / pg driver required.
+#
+# Override connection: make seed POSTGRES_USER=u POSTGRES_DB=d
+# ─────────────────────────────────────────────────────────────────────
+SEED_PSQL = docker compose $(COMPOSE_BASE) exec -T postgres \
+            psql -v ON_ERROR_STOP=1 \
+              -U $${POSTGRES_USER:-guardrails} -d $${POSTGRES_DB:-guardrails}
+
+.PHONY: seed reseed seed-sql seed-verify reset-rules
+
+seed:
+	@echo "▶ seeding scripts/*.json into rules (idempotent)"
+	python3 scripts/load-seeds.py | $(SEED_PSQL)
+
+reseed:
+	@echo "▶ reseeding (DELETE source='file' rows, then reload — admin rows kept)"
+	python3 scripts/load-seeds.py --mode reseed | $(SEED_PSQL)
+
+seed-sql:
+	python3 scripts/load-seeds.py --out build/seed-rules.sql
+
+seed-verify:
+	@$(SEED_PSQL) -c "SELECT domain, count(*) AS rules, count(*) FILTER (WHERE io_type='input') AS input, count(*) FILTER (WHERE io_type='output') AS output FROM rules GROUP BY domain ORDER BY domain;"
+
+reset-rules:
+	$(SEED_PSQL) -c "DELETE FROM rules WHERE source='file';"
 
 test:
 	@echo "Run per-service tests under their own directories."
