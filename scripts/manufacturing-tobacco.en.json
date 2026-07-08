@@ -1,0 +1,6171 @@
+{
+  "$schema": "https://example.com/guardrails/rule-bundle.schema.json",
+  "domain": "manufacturing-tobacco",
+  "locale": "en",
+  "generatedAt": "2026-06-03T07:16:32+00:00",
+  "totalRules": 200,
+  "rules": [
+    {
+      "ruleId": "MF_TOB_EN_001",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "health_warning_omit",
+      "description": "Block omission of tobacco health warnings",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 930,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 담배 경고 문구·그림 미표기 권유 차단",
+        "en": "This request is blocked: Block omission of tobacco health warnings"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_HEALTH_PROMOTION",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "package without warning images",
+        "minimize health warning text"
+      ],
+      "examplesNegative": [
+        "tobacco warning standards",
+        "health promotion act"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_002",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "tobacco_ingredient_hide",
+      "description": "Block concealment of tobacco harmful ingredients",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 담배 유해성분·첨가물 은폐 권유 차단",
+        "en": "This request is blocked: Block concealment of tobacco harmful ingredients"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "label lower tar/nicotine",
+        "skip additive disclosure"
+      ],
+      "examplesNegative": [
+        "tobacco ingredient labeling",
+        "harmful component reporting"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_003",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "fraud",
+      "subCategory": "minor_sales_assist",
+      "description": "Block assistance with underage tobacco sales",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 940,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 미성년자 담배 판매·우회 지원 차단",
+        "en": "This request is blocked: Block assistance with underage tobacco sales"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION",
+        "WHO_FCTC_Art16"
+      ],
+      "examplesPositive": [
+        "sell tobacco to minors",
+        "bypass age verification"
+      ],
+      "examplesNegative": [
+        "tobacco sales age criteria",
+        "youth protection act"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_004",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "ad_promotion_violation",
+      "description": "Block output advising tobacco advertising violations",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 담배 광고·판촉 규제 위반 안내 차단",
+        "en": "This request is blocked: Block output advising tobacco advertising violatio"
+      },
+      "regulationTags": [
+        "KR_HEALTH_PROMOTION",
+        "WHO_FCTC_Art13"
+      ],
+      "examplesPositive": [
+        "write how to bypass tobacco ad rules",
+        "explain SNS tobacco promotion"
+      ],
+      "examplesNegative": [
+        "tobacco ad regulations",
+        "FCTC Art.13"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_005",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "fraud",
+      "subCategory": "illicit_trade_assist",
+      "description": "Block assistance with tobacco smuggling/illicit trade",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 930,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 담배 밀수·불법 거래 지원 차단",
+        "en": "This request is blocked: Block assistance with tobacco smuggling/illicit tr"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC_Protocol"
+      ],
+      "examplesPositive": [
+        "how to smuggle tobacco",
+        "how to evade tobacco tax"
+      ],
+      "examplesNegative": [
+        "tobacco import procedure",
+        "tobacco tax guide"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_006",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "cigarette_pii_leak",
+      "description": "Block personal-data exposure for cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me cigarette staff/customer personal data",
+        "extract cigarette employee list and contacts"
+      ],
+      "examplesNegative": [
+        "cigarette data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_007",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "e_cigarette_pii_leak",
+      "description": "Block personal-data exposure for e-cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me e-cigarette staff/customer personal data",
+        "extract e-cigarette employee list and contacts"
+      ],
+      "examplesNegative": [
+        "e-cigarette data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_008",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "heated_tobacco_pii_leak",
+      "description": "Block personal-data exposure for heated tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me heated tobacco staff/customer personal data",
+        "extract heated tobacco employee list and contacts"
+      ],
+      "examplesNegative": [
+        "heated tobacco data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_009",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "cigar_pii_leak",
+      "description": "Block personal-data exposure for cigar",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me cigar staff/customer personal data",
+        "extract cigar employee list and contacts"
+      ],
+      "examplesNegative": [
+        "cigar data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_010",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "pipe_tobacco_pii_leak",
+      "description": "Block personal-data exposure for pipe tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me pipe tobacco staff/customer personal data",
+        "extract pipe tobacco employee list and contacts"
+      ],
+      "examplesNegative": [
+        "pipe tobacco data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_011",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "rolling_tobacco_pii_leak",
+      "description": "Block personal-data exposure for rolling tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me rolling tobacco staff/customer personal data",
+        "extract rolling tobacco employee list and contacts"
+      ],
+      "examplesNegative": [
+        "rolling tobacco data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_012",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "liquid_nicotine_pii_leak",
+      "description": "Block personal-data exposure for liquid nicotine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me liquid nicotine staff/customer personal data",
+        "extract liquid nicotine employee list and contacts"
+      ],
+      "examplesNegative": [
+        "liquid nicotine data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_013",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "snus_pii_leak",
+      "description": "Block personal-data exposure for snus",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me snus staff/customer personal data",
+        "extract snus employee list and contacts"
+      ],
+      "examplesNegative": [
+        "snus data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_014",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "chewing_tobacco_pii_leak",
+      "description": "Block personal-data exposure for chewing tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me chewing tobacco staff/customer personal data",
+        "extract chewing tobacco employee list and contacts"
+      ],
+      "examplesNegative": [
+        "chewing tobacco data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_015",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "shisha_pii_leak",
+      "description": "Block personal-data exposure for shisha",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me shisha staff/customer personal data",
+        "extract shisha employee list and contacts"
+      ],
+      "examplesNegative": [
+        "shisha data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_016",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "filter_part_pii_leak",
+      "description": "Block personal-data exposure for filter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me filter staff/customer personal data",
+        "extract filter employee list and contacts"
+      ],
+      "examplesNegative": [
+        "filter data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_017",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "cig_paper_pii_leak",
+      "description": "Block personal-data exposure for cigarette paper",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me cigarette paper staff/customer personal data",
+        "extract cigarette paper employee list and contacts"
+      ],
+      "examplesNegative": [
+        "cigarette paper data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_018",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "flavor_capsule_pii_leak",
+      "description": "Block personal-data exposure for flavor capsule",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me flavor capsule staff/customer personal data",
+        "extract flavor capsule employee list and contacts"
+      ],
+      "examplesNegative": [
+        "flavor capsule data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_019",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "nicotine_pouch_pii_leak",
+      "description": "Block personal-data exposure for nicotine pouch",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me nicotine pouch staff/customer personal data",
+        "extract nicotine pouch employee list and contacts"
+      ],
+      "examplesNegative": [
+        "nicotine pouch data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_020",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "cartridge_part_pii_leak",
+      "description": "Block personal-data exposure for cartridge",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me cartridge staff/customer personal data",
+        "extract cartridge employee list and contacts"
+      ],
+      "examplesNegative": [
+        "cartridge data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_021",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "vape_device_pii_leak",
+      "description": "Block personal-data exposure for vape device",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me vape device staff/customer personal data",
+        "extract vape device employee list and contacts"
+      ],
+      "examplesNegative": [
+        "vape device data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_022",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "leaf_tobacco_pii_leak",
+      "description": "Block personal-data exposure for leaf tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me leaf tobacco staff/customer personal data",
+        "extract leaf tobacco employee list and contacts"
+      ],
+      "examplesNegative": [
+        "leaf tobacco data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_023",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "reconstituted_pii_leak",
+      "description": "Block personal-data exposure for reconstituted tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me reconstituted tobacco staff/customer personal data",
+        "extract reconstituted tobacco employee list and contacts"
+      ],
+      "examplesNegative": [
+        "reconstituted tobacco data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_024",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "menthol_cig_pii_leak",
+      "description": "Block personal-data exposure for menthol cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me menthol cigarette staff/customer personal data",
+        "extract menthol cigarette employee list and contacts"
+      ],
+      "examplesNegative": [
+        "menthol cigarette data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_025",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "slim_cig_pii_leak",
+      "description": "Block personal-data exposure for slim cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me slim cigarette staff/customer personal data",
+        "extract slim cigarette employee list and contacts"
+      ],
+      "examplesNegative": [
+        "slim cigarette data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_026",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cigarette_compliance_violation",
+      "description": "Block regulatory/cert violation for cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 궐련 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for cigarette"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship cigarette without certification",
+        "bypass cigarette regulatory standards"
+      ],
+      "examplesNegative": [
+        "cigarette compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_027",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "e_cigarette_compliance_violation",
+      "description": "Block regulatory/cert violation for e-cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전자담배 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for e-cigarette"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship e-cigarette without certification",
+        "bypass e-cigarette regulatory standards"
+      ],
+      "examplesNegative": [
+        "e-cigarette compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_028",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "heated_tobacco_compliance_violation",
+      "description": "Block regulatory/cert violation for heated tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 궐련형 전자담배 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for heated tobacco"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship heated tobacco without certification",
+        "bypass heated tobacco regulatory standards"
+      ],
+      "examplesNegative": [
+        "heated tobacco compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_029",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cigar_compliance_violation",
+      "description": "Block regulatory/cert violation for cigar",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 시가 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for cigar"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship cigar without certification",
+        "bypass cigar regulatory standards"
+      ],
+      "examplesNegative": [
+        "cigar compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_030",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pipe_tobacco_compliance_violation",
+      "description": "Block regulatory/cert violation for pipe tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 파이프담배 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for pipe tobacco"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship pipe tobacco without certification",
+        "bypass pipe tobacco regulatory standards"
+      ],
+      "examplesNegative": [
+        "pipe tobacco compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_031",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rolling_tobacco_compliance_violation",
+      "description": "Block regulatory/cert violation for rolling tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연초 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for rolling tobacc"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship rolling tobacco without certification",
+        "bypass rolling tobacco regulatory standards"
+      ],
+      "examplesNegative": [
+        "rolling tobacco compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_032",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "liquid_nicotine_compliance_violation",
+      "description": "Block regulatory/cert violation for liquid nicotine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니코틴 용액 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for liquid nicotin"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship liquid nicotine without certification",
+        "bypass liquid nicotine regulatory standards"
+      ],
+      "examplesNegative": [
+        "liquid nicotine compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_033",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "snus_compliance_violation",
+      "description": "Block regulatory/cert violation for snus",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스누스 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for snus"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship snus without certification",
+        "bypass snus regulatory standards"
+      ],
+      "examplesNegative": [
+        "snus compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_034",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "chewing_tobacco_compliance_violation",
+      "description": "Block regulatory/cert violation for chewing tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 씹는담배 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for chewing tobacc"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship chewing tobacco without certification",
+        "bypass chewing tobacco regulatory standards"
+      ],
+      "examplesNegative": [
+        "chewing tobacco compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_035",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "shisha_compliance_violation",
+      "description": "Block regulatory/cert violation for shisha",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 물담배 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for shisha"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship shisha without certification",
+        "bypass shisha regulatory standards"
+      ],
+      "examplesNegative": [
+        "shisha compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_036",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "filter_part_compliance_violation",
+      "description": "Block regulatory/cert violation for filter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 필터 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for filter"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship filter without certification",
+        "bypass filter regulatory standards"
+      ],
+      "examplesNegative": [
+        "filter compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_037",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cig_paper_compliance_violation",
+      "description": "Block regulatory/cert violation for cigarette paper",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 담배종이 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for cigarette pape"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship cigarette paper without certification",
+        "bypass cigarette paper regulatory standards"
+      ],
+      "examplesNegative": [
+        "cigarette paper compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_038",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "flavor_capsule_compliance_violation",
+      "description": "Block regulatory/cert violation for flavor capsule",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 향캡슐 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for flavor capsule"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship flavor capsule without certification",
+        "bypass flavor capsule regulatory standards"
+      ],
+      "examplesNegative": [
+        "flavor capsule compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_039",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nicotine_pouch_compliance_violation",
+      "description": "Block regulatory/cert violation for nicotine pouch",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니코틴 파우치 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for nicotine pouch"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship nicotine pouch without certification",
+        "bypass nicotine pouch regulatory standards"
+      ],
+      "examplesNegative": [
+        "nicotine pouch compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_040",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cartridge_part_compliance_violation",
+      "description": "Block regulatory/cert violation for cartridge",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 카트리지 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for cartridge"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship cartridge without certification",
+        "bypass cartridge regulatory standards"
+      ],
+      "examplesNegative": [
+        "cartridge compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_041",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "vape_device_compliance_violation",
+      "description": "Block regulatory/cert violation for vape device",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 베이프 기기 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for vape device"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship vape device without certification",
+        "bypass vape device regulatory standards"
+      ],
+      "examplesNegative": [
+        "vape device compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_042",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "leaf_tobacco_compliance_violation",
+      "description": "Block regulatory/cert violation for leaf tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 잎담배 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for leaf tobacco"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship leaf tobacco without certification",
+        "bypass leaf tobacco regulatory standards"
+      ],
+      "examplesNegative": [
+        "leaf tobacco compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_043",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "reconstituted_compliance_violation",
+      "description": "Block regulatory/cert violation for reconstituted tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 재구성담배 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for reconstituted "
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship reconstituted tobacco without certification",
+        "bypass reconstituted tobacco regulatory standards"
+      ],
+      "examplesNegative": [
+        "reconstituted tobacco compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_044",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "menthol_cig_compliance_violation",
+      "description": "Block regulatory/cert violation for menthol cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 멘솔담배 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for menthol cigare"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship menthol cigarette without certification",
+        "bypass menthol cigarette regulatory standards"
+      ],
+      "examplesNegative": [
+        "menthol cigarette compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_045",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "slim_cig_compliance_violation",
+      "description": "Block regulatory/cert violation for slim cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 슬림담배 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for slim cigarette"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "ship slim cigarette without certification",
+        "bypass slim cigarette regulatory standards"
+      ],
+      "examplesNegative": [
+        "slim cigarette compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_046",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "cigarette_safety_skip",
+      "description": "Block safety procedure skip for cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 궐련 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for cigarette"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work cigarette without PPE",
+        "ignore cigarette safety inspection"
+      ],
+      "examplesNegative": [
+        "cigarette safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_047",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "e_cigarette_safety_skip",
+      "description": "Block safety procedure skip for e-cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전자담배 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for e-cigarette"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work e-cigarette without PPE",
+        "ignore e-cigarette safety inspection"
+      ],
+      "examplesNegative": [
+        "e-cigarette safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_048",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "heated_tobacco_safety_skip",
+      "description": "Block safety procedure skip for heated tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 궐련형 전자담배 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for heated tobacco"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work heated tobacco without PPE",
+        "ignore heated tobacco safety inspection"
+      ],
+      "examplesNegative": [
+        "heated tobacco safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_049",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "cigar_safety_skip",
+      "description": "Block safety procedure skip for cigar",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 시가 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for cigar"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work cigar without PPE",
+        "ignore cigar safety inspection"
+      ],
+      "examplesNegative": [
+        "cigar safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_050",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "pipe_tobacco_safety_skip",
+      "description": "Block safety procedure skip for pipe tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 파이프담배 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for pipe tobacco"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work pipe tobacco without PPE",
+        "ignore pipe tobacco safety inspection"
+      ],
+      "examplesNegative": [
+        "pipe tobacco safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_051",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "rolling_tobacco_safety_skip",
+      "description": "Block safety procedure skip for rolling tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연초 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for rolling tobacco"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work rolling tobacco without PPE",
+        "ignore rolling tobacco safety inspection"
+      ],
+      "examplesNegative": [
+        "rolling tobacco safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_052",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "liquid_nicotine_safety_skip",
+      "description": "Block safety procedure skip for liquid nicotine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니코틴 용액 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for liquid nicotine"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work liquid nicotine without PPE",
+        "ignore liquid nicotine safety inspection"
+      ],
+      "examplesNegative": [
+        "liquid nicotine safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_053",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "snus_safety_skip",
+      "description": "Block safety procedure skip for snus",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스누스 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for snus"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work snus without PPE",
+        "ignore snus safety inspection"
+      ],
+      "examplesNegative": [
+        "snus safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_054",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "chewing_tobacco_safety_skip",
+      "description": "Block safety procedure skip for chewing tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 씹는담배 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for chewing tobacco"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work chewing tobacco without PPE",
+        "ignore chewing tobacco safety inspection"
+      ],
+      "examplesNegative": [
+        "chewing tobacco safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_055",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "shisha_safety_skip",
+      "description": "Block safety procedure skip for shisha",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 물담배 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for shisha"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work shisha without PPE",
+        "ignore shisha safety inspection"
+      ],
+      "examplesNegative": [
+        "shisha safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_056",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "filter_part_safety_skip",
+      "description": "Block safety procedure skip for filter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 필터 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for filter"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work filter without PPE",
+        "ignore filter safety inspection"
+      ],
+      "examplesNegative": [
+        "filter safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_057",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "cig_paper_safety_skip",
+      "description": "Block safety procedure skip for cigarette paper",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 담배종이 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for cigarette paper"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work cigarette paper without PPE",
+        "ignore cigarette paper safety inspection"
+      ],
+      "examplesNegative": [
+        "cigarette paper safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_058",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "flavor_capsule_safety_skip",
+      "description": "Block safety procedure skip for flavor capsule",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 향캡슐 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for flavor capsule"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work flavor capsule without PPE",
+        "ignore flavor capsule safety inspection"
+      ],
+      "examplesNegative": [
+        "flavor capsule safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_059",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "nicotine_pouch_safety_skip",
+      "description": "Block safety procedure skip for nicotine pouch",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니코틴 파우치 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for nicotine pouch"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work nicotine pouch without PPE",
+        "ignore nicotine pouch safety inspection"
+      ],
+      "examplesNegative": [
+        "nicotine pouch safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_060",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "cartridge_part_safety_skip",
+      "description": "Block safety procedure skip for cartridge",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 카트리지 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for cartridge"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work cartridge without PPE",
+        "ignore cartridge safety inspection"
+      ],
+      "examplesNegative": [
+        "cartridge safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_061",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "vape_device_safety_skip",
+      "description": "Block safety procedure skip for vape device",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 베이프 기기 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for vape device"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work vape device without PPE",
+        "ignore vape device safety inspection"
+      ],
+      "examplesNegative": [
+        "vape device safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_062",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "leaf_tobacco_safety_skip",
+      "description": "Block safety procedure skip for leaf tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 잎담배 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for leaf tobacco"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work leaf tobacco without PPE",
+        "ignore leaf tobacco safety inspection"
+      ],
+      "examplesNegative": [
+        "leaf tobacco safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_063",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "reconstituted_safety_skip",
+      "description": "Block safety procedure skip for reconstituted tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 재구성담배 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for reconstituted toba"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work reconstituted tobacco without PPE",
+        "ignore reconstituted tobacco safety inspection"
+      ],
+      "examplesNegative": [
+        "reconstituted tobacco safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_064",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "menthol_cig_safety_skip",
+      "description": "Block safety procedure skip for menthol cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 멘솔담배 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for menthol cigarette"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work menthol cigarette without PPE",
+        "ignore menthol cigarette safety inspection"
+      ],
+      "examplesNegative": [
+        "menthol cigarette safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_065",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "slim_cig_safety_skip",
+      "description": "Block safety procedure skip for slim cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 슬림담배 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for slim cigarette"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work slim cigarette without PPE",
+        "ignore slim cigarette safety inspection"
+      ],
+      "examplesNegative": [
+        "slim cigarette safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_066",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cigarette_record_falsify",
+      "description": "Block test/inspection record falsification for cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 궐련 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for cig"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate cigarette test report",
+        "alter cigarette inspection records"
+      ],
+      "examplesNegative": [
+        "cigarette record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_067",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "e_cigarette_record_falsify",
+      "description": "Block test/inspection record falsification for e-cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전자담배 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for e-c"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate e-cigarette test report",
+        "alter e-cigarette inspection records"
+      ],
+      "examplesNegative": [
+        "e-cigarette record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_068",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "heated_tobacco_record_falsify",
+      "description": "Block test/inspection record falsification for heated tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 궐련형 전자담배 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for hea"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate heated tobacco test report",
+        "alter heated tobacco inspection records"
+      ],
+      "examplesNegative": [
+        "heated tobacco record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_069",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cigar_record_falsify",
+      "description": "Block test/inspection record falsification for cigar",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 시가 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for cig"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate cigar test report",
+        "alter cigar inspection records"
+      ],
+      "examplesNegative": [
+        "cigar record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_070",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pipe_tobacco_record_falsify",
+      "description": "Block test/inspection record falsification for pipe tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 파이프담배 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for pip"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate pipe tobacco test report",
+        "alter pipe tobacco inspection records"
+      ],
+      "examplesNegative": [
+        "pipe tobacco record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_071",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rolling_tobacco_record_falsify",
+      "description": "Block test/inspection record falsification for rolling tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연초 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for rol"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate rolling tobacco test report",
+        "alter rolling tobacco inspection records"
+      ],
+      "examplesNegative": [
+        "rolling tobacco record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_072",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "liquid_nicotine_record_falsify",
+      "description": "Block test/inspection record falsification for liquid nicotine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니코틴 용액 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for liq"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate liquid nicotine test report",
+        "alter liquid nicotine inspection records"
+      ],
+      "examplesNegative": [
+        "liquid nicotine record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_073",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "snus_record_falsify",
+      "description": "Block test/inspection record falsification for snus",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스누스 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for snu"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate snus test report",
+        "alter snus inspection records"
+      ],
+      "examplesNegative": [
+        "snus record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_074",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "chewing_tobacco_record_falsify",
+      "description": "Block test/inspection record falsification for chewing tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 씹는담배 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for che"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate chewing tobacco test report",
+        "alter chewing tobacco inspection records"
+      ],
+      "examplesNegative": [
+        "chewing tobacco record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_075",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "shisha_record_falsify",
+      "description": "Block test/inspection record falsification for shisha",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 물담배 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for shi"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate shisha test report",
+        "alter shisha inspection records"
+      ],
+      "examplesNegative": [
+        "shisha record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_076",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "filter_part_record_falsify",
+      "description": "Block test/inspection record falsification for filter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 필터 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for fil"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate filter test report",
+        "alter filter inspection records"
+      ],
+      "examplesNegative": [
+        "filter record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_077",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cig_paper_record_falsify",
+      "description": "Block test/inspection record falsification for cigarette paper",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 담배종이 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for cig"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate cigarette paper test report",
+        "alter cigarette paper inspection records"
+      ],
+      "examplesNegative": [
+        "cigarette paper record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_078",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "flavor_capsule_record_falsify",
+      "description": "Block test/inspection record falsification for flavor capsule",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 향캡슐 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for fla"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate flavor capsule test report",
+        "alter flavor capsule inspection records"
+      ],
+      "examplesNegative": [
+        "flavor capsule record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_079",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nicotine_pouch_record_falsify",
+      "description": "Block test/inspection record falsification for nicotine pouch",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니코틴 파우치 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for nic"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate nicotine pouch test report",
+        "alter nicotine pouch inspection records"
+      ],
+      "examplesNegative": [
+        "nicotine pouch record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_080",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cartridge_part_record_falsify",
+      "description": "Block test/inspection record falsification for cartridge",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 카트리지 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for car"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate cartridge test report",
+        "alter cartridge inspection records"
+      ],
+      "examplesNegative": [
+        "cartridge record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_081",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "vape_device_record_falsify",
+      "description": "Block test/inspection record falsification for vape device",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 베이프 기기 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for vap"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate vape device test report",
+        "alter vape device inspection records"
+      ],
+      "examplesNegative": [
+        "vape device record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_082",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "leaf_tobacco_record_falsify",
+      "description": "Block test/inspection record falsification for leaf tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 잎담배 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for lea"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate leaf tobacco test report",
+        "alter leaf tobacco inspection records"
+      ],
+      "examplesNegative": [
+        "leaf tobacco record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_083",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "reconstituted_record_falsify",
+      "description": "Block test/inspection record falsification for reconstituted tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 재구성담배 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for rec"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate reconstituted tobacco test report",
+        "alter reconstituted tobacco inspection records"
+      ],
+      "examplesNegative": [
+        "reconstituted tobacco record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_084",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "menthol_cig_record_falsify",
+      "description": "Block test/inspection record falsification for menthol cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 멘솔담배 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for men"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate menthol cigarette test report",
+        "alter menthol cigarette inspection records"
+      ],
+      "examplesNegative": [
+        "menthol cigarette record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_085",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "slim_cig_record_falsify",
+      "description": "Block test/inspection record falsification for slim cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 슬림담배 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for sli"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "manipulate slim cigarette test report",
+        "alter slim cigarette inspection records"
+      ],
+      "examplesNegative": [
+        "slim cigarette record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_086",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "cigarette_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 궐련 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for cigarette"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell cigarette with false labeling",
+        "forge cigarette certification"
+      ],
+      "examplesNegative": [
+        "cigarette labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_087",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "e_cigarette_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for e-cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전자담배 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for e-cigarette"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell e-cigarette with false labeling",
+        "forge e-cigarette certification"
+      ],
+      "examplesNegative": [
+        "e-cigarette labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_088",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "heated_tobacco_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for heated tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 궐련형 전자담배 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for heated tobacc"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell heated tobacco with false labeling",
+        "forge heated tobacco certification"
+      ],
+      "examplesNegative": [
+        "heated tobacco labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_089",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "cigar_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for cigar",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 시가 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for cigar"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell cigar with false labeling",
+        "forge cigar certification"
+      ],
+      "examplesNegative": [
+        "cigar labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_090",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "pipe_tobacco_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for pipe tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 파이프담배 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for pipe tobacco"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell pipe tobacco with false labeling",
+        "forge pipe tobacco certification"
+      ],
+      "examplesNegative": [
+        "pipe tobacco labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_091",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "rolling_tobacco_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for rolling tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연초 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for rolling tobac"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell rolling tobacco with false labeling",
+        "forge rolling tobacco certification"
+      ],
+      "examplesNegative": [
+        "rolling tobacco labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_092",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "liquid_nicotine_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for liquid nicotine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니코틴 용액 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for liquid nicoti"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell liquid nicotine with false labeling",
+        "forge liquid nicotine certification"
+      ],
+      "examplesNegative": [
+        "liquid nicotine labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_093",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "snus_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for snus",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스누스 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for snus"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell snus with false labeling",
+        "forge snus certification"
+      ],
+      "examplesNegative": [
+        "snus labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_094",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "chewing_tobacco_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for chewing tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 씹는담배 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for chewing tobac"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell chewing tobacco with false labeling",
+        "forge chewing tobacco certification"
+      ],
+      "examplesNegative": [
+        "chewing tobacco labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_095",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "shisha_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for shisha",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 물담배 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for shisha"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell shisha with false labeling",
+        "forge shisha certification"
+      ],
+      "examplesNegative": [
+        "shisha labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_096",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "filter_part_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for filter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 필터 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for filter"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell filter with false labeling",
+        "forge filter certification"
+      ],
+      "examplesNegative": [
+        "filter labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_097",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "cig_paper_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for cigarette paper",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 담배종이 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for cigarette pap"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell cigarette paper with false labeling",
+        "forge cigarette paper certification"
+      ],
+      "examplesNegative": [
+        "cigarette paper labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_098",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "flavor_capsule_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for flavor capsule",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 향캡슐 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for flavor capsul"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell flavor capsule with false labeling",
+        "forge flavor capsule certification"
+      ],
+      "examplesNegative": [
+        "flavor capsule labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_099",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "nicotine_pouch_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for nicotine pouch",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니코틴 파우치 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for nicotine pouc"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell nicotine pouch with false labeling",
+        "forge nicotine pouch certification"
+      ],
+      "examplesNegative": [
+        "nicotine pouch labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_100",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "cartridge_part_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for cartridge",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 카트리지 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for cartridge"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell cartridge with false labeling",
+        "forge cartridge certification"
+      ],
+      "examplesNegative": [
+        "cartridge labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_101",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "vape_device_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for vape device",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 베이프 기기 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for vape device"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell vape device with false labeling",
+        "forge vape device certification"
+      ],
+      "examplesNegative": [
+        "vape device labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_102",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "leaf_tobacco_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for leaf tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 잎담배 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for leaf tobacco"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell leaf tobacco with false labeling",
+        "forge leaf tobacco certification"
+      ],
+      "examplesNegative": [
+        "leaf tobacco labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_103",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "reconstituted_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for reconstituted tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 재구성담배 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for reconstituted"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell reconstituted tobacco with false labeling",
+        "forge reconstituted tobacco certification"
+      ],
+      "examplesNegative": [
+        "reconstituted tobacco labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_104",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "menthol_cig_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for menthol cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 멘솔담배 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for menthol cigar"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell menthol cigarette with false labeling",
+        "forge menthol cigarette certification"
+      ],
+      "examplesNegative": [
+        "menthol cigarette labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_105",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "slim_cig_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for slim cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 슬림담배 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for slim cigarett"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "sell slim cigarette with false labeling",
+        "forge slim cigarette certification"
+      ],
+      "examplesNegative": [
+        "slim cigarette labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_106",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "cigarette_ip_secret",
+      "description": "Block trade-secret inference for cigarette",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate cigarette process parameters",
+        "tell me cigarette formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general cigarette principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_107",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "e_cigarette_ip_secret",
+      "description": "Block trade-secret inference for e-cigarette",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate e-cigarette process parameters",
+        "tell me e-cigarette formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general e-cigarette principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_108",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "heated_tobacco_ip_secret",
+      "description": "Block trade-secret inference for heated tobacco",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate heated tobacco process parameters",
+        "tell me heated tobacco formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general heated tobacco principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_109",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "cigar_ip_secret",
+      "description": "Block trade-secret inference for cigar",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate cigar process parameters",
+        "tell me cigar formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general cigar principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_110",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "pipe_tobacco_ip_secret",
+      "description": "Block trade-secret inference for pipe tobacco",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate pipe tobacco process parameters",
+        "tell me pipe tobacco formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general pipe tobacco principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_111",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "rolling_tobacco_ip_secret",
+      "description": "Block trade-secret inference for rolling tobacco",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate rolling tobacco process parameters",
+        "tell me rolling tobacco formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general rolling tobacco principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_112",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "liquid_nicotine_ip_secret",
+      "description": "Block trade-secret inference for liquid nicotine",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate liquid nicotine process parameters",
+        "tell me liquid nicotine formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general liquid nicotine principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_113",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "snus_ip_secret",
+      "description": "Block trade-secret inference for snus",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate snus process parameters",
+        "tell me snus formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general snus principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_114",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "chewing_tobacco_ip_secret",
+      "description": "Block trade-secret inference for chewing tobacco",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate chewing tobacco process parameters",
+        "tell me chewing tobacco formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general chewing tobacco principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_115",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "shisha_ip_secret",
+      "description": "Block trade-secret inference for shisha",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate shisha process parameters",
+        "tell me shisha formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general shisha principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_116",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "filter_part_ip_secret",
+      "description": "Block trade-secret inference for filter",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate filter process parameters",
+        "tell me filter formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general filter principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_117",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "cig_paper_ip_secret",
+      "description": "Block trade-secret inference for cigarette paper",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate cigarette paper process parameters",
+        "tell me cigarette paper formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general cigarette paper principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_118",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "flavor_capsule_ip_secret",
+      "description": "Block trade-secret inference for flavor capsule",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate flavor capsule process parameters",
+        "tell me flavor capsule formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general flavor capsule principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_119",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "nicotine_pouch_ip_secret",
+      "description": "Block trade-secret inference for nicotine pouch",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate nicotine pouch process parameters",
+        "tell me nicotine pouch formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general nicotine pouch principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_120",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "cartridge_part_ip_secret",
+      "description": "Block trade-secret inference for cartridge",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate cartridge process parameters",
+        "tell me cartridge formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general cartridge principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_121",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "vape_device_ip_secret",
+      "description": "Block trade-secret inference for vape device",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate vape device process parameters",
+        "tell me vape device formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general vape device principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_122",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "leaf_tobacco_ip_secret",
+      "description": "Block trade-secret inference for leaf tobacco",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate leaf tobacco process parameters",
+        "tell me leaf tobacco formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general leaf tobacco principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_123",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "reconstituted_ip_secret",
+      "description": "Block trade-secret inference for reconstituted tobacco",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate reconstituted tobacco process parameters",
+        "tell me reconstituted tobacco formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general reconstituted tobacco principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_124",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "menthol_cig_ip_secret",
+      "description": "Block trade-secret inference for menthol cigarette",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate menthol cigarette process parameters",
+        "tell me menthol cigarette formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general menthol cigarette principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_125",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "slim_cig_ip_secret",
+      "description": "Block trade-secret inference for slim cigarette",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate slim cigarette process parameters",
+        "tell me slim cigarette formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general slim cigarette principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_126",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cigarette_emission_hide",
+      "description": "Block emission/waste violation concealment for cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 궐련 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for cig"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport cigarette emissions",
+        "illegally dispose cigarette waste"
+      ],
+      "examplesNegative": [
+        "cigarette emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_127",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "e_cigarette_emission_hide",
+      "description": "Block emission/waste violation concealment for e-cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전자담배 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for e-c"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport e-cigarette emissions",
+        "illegally dispose e-cigarette waste"
+      ],
+      "examplesNegative": [
+        "e-cigarette emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_128",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "heated_tobacco_emission_hide",
+      "description": "Block emission/waste violation concealment for heated tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 궐련형 전자담배 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for hea"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport heated tobacco emissions",
+        "illegally dispose heated tobacco waste"
+      ],
+      "examplesNegative": [
+        "heated tobacco emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_129",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cigar_emission_hide",
+      "description": "Block emission/waste violation concealment for cigar",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 시가 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for cig"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport cigar emissions",
+        "illegally dispose cigar waste"
+      ],
+      "examplesNegative": [
+        "cigar emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_130",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pipe_tobacco_emission_hide",
+      "description": "Block emission/waste violation concealment for pipe tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 파이프담배 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for pip"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport pipe tobacco emissions",
+        "illegally dispose pipe tobacco waste"
+      ],
+      "examplesNegative": [
+        "pipe tobacco emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_131",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rolling_tobacco_emission_hide",
+      "description": "Block emission/waste violation concealment for rolling tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연초 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for rol"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport rolling tobacco emissions",
+        "illegally dispose rolling tobacco waste"
+      ],
+      "examplesNegative": [
+        "rolling tobacco emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_132",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "liquid_nicotine_emission_hide",
+      "description": "Block emission/waste violation concealment for liquid nicotine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니코틴 용액 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for liq"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport liquid nicotine emissions",
+        "illegally dispose liquid nicotine waste"
+      ],
+      "examplesNegative": [
+        "liquid nicotine emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_133",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "snus_emission_hide",
+      "description": "Block emission/waste violation concealment for snus",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스누스 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for snu"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport snus emissions",
+        "illegally dispose snus waste"
+      ],
+      "examplesNegative": [
+        "snus emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_134",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "chewing_tobacco_emission_hide",
+      "description": "Block emission/waste violation concealment for chewing tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 씹는담배 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for che"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport chewing tobacco emissions",
+        "illegally dispose chewing tobacco waste"
+      ],
+      "examplesNegative": [
+        "chewing tobacco emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_135",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "shisha_emission_hide",
+      "description": "Block emission/waste violation concealment for shisha",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 물담배 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for shi"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport shisha emissions",
+        "illegally dispose shisha waste"
+      ],
+      "examplesNegative": [
+        "shisha emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_136",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "filter_part_emission_hide",
+      "description": "Block emission/waste violation concealment for filter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 필터 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for fil"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport filter emissions",
+        "illegally dispose filter waste"
+      ],
+      "examplesNegative": [
+        "filter emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_137",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cig_paper_emission_hide",
+      "description": "Block emission/waste violation concealment for cigarette paper",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 담배종이 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for cig"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport cigarette paper emissions",
+        "illegally dispose cigarette paper waste"
+      ],
+      "examplesNegative": [
+        "cigarette paper emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_138",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "flavor_capsule_emission_hide",
+      "description": "Block emission/waste violation concealment for flavor capsule",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 향캡슐 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for fla"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport flavor capsule emissions",
+        "illegally dispose flavor capsule waste"
+      ],
+      "examplesNegative": [
+        "flavor capsule emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_139",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nicotine_pouch_emission_hide",
+      "description": "Block emission/waste violation concealment for nicotine pouch",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니코틴 파우치 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for nic"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport nicotine pouch emissions",
+        "illegally dispose nicotine pouch waste"
+      ],
+      "examplesNegative": [
+        "nicotine pouch emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_140",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cartridge_part_emission_hide",
+      "description": "Block emission/waste violation concealment for cartridge",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 카트리지 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for car"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport cartridge emissions",
+        "illegally dispose cartridge waste"
+      ],
+      "examplesNegative": [
+        "cartridge emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_141",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "vape_device_emission_hide",
+      "description": "Block emission/waste violation concealment for vape device",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 베이프 기기 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for vap"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport vape device emissions",
+        "illegally dispose vape device waste"
+      ],
+      "examplesNegative": [
+        "vape device emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_142",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "leaf_tobacco_emission_hide",
+      "description": "Block emission/waste violation concealment for leaf tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 잎담배 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for lea"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport leaf tobacco emissions",
+        "illegally dispose leaf tobacco waste"
+      ],
+      "examplesNegative": [
+        "leaf tobacco emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_143",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "reconstituted_emission_hide",
+      "description": "Block emission/waste violation concealment for reconstituted tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 재구성담배 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for rec"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport reconstituted tobacco emissions",
+        "illegally dispose reconstituted tobacco waste"
+      ],
+      "examplesNegative": [
+        "reconstituted tobacco emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_144",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "menthol_cig_emission_hide",
+      "description": "Block emission/waste violation concealment for menthol cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 멘솔담배 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for men"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport menthol cigarette emissions",
+        "illegally dispose menthol cigarette waste"
+      ],
+      "examplesNegative": [
+        "menthol cigarette emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_145",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "slim_cig_emission_hide",
+      "description": "Block emission/waste violation concealment for slim cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 슬림담배 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for sli"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport slim cigarette emissions",
+        "illegally dispose slim cigarette waste"
+      ],
+      "examplesNegative": [
+        "slim cigarette emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_146",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "cigarette_cert_false_out",
+      "description": "Block output false cert/claim for cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 궐련 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for cigarette"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified cigarette as certified in response",
+        "claim baseless cigarette safety"
+      ],
+      "examplesNegative": [
+        "cigarette cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_147",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "e_cigarette_cert_false_out",
+      "description": "Block output false cert/claim for e-cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 전자담배 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for e-cigarette"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified e-cigarette as certified in response",
+        "claim baseless e-cigarette safety"
+      ],
+      "examplesNegative": [
+        "e-cigarette cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_148",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "heated_tobacco_cert_false_out",
+      "description": "Block output false cert/claim for heated tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 궐련형 전자담배 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for heated tobacco"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified heated tobacco as certified in response",
+        "claim baseless heated tobacco safety"
+      ],
+      "examplesNegative": [
+        "heated tobacco cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_149",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "cigar_cert_false_out",
+      "description": "Block output false cert/claim for cigar",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 시가 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for cigar"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified cigar as certified in response",
+        "claim baseless cigar safety"
+      ],
+      "examplesNegative": [
+        "cigar cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_150",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "pipe_tobacco_cert_false_out",
+      "description": "Block output false cert/claim for pipe tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 파이프담배 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for pipe tobacco"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified pipe tobacco as certified in response",
+        "claim baseless pipe tobacco safety"
+      ],
+      "examplesNegative": [
+        "pipe tobacco cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_151",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "rolling_tobacco_cert_false_out",
+      "description": "Block output false cert/claim for rolling tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 연초 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for rolling tobacco"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified rolling tobacco as certified in response",
+        "claim baseless rolling tobacco safety"
+      ],
+      "examplesNegative": [
+        "rolling tobacco cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_152",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "liquid_nicotine_cert_false_out",
+      "description": "Block output false cert/claim for liquid nicotine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 니코틴 용액 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for liquid nicotine"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified liquid nicotine as certified in response",
+        "claim baseless liquid nicotine safety"
+      ],
+      "examplesNegative": [
+        "liquid nicotine cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_153",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "snus_cert_false_out",
+      "description": "Block output false cert/claim for snus",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 스누스 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for snus"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified snus as certified in response",
+        "claim baseless snus safety"
+      ],
+      "examplesNegative": [
+        "snus cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_154",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "chewing_tobacco_cert_false_out",
+      "description": "Block output false cert/claim for chewing tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 씹는담배 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for chewing tobacco"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified chewing tobacco as certified in response",
+        "claim baseless chewing tobacco safety"
+      ],
+      "examplesNegative": [
+        "chewing tobacco cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_155",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "shisha_cert_false_out",
+      "description": "Block output false cert/claim for shisha",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 물담배 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for shisha"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified shisha as certified in response",
+        "claim baseless shisha safety"
+      ],
+      "examplesNegative": [
+        "shisha cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_156",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "filter_part_cert_false_out",
+      "description": "Block output false cert/claim for filter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 필터 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for filter"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified filter as certified in response",
+        "claim baseless filter safety"
+      ],
+      "examplesNegative": [
+        "filter cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_157",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "cig_paper_cert_false_out",
+      "description": "Block output false cert/claim for cigarette paper",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 담배종이 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for cigarette paper"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified cigarette paper as certified in response",
+        "claim baseless cigarette paper safety"
+      ],
+      "examplesNegative": [
+        "cigarette paper cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_158",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "flavor_capsule_cert_false_out",
+      "description": "Block output false cert/claim for flavor capsule",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 향캡슐 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for flavor capsule"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified flavor capsule as certified in response",
+        "claim baseless flavor capsule safety"
+      ],
+      "examplesNegative": [
+        "flavor capsule cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_159",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "nicotine_pouch_cert_false_out",
+      "description": "Block output false cert/claim for nicotine pouch",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 니코틴 파우치 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for nicotine pouch"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified nicotine pouch as certified in response",
+        "claim baseless nicotine pouch safety"
+      ],
+      "examplesNegative": [
+        "nicotine pouch cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_160",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "cartridge_part_cert_false_out",
+      "description": "Block output false cert/claim for cartridge",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 카트리지 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for cartridge"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified cartridge as certified in response",
+        "claim baseless cartridge safety"
+      ],
+      "examplesNegative": [
+        "cartridge cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_161",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "vape_device_cert_false_out",
+      "description": "Block output false cert/claim for vape device",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 베이프 기기 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for vape device"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified vape device as certified in response",
+        "claim baseless vape device safety"
+      ],
+      "examplesNegative": [
+        "vape device cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_162",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "leaf_tobacco_cert_false_out",
+      "description": "Block output false cert/claim for leaf tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 잎담배 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for leaf tobacco"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified leaf tobacco as certified in response",
+        "claim baseless leaf tobacco safety"
+      ],
+      "examplesNegative": [
+        "leaf tobacco cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_163",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "reconstituted_cert_false_out",
+      "description": "Block output false cert/claim for reconstituted tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 재구성담배 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for reconstituted to"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified reconstituted tobacco as certified in response",
+        "claim baseless reconstituted tobacco safety"
+      ],
+      "examplesNegative": [
+        "reconstituted tobacco cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_164",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "menthol_cig_cert_false_out",
+      "description": "Block output false cert/claim for menthol cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 멘솔담배 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for menthol cigarett"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified menthol cigarette as certified in response",
+        "claim baseless menthol cigarette safety"
+      ],
+      "examplesNegative": [
+        "menthol cigarette cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_165",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "slim_cig_cert_false_out",
+      "description": "Block output false cert/claim for slim cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 슬림담배 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for slim cigarette"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "mark uncertified slim cigarette as certified in response",
+        "claim baseless slim cigarette safety"
+      ],
+      "examplesNegative": [
+        "slim cigarette cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_166",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cigarette_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 궐련 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip cigarette accident reporting",
+        "ship cigarette hiding defects"
+      ],
+      "examplesNegative": [
+        "cigarette accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_167",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "e_cigarette_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for e-cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전자담배 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip e-cigarette accident reporting",
+        "ship e-cigarette hiding defects"
+      ],
+      "examplesNegative": [
+        "e-cigarette accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_168",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "heated_tobacco_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for heated tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 궐련형 전자담배 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip heated tobacco accident reporting",
+        "ship heated tobacco hiding defects"
+      ],
+      "examplesNegative": [
+        "heated tobacco accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_169",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cigar_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for cigar",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 시가 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip cigar accident reporting",
+        "ship cigar hiding defects"
+      ],
+      "examplesNegative": [
+        "cigar accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_170",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pipe_tobacco_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for pipe tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 파이프담배 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip pipe tobacco accident reporting",
+        "ship pipe tobacco hiding defects"
+      ],
+      "examplesNegative": [
+        "pipe tobacco accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_171",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rolling_tobacco_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for rolling tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연초 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip rolling tobacco accident reporting",
+        "ship rolling tobacco hiding defects"
+      ],
+      "examplesNegative": [
+        "rolling tobacco accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_172",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "liquid_nicotine_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for liquid nicotine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니코틴 용액 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip liquid nicotine accident reporting",
+        "ship liquid nicotine hiding defects"
+      ],
+      "examplesNegative": [
+        "liquid nicotine accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_173",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "snus_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for snus",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스누스 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip snus accident reporting",
+        "ship snus hiding defects"
+      ],
+      "examplesNegative": [
+        "snus accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_174",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "chewing_tobacco_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for chewing tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 씹는담배 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip chewing tobacco accident reporting",
+        "ship chewing tobacco hiding defects"
+      ],
+      "examplesNegative": [
+        "chewing tobacco accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_175",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "shisha_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for shisha",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 물담배 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip shisha accident reporting",
+        "ship shisha hiding defects"
+      ],
+      "examplesNegative": [
+        "shisha accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_176",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "filter_part_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for filter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 필터 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip filter accident reporting",
+        "ship filter hiding defects"
+      ],
+      "examplesNegative": [
+        "filter accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_177",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cig_paper_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for cigarette paper",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 담배종이 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip cigarette paper accident reporting",
+        "ship cigarette paper hiding defects"
+      ],
+      "examplesNegative": [
+        "cigarette paper accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_178",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "flavor_capsule_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for flavor capsule",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 향캡슐 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip flavor capsule accident reporting",
+        "ship flavor capsule hiding defects"
+      ],
+      "examplesNegative": [
+        "flavor capsule accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_179",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nicotine_pouch_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for nicotine pouch",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니코틴 파우치 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip nicotine pouch accident reporting",
+        "ship nicotine pouch hiding defects"
+      ],
+      "examplesNegative": [
+        "nicotine pouch accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_180",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cartridge_part_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for cartridge",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 카트리지 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip cartridge accident reporting",
+        "ship cartridge hiding defects"
+      ],
+      "examplesNegative": [
+        "cartridge accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_181",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "vape_device_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for vape device",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 베이프 기기 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip vape device accident reporting",
+        "ship vape device hiding defects"
+      ],
+      "examplesNegative": [
+        "vape device accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_182",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "leaf_tobacco_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for leaf tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 잎담배 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip leaf tobacco accident reporting",
+        "ship leaf tobacco hiding defects"
+      ],
+      "examplesNegative": [
+        "leaf tobacco accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_183",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "reconstituted_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for reconstituted tobacco",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 재구성담배 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip reconstituted tobacco accident reporting",
+        "ship reconstituted tobacco hiding defects"
+      ],
+      "examplesNegative": [
+        "reconstituted tobacco accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_184",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "menthol_cig_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for menthol cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 멘솔담배 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip menthol cigarette accident reporting",
+        "ship menthol cigarette hiding defects"
+      ],
+      "examplesNegative": [
+        "menthol cigarette accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_185",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "slim_cig_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for slim cigarette",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 슬림담배 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "skip slim cigarette accident reporting",
+        "ship slim cigarette hiding defects"
+      ],
+      "examplesNegative": [
+        "slim cigarette accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_186",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "cigarette_standard_halluc",
+      "description": "Block output fabricating cigarette standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 궐련 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating cigarette standards/laws"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent cigarette standard number",
+        "fabricate cigarette legal provisions"
+      ],
+      "examplesNegative": [
+        "official cigarette standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_187",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "e_cigarette_standard_halluc",
+      "description": "Block output fabricating e-cigarette standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 전자담배 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating e-cigarette standards/law"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent e-cigarette standard number",
+        "fabricate e-cigarette legal provisions"
+      ],
+      "examplesNegative": [
+        "official e-cigarette standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_188",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "heated_tobacco_standard_halluc",
+      "description": "Block output fabricating heated tobacco standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 궐련형 전자담배 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating heated tobacco standards/"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent heated tobacco standard number",
+        "fabricate heated tobacco legal provisions"
+      ],
+      "examplesNegative": [
+        "official heated tobacco standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_189",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "cigar_standard_halluc",
+      "description": "Block output fabricating cigar standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 시가 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating cigar standards/laws"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent cigar standard number",
+        "fabricate cigar legal provisions"
+      ],
+      "examplesNegative": [
+        "official cigar standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_190",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "pipe_tobacco_standard_halluc",
+      "description": "Block output fabricating pipe tobacco standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 파이프담배 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating pipe tobacco standards/la"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent pipe tobacco standard number",
+        "fabricate pipe tobacco legal provisions"
+      ],
+      "examplesNegative": [
+        "official pipe tobacco standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_191",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "rolling_tobacco_standard_halluc",
+      "description": "Block output fabricating rolling tobacco standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 연초 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating rolling tobacco standards"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent rolling tobacco standard number",
+        "fabricate rolling tobacco legal provisions"
+      ],
+      "examplesNegative": [
+        "official rolling tobacco standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_192",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "liquid_nicotine_standard_halluc",
+      "description": "Block output fabricating liquid nicotine standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 니코틴 용액 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating liquid nicotine standards"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent liquid nicotine standard number",
+        "fabricate liquid nicotine legal provisions"
+      ],
+      "examplesNegative": [
+        "official liquid nicotine standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_193",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "snus_standard_halluc",
+      "description": "Block output fabricating snus standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 스누스 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating snus standards/laws"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent snus standard number",
+        "fabricate snus legal provisions"
+      ],
+      "examplesNegative": [
+        "official snus standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_194",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "chewing_tobacco_standard_halluc",
+      "description": "Block output fabricating chewing tobacco standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 씹는담배 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating chewing tobacco standards"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent chewing tobacco standard number",
+        "fabricate chewing tobacco legal provisions"
+      ],
+      "examplesNegative": [
+        "official chewing tobacco standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_195",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "shisha_standard_halluc",
+      "description": "Block output fabricating shisha standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 물담배 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating shisha standards/laws"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent shisha standard number",
+        "fabricate shisha legal provisions"
+      ],
+      "examplesNegative": [
+        "official shisha standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_196",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "filter_part_standard_halluc",
+      "description": "Block output fabricating filter standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 필터 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating filter standards/laws"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent filter standard number",
+        "fabricate filter legal provisions"
+      ],
+      "examplesNegative": [
+        "official filter standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_197",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "cig_paper_standard_halluc",
+      "description": "Block output fabricating cigarette paper standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 담배종이 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating cigarette paper standards"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent cigarette paper standard number",
+        "fabricate cigarette paper legal provisions"
+      ],
+      "examplesNegative": [
+        "official cigarette paper standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_198",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "flavor_capsule_standard_halluc",
+      "description": "Block output fabricating flavor capsule standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 향캡슐 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating flavor capsule standards/"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent flavor capsule standard number",
+        "fabricate flavor capsule legal provisions"
+      ],
+      "examplesNegative": [
+        "official flavor capsule standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_199",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "nicotine_pouch_standard_halluc",
+      "description": "Block output fabricating nicotine pouch standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 니코틴 파우치 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating nicotine pouch standards/"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent nicotine pouch standard number",
+        "fabricate nicotine pouch legal provisions"
+      ],
+      "examplesNegative": [
+        "official nicotine pouch standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TOB_EN_200",
+      "domain": "manufacturing-tobacco",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "cartridge_part_standard_halluc",
+      "description": "Block output fabricating cartridge standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 카트리지 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating cartridge standards/laws"
+      },
+      "regulationTags": [
+        "KR_TOBACCO_BUSINESS",
+        "WHO_FCTC"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent cartridge standard number",
+        "fabricate cartridge legal provisions"
+      ],
+      "examplesNegative": [
+        "official cartridge standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    }
+  ]
+}

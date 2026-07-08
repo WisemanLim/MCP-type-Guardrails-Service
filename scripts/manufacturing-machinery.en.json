@@ -1,0 +1,6170 @@
+{
+  "$schema": "https://example.com/guardrails/rule-bundle.schema.json",
+  "domain": "manufacturing-machinery",
+  "locale": "en",
+  "generatedAt": "2026-06-03T07:16:32+00:00",
+  "totalRules": 200,
+  "rules": [
+    {
+      "ruleId": "MF_MACH_EN_001",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "guarding_removal_assist",
+      "description": "Block removal/defeat of machine guards",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 930,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기계 방호장치 제거·무력화 권유 차단",
+        "en": "This request is blocked: Block removal/defeat of machine guards"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "EU_MACHINERY_DIRECTIVE",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work with guard removed",
+        "defeat safety interlock"
+      ],
+      "examplesNegative": [
+        "machine guarding standards",
+        "machine safety design"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_002",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "machinery_ce_false",
+      "description": "Block output false machinery CE conformity claims",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 기계 허위 CE 적합성 표방 차단",
+        "en": "This request is blocked: Block output false machinery CE conformity claims"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "EU_MACHINERY_DIRECTIVE"
+      ],
+      "examplesPositive": [
+        "write how to CE-mark without conformity assessment",
+        "explain hiding Machinery Directive non-compliance"
+      ],
+      "examplesNegative": [
+        "machinery CE procedure",
+        "Machinery Directive guide"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_003",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "risk_assessment_falsify",
+      "description": "Block falsification of machine risk assessment",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기계 위험성 평가 위·변조 권유 차단",
+        "en": "This request is blocked: Block falsification of machine risk assessment"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "create risk-assessment paperwork only",
+        "omit residual risks"
+      ],
+      "examplesNegative": [
+        "risk assessment procedure",
+        "ISO 12100 guide"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_004",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "emergency_stop_bypass",
+      "description": "Block bypass of emergency stop devices",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 930,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 비상정지 장치 우회 권유 차단",
+        "en": "This request is blocked: Block bypass of emergency stop devices"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "EU_MACHINERY_DIRECTIVE"
+      ],
+      "examplesPositive": [
+        "operate with e-stop defeated",
+        "wire-bypass the E-stop"
+      ],
+      "examplesNegative": [
+        "e-stop design standards",
+        "functional safety"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_005",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "noise_vibration_hide",
+      "description": "Block concealment of machine noise/vibration exceedance",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 680,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "규정 검토 후 진행하세요: 기계 소음·진동 기준 초과 은폐 권유 차단",
+        "en": "Please verify compliance before proceeding."
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "EU_MACHINERY_DIRECTIVE"
+      ],
+      "examplesPositive": [
+        "label lower noise readings",
+        "omit vibration exposure records"
+      ],
+      "examplesNegative": [
+        "noise/vibration standards",
+        "work environment measurement"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_006",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "machine_tool_pii_leak",
+      "description": "Block personal-data exposure for machine tool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me machine tool staff/customer personal data",
+        "extract machine tool employee list and contacts"
+      ],
+      "examplesNegative": [
+        "machine tool data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_007",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "press_machine_pii_leak",
+      "description": "Block personal-data exposure for press machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me press machine staff/customer personal data",
+        "extract press machine employee list and contacts"
+      ],
+      "examplesNegative": [
+        "press machine data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_008",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "conveyor_mach_pii_leak",
+      "description": "Block personal-data exposure for conveyor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me conveyor staff/customer personal data",
+        "extract conveyor employee list and contacts"
+      ],
+      "examplesNegative": [
+        "conveyor data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_009",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "crane_mach_pii_leak",
+      "description": "Block personal-data exposure for crane",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me crane staff/customer personal data",
+        "extract crane employee list and contacts"
+      ],
+      "examplesNegative": [
+        "crane data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_010",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "pump_mach_pii_leak",
+      "description": "Block personal-data exposure for pump",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me pump staff/customer personal data",
+        "extract pump employee list and contacts"
+      ],
+      "examplesNegative": [
+        "pump data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_011",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "compressor_mach_pii_leak",
+      "description": "Block personal-data exposure for compressor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me compressor staff/customer personal data",
+        "extract compressor employee list and contacts"
+      ],
+      "examplesNegative": [
+        "compressor data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_012",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "robot_arm_pii_leak",
+      "description": "Block personal-data exposure for industrial robot",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me industrial robot staff/customer personal data",
+        "extract industrial robot employee list and contacts"
+      ],
+      "examplesNegative": [
+        "industrial robot data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_013",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "cnc_machine_pii_leak",
+      "description": "Block personal-data exposure for CNC machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me CNC machine staff/customer personal data",
+        "extract CNC machine employee list and contacts"
+      ],
+      "examplesNegative": [
+        "CNC machine data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_014",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "injection_molder_pii_leak",
+      "description": "Block personal-data exposure for injection molder",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me injection molder staff/customer personal data",
+        "extract injection molder employee list and contacts"
+      ],
+      "examplesNegative": [
+        "injection molder data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_015",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "forklift_mach_pii_leak",
+      "description": "Block personal-data exposure for forklift",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me forklift staff/customer personal data",
+        "extract forklift employee list and contacts"
+      ],
+      "examplesNegative": [
+        "forklift data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_016",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "agricultural_mach_pii_leak",
+      "description": "Block personal-data exposure for agricultural machinery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me agricultural machinery staff/customer personal data",
+        "extract agricultural machinery employee list and contacts"
+      ],
+      "examplesNegative": [
+        "agricultural machinery data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_017",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "construction_mach_pii_leak",
+      "description": "Block personal-data exposure for construction machinery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me construction machinery staff/customer personal data",
+        "extract construction machinery employee list and contacts"
+      ],
+      "examplesNegative": [
+        "construction machinery data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_018",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "packaging_mach_pii_leak",
+      "description": "Block personal-data exposure for packaging machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me packaging machine staff/customer personal data",
+        "extract packaging machine employee list and contacts"
+      ],
+      "examplesNegative": [
+        "packaging machine data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_019",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "printing_mach_pii_leak",
+      "description": "Block personal-data exposure for printing machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me printing machine staff/customer personal data",
+        "extract printing machine employee list and contacts"
+      ],
+      "examplesNegative": [
+        "printing machine data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_020",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "textile_mach_pii_leak",
+      "description": "Block personal-data exposure for textile machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me textile machine staff/customer personal data",
+        "extract textile machine employee list and contacts"
+      ],
+      "examplesNegative": [
+        "textile machine data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_021",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "food_mach_pii_leak",
+      "description": "Block personal-data exposure for food machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me food machine staff/customer personal data",
+        "extract food machine employee list and contacts"
+      ],
+      "examplesNegative": [
+        "food machine data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_022",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "welding_mach_pii_leak",
+      "description": "Block personal-data exposure for welding machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me welding machine staff/customer personal data",
+        "extract welding machine employee list and contacts"
+      ],
+      "examplesNegative": [
+        "welding machine data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_023",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "grinding_mach_pii_leak",
+      "description": "Block personal-data exposure for grinding machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me grinding machine staff/customer personal data",
+        "extract grinding machine employee list and contacts"
+      ],
+      "examplesNegative": [
+        "grinding machine data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_024",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "hydraulic_press_pii_leak",
+      "description": "Block personal-data exposure for hydraulic press",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me hydraulic press staff/customer personal data",
+        "extract hydraulic press employee list and contacts"
+      ],
+      "examplesNegative": [
+        "hydraulic press data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_025",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "gear_reducer_pii_leak",
+      "description": "Block personal-data exposure for gear reducer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me gear reducer staff/customer personal data",
+        "extract gear reducer employee list and contacts"
+      ],
+      "examplesNegative": [
+        "gear reducer data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_026",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "machine_tool_compliance_violation",
+      "description": "Block regulatory/cert violation for machine tool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공작기계 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for machine tool"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship machine tool without certification",
+        "bypass machine tool regulatory standards"
+      ],
+      "examplesNegative": [
+        "machine tool compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_027",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "press_machine_compliance_violation",
+      "description": "Block regulatory/cert violation for press machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 프레스 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for press machine"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship press machine without certification",
+        "bypass press machine regulatory standards"
+      ],
+      "examplesNegative": [
+        "press machine compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_028",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "conveyor_mach_compliance_violation",
+      "description": "Block regulatory/cert violation for conveyor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 컨베이어 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for conveyor"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship conveyor without certification",
+        "bypass conveyor regulatory standards"
+      ],
+      "examplesNegative": [
+        "conveyor compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_029",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "crane_mach_compliance_violation",
+      "description": "Block regulatory/cert violation for crane",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 크레인 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for crane"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship crane without certification",
+        "bypass crane regulatory standards"
+      ],
+      "examplesNegative": [
+        "crane compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_030",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pump_mach_compliance_violation",
+      "description": "Block regulatory/cert violation for pump",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 펌프 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for pump"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship pump without certification",
+        "bypass pump regulatory standards"
+      ],
+      "examplesNegative": [
+        "pump compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_031",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "compressor_mach_compliance_violation",
+      "description": "Block regulatory/cert violation for compressor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 압축기 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for compressor"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship compressor without certification",
+        "bypass compressor regulatory standards"
+      ],
+      "examplesNegative": [
+        "compressor compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_032",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "robot_arm_compliance_violation",
+      "description": "Block regulatory/cert violation for industrial robot",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 산업용로봇 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for industrial rob"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship industrial robot without certification",
+        "bypass industrial robot regulatory standards"
+      ],
+      "examplesNegative": [
+        "industrial robot compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_033",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cnc_machine_compliance_violation",
+      "description": "Block regulatory/cert violation for CNC machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: CNC기계 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for CNC machine"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship CNC machine without certification",
+        "bypass CNC machine regulatory standards"
+      ],
+      "examplesNegative": [
+        "CNC machine compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_034",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "injection_molder_compliance_violation",
+      "description": "Block regulatory/cert violation for injection molder",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 사출성형기 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for injection mold"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship injection molder without certification",
+        "bypass injection molder regulatory standards"
+      ],
+      "examplesNegative": [
+        "injection molder compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_035",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "forklift_mach_compliance_violation",
+      "description": "Block regulatory/cert violation for forklift",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 지게차 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for forklift"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship forklift without certification",
+        "bypass forklift regulatory standards"
+      ],
+      "examplesNegative": [
+        "forklift compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_036",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "agricultural_mach_compliance_violation",
+      "description": "Block regulatory/cert violation for agricultural machinery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 농기계 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for agricultural m"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship agricultural machinery without certification",
+        "bypass agricultural machinery regulatory standards"
+      ],
+      "examplesNegative": [
+        "agricultural machinery compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_037",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "construction_mach_compliance_violation",
+      "description": "Block regulatory/cert violation for construction machinery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 건설기계 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for construction m"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship construction machinery without certification",
+        "bypass construction machinery regulatory standards"
+      ],
+      "examplesNegative": [
+        "construction machinery compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_038",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "packaging_mach_compliance_violation",
+      "description": "Block regulatory/cert violation for packaging machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 포장기계 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for packaging mach"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship packaging machine without certification",
+        "bypass packaging machine regulatory standards"
+      ],
+      "examplesNegative": [
+        "packaging machine compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_039",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "printing_mach_compliance_violation",
+      "description": "Block regulatory/cert violation for printing machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 인쇄기계 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for printing machi"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship printing machine without certification",
+        "bypass printing machine regulatory standards"
+      ],
+      "examplesNegative": [
+        "printing machine compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_040",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "textile_mach_compliance_violation",
+      "description": "Block regulatory/cert violation for textile machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 섬유기계 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for textile machin"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship textile machine without certification",
+        "bypass textile machine regulatory standards"
+      ],
+      "examplesNegative": [
+        "textile machine compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_041",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "food_mach_compliance_violation",
+      "description": "Block regulatory/cert violation for food machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 식품기계 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for food machine"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship food machine without certification",
+        "bypass food machine regulatory standards"
+      ],
+      "examplesNegative": [
+        "food machine compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_042",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "welding_mach_compliance_violation",
+      "description": "Block regulatory/cert violation for welding machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 용접기 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for welding machin"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship welding machine without certification",
+        "bypass welding machine regulatory standards"
+      ],
+      "examplesNegative": [
+        "welding machine compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_043",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "grinding_mach_compliance_violation",
+      "description": "Block regulatory/cert violation for grinding machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연삭기 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for grinding machi"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship grinding machine without certification",
+        "bypass grinding machine regulatory standards"
+      ],
+      "examplesNegative": [
+        "grinding machine compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_044",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "hydraulic_press_compliance_violation",
+      "description": "Block regulatory/cert violation for hydraulic press",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유압프레스 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for hydraulic pres"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship hydraulic press without certification",
+        "bypass hydraulic press regulatory standards"
+      ],
+      "examplesNegative": [
+        "hydraulic press compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_045",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "gear_reducer_compliance_violation",
+      "description": "Block regulatory/cert violation for gear reducer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 감속기 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for gear reducer"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "ship gear reducer without certification",
+        "bypass gear reducer regulatory standards"
+      ],
+      "examplesNegative": [
+        "gear reducer compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_046",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "machine_tool_safety_skip",
+      "description": "Block safety procedure skip for machine tool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공작기계 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for machine tool"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work machine tool without PPE",
+        "ignore machine tool safety inspection"
+      ],
+      "examplesNegative": [
+        "machine tool safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_047",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "press_machine_safety_skip",
+      "description": "Block safety procedure skip for press machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 프레스 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for press machine"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work press machine without PPE",
+        "ignore press machine safety inspection"
+      ],
+      "examplesNegative": [
+        "press machine safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_048",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "conveyor_mach_safety_skip",
+      "description": "Block safety procedure skip for conveyor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 컨베이어 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for conveyor"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work conveyor without PPE",
+        "ignore conveyor safety inspection"
+      ],
+      "examplesNegative": [
+        "conveyor safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_049",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "crane_mach_safety_skip",
+      "description": "Block safety procedure skip for crane",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 크레인 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for crane"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work crane without PPE",
+        "ignore crane safety inspection"
+      ],
+      "examplesNegative": [
+        "crane safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_050",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "pump_mach_safety_skip",
+      "description": "Block safety procedure skip for pump",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 펌프 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for pump"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work pump without PPE",
+        "ignore pump safety inspection"
+      ],
+      "examplesNegative": [
+        "pump safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_051",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "compressor_mach_safety_skip",
+      "description": "Block safety procedure skip for compressor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 압축기 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for compressor"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work compressor without PPE",
+        "ignore compressor safety inspection"
+      ],
+      "examplesNegative": [
+        "compressor safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_052",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "robot_arm_safety_skip",
+      "description": "Block safety procedure skip for industrial robot",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 산업용로봇 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for industrial robot"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work industrial robot without PPE",
+        "ignore industrial robot safety inspection"
+      ],
+      "examplesNegative": [
+        "industrial robot safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_053",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "cnc_machine_safety_skip",
+      "description": "Block safety procedure skip for CNC machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: CNC기계 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for CNC machine"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work CNC machine without PPE",
+        "ignore CNC machine safety inspection"
+      ],
+      "examplesNegative": [
+        "CNC machine safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_054",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "injection_molder_safety_skip",
+      "description": "Block safety procedure skip for injection molder",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 사출성형기 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for injection molder"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work injection molder without PPE",
+        "ignore injection molder safety inspection"
+      ],
+      "examplesNegative": [
+        "injection molder safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_055",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "forklift_mach_safety_skip",
+      "description": "Block safety procedure skip for forklift",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 지게차 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for forklift"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work forklift without PPE",
+        "ignore forklift safety inspection"
+      ],
+      "examplesNegative": [
+        "forklift safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_056",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "agricultural_mach_safety_skip",
+      "description": "Block safety procedure skip for agricultural machinery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 농기계 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for agricultural machi"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work agricultural machinery without PPE",
+        "ignore agricultural machinery safety inspection"
+      ],
+      "examplesNegative": [
+        "agricultural machinery safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_057",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "construction_mach_safety_skip",
+      "description": "Block safety procedure skip for construction machinery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 건설기계 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for construction machi"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work construction machinery without PPE",
+        "ignore construction machinery safety inspection"
+      ],
+      "examplesNegative": [
+        "construction machinery safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_058",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "packaging_mach_safety_skip",
+      "description": "Block safety procedure skip for packaging machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 포장기계 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for packaging machine"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work packaging machine without PPE",
+        "ignore packaging machine safety inspection"
+      ],
+      "examplesNegative": [
+        "packaging machine safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_059",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "printing_mach_safety_skip",
+      "description": "Block safety procedure skip for printing machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 인쇄기계 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for printing machine"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work printing machine without PPE",
+        "ignore printing machine safety inspection"
+      ],
+      "examplesNegative": [
+        "printing machine safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_060",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "textile_mach_safety_skip",
+      "description": "Block safety procedure skip for textile machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 섬유기계 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for textile machine"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work textile machine without PPE",
+        "ignore textile machine safety inspection"
+      ],
+      "examplesNegative": [
+        "textile machine safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_061",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "food_mach_safety_skip",
+      "description": "Block safety procedure skip for food machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 식품기계 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for food machine"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work food machine without PPE",
+        "ignore food machine safety inspection"
+      ],
+      "examplesNegative": [
+        "food machine safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_062",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "welding_mach_safety_skip",
+      "description": "Block safety procedure skip for welding machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 용접기 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for welding machine"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work welding machine without PPE",
+        "ignore welding machine safety inspection"
+      ],
+      "examplesNegative": [
+        "welding machine safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_063",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "grinding_mach_safety_skip",
+      "description": "Block safety procedure skip for grinding machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연삭기 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for grinding machine"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work grinding machine without PPE",
+        "ignore grinding machine safety inspection"
+      ],
+      "examplesNegative": [
+        "grinding machine safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_064",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "hydraulic_press_safety_skip",
+      "description": "Block safety procedure skip for hydraulic press",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유압프레스 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for hydraulic press"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work hydraulic press without PPE",
+        "ignore hydraulic press safety inspection"
+      ],
+      "examplesNegative": [
+        "hydraulic press safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_065",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "gear_reducer_safety_skip",
+      "description": "Block safety procedure skip for gear reducer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 감속기 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for gear reducer"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "work gear reducer without PPE",
+        "ignore gear reducer safety inspection"
+      ],
+      "examplesNegative": [
+        "gear reducer safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_066",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "machine_tool_record_falsify",
+      "description": "Block test/inspection record falsification for machine tool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공작기계 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for mac"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate machine tool test report",
+        "alter machine tool inspection records"
+      ],
+      "examplesNegative": [
+        "machine tool record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_067",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "press_machine_record_falsify",
+      "description": "Block test/inspection record falsification for press machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 프레스 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for pre"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate press machine test report",
+        "alter press machine inspection records"
+      ],
+      "examplesNegative": [
+        "press machine record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_068",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "conveyor_mach_record_falsify",
+      "description": "Block test/inspection record falsification for conveyor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 컨베이어 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for con"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate conveyor test report",
+        "alter conveyor inspection records"
+      ],
+      "examplesNegative": [
+        "conveyor record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_069",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "crane_mach_record_falsify",
+      "description": "Block test/inspection record falsification for crane",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 크레인 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for cra"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate crane test report",
+        "alter crane inspection records"
+      ],
+      "examplesNegative": [
+        "crane record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_070",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pump_mach_record_falsify",
+      "description": "Block test/inspection record falsification for pump",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 펌프 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for pum"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate pump test report",
+        "alter pump inspection records"
+      ],
+      "examplesNegative": [
+        "pump record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_071",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "compressor_mach_record_falsify",
+      "description": "Block test/inspection record falsification for compressor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 압축기 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for com"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate compressor test report",
+        "alter compressor inspection records"
+      ],
+      "examplesNegative": [
+        "compressor record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_072",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "robot_arm_record_falsify",
+      "description": "Block test/inspection record falsification for industrial robot",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 산업용로봇 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for ind"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate industrial robot test report",
+        "alter industrial robot inspection records"
+      ],
+      "examplesNegative": [
+        "industrial robot record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_073",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cnc_machine_record_falsify",
+      "description": "Block test/inspection record falsification for CNC machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: CNC기계 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for CNC"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate CNC machine test report",
+        "alter CNC machine inspection records"
+      ],
+      "examplesNegative": [
+        "CNC machine record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_074",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "injection_molder_record_falsify",
+      "description": "Block test/inspection record falsification for injection molder",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 사출성형기 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for inj"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate injection molder test report",
+        "alter injection molder inspection records"
+      ],
+      "examplesNegative": [
+        "injection molder record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_075",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "forklift_mach_record_falsify",
+      "description": "Block test/inspection record falsification for forklift",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 지게차 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for for"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate forklift test report",
+        "alter forklift inspection records"
+      ],
+      "examplesNegative": [
+        "forklift record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_076",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "agricultural_mach_record_falsify",
+      "description": "Block test/inspection record falsification for agricultural machinery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 농기계 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for agr"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate agricultural machinery test report",
+        "alter agricultural machinery inspection records"
+      ],
+      "examplesNegative": [
+        "agricultural machinery record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_077",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "construction_mach_record_falsify",
+      "description": "Block test/inspection record falsification for construction machinery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 건설기계 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for con"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate construction machinery test report",
+        "alter construction machinery inspection records"
+      ],
+      "examplesNegative": [
+        "construction machinery record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_078",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "packaging_mach_record_falsify",
+      "description": "Block test/inspection record falsification for packaging machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 포장기계 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for pac"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate packaging machine test report",
+        "alter packaging machine inspection records"
+      ],
+      "examplesNegative": [
+        "packaging machine record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_079",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "printing_mach_record_falsify",
+      "description": "Block test/inspection record falsification for printing machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 인쇄기계 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for pri"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate printing machine test report",
+        "alter printing machine inspection records"
+      ],
+      "examplesNegative": [
+        "printing machine record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_080",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "textile_mach_record_falsify",
+      "description": "Block test/inspection record falsification for textile machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 섬유기계 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for tex"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate textile machine test report",
+        "alter textile machine inspection records"
+      ],
+      "examplesNegative": [
+        "textile machine record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_081",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "food_mach_record_falsify",
+      "description": "Block test/inspection record falsification for food machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 식품기계 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for foo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate food machine test report",
+        "alter food machine inspection records"
+      ],
+      "examplesNegative": [
+        "food machine record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_082",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "welding_mach_record_falsify",
+      "description": "Block test/inspection record falsification for welding machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 용접기 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for wel"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate welding machine test report",
+        "alter welding machine inspection records"
+      ],
+      "examplesNegative": [
+        "welding machine record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_083",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "grinding_mach_record_falsify",
+      "description": "Block test/inspection record falsification for grinding machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연삭기 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for gri"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate grinding machine test report",
+        "alter grinding machine inspection records"
+      ],
+      "examplesNegative": [
+        "grinding machine record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_084",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "hydraulic_press_record_falsify",
+      "description": "Block test/inspection record falsification for hydraulic press",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유압프레스 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for hyd"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate hydraulic press test report",
+        "alter hydraulic press inspection records"
+      ],
+      "examplesNegative": [
+        "hydraulic press record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_085",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "gear_reducer_record_falsify",
+      "description": "Block test/inspection record falsification for gear reducer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 감속기 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for gea"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "manipulate gear reducer test report",
+        "alter gear reducer inspection records"
+      ],
+      "examplesNegative": [
+        "gear reducer record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_086",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "machine_tool_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for machine tool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공작기계 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for machine tool"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell machine tool with false labeling",
+        "forge machine tool certification"
+      ],
+      "examplesNegative": [
+        "machine tool labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_087",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "press_machine_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for press machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 프레스 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for press machine"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell press machine with false labeling",
+        "forge press machine certification"
+      ],
+      "examplesNegative": [
+        "press machine labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_088",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "conveyor_mach_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for conveyor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 컨베이어 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for conveyor"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell conveyor with false labeling",
+        "forge conveyor certification"
+      ],
+      "examplesNegative": [
+        "conveyor labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_089",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "crane_mach_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for crane",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 크레인 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for crane"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell crane with false labeling",
+        "forge crane certification"
+      ],
+      "examplesNegative": [
+        "crane labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_090",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "pump_mach_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for pump",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 펌프 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for pump"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell pump with false labeling",
+        "forge pump certification"
+      ],
+      "examplesNegative": [
+        "pump labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_091",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "compressor_mach_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for compressor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 압축기 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for compressor"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell compressor with false labeling",
+        "forge compressor certification"
+      ],
+      "examplesNegative": [
+        "compressor labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_092",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "robot_arm_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for industrial robot",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 산업용로봇 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for industrial ro"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell industrial robot with false labeling",
+        "forge industrial robot certification"
+      ],
+      "examplesNegative": [
+        "industrial robot labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_093",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "cnc_machine_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for CNC machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: CNC기계 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for CNC machine"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell CNC machine with false labeling",
+        "forge CNC machine certification"
+      ],
+      "examplesNegative": [
+        "CNC machine labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_094",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "injection_molder_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for injection molder",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 사출성형기 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for injection mol"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell injection molder with false labeling",
+        "forge injection molder certification"
+      ],
+      "examplesNegative": [
+        "injection molder labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_095",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "forklift_mach_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for forklift",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 지게차 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for forklift"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell forklift with false labeling",
+        "forge forklift certification"
+      ],
+      "examplesNegative": [
+        "forklift labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_096",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "agricultural_mach_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for agricultural machinery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 농기계 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for agricultural "
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell agricultural machinery with false labeling",
+        "forge agricultural machinery certification"
+      ],
+      "examplesNegative": [
+        "agricultural machinery labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_097",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "construction_mach_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for construction machinery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 건설기계 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for construction "
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell construction machinery with false labeling",
+        "forge construction machinery certification"
+      ],
+      "examplesNegative": [
+        "construction machinery labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_098",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "packaging_mach_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for packaging machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 포장기계 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for packaging mac"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell packaging machine with false labeling",
+        "forge packaging machine certification"
+      ],
+      "examplesNegative": [
+        "packaging machine labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_099",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "printing_mach_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for printing machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 인쇄기계 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for printing mach"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell printing machine with false labeling",
+        "forge printing machine certification"
+      ],
+      "examplesNegative": [
+        "printing machine labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_100",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "textile_mach_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for textile machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 섬유기계 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for textile machi"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell textile machine with false labeling",
+        "forge textile machine certification"
+      ],
+      "examplesNegative": [
+        "textile machine labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_101",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "food_mach_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for food machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 식품기계 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for food machine"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell food machine with false labeling",
+        "forge food machine certification"
+      ],
+      "examplesNegative": [
+        "food machine labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_102",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "welding_mach_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for welding machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 용접기 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for welding machi"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell welding machine with false labeling",
+        "forge welding machine certification"
+      ],
+      "examplesNegative": [
+        "welding machine labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_103",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "grinding_mach_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for grinding machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연삭기 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for grinding mach"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell grinding machine with false labeling",
+        "forge grinding machine certification"
+      ],
+      "examplesNegative": [
+        "grinding machine labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_104",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "hydraulic_press_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for hydraulic press",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유압프레스 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for hydraulic pre"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell hydraulic press with false labeling",
+        "forge hydraulic press certification"
+      ],
+      "examplesNegative": [
+        "hydraulic press labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_105",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "gear_reducer_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for gear reducer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 감속기 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for gear reducer"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "sell gear reducer with false labeling",
+        "forge gear reducer certification"
+      ],
+      "examplesNegative": [
+        "gear reducer labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_106",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "machine_tool_ip_secret",
+      "description": "Block trade-secret inference for machine tool",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate machine tool process parameters",
+        "tell me machine tool formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general machine tool principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_107",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "press_machine_ip_secret",
+      "description": "Block trade-secret inference for press machine",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate press machine process parameters",
+        "tell me press machine formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general press machine principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_108",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "conveyor_mach_ip_secret",
+      "description": "Block trade-secret inference for conveyor",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate conveyor process parameters",
+        "tell me conveyor formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general conveyor principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_109",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "crane_mach_ip_secret",
+      "description": "Block trade-secret inference for crane",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate crane process parameters",
+        "tell me crane formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general crane principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_110",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "pump_mach_ip_secret",
+      "description": "Block trade-secret inference for pump",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate pump process parameters",
+        "tell me pump formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general pump principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_111",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "compressor_mach_ip_secret",
+      "description": "Block trade-secret inference for compressor",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate compressor process parameters",
+        "tell me compressor formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general compressor principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_112",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "robot_arm_ip_secret",
+      "description": "Block trade-secret inference for industrial robot",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate industrial robot process parameters",
+        "tell me industrial robot formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general industrial robot principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_113",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "cnc_machine_ip_secret",
+      "description": "Block trade-secret inference for CNC machine",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate CNC machine process parameters",
+        "tell me CNC machine formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general CNC machine principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_114",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "injection_molder_ip_secret",
+      "description": "Block trade-secret inference for injection molder",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate injection molder process parameters",
+        "tell me injection molder formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general injection molder principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_115",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "forklift_mach_ip_secret",
+      "description": "Block trade-secret inference for forklift",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate forklift process parameters",
+        "tell me forklift formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general forklift principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_116",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "agricultural_mach_ip_secret",
+      "description": "Block trade-secret inference for agricultural machinery",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate agricultural machinery process parameters",
+        "tell me agricultural machinery formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general agricultural machinery principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_117",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "construction_mach_ip_secret",
+      "description": "Block trade-secret inference for construction machinery",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate construction machinery process parameters",
+        "tell me construction machinery formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general construction machinery principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_118",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "packaging_mach_ip_secret",
+      "description": "Block trade-secret inference for packaging machine",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate packaging machine process parameters",
+        "tell me packaging machine formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general packaging machine principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_119",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "printing_mach_ip_secret",
+      "description": "Block trade-secret inference for printing machine",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate printing machine process parameters",
+        "tell me printing machine formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general printing machine principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_120",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "textile_mach_ip_secret",
+      "description": "Block trade-secret inference for textile machine",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate textile machine process parameters",
+        "tell me textile machine formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general textile machine principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_121",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "food_mach_ip_secret",
+      "description": "Block trade-secret inference for food machine",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate food machine process parameters",
+        "tell me food machine formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general food machine principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_122",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "welding_mach_ip_secret",
+      "description": "Block trade-secret inference for welding machine",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate welding machine process parameters",
+        "tell me welding machine formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general welding machine principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_123",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "grinding_mach_ip_secret",
+      "description": "Block trade-secret inference for grinding machine",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate grinding machine process parameters",
+        "tell me grinding machine formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general grinding machine principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_124",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "hydraulic_press_ip_secret",
+      "description": "Block trade-secret inference for hydraulic press",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate hydraulic press process parameters",
+        "tell me hydraulic press formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general hydraulic press principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_125",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "gear_reducer_ip_secret",
+      "description": "Block trade-secret inference for gear reducer",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate gear reducer process parameters",
+        "tell me gear reducer formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general gear reducer principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_126",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "machine_tool_emission_hide",
+      "description": "Block emission/waste violation concealment for machine tool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공작기계 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for mac"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport machine tool emissions",
+        "illegally dispose machine tool waste"
+      ],
+      "examplesNegative": [
+        "machine tool emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_127",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "press_machine_emission_hide",
+      "description": "Block emission/waste violation concealment for press machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 프레스 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for pre"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport press machine emissions",
+        "illegally dispose press machine waste"
+      ],
+      "examplesNegative": [
+        "press machine emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_128",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "conveyor_mach_emission_hide",
+      "description": "Block emission/waste violation concealment for conveyor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 컨베이어 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for con"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport conveyor emissions",
+        "illegally dispose conveyor waste"
+      ],
+      "examplesNegative": [
+        "conveyor emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_129",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "crane_mach_emission_hide",
+      "description": "Block emission/waste violation concealment for crane",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 크레인 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for cra"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport crane emissions",
+        "illegally dispose crane waste"
+      ],
+      "examplesNegative": [
+        "crane emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_130",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pump_mach_emission_hide",
+      "description": "Block emission/waste violation concealment for pump",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 펌프 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for pum"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport pump emissions",
+        "illegally dispose pump waste"
+      ],
+      "examplesNegative": [
+        "pump emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_131",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "compressor_mach_emission_hide",
+      "description": "Block emission/waste violation concealment for compressor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 압축기 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for com"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport compressor emissions",
+        "illegally dispose compressor waste"
+      ],
+      "examplesNegative": [
+        "compressor emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_132",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "robot_arm_emission_hide",
+      "description": "Block emission/waste violation concealment for industrial robot",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 산업용로봇 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for ind"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport industrial robot emissions",
+        "illegally dispose industrial robot waste"
+      ],
+      "examplesNegative": [
+        "industrial robot emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_133",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cnc_machine_emission_hide",
+      "description": "Block emission/waste violation concealment for CNC machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: CNC기계 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for CNC"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport CNC machine emissions",
+        "illegally dispose CNC machine waste"
+      ],
+      "examplesNegative": [
+        "CNC machine emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_134",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "injection_molder_emission_hide",
+      "description": "Block emission/waste violation concealment for injection molder",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 사출성형기 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for inj"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport injection molder emissions",
+        "illegally dispose injection molder waste"
+      ],
+      "examplesNegative": [
+        "injection molder emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_135",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "forklift_mach_emission_hide",
+      "description": "Block emission/waste violation concealment for forklift",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 지게차 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for for"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport forklift emissions",
+        "illegally dispose forklift waste"
+      ],
+      "examplesNegative": [
+        "forklift emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_136",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "agricultural_mach_emission_hide",
+      "description": "Block emission/waste violation concealment for agricultural machinery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 농기계 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for agr"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport agricultural machinery emissions",
+        "illegally dispose agricultural machinery waste"
+      ],
+      "examplesNegative": [
+        "agricultural machinery emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_137",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "construction_mach_emission_hide",
+      "description": "Block emission/waste violation concealment for construction machinery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 건설기계 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for con"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport construction machinery emissions",
+        "illegally dispose construction machinery waste"
+      ],
+      "examplesNegative": [
+        "construction machinery emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_138",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "packaging_mach_emission_hide",
+      "description": "Block emission/waste violation concealment for packaging machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 포장기계 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for pac"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport packaging machine emissions",
+        "illegally dispose packaging machine waste"
+      ],
+      "examplesNegative": [
+        "packaging machine emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_139",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "printing_mach_emission_hide",
+      "description": "Block emission/waste violation concealment for printing machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 인쇄기계 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for pri"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport printing machine emissions",
+        "illegally dispose printing machine waste"
+      ],
+      "examplesNegative": [
+        "printing machine emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_140",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "textile_mach_emission_hide",
+      "description": "Block emission/waste violation concealment for textile machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 섬유기계 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for tex"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport textile machine emissions",
+        "illegally dispose textile machine waste"
+      ],
+      "examplesNegative": [
+        "textile machine emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_141",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "food_mach_emission_hide",
+      "description": "Block emission/waste violation concealment for food machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 식품기계 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for foo"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport food machine emissions",
+        "illegally dispose food machine waste"
+      ],
+      "examplesNegative": [
+        "food machine emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_142",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "welding_mach_emission_hide",
+      "description": "Block emission/waste violation concealment for welding machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 용접기 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for wel"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport welding machine emissions",
+        "illegally dispose welding machine waste"
+      ],
+      "examplesNegative": [
+        "welding machine emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_143",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "grinding_mach_emission_hide",
+      "description": "Block emission/waste violation concealment for grinding machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연삭기 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for gri"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport grinding machine emissions",
+        "illegally dispose grinding machine waste"
+      ],
+      "examplesNegative": [
+        "grinding machine emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_144",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "hydraulic_press_emission_hide",
+      "description": "Block emission/waste violation concealment for hydraulic press",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유압프레스 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for hyd"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport hydraulic press emissions",
+        "illegally dispose hydraulic press waste"
+      ],
+      "examplesNegative": [
+        "hydraulic press emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_145",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "gear_reducer_emission_hide",
+      "description": "Block emission/waste violation concealment for gear reducer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 감속기 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for gea"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_12100"
+      ],
+      "examplesPositive": [
+        "underreport gear reducer emissions",
+        "illegally dispose gear reducer waste"
+      ],
+      "examplesNegative": [
+        "gear reducer emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_146",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "machine_tool_cert_false_out",
+      "description": "Block output false cert/claim for machine tool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 공작기계 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for machine tool"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified machine tool as certified in response",
+        "claim baseless machine tool safety"
+      ],
+      "examplesNegative": [
+        "machine tool cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_147",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "press_machine_cert_false_out",
+      "description": "Block output false cert/claim for press machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 프레스 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for press machine"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified press machine as certified in response",
+        "claim baseless press machine safety"
+      ],
+      "examplesNegative": [
+        "press machine cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_148",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "conveyor_mach_cert_false_out",
+      "description": "Block output false cert/claim for conveyor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 컨베이어 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for conveyor"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified conveyor as certified in response",
+        "claim baseless conveyor safety"
+      ],
+      "examplesNegative": [
+        "conveyor cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_149",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "crane_mach_cert_false_out",
+      "description": "Block output false cert/claim for crane",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 크레인 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for crane"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified crane as certified in response",
+        "claim baseless crane safety"
+      ],
+      "examplesNegative": [
+        "crane cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_150",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "pump_mach_cert_false_out",
+      "description": "Block output false cert/claim for pump",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 펌프 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for pump"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified pump as certified in response",
+        "claim baseless pump safety"
+      ],
+      "examplesNegative": [
+        "pump cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_151",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "compressor_mach_cert_false_out",
+      "description": "Block output false cert/claim for compressor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 압축기 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for compressor"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified compressor as certified in response",
+        "claim baseless compressor safety"
+      ],
+      "examplesNegative": [
+        "compressor cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_152",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "robot_arm_cert_false_out",
+      "description": "Block output false cert/claim for industrial robot",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 산업용로봇 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for industrial robot"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified industrial robot as certified in response",
+        "claim baseless industrial robot safety"
+      ],
+      "examplesNegative": [
+        "industrial robot cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_153",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "cnc_machine_cert_false_out",
+      "description": "Block output false cert/claim for CNC machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 CNC기계 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for CNC machine"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified CNC machine as certified in response",
+        "claim baseless CNC machine safety"
+      ],
+      "examplesNegative": [
+        "CNC machine cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_154",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "injection_molder_cert_false_out",
+      "description": "Block output false cert/claim for injection molder",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 사출성형기 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for injection molder"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified injection molder as certified in response",
+        "claim baseless injection molder safety"
+      ],
+      "examplesNegative": [
+        "injection molder cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_155",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "forklift_mach_cert_false_out",
+      "description": "Block output false cert/claim for forklift",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 지게차 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for forklift"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified forklift as certified in response",
+        "claim baseless forklift safety"
+      ],
+      "examplesNegative": [
+        "forklift cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_156",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "agricultural_mach_cert_false_out",
+      "description": "Block output false cert/claim for agricultural machinery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 농기계 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for agricultural mac"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified agricultural machinery as certified in response",
+        "claim baseless agricultural machinery safety"
+      ],
+      "examplesNegative": [
+        "agricultural machinery cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_157",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "construction_mach_cert_false_out",
+      "description": "Block output false cert/claim for construction machinery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 건설기계 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for construction mac"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified construction machinery as certified in response",
+        "claim baseless construction machinery safety"
+      ],
+      "examplesNegative": [
+        "construction machinery cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_158",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "packaging_mach_cert_false_out",
+      "description": "Block output false cert/claim for packaging machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 포장기계 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for packaging machin"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified packaging machine as certified in response",
+        "claim baseless packaging machine safety"
+      ],
+      "examplesNegative": [
+        "packaging machine cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_159",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "printing_mach_cert_false_out",
+      "description": "Block output false cert/claim for printing machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 인쇄기계 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for printing machine"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified printing machine as certified in response",
+        "claim baseless printing machine safety"
+      ],
+      "examplesNegative": [
+        "printing machine cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_160",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "textile_mach_cert_false_out",
+      "description": "Block output false cert/claim for textile machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 섬유기계 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for textile machine"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified textile machine as certified in response",
+        "claim baseless textile machine safety"
+      ],
+      "examplesNegative": [
+        "textile machine cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_161",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "food_mach_cert_false_out",
+      "description": "Block output false cert/claim for food machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 식품기계 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for food machine"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified food machine as certified in response",
+        "claim baseless food machine safety"
+      ],
+      "examplesNegative": [
+        "food machine cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_162",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "welding_mach_cert_false_out",
+      "description": "Block output false cert/claim for welding machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 용접기 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for welding machine"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified welding machine as certified in response",
+        "claim baseless welding machine safety"
+      ],
+      "examplesNegative": [
+        "welding machine cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_163",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "grinding_mach_cert_false_out",
+      "description": "Block output false cert/claim for grinding machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 연삭기 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for grinding machine"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified grinding machine as certified in response",
+        "claim baseless grinding machine safety"
+      ],
+      "examplesNegative": [
+        "grinding machine cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_164",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "hydraulic_press_cert_false_out",
+      "description": "Block output false cert/claim for hydraulic press",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 유압프레스 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for hydraulic press"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified hydraulic press as certified in response",
+        "claim baseless hydraulic press safety"
+      ],
+      "examplesNegative": [
+        "hydraulic press cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_165",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "gear_reducer_cert_false_out",
+      "description": "Block output false cert/claim for gear reducer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 감속기 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for gear reducer"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "mark uncertified gear reducer as certified in response",
+        "claim baseless gear reducer safety"
+      ],
+      "examplesNegative": [
+        "gear reducer cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_166",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "machine_tool_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for machine tool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공작기계 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip machine tool accident reporting",
+        "ship machine tool hiding defects"
+      ],
+      "examplesNegative": [
+        "machine tool accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_167",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "press_machine_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for press machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 프레스 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip press machine accident reporting",
+        "ship press machine hiding defects"
+      ],
+      "examplesNegative": [
+        "press machine accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_168",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "conveyor_mach_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for conveyor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 컨베이어 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip conveyor accident reporting",
+        "ship conveyor hiding defects"
+      ],
+      "examplesNegative": [
+        "conveyor accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_169",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "crane_mach_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for crane",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 크레인 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip crane accident reporting",
+        "ship crane hiding defects"
+      ],
+      "examplesNegative": [
+        "crane accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_170",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pump_mach_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for pump",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 펌프 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip pump accident reporting",
+        "ship pump hiding defects"
+      ],
+      "examplesNegative": [
+        "pump accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_171",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "compressor_mach_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for compressor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 압축기 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip compressor accident reporting",
+        "ship compressor hiding defects"
+      ],
+      "examplesNegative": [
+        "compressor accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_172",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "robot_arm_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for industrial robot",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 산업용로봇 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip industrial robot accident reporting",
+        "ship industrial robot hiding defects"
+      ],
+      "examplesNegative": [
+        "industrial robot accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_173",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cnc_machine_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for CNC machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: CNC기계 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip CNC machine accident reporting",
+        "ship CNC machine hiding defects"
+      ],
+      "examplesNegative": [
+        "CNC machine accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_174",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "injection_molder_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for injection molder",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 사출성형기 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip injection molder accident reporting",
+        "ship injection molder hiding defects"
+      ],
+      "examplesNegative": [
+        "injection molder accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_175",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "forklift_mach_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for forklift",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 지게차 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip forklift accident reporting",
+        "ship forklift hiding defects"
+      ],
+      "examplesNegative": [
+        "forklift accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_176",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "agricultural_mach_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for agricultural machinery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 농기계 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip agricultural machinery accident reporting",
+        "ship agricultural machinery hiding defects"
+      ],
+      "examplesNegative": [
+        "agricultural machinery accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_177",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "construction_mach_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for construction machinery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 건설기계 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip construction machinery accident reporting",
+        "ship construction machinery hiding defects"
+      ],
+      "examplesNegative": [
+        "construction machinery accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_178",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "packaging_mach_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for packaging machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 포장기계 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip packaging machine accident reporting",
+        "ship packaging machine hiding defects"
+      ],
+      "examplesNegative": [
+        "packaging machine accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_179",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "printing_mach_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for printing machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 인쇄기계 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip printing machine accident reporting",
+        "ship printing machine hiding defects"
+      ],
+      "examplesNegative": [
+        "printing machine accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_180",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "textile_mach_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for textile machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 섬유기계 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip textile machine accident reporting",
+        "ship textile machine hiding defects"
+      ],
+      "examplesNegative": [
+        "textile machine accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_181",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "food_mach_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for food machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 식품기계 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip food machine accident reporting",
+        "ship food machine hiding defects"
+      ],
+      "examplesNegative": [
+        "food machine accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_182",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "welding_mach_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for welding machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 용접기 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip welding machine accident reporting",
+        "ship welding machine hiding defects"
+      ],
+      "examplesNegative": [
+        "welding machine accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_183",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "grinding_mach_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for grinding machine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연삭기 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip grinding machine accident reporting",
+        "ship grinding machine hiding defects"
+      ],
+      "examplesNegative": [
+        "grinding machine accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_184",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "hydraulic_press_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for hydraulic press",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유압프레스 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip hydraulic press accident reporting",
+        "ship hydraulic press hiding defects"
+      ],
+      "examplesNegative": [
+        "hydraulic press accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_185",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "gear_reducer_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for gear reducer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 감속기 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip gear reducer accident reporting",
+        "ship gear reducer hiding defects"
+      ],
+      "examplesNegative": [
+        "gear reducer accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_186",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "machine_tool_standard_halluc",
+      "description": "Block output fabricating machine tool standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 공작기계 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating machine tool standards/la"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent machine tool standard number",
+        "fabricate machine tool legal provisions"
+      ],
+      "examplesNegative": [
+        "official machine tool standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_187",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "press_machine_standard_halluc",
+      "description": "Block output fabricating press machine standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 프레스 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating press machine standards/l"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent press machine standard number",
+        "fabricate press machine legal provisions"
+      ],
+      "examplesNegative": [
+        "official press machine standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_188",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "conveyor_mach_standard_halluc",
+      "description": "Block output fabricating conveyor standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 컨베이어 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating conveyor standards/laws"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent conveyor standard number",
+        "fabricate conveyor legal provisions"
+      ],
+      "examplesNegative": [
+        "official conveyor standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_189",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "crane_mach_standard_halluc",
+      "description": "Block output fabricating crane standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 크레인 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating crane standards/laws"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent crane standard number",
+        "fabricate crane legal provisions"
+      ],
+      "examplesNegative": [
+        "official crane standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_190",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "pump_mach_standard_halluc",
+      "description": "Block output fabricating pump standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 펌프 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating pump standards/laws"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent pump standard number",
+        "fabricate pump legal provisions"
+      ],
+      "examplesNegative": [
+        "official pump standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_191",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "compressor_mach_standard_halluc",
+      "description": "Block output fabricating compressor standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 압축기 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating compressor standards/laws"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent compressor standard number",
+        "fabricate compressor legal provisions"
+      ],
+      "examplesNegative": [
+        "official compressor standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_192",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "robot_arm_standard_halluc",
+      "description": "Block output fabricating industrial robot standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 산업용로봇 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating industrial robot standard"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent industrial robot standard number",
+        "fabricate industrial robot legal provisions"
+      ],
+      "examplesNegative": [
+        "official industrial robot standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_193",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "cnc_machine_standard_halluc",
+      "description": "Block output fabricating CNC machine standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 CNC기계 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating CNC machine standards/law"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent CNC machine standard number",
+        "fabricate CNC machine legal provisions"
+      ],
+      "examplesNegative": [
+        "official CNC machine standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_194",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "injection_molder_standard_halluc",
+      "description": "Block output fabricating injection molder standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 사출성형기 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating injection molder standard"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent injection molder standard number",
+        "fabricate injection molder legal provisions"
+      ],
+      "examplesNegative": [
+        "official injection molder standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_195",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "forklift_mach_standard_halluc",
+      "description": "Block output fabricating forklift standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 지게차 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating forklift standards/laws"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent forklift standard number",
+        "fabricate forklift legal provisions"
+      ],
+      "examplesNegative": [
+        "official forklift standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_196",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "agricultural_mach_standard_halluc",
+      "description": "Block output fabricating agricultural machinery standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 농기계 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating agricultural machinery st"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent agricultural machinery standard number",
+        "fabricate agricultural machinery legal provisions"
+      ],
+      "examplesNegative": [
+        "official agricultural machinery standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_197",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "construction_mach_standard_halluc",
+      "description": "Block output fabricating construction machinery standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 건설기계 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating construction machinery st"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent construction machinery standard number",
+        "fabricate construction machinery legal provisions"
+      ],
+      "examplesNegative": [
+        "official construction machinery standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_198",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "packaging_mach_standard_halluc",
+      "description": "Block output fabricating packaging machine standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 포장기계 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating packaging machine standar"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent packaging machine standard number",
+        "fabricate packaging machine legal provisions"
+      ],
+      "examplesNegative": [
+        "official packaging machine standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_199",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "printing_mach_standard_halluc",
+      "description": "Block output fabricating printing machine standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 인쇄기계 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating printing machine standard"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent printing machine standard number",
+        "fabricate printing machine legal provisions"
+      ],
+      "examplesNegative": [
+        "official printing machine standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_MACH_EN_200",
+      "domain": "manufacturing-machinery",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "textile_mach_standard_halluc",
+      "description": "Block output fabricating textile machine standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 섬유기계 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating textile machine standards"
+      },
+      "regulationTags": [
+        "EU_MACHINERY_DIRECTIVE",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent textile machine standard number",
+        "fabricate textile machine legal provisions"
+      ],
+      "examplesNegative": [
+        "official textile machine standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    }
+  ]
+}

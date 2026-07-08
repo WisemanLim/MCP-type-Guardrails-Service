@@ -1,0 +1,6169 @@
+{
+  "$schema": "https://example.com/guardrails/rule-bundle.schema.json",
+  "domain": "manufacturing-other-transport",
+  "locale": "en",
+  "generatedAt": "2026-06-03T07:16:32+00:00",
+  "totalRules": 200,
+  "rules": [
+    {
+      "ruleId": "MF_OTRANS_EN_001",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "aircraft_maintenance_skip",
+      "description": "Block skipping aircraft maintenance/airworthiness",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공기 정비·감항 절차 생략 권유 차단",
+        "en": "This request is blocked: Block skipping aircraft maintenance/airworthiness"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "operate skipping airworthiness check",
+        "manipulate maintenance records"
+      ],
+      "examplesNegative": [
+        "aircraft maintenance standards",
+        "airworthiness certification"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_002",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "hull_inspection_falsify",
+      "description": "Block falsification of ship hull inspection",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 930,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선박 선체 검사 위·변조 권유 차단",
+        "en": "This request is blocked: Block falsification of ship hull inspection"
+      },
+      "regulationTags": [
+        "KR_SHIP_SAFETY",
+        "IMO_SOLAS"
+      ],
+      "examplesPositive": [
+        "manipulate hull inspection",
+        "skip seaworthiness survey"
+      ],
+      "examplesNegative": [
+        "ship inspection standards",
+        "SOLAS guide"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_003",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "certification_bypass",
+      "description": "Block bypass of transport equipment type/safety certification",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 운송장비 형식·안전 인증 우회 권유 차단",
+        "en": "This request is blocked: Block bypass of transport equipment type/safety ce"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "build without type certification",
+        "bypass safety certification"
+      ],
+      "examplesNegative": [
+        "type certification procedure",
+        "safety cert standards"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_004",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "defect_concealment_transport",
+      "description": "Block concealment of transport equipment safety defects",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 940,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 운송장비 안전 결함 은폐 권유 차단",
+        "en": "This request is blocked: Block concealment of transport equipment safety de"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip part defect reporting",
+        "hide defect causing accident"
+      ],
+      "examplesNegative": [
+        "defect reporting procedure",
+        "recall/corrective criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_005",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "design_drawing_secret",
+      "description": "Block aircraft/ship design drawing/BOM trade-secret inference",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "tell me airframe structural drawings",
+        "estimate ship propulsion BOM"
+      ],
+      "examplesNegative": [
+        "general aerospace/marine design",
+        "structural design basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_006",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "aircraft_pii_leak",
+      "description": "Block personal-data exposure for aircraft",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me aircraft staff/customer personal data",
+        "extract aircraft employee list and contacts"
+      ],
+      "examplesNegative": [
+        "aircraft data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_007",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "helicopter_pii_leak",
+      "description": "Block personal-data exposure for helicopter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me helicopter staff/customer personal data",
+        "extract helicopter employee list and contacts"
+      ],
+      "examplesNegative": [
+        "helicopter data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_008",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "drone_uav_pii_leak",
+      "description": "Block personal-data exposure for UAV/drone",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me UAV/drone staff/customer personal data",
+        "extract UAV/drone employee list and contacts"
+      ],
+      "examplesNegative": [
+        "UAV/drone data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_009",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "ship_vessel_pii_leak",
+      "description": "Block personal-data exposure for ship",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me ship staff/customer personal data",
+        "extract ship employee list and contacts"
+      ],
+      "examplesNegative": [
+        "ship data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_010",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "submarine_pii_leak",
+      "description": "Block personal-data exposure for submarine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me submarine staff/customer personal data",
+        "extract submarine employee list and contacts"
+      ],
+      "examplesNegative": [
+        "submarine data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_011",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "yacht_boat_pii_leak",
+      "description": "Block personal-data exposure for yacht/boat",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me yacht/boat staff/customer personal data",
+        "extract yacht/boat employee list and contacts"
+      ],
+      "examplesNegative": [
+        "yacht/boat data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_012",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "rail_vehicle_pii_leak",
+      "description": "Block personal-data exposure for rail vehicle",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me rail vehicle staff/customer personal data",
+        "extract rail vehicle employee list and contacts"
+      ],
+      "examplesNegative": [
+        "rail vehicle data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_013",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "locomotive_pii_leak",
+      "description": "Block personal-data exposure for locomotive",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me locomotive staff/customer personal data",
+        "extract locomotive employee list and contacts"
+      ],
+      "examplesNegative": [
+        "locomotive data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_014",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "aircraft_engine_pii_leak",
+      "description": "Block personal-data exposure for aircraft engine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me aircraft engine staff/customer personal data",
+        "extract aircraft engine employee list and contacts"
+      ],
+      "examplesNegative": [
+        "aircraft engine data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_015",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "marine_engine_pii_leak",
+      "description": "Block personal-data exposure for marine engine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me marine engine staff/customer personal data",
+        "extract marine engine employee list and contacts"
+      ],
+      "examplesNegative": [
+        "marine engine data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_016",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "propeller_pii_leak",
+      "description": "Block personal-data exposure for propeller",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me propeller staff/customer personal data",
+        "extract propeller employee list and contacts"
+      ],
+      "examplesNegative": [
+        "propeller data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_017",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "landing_gear_pii_leak",
+      "description": "Block personal-data exposure for landing gear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me landing gear staff/customer personal data",
+        "extract landing gear employee list and contacts"
+      ],
+      "examplesNegative": [
+        "landing gear data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_018",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "avionics_pii_leak",
+      "description": "Block personal-data exposure for avionics",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me avionics staff/customer personal data",
+        "extract avionics employee list and contacts"
+      ],
+      "examplesNegative": [
+        "avionics data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_019",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "ship_hull_pii_leak",
+      "description": "Block personal-data exposure for ship hull",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me ship hull staff/customer personal data",
+        "extract ship hull employee list and contacts"
+      ],
+      "examplesNegative": [
+        "ship hull data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_020",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "rail_bogie_pii_leak",
+      "description": "Block personal-data exposure for rail bogie",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me rail bogie staff/customer personal data",
+        "extract rail bogie employee list and contacts"
+      ],
+      "examplesNegative": [
+        "rail bogie data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_021",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "ballast_tank_pii_leak",
+      "description": "Block personal-data exposure for ballast tank",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me ballast tank staff/customer personal data",
+        "extract ballast tank employee list and contacts"
+      ],
+      "examplesNegative": [
+        "ballast tank data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_022",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "flight_control_pii_leak",
+      "description": "Block personal-data exposure for flight control",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me flight control staff/customer personal data",
+        "extract flight control employee list and contacts"
+      ],
+      "examplesNegative": [
+        "flight control data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_023",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "navigation_eq_pii_leak",
+      "description": "Block personal-data exposure for navigation equipment",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me navigation equipment staff/customer personal data",
+        "extract navigation equipment employee list and contacts"
+      ],
+      "examplesNegative": [
+        "navigation equipment data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_024",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "lifeboat_pii_leak",
+      "description": "Block personal-data exposure for lifeboat",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me lifeboat staff/customer personal data",
+        "extract lifeboat employee list and contacts"
+      ],
+      "examplesNegative": [
+        "lifeboat data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_025",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "cargo_container_pii_leak",
+      "description": "Block personal-data exposure for cargo container",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me cargo container staff/customer personal data",
+        "extract cargo container employee list and contacts"
+      ],
+      "examplesNegative": [
+        "cargo container data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_026",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "aircraft_compliance_violation",
+      "description": "Block regulatory/cert violation for aircraft",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공기 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for aircraft"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship aircraft without certification",
+        "bypass aircraft regulatory standards"
+      ],
+      "examplesNegative": [
+        "aircraft compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_027",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "helicopter_compliance_violation",
+      "description": "Block regulatory/cert violation for helicopter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 헬리콥터 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for helicopter"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship helicopter without certification",
+        "bypass helicopter regulatory standards"
+      ],
+      "examplesNegative": [
+        "helicopter compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_028",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "drone_uav_compliance_violation",
+      "description": "Block regulatory/cert violation for UAV/drone",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무인기 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for UAV/drone"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship UAV/drone without certification",
+        "bypass UAV/drone regulatory standards"
+      ],
+      "examplesNegative": [
+        "UAV/drone compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_029",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ship_vessel_compliance_violation",
+      "description": "Block regulatory/cert violation for ship",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선박 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for ship"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship ship without certification",
+        "bypass ship regulatory standards"
+      ],
+      "examplesNegative": [
+        "ship compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_030",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "submarine_compliance_violation",
+      "description": "Block regulatory/cert violation for submarine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 잠수함 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for submarine"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship submarine without certification",
+        "bypass submarine regulatory standards"
+      ],
+      "examplesNegative": [
+        "submarine compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_031",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "yacht_boat_compliance_violation",
+      "description": "Block regulatory/cert violation for yacht/boat",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 요트·보트 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for yacht/boat"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship yacht/boat without certification",
+        "bypass yacht/boat regulatory standards"
+      ],
+      "examplesNegative": [
+        "yacht/boat compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_032",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rail_vehicle_compliance_violation",
+      "description": "Block regulatory/cert violation for rail vehicle",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 철도차량 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for rail vehicle"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship rail vehicle without certification",
+        "bypass rail vehicle regulatory standards"
+      ],
+      "examplesNegative": [
+        "rail vehicle compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_033",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "locomotive_compliance_violation",
+      "description": "Block regulatory/cert violation for locomotive",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기관차 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for locomotive"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship locomotive without certification",
+        "bypass locomotive regulatory standards"
+      ],
+      "examplesNegative": [
+        "locomotive compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_034",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "aircraft_engine_compliance_violation",
+      "description": "Block regulatory/cert violation for aircraft engine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공엔진 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for aircraft engin"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship aircraft engine without certification",
+        "bypass aircraft engine regulatory standards"
+      ],
+      "examplesNegative": [
+        "aircraft engine compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_035",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "marine_engine_compliance_violation",
+      "description": "Block regulatory/cert violation for marine engine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선박엔진 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for marine engine"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship marine engine without certification",
+        "bypass marine engine regulatory standards"
+      ],
+      "examplesNegative": [
+        "marine engine compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_036",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "propeller_compliance_violation",
+      "description": "Block regulatory/cert violation for propeller",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 프로펠러 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for propeller"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship propeller without certification",
+        "bypass propeller regulatory standards"
+      ],
+      "examplesNegative": [
+        "propeller compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_037",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "landing_gear_compliance_violation",
+      "description": "Block regulatory/cert violation for landing gear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 착륙장치 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for landing gear"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship landing gear without certification",
+        "bypass landing gear regulatory standards"
+      ],
+      "examplesNegative": [
+        "landing gear compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_038",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "avionics_compliance_violation",
+      "description": "Block regulatory/cert violation for avionics",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공전자 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for avionics"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship avionics without certification",
+        "bypass avionics regulatory standards"
+      ],
+      "examplesNegative": [
+        "avionics compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_039",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ship_hull_compliance_violation",
+      "description": "Block regulatory/cert violation for ship hull",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선체 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for ship hull"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship ship hull without certification",
+        "bypass ship hull regulatory standards"
+      ],
+      "examplesNegative": [
+        "ship hull compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_040",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rail_bogie_compliance_violation",
+      "description": "Block regulatory/cert violation for rail bogie",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 대차 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for rail bogie"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship rail bogie without certification",
+        "bypass rail bogie regulatory standards"
+      ],
+      "examplesNegative": [
+        "rail bogie compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_041",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ballast_tank_compliance_violation",
+      "description": "Block regulatory/cert violation for ballast tank",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 평형수탱크 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for ballast tank"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship ballast tank without certification",
+        "bypass ballast tank regulatory standards"
+      ],
+      "examplesNegative": [
+        "ballast tank compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_042",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "flight_control_compliance_violation",
+      "description": "Block regulatory/cert violation for flight control",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 비행제어장치 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for flight control"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship flight control without certification",
+        "bypass flight control regulatory standards"
+      ],
+      "examplesNegative": [
+        "flight control compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_043",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "navigation_eq_compliance_violation",
+      "description": "Block regulatory/cert violation for navigation equipment",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항법장비 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for navigation equ"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship navigation equipment without certification",
+        "bypass navigation equipment regulatory standards"
+      ],
+      "examplesNegative": [
+        "navigation equipment compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_044",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "lifeboat_compliance_violation",
+      "description": "Block regulatory/cert violation for lifeboat",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 구명정 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for lifeboat"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship lifeboat without certification",
+        "bypass lifeboat regulatory standards"
+      ],
+      "examplesNegative": [
+        "lifeboat compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_045",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cargo_container_compliance_violation",
+      "description": "Block regulatory/cert violation for cargo container",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 화물컨테이너 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for cargo containe"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "ship cargo container without certification",
+        "bypass cargo container regulatory standards"
+      ],
+      "examplesNegative": [
+        "cargo container compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_046",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "aircraft_safety_skip",
+      "description": "Block safety procedure skip for aircraft",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공기 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for aircraft"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work aircraft without PPE",
+        "ignore aircraft safety inspection"
+      ],
+      "examplesNegative": [
+        "aircraft safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_047",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "helicopter_safety_skip",
+      "description": "Block safety procedure skip for helicopter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 헬리콥터 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for helicopter"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work helicopter without PPE",
+        "ignore helicopter safety inspection"
+      ],
+      "examplesNegative": [
+        "helicopter safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_048",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "drone_uav_safety_skip",
+      "description": "Block safety procedure skip for UAV/drone",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무인기 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for UAV/drone"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work UAV/drone without PPE",
+        "ignore UAV/drone safety inspection"
+      ],
+      "examplesNegative": [
+        "UAV/drone safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_049",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "ship_vessel_safety_skip",
+      "description": "Block safety procedure skip for ship",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선박 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for ship"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work ship without PPE",
+        "ignore ship safety inspection"
+      ],
+      "examplesNegative": [
+        "ship safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_050",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "submarine_safety_skip",
+      "description": "Block safety procedure skip for submarine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 잠수함 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for submarine"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work submarine without PPE",
+        "ignore submarine safety inspection"
+      ],
+      "examplesNegative": [
+        "submarine safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_051",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "yacht_boat_safety_skip",
+      "description": "Block safety procedure skip for yacht/boat",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 요트·보트 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for yacht/boat"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work yacht/boat without PPE",
+        "ignore yacht/boat safety inspection"
+      ],
+      "examplesNegative": [
+        "yacht/boat safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_052",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "rail_vehicle_safety_skip",
+      "description": "Block safety procedure skip for rail vehicle",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 철도차량 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for rail vehicle"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work rail vehicle without PPE",
+        "ignore rail vehicle safety inspection"
+      ],
+      "examplesNegative": [
+        "rail vehicle safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_053",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "locomotive_safety_skip",
+      "description": "Block safety procedure skip for locomotive",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기관차 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for locomotive"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work locomotive without PPE",
+        "ignore locomotive safety inspection"
+      ],
+      "examplesNegative": [
+        "locomotive safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_054",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "aircraft_engine_safety_skip",
+      "description": "Block safety procedure skip for aircraft engine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공엔진 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for aircraft engine"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work aircraft engine without PPE",
+        "ignore aircraft engine safety inspection"
+      ],
+      "examplesNegative": [
+        "aircraft engine safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_055",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "marine_engine_safety_skip",
+      "description": "Block safety procedure skip for marine engine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선박엔진 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for marine engine"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work marine engine without PPE",
+        "ignore marine engine safety inspection"
+      ],
+      "examplesNegative": [
+        "marine engine safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_056",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "propeller_safety_skip",
+      "description": "Block safety procedure skip for propeller",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 프로펠러 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for propeller"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work propeller without PPE",
+        "ignore propeller safety inspection"
+      ],
+      "examplesNegative": [
+        "propeller safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_057",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "landing_gear_safety_skip",
+      "description": "Block safety procedure skip for landing gear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 착륙장치 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for landing gear"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work landing gear without PPE",
+        "ignore landing gear safety inspection"
+      ],
+      "examplesNegative": [
+        "landing gear safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_058",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "avionics_safety_skip",
+      "description": "Block safety procedure skip for avionics",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공전자 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for avionics"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work avionics without PPE",
+        "ignore avionics safety inspection"
+      ],
+      "examplesNegative": [
+        "avionics safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_059",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "ship_hull_safety_skip",
+      "description": "Block safety procedure skip for ship hull",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선체 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for ship hull"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work ship hull without PPE",
+        "ignore ship hull safety inspection"
+      ],
+      "examplesNegative": [
+        "ship hull safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_060",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "rail_bogie_safety_skip",
+      "description": "Block safety procedure skip for rail bogie",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 대차 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for rail bogie"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work rail bogie without PPE",
+        "ignore rail bogie safety inspection"
+      ],
+      "examplesNegative": [
+        "rail bogie safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_061",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "ballast_tank_safety_skip",
+      "description": "Block safety procedure skip for ballast tank",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 평형수탱크 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for ballast tank"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work ballast tank without PPE",
+        "ignore ballast tank safety inspection"
+      ],
+      "examplesNegative": [
+        "ballast tank safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_062",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "flight_control_safety_skip",
+      "description": "Block safety procedure skip for flight control",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 비행제어장치 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for flight control"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work flight control without PPE",
+        "ignore flight control safety inspection"
+      ],
+      "examplesNegative": [
+        "flight control safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_063",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "navigation_eq_safety_skip",
+      "description": "Block safety procedure skip for navigation equipment",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항법장비 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for navigation equipme"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work navigation equipment without PPE",
+        "ignore navigation equipment safety inspection"
+      ],
+      "examplesNegative": [
+        "navigation equipment safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_064",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "lifeboat_safety_skip",
+      "description": "Block safety procedure skip for lifeboat",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 구명정 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for lifeboat"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work lifeboat without PPE",
+        "ignore lifeboat safety inspection"
+      ],
+      "examplesNegative": [
+        "lifeboat safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_065",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "cargo_container_safety_skip",
+      "description": "Block safety procedure skip for cargo container",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 화물컨테이너 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for cargo container"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "work cargo container without PPE",
+        "ignore cargo container safety inspection"
+      ],
+      "examplesNegative": [
+        "cargo container safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_066",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "aircraft_record_falsify",
+      "description": "Block test/inspection record falsification for aircraft",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공기 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for air"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate aircraft test report",
+        "alter aircraft inspection records"
+      ],
+      "examplesNegative": [
+        "aircraft record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_067",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "helicopter_record_falsify",
+      "description": "Block test/inspection record falsification for helicopter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 헬리콥터 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for hel"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate helicopter test report",
+        "alter helicopter inspection records"
+      ],
+      "examplesNegative": [
+        "helicopter record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_068",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "drone_uav_record_falsify",
+      "description": "Block test/inspection record falsification for UAV/drone",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무인기 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for UAV"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate UAV/drone test report",
+        "alter UAV/drone inspection records"
+      ],
+      "examplesNegative": [
+        "UAV/drone record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_069",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ship_vessel_record_falsify",
+      "description": "Block test/inspection record falsification for ship",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선박 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for shi"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate ship test report",
+        "alter ship inspection records"
+      ],
+      "examplesNegative": [
+        "ship record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_070",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "submarine_record_falsify",
+      "description": "Block test/inspection record falsification for submarine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 잠수함 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for sub"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate submarine test report",
+        "alter submarine inspection records"
+      ],
+      "examplesNegative": [
+        "submarine record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_071",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "yacht_boat_record_falsify",
+      "description": "Block test/inspection record falsification for yacht/boat",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 요트·보트 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for yac"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate yacht/boat test report",
+        "alter yacht/boat inspection records"
+      ],
+      "examplesNegative": [
+        "yacht/boat record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_072",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rail_vehicle_record_falsify",
+      "description": "Block test/inspection record falsification for rail vehicle",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 철도차량 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for rai"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate rail vehicle test report",
+        "alter rail vehicle inspection records"
+      ],
+      "examplesNegative": [
+        "rail vehicle record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_073",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "locomotive_record_falsify",
+      "description": "Block test/inspection record falsification for locomotive",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기관차 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for loc"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate locomotive test report",
+        "alter locomotive inspection records"
+      ],
+      "examplesNegative": [
+        "locomotive record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_074",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "aircraft_engine_record_falsify",
+      "description": "Block test/inspection record falsification for aircraft engine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공엔진 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for air"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate aircraft engine test report",
+        "alter aircraft engine inspection records"
+      ],
+      "examplesNegative": [
+        "aircraft engine record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_075",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "marine_engine_record_falsify",
+      "description": "Block test/inspection record falsification for marine engine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선박엔진 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for mar"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate marine engine test report",
+        "alter marine engine inspection records"
+      ],
+      "examplesNegative": [
+        "marine engine record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_076",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "propeller_record_falsify",
+      "description": "Block test/inspection record falsification for propeller",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 프로펠러 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for pro"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate propeller test report",
+        "alter propeller inspection records"
+      ],
+      "examplesNegative": [
+        "propeller record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_077",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "landing_gear_record_falsify",
+      "description": "Block test/inspection record falsification for landing gear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 착륙장치 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for lan"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate landing gear test report",
+        "alter landing gear inspection records"
+      ],
+      "examplesNegative": [
+        "landing gear record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_078",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "avionics_record_falsify",
+      "description": "Block test/inspection record falsification for avionics",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공전자 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for avi"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate avionics test report",
+        "alter avionics inspection records"
+      ],
+      "examplesNegative": [
+        "avionics record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_079",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ship_hull_record_falsify",
+      "description": "Block test/inspection record falsification for ship hull",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선체 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for shi"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate ship hull test report",
+        "alter ship hull inspection records"
+      ],
+      "examplesNegative": [
+        "ship hull record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_080",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rail_bogie_record_falsify",
+      "description": "Block test/inspection record falsification for rail bogie",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 대차 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for rai"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate rail bogie test report",
+        "alter rail bogie inspection records"
+      ],
+      "examplesNegative": [
+        "rail bogie record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_081",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ballast_tank_record_falsify",
+      "description": "Block test/inspection record falsification for ballast tank",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 평형수탱크 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for bal"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate ballast tank test report",
+        "alter ballast tank inspection records"
+      ],
+      "examplesNegative": [
+        "ballast tank record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_082",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "flight_control_record_falsify",
+      "description": "Block test/inspection record falsification for flight control",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 비행제어장치 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for fli"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate flight control test report",
+        "alter flight control inspection records"
+      ],
+      "examplesNegative": [
+        "flight control record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_083",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "navigation_eq_record_falsify",
+      "description": "Block test/inspection record falsification for navigation equipment",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항법장비 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for nav"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate navigation equipment test report",
+        "alter navigation equipment inspection records"
+      ],
+      "examplesNegative": [
+        "navigation equipment record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_084",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "lifeboat_record_falsify",
+      "description": "Block test/inspection record falsification for lifeboat",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 구명정 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for lif"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate lifeboat test report",
+        "alter lifeboat inspection records"
+      ],
+      "examplesNegative": [
+        "lifeboat record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_085",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cargo_container_record_falsify",
+      "description": "Block test/inspection record falsification for cargo container",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 화물컨테이너 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for car"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "manipulate cargo container test report",
+        "alter cargo container inspection records"
+      ],
+      "examplesNegative": [
+        "cargo container record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_086",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "aircraft_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for aircraft",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공기 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for aircraft"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell aircraft with false labeling",
+        "forge aircraft certification"
+      ],
+      "examplesNegative": [
+        "aircraft labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_087",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "helicopter_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for helicopter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 헬리콥터 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for helicopter"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell helicopter with false labeling",
+        "forge helicopter certification"
+      ],
+      "examplesNegative": [
+        "helicopter labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_088",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "drone_uav_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for UAV/drone",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무인기 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for UAV/drone"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell UAV/drone with false labeling",
+        "forge UAV/drone certification"
+      ],
+      "examplesNegative": [
+        "UAV/drone labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_089",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "ship_vessel_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for ship",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선박 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for ship"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell ship with false labeling",
+        "forge ship certification"
+      ],
+      "examplesNegative": [
+        "ship labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_090",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "submarine_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for submarine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 잠수함 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for submarine"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell submarine with false labeling",
+        "forge submarine certification"
+      ],
+      "examplesNegative": [
+        "submarine labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_091",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "yacht_boat_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for yacht/boat",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 요트·보트 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for yacht/boat"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell yacht/boat with false labeling",
+        "forge yacht/boat certification"
+      ],
+      "examplesNegative": [
+        "yacht/boat labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_092",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "rail_vehicle_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for rail vehicle",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 철도차량 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for rail vehicle"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell rail vehicle with false labeling",
+        "forge rail vehicle certification"
+      ],
+      "examplesNegative": [
+        "rail vehicle labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_093",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "locomotive_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for locomotive",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기관차 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for locomotive"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell locomotive with false labeling",
+        "forge locomotive certification"
+      ],
+      "examplesNegative": [
+        "locomotive labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_094",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "aircraft_engine_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for aircraft engine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공엔진 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for aircraft engi"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell aircraft engine with false labeling",
+        "forge aircraft engine certification"
+      ],
+      "examplesNegative": [
+        "aircraft engine labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_095",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "marine_engine_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for marine engine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선박엔진 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for marine engine"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell marine engine with false labeling",
+        "forge marine engine certification"
+      ],
+      "examplesNegative": [
+        "marine engine labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_096",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "propeller_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for propeller",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 프로펠러 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for propeller"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell propeller with false labeling",
+        "forge propeller certification"
+      ],
+      "examplesNegative": [
+        "propeller labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_097",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "landing_gear_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for landing gear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 착륙장치 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for landing gear"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell landing gear with false labeling",
+        "forge landing gear certification"
+      ],
+      "examplesNegative": [
+        "landing gear labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_098",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "avionics_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for avionics",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공전자 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for avionics"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell avionics with false labeling",
+        "forge avionics certification"
+      ],
+      "examplesNegative": [
+        "avionics labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_099",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "ship_hull_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for ship hull",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선체 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for ship hull"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell ship hull with false labeling",
+        "forge ship hull certification"
+      ],
+      "examplesNegative": [
+        "ship hull labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_100",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "rail_bogie_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for rail bogie",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 대차 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for rail bogie"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell rail bogie with false labeling",
+        "forge rail bogie certification"
+      ],
+      "examplesNegative": [
+        "rail bogie labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_101",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "ballast_tank_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for ballast tank",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 평형수탱크 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for ballast tank"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell ballast tank with false labeling",
+        "forge ballast tank certification"
+      ],
+      "examplesNegative": [
+        "ballast tank labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_102",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "flight_control_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for flight control",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 비행제어장치 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for flight contro"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell flight control with false labeling",
+        "forge flight control certification"
+      ],
+      "examplesNegative": [
+        "flight control labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_103",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "navigation_eq_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for navigation equipment",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항법장비 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for navigation eq"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell navigation equipment with false labeling",
+        "forge navigation equipment certification"
+      ],
+      "examplesNegative": [
+        "navigation equipment labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_104",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "lifeboat_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for lifeboat",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 구명정 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for lifeboat"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell lifeboat with false labeling",
+        "forge lifeboat certification"
+      ],
+      "examplesNegative": [
+        "lifeboat labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_105",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "cargo_container_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for cargo container",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 화물컨테이너 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for cargo contain"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "UNECE"
+      ],
+      "examplesPositive": [
+        "sell cargo container with false labeling",
+        "forge cargo container certification"
+      ],
+      "examplesNegative": [
+        "cargo container labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_106",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "aircraft_ip_secret",
+      "description": "Block trade-secret inference for aircraft",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate aircraft process parameters",
+        "tell me aircraft formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general aircraft principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_107",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "helicopter_ip_secret",
+      "description": "Block trade-secret inference for helicopter",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate helicopter process parameters",
+        "tell me helicopter formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general helicopter principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_108",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "drone_uav_ip_secret",
+      "description": "Block trade-secret inference for UAV/drone",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate UAV/drone process parameters",
+        "tell me UAV/drone formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general UAV/drone principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_109",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "ship_vessel_ip_secret",
+      "description": "Block trade-secret inference for ship",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate ship process parameters",
+        "tell me ship formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general ship principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_110",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "submarine_ip_secret",
+      "description": "Block trade-secret inference for submarine",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate submarine process parameters",
+        "tell me submarine formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general submarine principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_111",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "yacht_boat_ip_secret",
+      "description": "Block trade-secret inference for yacht/boat",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate yacht/boat process parameters",
+        "tell me yacht/boat formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general yacht/boat principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_112",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "rail_vehicle_ip_secret",
+      "description": "Block trade-secret inference for rail vehicle",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate rail vehicle process parameters",
+        "tell me rail vehicle formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general rail vehicle principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_113",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "locomotive_ip_secret",
+      "description": "Block trade-secret inference for locomotive",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate locomotive process parameters",
+        "tell me locomotive formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general locomotive principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_114",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "aircraft_engine_ip_secret",
+      "description": "Block trade-secret inference for aircraft engine",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate aircraft engine process parameters",
+        "tell me aircraft engine formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general aircraft engine principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_115",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "marine_engine_ip_secret",
+      "description": "Block trade-secret inference for marine engine",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate marine engine process parameters",
+        "tell me marine engine formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general marine engine principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_116",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "propeller_ip_secret",
+      "description": "Block trade-secret inference for propeller",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate propeller process parameters",
+        "tell me propeller formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general propeller principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_117",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "landing_gear_ip_secret",
+      "description": "Block trade-secret inference for landing gear",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate landing gear process parameters",
+        "tell me landing gear formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general landing gear principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_118",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "avionics_ip_secret",
+      "description": "Block trade-secret inference for avionics",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate avionics process parameters",
+        "tell me avionics formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general avionics principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_119",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "ship_hull_ip_secret",
+      "description": "Block trade-secret inference for ship hull",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate ship hull process parameters",
+        "tell me ship hull formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general ship hull principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_120",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "rail_bogie_ip_secret",
+      "description": "Block trade-secret inference for rail bogie",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate rail bogie process parameters",
+        "tell me rail bogie formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general rail bogie principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_121",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "ballast_tank_ip_secret",
+      "description": "Block trade-secret inference for ballast tank",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate ballast tank process parameters",
+        "tell me ballast tank formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general ballast tank principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_122",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "flight_control_ip_secret",
+      "description": "Block trade-secret inference for flight control",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate flight control process parameters",
+        "tell me flight control formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general flight control principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_123",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "navigation_eq_ip_secret",
+      "description": "Block trade-secret inference for navigation equipment",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate navigation equipment process parameters",
+        "tell me navigation equipment formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general navigation equipment principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_124",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "lifeboat_ip_secret",
+      "description": "Block trade-secret inference for lifeboat",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate lifeboat process parameters",
+        "tell me lifeboat formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general lifeboat principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_125",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "cargo_container_ip_secret",
+      "description": "Block trade-secret inference for cargo container",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate cargo container process parameters",
+        "tell me cargo container formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general cargo container principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_126",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "aircraft_emission_hide",
+      "description": "Block emission/waste violation concealment for aircraft",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공기 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for air"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport aircraft emissions",
+        "illegally dispose aircraft waste"
+      ],
+      "examplesNegative": [
+        "aircraft emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_127",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "helicopter_emission_hide",
+      "description": "Block emission/waste violation concealment for helicopter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 헬리콥터 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for hel"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport helicopter emissions",
+        "illegally dispose helicopter waste"
+      ],
+      "examplesNegative": [
+        "helicopter emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_128",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "drone_uav_emission_hide",
+      "description": "Block emission/waste violation concealment for UAV/drone",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무인기 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for UAV"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport UAV/drone emissions",
+        "illegally dispose UAV/drone waste"
+      ],
+      "examplesNegative": [
+        "UAV/drone emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_129",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ship_vessel_emission_hide",
+      "description": "Block emission/waste violation concealment for ship",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선박 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for shi"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport ship emissions",
+        "illegally dispose ship waste"
+      ],
+      "examplesNegative": [
+        "ship emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_130",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "submarine_emission_hide",
+      "description": "Block emission/waste violation concealment for submarine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 잠수함 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for sub"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport submarine emissions",
+        "illegally dispose submarine waste"
+      ],
+      "examplesNegative": [
+        "submarine emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_131",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "yacht_boat_emission_hide",
+      "description": "Block emission/waste violation concealment for yacht/boat",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 요트·보트 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for yac"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport yacht/boat emissions",
+        "illegally dispose yacht/boat waste"
+      ],
+      "examplesNegative": [
+        "yacht/boat emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_132",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rail_vehicle_emission_hide",
+      "description": "Block emission/waste violation concealment for rail vehicle",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 철도차량 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for rai"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport rail vehicle emissions",
+        "illegally dispose rail vehicle waste"
+      ],
+      "examplesNegative": [
+        "rail vehicle emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_133",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "locomotive_emission_hide",
+      "description": "Block emission/waste violation concealment for locomotive",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기관차 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for loc"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport locomotive emissions",
+        "illegally dispose locomotive waste"
+      ],
+      "examplesNegative": [
+        "locomotive emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_134",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "aircraft_engine_emission_hide",
+      "description": "Block emission/waste violation concealment for aircraft engine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공엔진 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for air"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport aircraft engine emissions",
+        "illegally dispose aircraft engine waste"
+      ],
+      "examplesNegative": [
+        "aircraft engine emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_135",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "marine_engine_emission_hide",
+      "description": "Block emission/waste violation concealment for marine engine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선박엔진 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for mar"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport marine engine emissions",
+        "illegally dispose marine engine waste"
+      ],
+      "examplesNegative": [
+        "marine engine emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_136",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "propeller_emission_hide",
+      "description": "Block emission/waste violation concealment for propeller",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 프로펠러 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for pro"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport propeller emissions",
+        "illegally dispose propeller waste"
+      ],
+      "examplesNegative": [
+        "propeller emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_137",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "landing_gear_emission_hide",
+      "description": "Block emission/waste violation concealment for landing gear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 착륙장치 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for lan"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport landing gear emissions",
+        "illegally dispose landing gear waste"
+      ],
+      "examplesNegative": [
+        "landing gear emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_138",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "avionics_emission_hide",
+      "description": "Block emission/waste violation concealment for avionics",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공전자 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for avi"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport avionics emissions",
+        "illegally dispose avionics waste"
+      ],
+      "examplesNegative": [
+        "avionics emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_139",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ship_hull_emission_hide",
+      "description": "Block emission/waste violation concealment for ship hull",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선체 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for shi"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport ship hull emissions",
+        "illegally dispose ship hull waste"
+      ],
+      "examplesNegative": [
+        "ship hull emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_140",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rail_bogie_emission_hide",
+      "description": "Block emission/waste violation concealment for rail bogie",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 대차 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for rai"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport rail bogie emissions",
+        "illegally dispose rail bogie waste"
+      ],
+      "examplesNegative": [
+        "rail bogie emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_141",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ballast_tank_emission_hide",
+      "description": "Block emission/waste violation concealment for ballast tank",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 평형수탱크 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for bal"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport ballast tank emissions",
+        "illegally dispose ballast tank waste"
+      ],
+      "examplesNegative": [
+        "ballast tank emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_142",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "flight_control_emission_hide",
+      "description": "Block emission/waste violation concealment for flight control",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 비행제어장치 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for fli"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport flight control emissions",
+        "illegally dispose flight control waste"
+      ],
+      "examplesNegative": [
+        "flight control emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_143",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "navigation_eq_emission_hide",
+      "description": "Block emission/waste violation concealment for navigation equipment",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항법장비 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for nav"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport navigation equipment emissions",
+        "illegally dispose navigation equipment waste"
+      ],
+      "examplesNegative": [
+        "navigation equipment emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_144",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "lifeboat_emission_hide",
+      "description": "Block emission/waste violation concealment for lifeboat",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 구명정 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for lif"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport lifeboat emissions",
+        "illegally dispose lifeboat waste"
+      ],
+      "examplesNegative": [
+        "lifeboat emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_145",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cargo_container_emission_hide",
+      "description": "Block emission/waste violation concealment for cargo container",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 화물컨테이너 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for car"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "FAA_14CFR"
+      ],
+      "examplesPositive": [
+        "underreport cargo container emissions",
+        "illegally dispose cargo container waste"
+      ],
+      "examplesNegative": [
+        "cargo container emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_146",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "aircraft_cert_false_out",
+      "description": "Block output false cert/claim for aircraft",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 항공기 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for aircraft"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified aircraft as certified in response",
+        "claim baseless aircraft safety"
+      ],
+      "examplesNegative": [
+        "aircraft cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_147",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "helicopter_cert_false_out",
+      "description": "Block output false cert/claim for helicopter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 헬리콥터 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for helicopter"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified helicopter as certified in response",
+        "claim baseless helicopter safety"
+      ],
+      "examplesNegative": [
+        "helicopter cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_148",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "drone_uav_cert_false_out",
+      "description": "Block output false cert/claim for UAV/drone",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 무인기 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for UAV/drone"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified UAV/drone as certified in response",
+        "claim baseless UAV/drone safety"
+      ],
+      "examplesNegative": [
+        "UAV/drone cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_149",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "ship_vessel_cert_false_out",
+      "description": "Block output false cert/claim for ship",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 선박 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for ship"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified ship as certified in response",
+        "claim baseless ship safety"
+      ],
+      "examplesNegative": [
+        "ship cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_150",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "submarine_cert_false_out",
+      "description": "Block output false cert/claim for submarine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 잠수함 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for submarine"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified submarine as certified in response",
+        "claim baseless submarine safety"
+      ],
+      "examplesNegative": [
+        "submarine cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_151",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "yacht_boat_cert_false_out",
+      "description": "Block output false cert/claim for yacht/boat",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 요트·보트 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for yacht/boat"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified yacht/boat as certified in response",
+        "claim baseless yacht/boat safety"
+      ],
+      "examplesNegative": [
+        "yacht/boat cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_152",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "rail_vehicle_cert_false_out",
+      "description": "Block output false cert/claim for rail vehicle",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 철도차량 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for rail vehicle"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified rail vehicle as certified in response",
+        "claim baseless rail vehicle safety"
+      ],
+      "examplesNegative": [
+        "rail vehicle cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_153",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "locomotive_cert_false_out",
+      "description": "Block output false cert/claim for locomotive",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 기관차 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for locomotive"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified locomotive as certified in response",
+        "claim baseless locomotive safety"
+      ],
+      "examplesNegative": [
+        "locomotive cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_154",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "aircraft_engine_cert_false_out",
+      "description": "Block output false cert/claim for aircraft engine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 항공엔진 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for aircraft engine"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified aircraft engine as certified in response",
+        "claim baseless aircraft engine safety"
+      ],
+      "examplesNegative": [
+        "aircraft engine cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_155",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "marine_engine_cert_false_out",
+      "description": "Block output false cert/claim for marine engine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 선박엔진 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for marine engine"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified marine engine as certified in response",
+        "claim baseless marine engine safety"
+      ],
+      "examplesNegative": [
+        "marine engine cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_156",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "propeller_cert_false_out",
+      "description": "Block output false cert/claim for propeller",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 프로펠러 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for propeller"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified propeller as certified in response",
+        "claim baseless propeller safety"
+      ],
+      "examplesNegative": [
+        "propeller cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_157",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "landing_gear_cert_false_out",
+      "description": "Block output false cert/claim for landing gear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 착륙장치 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for landing gear"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified landing gear as certified in response",
+        "claim baseless landing gear safety"
+      ],
+      "examplesNegative": [
+        "landing gear cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_158",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "avionics_cert_false_out",
+      "description": "Block output false cert/claim for avionics",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 항공전자 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for avionics"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified avionics as certified in response",
+        "claim baseless avionics safety"
+      ],
+      "examplesNegative": [
+        "avionics cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_159",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "ship_hull_cert_false_out",
+      "description": "Block output false cert/claim for ship hull",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 선체 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for ship hull"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified ship hull as certified in response",
+        "claim baseless ship hull safety"
+      ],
+      "examplesNegative": [
+        "ship hull cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_160",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "rail_bogie_cert_false_out",
+      "description": "Block output false cert/claim for rail bogie",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 대차 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for rail bogie"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified rail bogie as certified in response",
+        "claim baseless rail bogie safety"
+      ],
+      "examplesNegative": [
+        "rail bogie cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_161",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "ballast_tank_cert_false_out",
+      "description": "Block output false cert/claim for ballast tank",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 평형수탱크 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for ballast tank"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified ballast tank as certified in response",
+        "claim baseless ballast tank safety"
+      ],
+      "examplesNegative": [
+        "ballast tank cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_162",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "flight_control_cert_false_out",
+      "description": "Block output false cert/claim for flight control",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 비행제어장치 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for flight control"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified flight control as certified in response",
+        "claim baseless flight control safety"
+      ],
+      "examplesNegative": [
+        "flight control cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_163",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "navigation_eq_cert_false_out",
+      "description": "Block output false cert/claim for navigation equipment",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 항법장비 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for navigation equip"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified navigation equipment as certified in response",
+        "claim baseless navigation equipment safety"
+      ],
+      "examplesNegative": [
+        "navigation equipment cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_164",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "lifeboat_cert_false_out",
+      "description": "Block output false cert/claim for lifeboat",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 구명정 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for lifeboat"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified lifeboat as certified in response",
+        "claim baseless lifeboat safety"
+      ],
+      "examplesNegative": [
+        "lifeboat cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_165",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "cargo_container_cert_false_out",
+      "description": "Block output false cert/claim for cargo container",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 화물컨테이너 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for cargo container"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "mark uncertified cargo container as certified in response",
+        "claim baseless cargo container safety"
+      ],
+      "examplesNegative": [
+        "cargo container cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_166",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "aircraft_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for aircraft",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공기 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip aircraft accident reporting",
+        "ship aircraft hiding defects"
+      ],
+      "examplesNegative": [
+        "aircraft accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_167",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "helicopter_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for helicopter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 헬리콥터 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip helicopter accident reporting",
+        "ship helicopter hiding defects"
+      ],
+      "examplesNegative": [
+        "helicopter accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_168",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "drone_uav_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for UAV/drone",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무인기 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip UAV/drone accident reporting",
+        "ship UAV/drone hiding defects"
+      ],
+      "examplesNegative": [
+        "UAV/drone accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_169",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ship_vessel_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for ship",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선박 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip ship accident reporting",
+        "ship ship hiding defects"
+      ],
+      "examplesNegative": [
+        "ship accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_170",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "submarine_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for submarine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 잠수함 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip submarine accident reporting",
+        "ship submarine hiding defects"
+      ],
+      "examplesNegative": [
+        "submarine accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_171",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "yacht_boat_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for yacht/boat",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 요트·보트 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip yacht/boat accident reporting",
+        "ship yacht/boat hiding defects"
+      ],
+      "examplesNegative": [
+        "yacht/boat accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_172",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rail_vehicle_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for rail vehicle",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 철도차량 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip rail vehicle accident reporting",
+        "ship rail vehicle hiding defects"
+      ],
+      "examplesNegative": [
+        "rail vehicle accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_173",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "locomotive_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for locomotive",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기관차 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip locomotive accident reporting",
+        "ship locomotive hiding defects"
+      ],
+      "examplesNegative": [
+        "locomotive accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_174",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "aircraft_engine_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for aircraft engine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공엔진 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip aircraft engine accident reporting",
+        "ship aircraft engine hiding defects"
+      ],
+      "examplesNegative": [
+        "aircraft engine accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_175",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "marine_engine_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for marine engine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선박엔진 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip marine engine accident reporting",
+        "ship marine engine hiding defects"
+      ],
+      "examplesNegative": [
+        "marine engine accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_176",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "propeller_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for propeller",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 프로펠러 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip propeller accident reporting",
+        "ship propeller hiding defects"
+      ],
+      "examplesNegative": [
+        "propeller accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_177",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "landing_gear_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for landing gear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 착륙장치 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip landing gear accident reporting",
+        "ship landing gear hiding defects"
+      ],
+      "examplesNegative": [
+        "landing gear accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_178",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "avionics_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for avionics",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항공전자 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip avionics accident reporting",
+        "ship avionics hiding defects"
+      ],
+      "examplesNegative": [
+        "avionics accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_179",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ship_hull_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for ship hull",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선체 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip ship hull accident reporting",
+        "ship ship hull hiding defects"
+      ],
+      "examplesNegative": [
+        "ship hull accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_180",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rail_bogie_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for rail bogie",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 대차 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip rail bogie accident reporting",
+        "ship rail bogie hiding defects"
+      ],
+      "examplesNegative": [
+        "rail bogie accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_181",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ballast_tank_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for ballast tank",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 평형수탱크 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip ballast tank accident reporting",
+        "ship ballast tank hiding defects"
+      ],
+      "examplesNegative": [
+        "ballast tank accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_182",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "flight_control_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for flight control",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 비행제어장치 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip flight control accident reporting",
+        "ship flight control hiding defects"
+      ],
+      "examplesNegative": [
+        "flight control accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_183",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "navigation_eq_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for navigation equipment",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 항법장비 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip navigation equipment accident reporting",
+        "ship navigation equipment hiding defects"
+      ],
+      "examplesNegative": [
+        "navigation equipment accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_184",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "lifeboat_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for lifeboat",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 구명정 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip lifeboat accident reporting",
+        "ship lifeboat hiding defects"
+      ],
+      "examplesNegative": [
+        "lifeboat accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_185",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cargo_container_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for cargo container",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 화물컨테이너 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip cargo container accident reporting",
+        "ship cargo container hiding defects"
+      ],
+      "examplesNegative": [
+        "cargo container accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_186",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "aircraft_standard_halluc",
+      "description": "Block output fabricating aircraft standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 항공기 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating aircraft standards/laws"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent aircraft standard number",
+        "fabricate aircraft legal provisions"
+      ],
+      "examplesNegative": [
+        "official aircraft standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_187",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "helicopter_standard_halluc",
+      "description": "Block output fabricating helicopter standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 헬리콥터 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating helicopter standards/laws"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent helicopter standard number",
+        "fabricate helicopter legal provisions"
+      ],
+      "examplesNegative": [
+        "official helicopter standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_188",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "drone_uav_standard_halluc",
+      "description": "Block output fabricating UAV/drone standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 무인기 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating UAV/drone standards/laws"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent UAV/drone standard number",
+        "fabricate UAV/drone legal provisions"
+      ],
+      "examplesNegative": [
+        "official UAV/drone standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_189",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "ship_vessel_standard_halluc",
+      "description": "Block output fabricating ship standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 선박 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating ship standards/laws"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent ship standard number",
+        "fabricate ship legal provisions"
+      ],
+      "examplesNegative": [
+        "official ship standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_190",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "submarine_standard_halluc",
+      "description": "Block output fabricating submarine standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 잠수함 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating submarine standards/laws"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent submarine standard number",
+        "fabricate submarine legal provisions"
+      ],
+      "examplesNegative": [
+        "official submarine standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_191",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "yacht_boat_standard_halluc",
+      "description": "Block output fabricating yacht/boat standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 요트·보트 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating yacht/boat standards/laws"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent yacht/boat standard number",
+        "fabricate yacht/boat legal provisions"
+      ],
+      "examplesNegative": [
+        "official yacht/boat standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_192",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "rail_vehicle_standard_halluc",
+      "description": "Block output fabricating rail vehicle standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 철도차량 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating rail vehicle standards/la"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent rail vehicle standard number",
+        "fabricate rail vehicle legal provisions"
+      ],
+      "examplesNegative": [
+        "official rail vehicle standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_193",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "locomotive_standard_halluc",
+      "description": "Block output fabricating locomotive standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 기관차 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating locomotive standards/laws"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent locomotive standard number",
+        "fabricate locomotive legal provisions"
+      ],
+      "examplesNegative": [
+        "official locomotive standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_194",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "aircraft_engine_standard_halluc",
+      "description": "Block output fabricating aircraft engine standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 항공엔진 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating aircraft engine standards"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent aircraft engine standard number",
+        "fabricate aircraft engine legal provisions"
+      ],
+      "examplesNegative": [
+        "official aircraft engine standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_195",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "marine_engine_standard_halluc",
+      "description": "Block output fabricating marine engine standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 선박엔진 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating marine engine standards/l"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent marine engine standard number",
+        "fabricate marine engine legal provisions"
+      ],
+      "examplesNegative": [
+        "official marine engine standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_196",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "propeller_standard_halluc",
+      "description": "Block output fabricating propeller standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 프로펠러 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating propeller standards/laws"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent propeller standard number",
+        "fabricate propeller legal provisions"
+      ],
+      "examplesNegative": [
+        "official propeller standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_197",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "landing_gear_standard_halluc",
+      "description": "Block output fabricating landing gear standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 착륙장치 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating landing gear standards/la"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent landing gear standard number",
+        "fabricate landing gear legal provisions"
+      ],
+      "examplesNegative": [
+        "official landing gear standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_198",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "avionics_standard_halluc",
+      "description": "Block output fabricating avionics standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 항공전자 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating avionics standards/laws"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent avionics standard number",
+        "fabricate avionics legal provisions"
+      ],
+      "examplesNegative": [
+        "official avionics standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_199",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "ship_hull_standard_halluc",
+      "description": "Block output fabricating ship hull standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 선체 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating ship hull standards/laws"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent ship hull standard number",
+        "fabricate ship hull legal provisions"
+      ],
+      "examplesNegative": [
+        "official ship hull standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_OTRANS_EN_200",
+      "domain": "manufacturing-other-transport",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "rail_bogie_standard_halluc",
+      "description": "Block output fabricating rail bogie standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 대차 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating rail bogie standards/laws"
+      },
+      "regulationTags": [
+        "KR_AVIATION_SAFETY",
+        "KR_SHIP_SAFETY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent rail bogie standard number",
+        "fabricate rail bogie legal provisions"
+      ],
+      "examplesNegative": [
+        "official rail bogie standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    }
+  ]
+}

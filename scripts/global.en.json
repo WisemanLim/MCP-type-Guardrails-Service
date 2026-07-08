@@ -1,0 +1,341 @@
+{
+  "$schema": "https://example.com/guardrails/rule-bundle.schema.json",
+  "domain": "global",
+  "locale": "en",
+  "generatedAt": "sourced-from-DocuGuard-AI-Policy/policies/global",
+  "totalRules": 10,
+  "rules": [
+    {
+      "ruleId": "PRIV_ID_EN_IN_001",
+      "domain": "global",
+      "locale": "en",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "ssn_us",
+      "description": "Block input containing US Social Security Numbers.",
+      "patternType": "regex",
+      "patterns": {
+        "regex": [
+          "\\b(?!000|666)[0-8]\\d{2}[- ]\\d{2}[- ]\\d{4}\\b"
+        ]
+      },
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "en": "Do not enter SSNs into this assistant.",
+        "ko-KR": "SSN은 입력할 수 없습니다."
+      },
+      "regulationTags": [
+        "US_CCPA",
+        "US_HIPAA"
+      ],
+      "examplesPositive": [
+        "My SSN is 123-45-6789."
+      ],
+      "examplesNegative": [
+        "What is an SSN?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_FIN_EN_IN_001",
+      "domain": "global",
+      "locale": "en",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "card_number",
+      "description": "Block input containing credit card numbers (Luhn-validated).",
+      "patternType": "regex+classifier",
+      "patterns": {
+        "regex": [
+          "\\b(?:\\d[ -]*?){13,19}\\b"
+        ],
+        "luhnCheck": true
+      },
+      "severity": "critical",
+      "priority": 900,
+      "action": "block",
+      "messageTemplate": {
+        "en": "Do not enter full card numbers.",
+        "ko-KR": "카드 번호는 입력할 수 없습니다."
+      },
+      "regulationTags": [
+        "PCI_DSS"
+      ],
+      "examplesPositive": [
+        "My card is 4111 1111 1111 1111."
+      ],
+      "examplesNegative": [
+        "List sandbox test card numbers."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_CONTACT_EN_IN_001",
+      "domain": "global",
+      "locale": "en",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "email",
+      "description": "Redact email addresses in user input.",
+      "patternType": "regex",
+      "patterns": {
+        "regex": [
+          "\\b[A-Za-z0-9._%+\\-]+@[A-Za-z0-9.\\-]+\\.[A-Za-z]{2,}\\b"
+        ]
+      },
+      "severity": "medium",
+      "priority": 600,
+      "action": "redact",
+      "messageTemplate": {
+        "en": "Email addresses are redacted.",
+        "ko-KR": "이메일은 마스킹됩니다."
+      },
+      "regulationTags": [
+        "US_CCPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "Email me at user@example.com."
+      ],
+      "examplesNegative": [
+        "Write a regex that validates emails."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_CONTACT_EN_IN_002",
+      "domain": "global",
+      "locale": "en",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "phone_us",
+      "description": "Redact NANP-format US phone numbers in user input.",
+      "patternType": "regex",
+      "patterns": {
+        "regex": [
+          "\\b(?:\\+?1[- .]?)?\\(?\\d{3}\\)?[- .]?\\d{3}[- .]?\\d{4}\\b"
+        ]
+      },
+      "severity": "medium",
+      "priority": 550,
+      "action": "redact",
+      "messageTemplate": {
+        "en": "US phone numbers are redacted.",
+        "ko-KR": "미국 전화번호는 마스킹됩니다."
+      },
+      "regulationTags": [
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "Call me at +1 202-555-0123."
+      ],
+      "examplesNegative": [
+        "Explain the NANP phone number format."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_CRED_EN_IN_001",
+      "domain": "global",
+      "locale": "en",
+      "ioType": "input",
+      "category": "credentials",
+      "subCategory": "api_key",
+      "description": "Block input containing API keys / secret tokens.",
+      "patternType": "regex",
+      "patterns": {
+        "regex": [
+          "\\b(?:sk|pk|api|key|token)[_-][A-Za-z0-9_-]{16,}\\b"
+        ]
+      },
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "en": "Do not paste API keys or secrets here.",
+        "ko-KR": "API 키/시크릿은 입력할 수 없습니다."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "Here is sk_test_abcdefghij1234567890."
+      ],
+      "examplesNegative": [
+        "What is the recommended way to store API keys?"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_FIN_EN_IN_002",
+      "domain": "global",
+      "locale": "en",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "iban",
+      "description": "Redact IBANs in user input.",
+      "patternType": "regex",
+      "patterns": {
+        "regex": [
+          "\\b[A-Z]{2}\\d{2}[A-Z0-9]{11,30}\\b"
+        ]
+      },
+      "severity": "high",
+      "priority": 750,
+      "action": "redact",
+      "messageTemplate": {
+        "en": "IBANs are redacted.",
+        "ko-KR": "IBAN은 마스킹됩니다."
+      },
+      "regulationTags": [
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "My IBAN is GB82WEST12345698765432."
+      ],
+      "examplesNegative": [
+        "Explain the structure of an IBAN."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_ID_EN_OUT_001",
+      "domain": "global",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "ssn_us",
+      "description": "Redact SSNs that appear in model output.",
+      "patternType": "regex",
+      "patterns": {
+        "regex": [
+          "\\b(?!000|666)[0-8]\\d{2}[- ]\\d{2}[- ]\\d{4}\\b"
+        ]
+      },
+      "severity": "critical",
+      "priority": 950,
+      "action": "redact",
+      "messageTemplate": {
+        "en": "SSNs are redacted in responses.",
+        "ko-KR": "응답에서 SSN은 마스킹됩니다."
+      },
+      "regulationTags": [
+        "US_HIPAA",
+        "US_CCPA"
+      ],
+      "examplesPositive": [
+        "The customer's SSN is 123-45-6789."
+      ],
+      "examplesNegative": [
+        "Use a placeholder like XXX-XX-XXXX in examples."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_FIN_EN_OUT_001",
+      "domain": "global",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "card_number",
+      "description": "Redact card numbers that appear in model output.",
+      "patternType": "regex+classifier",
+      "patterns": {
+        "regex": [
+          "\\b(?:\\d[ -]*?){13,19}\\b"
+        ],
+        "luhnCheck": true
+      },
+      "severity": "critical",
+      "priority": 900,
+      "action": "redact",
+      "messageTemplate": {
+        "en": "Card numbers are redacted in responses.",
+        "ko-KR": "응답에서 카드번호는 마스킹됩니다."
+      },
+      "regulationTags": [
+        "PCI_DSS"
+      ],
+      "examplesPositive": [
+        "Customer card: 4111 1111 1111 1111"
+      ],
+      "examplesNegative": [
+        "Use 4111-1111-1111-1111 as a sample sandbox PAN."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_CONTACT_EN_OUT_001",
+      "domain": "global",
+      "locale": "en",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "email",
+      "description": "Redact email addresses in model output.",
+      "patternType": "regex",
+      "patterns": {
+        "regex": [
+          "\\b[A-Za-z0-9._%+\\-]+@[A-Za-z0-9.\\-]+\\.[A-Za-z]{2,}\\b"
+        ]
+      },
+      "severity": "medium",
+      "priority": 600,
+      "action": "redact",
+      "messageTemplate": {
+        "en": "Email addresses are redacted.",
+        "ko-KR": "이메일은 마스킹됩니다."
+      },
+      "regulationTags": [
+        "US_CCPA",
+        "EU_GDPR"
+      ],
+      "examplesPositive": [
+        "Contact alice@example.com for refunds."
+      ],
+      "examplesNegative": [
+        "Use user@example.com as a placeholder."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "PRIV_CRED_EN_OUT_001",
+      "domain": "global",
+      "locale": "en",
+      "ioType": "output",
+      "category": "credentials",
+      "subCategory": "api_key",
+      "description": "Redact API keys / secret tokens in model output.",
+      "patternType": "regex",
+      "patterns": {
+        "regex": [
+          "\\b(?:sk|pk|api|key|token)[_-][A-Za-z0-9_-]{16,}\\b"
+        ]
+      },
+      "severity": "high",
+      "priority": 850,
+      "action": "redact",
+      "messageTemplate": {
+        "en": "API keys / secrets are redacted.",
+        "ko-KR": "API 키/시크릿은 마스킹됩니다."
+      },
+      "regulationTags": [],
+      "examplesPositive": [
+        "Your new key is sk_live_ABCDEFGHIJKLMNOPQRSTUVWX."
+      ],
+      "examplesNegative": [
+        "Store secrets in environment variables."
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    }
+  ]
+}

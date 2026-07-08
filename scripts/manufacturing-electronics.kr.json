@@ -1,0 +1,6082 @@
+{
+  "$schema": "https://example.com/guardrails/rule-bundle.schema.json",
+  "domain": "manufacturing-electronics",
+  "locale": "ko-KR",
+  "generatedAt": "2026-06-03T06:42:57+00:00",
+  "totalRules": 200,
+  "rules": [
+    {
+      "ruleId": "MF_ELEC_KR_001",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "process_recipe_secret",
+      "description": "반도체 공정 레시피 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 960,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 반도체 공정 레시피 기밀 유출 차단",
+        "en": "This request is blocked: Semiconductor process recipe confidential leakage "
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "DRAM 식각 공정 레시피 외부 공유",
+        "플래시 메모리 CVD 공정 파라미터 유출"
+      ],
+      "examplesNegative": [
+        "공정 기밀 보호 방법",
+        "IP 보안 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_002",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "chip_design_secret",
+      "description": "칩 설계 레이아웃 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 958,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 칩 설계 레이아웃 기밀 유출 차단",
+        "en": "This request is blocked: Chip design layout confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "SoC 레이아웃 GDS 파일 외부 유출",
+        "ASIC 넷리스트 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "칩 설계 IP 보호",
+        "레이아웃 보안 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_003",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "fab_process_parameter",
+      "description": "팹 공정 파라미터 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 955,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 팹 공정 파라미터 기밀 유출 차단",
+        "en": "This request is blocked: Fab process parameter confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "7nm 공정 도핑 농도 파라미터 유출",
+        "FinFET 게이트 산화막 두께 데이터 외부 공유"
+      ],
+      "examplesNegative": [
+        "팹 공정 기밀 관리",
+        "공정 데이터 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_004",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "rd_roadmap_infer",
+      "description": "반도체 R&D 로드맵 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 반도체 R&D 로드맵 기밀 유출 차단",
+        "en": "This request is blocked: Semiconductor R&D roadmap confidential leakage blo"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "차세대 3nm 공정 R&D 로드맵 외부 유출",
+        "2nm 반도체 개발 일정 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "R&D 로드맵 보안",
+        "기술 개발 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_005",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "wafer_yield_data_secret",
+      "description": "웨이퍼 수율 데이터 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 920,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 웨이퍼 수율 데이터 기밀 유출 차단",
+        "en": "This request is blocked: Wafer yield data confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "공정 수율 데이터 경쟁사에 유출",
+        "웨이퍼 불량 분석 보고서 외부 공유"
+      ],
+      "examplesNegative": [
+        "수율 데이터 보안",
+        "웨이퍼 공정 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_006",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "packaging_tech_secret",
+      "description": "반도체 패키징 기술 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 918,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 반도체 패키징 기술 기밀 유출 차단",
+        "en": "This request is blocked: Semiconductor packaging technology confidential le"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "3D 스택 패키징 기술 외부 유출",
+        "CoW(Chip-on-Wafer) 공정 기밀 공유"
+      ],
+      "examplesNegative": [
+        "패키징 기술 IP 보호",
+        "패키징 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_007",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "firmware_ip_secret",
+      "description": "펌웨어 소스코드 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 910,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 펌웨어 소스코드 기밀 유출 차단",
+        "en": "This request is blocked: Firmware source code confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "임베디드 펌웨어 소스코드 경쟁사 유출",
+        "마이크로컨트롤러 부트로더 코드 외부 공유"
+      ],
+      "examplesNegative": [
+        "펌웨어 IP 보호",
+        "소스코드 보안 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_008",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "product_spec_prerelease",
+      "description": "미출시 제품 사양 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 945,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 미출시 제품 사양 기밀 유출 차단",
+        "en": "This request is blocked: Pre-release product specification confidential lea"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "출시 전 차세대 AP 사양서 유출",
+        "신규 메모리 반도체 제원 외부 공개"
+      ],
+      "examplesNegative": [
+        "출시 전 제품 보안",
+        "신제품 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_009",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "supply_chain_structure_secret",
+      "description": "공급망 구조 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 905,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공급망 구조 기밀 유출 차단",
+        "en": "This request is blocked: Supply chain structure confidential leakage blocke"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "반도체 공급사 네트워크 구조 외부 공개",
+        "웨이퍼 공급사 계약 조건 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "공급망 기밀 보호",
+        "공급사 정보 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_010",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "competitor_fab_reverse_infer",
+      "description": "경쟁사 팹 공정 역추론 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 888,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 경쟁사 팹 공정 역추론 조력 차단",
+        "en": "This request is blocked: Competitor fab process reverse inference assistanc"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "경쟁사 반도체 TEM 분석으로 공정 역추론",
+        "경쟁 칩 단면 분석으로 공정 파라미터 추정"
+      ],
+      "examplesNegative": [
+        "역설계 법적 기준",
+        "IP 분쟁 예방"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_011",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "mask_design_secret",
+      "description": "포토마스크 설계 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 952,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 포토마스크 설계 기밀 유출 차단",
+        "en": "This request is blocked: Photomask design confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "포토마스크 레이아웃 파일 유출",
+        "EUV 마스크 설계 데이터 외부 공유"
+      ],
+      "examplesNegative": [
+        "마스크 설계 IP 보호",
+        "포토마스크 보안 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_012",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "test_program_secret",
+      "description": "반도체 테스트 프로그램 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 898,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 반도체 테스트 프로그램 기밀 유출 차단",
+        "en": "This request is blocked: Semiconductor test program confidential leakage bl"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "ATE 테스트 프로그램 소스코드 유출",
+        "칩 테스트 벡터 데이터 외부 공유"
+      ],
+      "examplesNegative": [
+        "테스트 프로그램 보안",
+        "ATE 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_013",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "eda_tool_license_secret",
+      "description": "EDA 툴 라이선스 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 882,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: EDA 툴 라이선스 기밀 유출 차단",
+        "en": "This request is blocked: EDA tool license confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "사내 EDA 툴 라이선스 무단 외부 공유",
+        "설계 자동화 툴 키 유출"
+      ],
+      "examplesNegative": [
+        "EDA 라이선스 관리",
+        "소프트웨어 라이선스 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_014",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "silicon_ip_core_secret",
+      "description": "실리콘 IP 코어 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 948,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 실리콘 IP 코어 기밀 유출 차단",
+        "en": "This request is blocked: Silicon IP core confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "독자 개발 CPU IP 코어 외부 유출",
+        "GPU 셰이더 코어 설계 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "실리콘 IP 보호",
+        "코어 설계 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_015",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "memory_architecture_secret",
+      "description": "메모리 아키텍처 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 942,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 메모리 아키텍처 기밀 유출 차단",
+        "en": "This request is blocked: Memory architecture confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "HBM 메모리 아키텍처 설계 유출",
+        "차세대 NAND 아키텍처 외부 공개"
+      ],
+      "examplesNegative": [
+        "메모리 아키텍처 IP 보호",
+        "설계 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_016",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "analog_circuit_secret",
+      "description": "아날로그 회로 설계 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 895,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아날로그 회로 설계 기밀 유출 차단",
+        "en": "This request is blocked: Analog circuit design confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "고성능 ADC 회로 설계 외부 유출",
+        "RF 트랜시버 회로 스키매틱 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "아날로그 회로 IP 보호",
+        "회로 설계 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_017",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "dsp_algorithm_secret",
+      "description": "DSP 알고리즘 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 892,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: DSP 알고리즘 기밀 유출 차단",
+        "en": "This request is blocked: DSP algorithm confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "독자 개발 신호처리 알고리즘 유출",
+        "오디오 DSP 처리 알고리즘 외부 공유"
+      ],
+      "examplesNegative": [
+        "DSP 알고리즘 IP 보호",
+        "신호처리 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_018",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "power_management_ic_secret",
+      "description": "전원관리 IC 설계 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 885,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전원관리 IC 설계 기밀 유출 차단",
+        "en": "This request is blocked: Power management IC design confidential leakage bl"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "PMIC 설계 회로도 외부 유출",
+        "배터리 관리 IC 파라미터 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "PMIC 설계 IP 보호",
+        "전원 IC 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_019",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "nda_partner_tech_leak",
+      "description": "NDA 파트너 기술 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 900,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: NDA 파트너 기술 기밀 유출 차단",
+        "en": "This request is blocked: NDA partner technology confidential leakage blocke"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "NDA 계약 파트너사 공정 기술 무단 공개",
+        "비밀유지 계약 위반 기술 자료 공유"
+      ],
+      "examplesNegative": [
+        "NDA 준수 방법",
+        "기술 기밀 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_020",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "tapeout_schedule_secret",
+      "description": "테이프아웃 일정 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 875,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 테이프아웃 일정 기밀 유출 차단",
+        "en": "This request is blocked: Tapeout schedule confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "차세대 칩 테이프아웃 일정 외부 유출",
+        "공정 전환 일정 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "테이프아웃 일정 보안",
+        "개발 일정 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_021",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "materials_composition_secret",
+      "description": "반도체 소재 조성 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 878,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 반도체 소재 조성 기밀 유출 차단",
+        "en": "This request is blocked: Semiconductor material composition confidential le"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "low-k 유전체 소재 조성 외부 공유",
+        "게이트 절연막 소재 레시피 유출"
+      ],
+      "examplesNegative": [
+        "소재 기밀 관리",
+        "반도체 소재 IP 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_022",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "pcb_layout_secret",
+      "description": "PCB 레이아웃 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 872,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PCB 레이아웃 기밀 유출 차단",
+        "en": "This request is blocked: PCB layout confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "고속 인터페이스 PCB 레이아웃 파일 유출",
+        "신제품 메인보드 회로 설계 외부 공유"
+      ],
+      "examplesNegative": [
+        "PCB 설계 IP 보호",
+        "레이아웃 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_023",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "fpga_bitstream_secret",
+      "description": "FPGA 비트스트림 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: FPGA 비트스트림 기밀 유출 차단",
+        "en": "This request is blocked: FPGA bitstream confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "FPGA 비트스트림 파일 외부 유출",
+        "프로그래머블 로직 설계 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "FPGA 설계 IP 보호",
+        "비트스트림 보안 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_024",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "antenna_rf_design_secret",
+      "description": "RF 안테나 설계 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 868,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: RF 안테나 설계 기밀 유출 차단",
+        "en": "This request is blocked: RF antenna design confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "5G mmWave 안테나 설계 외부 유출",
+        "Wi-Fi 6E 안테나 배열 설계 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "안테나 설계 IP 보호",
+        "RF 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_025",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "software_stack_secret",
+      "description": "반도체 소프트웨어 스택 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 886,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 반도체 소프트웨어 스택 기밀 유출 차단",
+        "en": "This request is blocked: Semiconductor software stack confidential leakage "
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "독자 개발 칩 드라이버 소스코드 유출",
+        "HAL 레이어 소프트웨어 외부 공유"
+      ],
+      "examplesNegative": [
+        "소프트웨어 스택 IP 보호",
+        "드라이버 소스코드 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_026",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "calibration_data_ic_secret",
+      "description": "IC 캘리브레이션 데이터 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 862,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: IC 캘리브레이션 데이터 기밀 유출 차단",
+        "en": "This request is blocked: IC calibration data confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "센서 IC 캘리브레이션 계수 외부 공유",
+        "ADC 오프셋 캘리브레이션 데이터 유출"
+      ],
+      "examplesNegative": [
+        "IC 캘리브레이션 기밀 관리",
+        "보정 데이터 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_027",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "test_socket_design_secret",
+      "description": "테스트 소켓 설계 기밀 유출 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 820,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "규정 검토 후 진행하세요: 테스트 소켓 설계 기밀 유출 경고",
+        "en": "Please verify compliance before proceeding."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "고온 테스트 소켓 설계 외부 공유",
+        "번인 소켓 구조 경쟁사 공개"
+      ],
+      "examplesNegative": [
+        "테스트 소켓 IP 보호",
+        "소켓 설계 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_028",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "yield_improvement_know_how",
+      "description": "수율 개선 노하우 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 888,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 수율 개선 노하우 기밀 유출 차단",
+        "en": "This request is blocked: Yield improvement know-how confidential leakage bl"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "수율 개선 전문 기술 경쟁사 공유",
+        "불량 분석 노하우 외부 유출"
+      ],
+      "examplesNegative": [
+        "수율 기밀 관리",
+        "공정 노하우 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_029",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "packaging_substrate_secret",
+      "description": "패키징 기판 설계 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 패키징 기판 설계 기밀 유출 차단",
+        "en": "This request is blocked: Packaging substrate design confidential leakage bl"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "FC-BGA 기판 설계 파일 유출",
+        "반도체 패키지 기판 레이아웃 외부 공유"
+      ],
+      "examplesNegative": [
+        "기판 설계 IP 보호",
+        "패키징 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_030",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "simulation_model_secret",
+      "description": "반도체 시뮬레이션 모델 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 876,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 반도체 시뮬레이션 모델 기밀 유출 차단",
+        "en": "This request is blocked: Semiconductor simulation model confidential leakag"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "SPICE 모델 파라미터 외부 유출",
+        "TCAD 시뮬레이션 모델 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "시뮬레이션 모델 IP 보호",
+        "SPICE 모델 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_031",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "advanced_node_process_secret",
+      "description": "첨단 노드 공정 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 956,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 첨단 노드 공정 기밀 유출 차단",
+        "en": "This request is blocked: Advanced node process confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "2nm 게이트올어라운드 공정 레시피 유출",
+        "EUV 리소그래피 공정 파라미터 외부 공유"
+      ],
+      "examplesNegative": [
+        "첨단 노드 공정 IP 보호",
+        "EUV 공정 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_032",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "ai_chip_architecture_secret",
+      "description": "AI 칩 아키텍처 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 944,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: AI 칩 아키텍처 기밀 유출 차단",
+        "en": "This request is blocked: AI chip architecture confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "NPU 아키텍처 설계 외부 유출",
+        "AI 가속기 메모리 대역폭 최적화 기술 공유"
+      ],
+      "examplesNegative": [
+        "AI 칩 IP 보호",
+        "NPU 아키텍처 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_033",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "sensor_fusion_algorithm",
+      "description": "센서 퓨전 알고리즘 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 904,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 센서 퓨전 알고리즘 기밀 유출 차단",
+        "en": "This request is blocked: Sensor fusion algorithm confidential leakage block"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "ToF 센서 퓨전 알고리즘 외부 유출",
+        "이미지 센서 신호처리 알고리즘 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "센서 알고리즘 IP 보호",
+        "퓨전 기술 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_034",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "bonding_wire_process_secret",
+      "description": "본딩 와이어 공정 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 858,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 본딩 와이어 공정 기밀 유출 차단",
+        "en": "This request is blocked: Bonding wire process confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "Cu 본딩 와이어 루프 파라미터 유출",
+        "와이어 본딩 공정 조건 외부 공유"
+      ],
+      "examplesNegative": [
+        "본딩 공정 IP 보호",
+        "와이어 본딩 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_035",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "photoresist_formula_secret",
+      "description": "포토레지스트 배합 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 938,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 포토레지스트 배합 기밀 유출 차단",
+        "en": "This request is blocked: Photoresist formula confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "EUV 포토레지스트 배합 성분 유출",
+        "ArF 레지스트 조성 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "포토레지스트 IP 보호",
+        "레지스트 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_036",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "cmp_slurry_formula_secret",
+      "description": "CMP 슬러리 배합 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 866,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: CMP 슬러리 배합 기밀 유출 차단",
+        "en": "This request is blocked: CMP slurry formula confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "Cu CMP 슬러리 배합비 외부 유출",
+        "연마 슬러리 성분 경쟁사 공개"
+      ],
+      "examplesNegative": [
+        "CMP 슬러리 IP 보호",
+        "슬러리 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_037",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "interconnect_technology_secret",
+      "description": "배선 기술 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 940,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 배선 기술 기밀 유출 차단",
+        "en": "This request is blocked: Interconnect technology confidential leakage block"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "후면전원공급(BSPD) 기술 유출",
+        "코발트 배선 공정 파라미터 외부 공유"
+      ],
+      "examplesNegative": [
+        "배선 기술 IP 보호",
+        "인터커넥트 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_038",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "device_characterization_data",
+      "description": "소자 특성화 데이터 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 872,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 소자 특성화 데이터 기밀 유출 차단",
+        "en": "This request is blocked: Device characterization data confidential leakage "
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "트랜지스터 특성 곡선 데이터 유출",
+        "소자 전류-전압 특성 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "소자 특성 데이터 보안",
+        "캐릭터라이제이션 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_039",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "chip_packaging_roadmap",
+      "description": "칩 패키징 로드맵 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 936,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 칩 패키징 로드맵 기밀 유출 차단",
+        "en": "This request is blocked: Chip packaging roadmap confidential leakage blocke"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "3D 이종집적 패키징 로드맵 유출",
+        "차세대 패키징 기술 개발 일정 외부 공개"
+      ],
+      "examplesNegative": [
+        "패키징 로드맵 보안",
+        "이종집적 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_040",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "supply_chain_chip_allocation",
+      "description": "칩 할당 정보 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 882,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 칩 할당 정보 기밀 유출 차단",
+        "en": "This request is blocked: Chip allocation information confidential leakage b"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "고객사별 칩 공급 할당량 외부 공유",
+        "웨이퍼 생산 우선순위 계획 유출"
+      ],
+      "examplesNegative": [
+        "할당 정보 보안",
+        "공급 계획 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_041",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "test_failure_analysis_secret",
+      "description": "불량 분석 데이터 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 874,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 불량 분석 데이터 기밀 유출 차단",
+        "en": "This request is blocked: Failure analysis data confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "FA 보고서 상세 내용 경쟁사 공유",
+        "불량 패턴 분석 데이터 외부 유출"
+      ],
+      "examplesNegative": [
+        "FA 데이터 보안",
+        "불량 분석 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_042",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "photolithography_condition_secret",
+      "description": "포토리소그래피 조건 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 946,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 포토리소그래피 조건 기밀 유출 차단",
+        "en": "This request is blocked: Photolithography condition confidential leakage bl"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "EUV 노광 조건 파라미터 외부 유출",
+        "DUV 리소그래피 OPC 보정 데이터 공유"
+      ],
+      "examplesNegative": [
+        "리소그래피 IP 보호",
+        "노광 조건 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_043",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "epitaxy_process_secret",
+      "description": "에피택시 공정 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 890,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 에피택시 공정 기밀 유출 차단",
+        "en": "This request is blocked: Epitaxy process confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "SiGe 에피택시 성장 조건 외부 유출",
+        "GaN 에피택시 공정 파라미터 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "에피택시 공정 IP 보호",
+        "에피 공정 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_044",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "diffusion_implant_secret",
+      "description": "확산·이온주입 공정 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 884,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 확산·이온주입 공정 기밀 유출 차단",
+        "en": "This request is blocked: Diffusion/ion implant process confidential leakage"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "이온주입 도즈·에너지 파라미터 유출",
+        "열확산 공정 시간·온도 조건 외부 공유"
+      ],
+      "examplesNegative": [
+        "이온주입 공정 IP 보호",
+        "확산 공정 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_045",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "metrology_data_secret",
+      "description": "계측 데이터 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 계측 데이터 기밀 유출 차단",
+        "en": "This request is blocked: Metrology data confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "CD-SEM 계측 데이터 외부 유출",
+        "패턴 계측 통계 데이터 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "계측 데이터 보안",
+        "계측 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_046",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "etch_chemistry_secret",
+      "description": "식각 화학물질 조성 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 934,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 식각 화학물질 조성 기밀 유출 차단",
+        "en": "This request is blocked: Etching chemistry composition confidential leakage"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "플라즈마 식각 가스 조성 외부 유출",
+        "원자층 식각(ALE) 화학물질 공정 공유"
+      ],
+      "examplesNegative": [
+        "식각 화학물질 IP 보호",
+        "식각 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_047",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "thermal_process_recipe",
+      "description": "열처리 공정 레시피 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 876,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 열처리 공정 레시피 기밀 유출 차단",
+        "en": "This request is blocked: Thermal process recipe confidential leakage blocke"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "RTP 열처리 온도·시간 프로파일 유출",
+        "어닐링 공정 레시피 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "열처리 공정 IP 보호",
+        "열공정 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_048",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "chip_verification_tb_secret",
+      "description": "칩 검증 테스트벤치 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 864,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 칩 검증 테스트벤치 기밀 유출 차단",
+        "en": "This request is blocked: Chip verification testbench confidential leakage b"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "RTL 검증 테스트벤치 코드 외부 유출",
+        "칩 기능 검증 시나리오 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "검증 테스트벤치 IP 보호",
+        "검증 코드 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_049",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "custom_cell_library_secret",
+      "description": "표준 셀 라이브러리 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 896,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 표준 셀 라이브러리 기밀 유출 차단",
+        "en": "This request is blocked: Standard cell library confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "독자 개발 표준 셀 라이브러리 외부 유출",
+        "고성능 셀 타이밍 데이터 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "표준 셀 라이브러리 IP 보호",
+        "셀 라이브러리 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_050",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "tsmc_sec_info_leak",
+      "description": "파운드리 서비스 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 953,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 파운드리 서비스 기밀 유출 차단",
+        "en": "This request is blocked: Foundry service confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "파운드리 파트너 공정 기술 협약 내용 외부 유출",
+        "위탁 제조 조건·단가 정보 무단 공개"
+      ],
+      "examplesNegative": [
+        "파운드리 기밀 관리",
+        "제조 위탁 계약 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_051",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "ip_licensing_terms_secret",
+      "description": "IP 라이선싱 조건 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 878,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: IP 라이선싱 조건 기밀 유출 차단",
+        "en": "This request is blocked: IP licensing terms confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "반도체 IP 라이선스 단가·조건 외부 유출",
+        "IP 라이선싱 계약서 무단 공개"
+      ],
+      "examplesNegative": [
+        "IP 라이선싱 기밀 관리",
+        "라이선스 계약 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_052",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "export_control_bypass",
+      "description": "수출 통제 우회 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 990,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 수출 통제 우회 조력 차단",
+        "en": "This request is blocked: Export control bypass assistance blocked"
+      },
+      "regulationTags": [
+        "EAR",
+        "ITAR",
+        "KR_SECURITY_EXPORT"
+      ],
+      "examplesPositive": [
+        "수출 통제 품목 무단 해외 이전 방법",
+        "EAR 규제 품목 허가 없이 수출"
+      ],
+      "examplesNegative": [
+        "수출 통제 기준 안내",
+        "수출 허가 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_053",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "ear_eccn_misclassify",
+      "description": "EAR ECCN 코드 허위 분류 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 985,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: EAR ECCN 코드 허위 분류 차단",
+        "en": "This request is blocked: EAR ECCN code false classification blocked"
+      },
+      "regulationTags": [
+        "EAR"
+      ],
+      "examplesPositive": [
+        "수출 통제 대상 반도체를 낮은 ECCN으로 허위 분류",
+        "ECCN 코드 조작으로 수출 허가 회피"
+      ],
+      "examplesNegative": [
+        "ECCN 분류 기준 안내",
+        "수출 통제 분류 방법"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_054",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "itar_tech_transfer_hide",
+      "description": "ITAR 기술 이전 은폐 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 988,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: ITAR 기술 이전 은폐 조력 차단",
+        "en": "This request is blocked: ITAR technology transfer concealment assistance bl"
+      },
+      "regulationTags": [
+        "ITAR"
+      ],
+      "examplesPositive": [
+        "ITAR 규제 전자부품 무단 기술 이전 방법",
+        "국방 관련 전자 기술 허가 없이 해외 이전"
+      ],
+      "examplesNegative": [
+        "ITAR 기술 이전 허가 절차",
+        "국방 관련 수출 통제"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_055",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "rohs_substance_hide",
+      "description": "RoHS 유해물질 함유 은폐 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 975,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: RoHS 유해물질 함유 은폐 차단",
+        "en": "This request is blocked: RoHS hazardous substance concealment blocked"
+      },
+      "regulationTags": [
+        "EU_ROHS2",
+        "KR_ROHS"
+      ],
+      "examplesPositive": [
+        "납 함량 초과 부품 RoHS 적합 표시 위조",
+        "카드뮴 초과 함유 전자부품 적합성 허위 인증"
+      ],
+      "examplesNegative": [
+        "RoHS 기준 안내",
+        "RoHS 적합성 인증 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_056",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "ce_mark_false",
+      "description": "CE 마크 허위 표시 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 970,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: CE 마크 허위 표시 차단",
+        "en": "This request is blocked: CE marking false display blocked"
+      },
+      "regulationTags": [
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "CE 인증 없이 CE 마크 부착",
+        "CE 시험 불합격 제품 CE 표시 위조"
+      ],
+      "examplesNegative": [
+        "CE 인증 절차",
+        "CE 마크 요건"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_057",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "fcc_auth_bypass",
+      "description": "FCC 인증 우회 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 968,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: FCC 인증 우회 조력 차단",
+        "en": "This request is blocked: FCC authorization bypass assistance blocked"
+      },
+      "regulationTags": [
+        "US_FCC_PART15"
+      ],
+      "examplesPositive": [
+        "FCC 인증 없이 무선 기기 미국 판매",
+        "FCC ID 허위 표시"
+      ],
+      "examplesNegative": [
+        "FCC 인증 절차",
+        "FCC Part 15 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_058",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "weee_reporting_skip",
+      "description": "WEEE 보고 의무 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 910,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: WEEE 보고 의무 생략 조력 차단",
+        "en": "This request is blocked: WEEE reporting obligation skip assistance blocked"
+      },
+      "regulationTags": [
+        "EU_WEEE"
+      ],
+      "examplesPositive": [
+        "WEEE 등록·보고 없이 유럽 시장 전자제품 판매",
+        "폐전자제품 수거 의무 회피"
+      ],
+      "examplesNegative": [
+        "WEEE 보고 의무 안내",
+        "WEEE 등록 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_059",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "component_counterfeit_cert_elec",
+      "description": "위조 전자부품 인증 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 965,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 위조 전자부품 인증 조력 차단",
+        "en": "This request is blocked: Counterfeit electronic component certification ass"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "IATF_16949"
+      ],
+      "examplesPositive": [
+        "위조 IC 칩에 정품 인증서 발급 조력",
+        "불합격 부품 검사 성적서 위조"
+      ],
+      "examplesNegative": [
+        "부품 인증 관리",
+        "위조 부품 적발 대응"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_060",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "strategic_export_unauthorized",
+      "description": "전략물자 무허가 수출 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 982,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전략물자 무허가 수출 조력 차단",
+        "en": "This request is blocked: Strategic item unauthorized export assistance bloc"
+      },
+      "regulationTags": [
+        "KR_SECURITY_EXPORT",
+        "EAR"
+      ],
+      "examplesPositive": [
+        "전략물자 수출 허가 없이 반도체 수출",
+        "수출 통제 해제 거짓 서류 작성"
+      ],
+      "examplesNegative": [
+        "전략물자 수출 허가 절차",
+        "수출 통제 품목 확인"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_061",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "dual_use_item_reclassify",
+      "description": "이중용도 품목 허위 재분류 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 980,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 이중용도 품목 허위 재분류 차단",
+        "en": "This request is blocked: Dual-use item false reclassification blocked"
+      },
+      "regulationTags": [
+        "EAR",
+        "KR_SECURITY_EXPORT"
+      ],
+      "examplesPositive": [
+        "군사 용도 반도체를 민수용으로 허위 분류",
+        "이중용도 전자부품 규제 회피 재분류"
+      ],
+      "examplesNegative": [
+        "이중용도 품목 분류 기준",
+        "EAR 규제 안내"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_062",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "eps_safety_cert_fraud",
+      "description": "전기용품 안전 인증 사기 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 960,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기용품 안전 인증 사기 차단",
+        "en": "This request is blocked: Electrical product safety certification fraud bloc"
+      },
+      "regulationTags": [
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "KC 안전 인증 없이 전기용품 판매",
+        "안전 인증 시험 결과 위조"
+      ],
+      "examplesNegative": [
+        "KC 인증 절차",
+        "전기용품 안전 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_063",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "eps_compliance_falsify",
+      "description": "전기용품 안전기준 위반 은폐 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 930,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기용품 안전기준 위반 은폐 차단",
+        "en": "This request is blocked: Electrical product safety standard violation conce"
+      },
+      "regulationTags": [
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "전기용품 안전기준 불합격 은폐 방법",
+        "KC 인증 취소 사실 숨기기"
+      ],
+      "examplesNegative": [
+        "전기용품 안전 기준",
+        "KC 인증 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_064",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "rohs_exemption_fraud",
+      "description": "RoHS 면제 허위 신청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 958,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: RoHS 면제 허위 신청 차단",
+        "en": "This request is blocked: RoHS exemption false application blocked"
+      },
+      "regulationTags": [
+        "EU_ROHS2"
+      ],
+      "examplesPositive": [
+        "RoHS 면제 해당 안 되는 제품 면제 허위 신청",
+        "면제 기간 만료 후 계속 사용"
+      ],
+      "examplesNegative": [
+        "RoHS 면제 조건 안내",
+        "면제 신청 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_065",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "reach_svhc_hide",
+      "description": "REACH SVHC 물질 함유 은폐 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 920,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: REACH SVHC 물질 함유 은폐 차단",
+        "en": "This request is blocked: REACH SVHC substance concealment blocked"
+      },
+      "regulationTags": [
+        "EU_ROHS2"
+      ],
+      "examplesPositive": [
+        "SVHC 물질 함유 사실 공급사에 미통보",
+        "고위험성 물질 함유 제품 정보 은폐"
+      ],
+      "examplesNegative": [
+        "REACH SVHC 기준",
+        "SVHC 물질 신고 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_066",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "battery_directive_falsify",
+      "description": "배터리 규정 위반 은폐 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 928,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 배터리 규정 위반 은폐 차단",
+        "en": "This request is blocked: Battery directive violation concealment blocked"
+      },
+      "regulationTags": [
+        "EU_ROHS2"
+      ],
+      "examplesPositive": [
+        "배터리 유해물질 기준 초과 은폐",
+        "배터리 라벨링 규정 위반 허위 인증"
+      ],
+      "examplesNegative": [
+        "배터리 규정 안내",
+        "배터리 라벨링 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_067",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "emc_cert_fraud",
+      "description": "EMC 인증 사기 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 940,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: EMC 인증 사기 차단",
+        "en": "This request is blocked: EMC certification fraud blocked"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "US_FCC_PART15"
+      ],
+      "examplesPositive": [
+        "EMC 시험 불합격 제품 인증 허위 신청",
+        "전자기 적합성 시험 결과 조작"
+      ],
+      "examplesNegative": [
+        "EMC 인증 절차",
+        "전자기 적합성 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_068",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "safety_critical_component_cert",
+      "description": "안전 핵심 부품 인증 위조 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 962,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 안전 핵심 부품 인증 위조 차단",
+        "en": "This request is blocked: Safety critical component certification falsificat"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "안전 필수 부품 인증서 위조 방법",
+        "핵심 안전 부품 무인증 사용"
+      ],
+      "examplesNegative": [
+        "안전 부품 인증 기준",
+        "부품 인증 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_069",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "product_recall_elec_skip",
+      "description": "전기제품 리콜 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 955,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기제품 리콜 생략 조력 차단",
+        "en": "This request is blocked: Electrical product recall skip assistance blocked"
+      },
+      "regulationTags": [
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "전기용품 화재 위험 결함 리콜 회피",
+        "전기제품 안전사고 은폐 후 미신고"
+      ],
+      "examplesNegative": [
+        "전기용품 리콜 절차",
+        "안전사고 신고 의무"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_070",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "counterfeit_component_use",
+      "description": "위조 부품 사용 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 958,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 위조 부품 사용 조력 차단",
+        "en": "This request is blocked: Counterfeit component use assistance blocked"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "위조 커패시터 정품으로 속여 납품",
+        "모조 반도체 칩 공급망 유입 조력"
+      ],
+      "examplesNegative": [
+        "위조 부품 탐지 방법",
+        "부품 인증 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_071",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pcb_flammability_falsify",
+      "description": "PCB 난연성 등급 위조 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 918,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PCB 난연성 등급 위조 차단",
+        "en": "This request is blocked: PCB flammability rating falsification blocked"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "UL94 V-0 불합격 PCB를 합격으로 위조",
+        "난연 기준 미달 PCB 사용 은폐"
+      ],
+      "examplesNegative": [
+        "PCB 난연성 기준",
+        "UL94 인증 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_072",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "energy_efficiency_label_fraud",
+      "description": "에너지 효율 등급 허위 표시 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 905,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 에너지 효율 등급 허위 표시 차단",
+        "en": "This request is blocked: Energy efficiency rating false display blocked"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "에너지 소비 효율 실제보다 높게 허위 표시",
+        "에너지 등급 라벨 위조"
+      ],
+      "examplesNegative": [
+        "에너지 효율 등급 기준",
+        "에너지 라벨 규정"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_073",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "import_compliance_falsify",
+      "description": "수입 적합성 서류 위조 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 895,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 수입 적합성 서류 위조 차단",
+        "en": "This request is blocked: Import compliance document falsification blocked"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EAR"
+      ],
+      "examplesPositive": [
+        "전기용품 수입 적합성 서류 위조",
+        "수입 검사 결과 허위 기재"
+      ],
+      "examplesNegative": [
+        "전기용품 수입 기준",
+        "수입 적합성 인증 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_074",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "material_declaration_fraud",
+      "description": "소재 선언서 위조 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 908,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 소재 선언서 위조 차단",
+        "en": "This request is blocked: Material declaration fraud blocked"
+      },
+      "regulationTags": [
+        "EU_ROHS2",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "IPC-1752 소재 선언서 허위 작성",
+        "부품 소재 구성 허위 신고"
+      ],
+      "examplesNegative": [
+        "소재 선언 기준",
+        "IPC-1752 작성 방법"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_075",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "eps_registration_skip",
+      "description": "전기용품 안전 등록 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 878,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기용품 안전 등록 생략 조력 차단",
+        "en": "This request is blocked: Electrical product safety registration skip assist"
+      },
+      "regulationTags": [
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "KC 안전 등록 없이 전기용품 유통",
+        "전기용품 신고 의무 회피"
+      ],
+      "examplesNegative": [
+        "KC 등록 절차",
+        "전기용품 유통 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_076",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "waste_battery_dispose_illegal",
+      "description": "배터리 불법 폐기 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 888,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 배터리 불법 폐기 조력 차단",
+        "en": "This request is blocked: Battery illegal disposal assistance blocked"
+      },
+      "regulationTags": [
+        "EU_WEEE",
+        "KR_ROHS"
+      ],
+      "examplesPositive": [
+        "리튬 배터리 불법 폐기 방법",
+        "폐배터리 수거 신고 없이 처리"
+      ],
+      "examplesNegative": [
+        "폐배터리 처리 기준",
+        "배터리 수거 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_077",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "ewaste_export_illegal",
+      "description": "전자폐기물 불법 수출 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 968,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전자폐기물 불법 수출 조력 차단",
+        "en": "This request is blocked: E-waste illegal export assistance blocked"
+      },
+      "regulationTags": [
+        "EU_WEEE",
+        "EAR"
+      ],
+      "examplesPositive": [
+        "전자폐기물 불법 해외 수출 방법",
+        "WEEE 규정 우회 폐전자제품 수출"
+      ],
+      "examplesNegative": [
+        "전자폐기물 수출 규제",
+        "합법적 전자폐기물 처리 방법"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_078",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "chemical_safety_msds_falsify",
+      "description": "화학물질 MSDS 위조 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 912,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 화학물질 MSDS 위조 차단",
+        "en": "This request is blocked: Chemical safety MSDS falsification blocked"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "MSDS 위험도 낮게 조작",
+        "화학물질 유해성 정보 허위 기재"
+      ],
+      "examplesNegative": [
+        "MSDS 작성 기준",
+        "화학물질 안전 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_079",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "conflict_minerals_falsify",
+      "description": "분쟁광물 허위 보고 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 898,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 분쟁광물 허위 보고 차단",
+        "en": "This request is blocked: Conflict minerals false reporting blocked"
+      },
+      "regulationTags": [
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "분쟁광물 사용 사실 은폐",
+        "OECD 분쟁광물 실사 의무 회피"
+      ],
+      "examplesNegative": [
+        "분쟁광물 보고 기준",
+        "OECD 실사 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_080",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "product_safety_incident_hide",
+      "description": "제품 안전사고 은폐 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 958,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 제품 안전사고 은폐 차단",
+        "en": "This request is blocked: Product safety incident concealment blocked"
+      },
+      "regulationTags": [
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "전기용품 화재·감전 사고 은폐",
+        "안전사고 신고 의무 회피"
+      ],
+      "examplesNegative": [
+        "안전사고 신고 의무",
+        "제품 안전 사고 대응"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_081",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "supply_chain_audit_fraud",
+      "description": "공급망 감사 사기 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 895,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공급망 감사 사기 차단",
+        "en": "This request is blocked: Supply chain audit fraud blocked"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "EAR"
+      ],
+      "examplesPositive": [
+        "공급망 감사 결과 허위 보고",
+        "감사 준비 서류 위조"
+      ],
+      "examplesNegative": [
+        "공급망 감사 절차",
+        "감사 모범사례"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_082",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "sanctions_evade_elec",
+      "description": "제재 국가 수출 제재 우회 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 985,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 제재 국가 수출 제재 우회 차단",
+        "en": "This request is blocked: Sanctions country export restriction evasion block"
+      },
+      "regulationTags": [
+        "EAR",
+        "ITAR"
+      ],
+      "examplesPositive": [
+        "제재 국가 반도체 수출 우회 방법",
+        "금수 조치 국가 전자부품 공급 은폐"
+      ],
+      "examplesNegative": [
+        "제재 국가 수출 기준",
+        "수출 허가 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_083",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "third_party_audit_falsify",
+      "description": "제3자 감사 허위 보고 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 882,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 제3자 감사 허위 보고 차단",
+        "en": "This request is blocked: Third-party audit false reporting blocked"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "제3자 인증 기관 감사 결과 위조",
+        "외부 감사 불합격 숨기기"
+      ],
+      "examplesNegative": [
+        "제3자 감사 절차",
+        "인증 관리 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_084",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "product_origin_falsify",
+      "description": "제품 원산지 허위 표시 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 888,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 제품 원산지 허위 표시 차단",
+        "en": "This request is blocked: Product origin false marking blocked"
+      },
+      "regulationTags": [
+        "EAR",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "원산지 허위 표시로 관세 회피",
+        "수출 통제 회피 위한 원산지 변경"
+      ],
+      "examplesNegative": [
+        "원산지 표시 기준",
+        "원산지 위반 처벌"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_085",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "import_duty_evasion_elec",
+      "description": "전자제품 관세 회피 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 868,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전자제품 관세 회피 조력 차단",
+        "en": "This request is blocked: Electronic product tariff evasion assistance block"
+      },
+      "regulationTags": [
+        "EAR",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "반도체 관세 분류 낮게 조작",
+        "전자부품 관세 회피 방법"
+      ],
+      "examplesNegative": [
+        "관세 분류 기준",
+        "수입 통관 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_086",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "safety_recall_elec_delay",
+      "description": "전기제품 안전 리콜 지연 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 955,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기제품 안전 리콜 지연 조력 차단",
+        "en": "This request is blocked: Electrical product safety recall delay assistance "
+      },
+      "regulationTags": [
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "전기용품 결함 발견 후 리콜 지연 방법",
+        "안전 결함 신고 기한 연장 방법"
+      ],
+      "examplesNegative": [
+        "리콜 신고 기한",
+        "전기용품 결함 보고 의무"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_087",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "unauthorized_freq_band_use",
+      "description": "무허가 주파수 대역 사용 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 925,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무허가 주파수 대역 사용 조력 차단",
+        "en": "This request is blocked: Unauthorized frequency band use assistance blocked"
+      },
+      "regulationTags": [
+        "US_FCC_PART15",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "허가 없이 5GHz 대역 무선 장치 판매",
+        "FCC 미인증 무선 모듈 제품 탑재"
+      ],
+      "examplesNegative": [
+        "주파수 사용 허가 절차",
+        "FCC 인증 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_088",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "emi_filter_bypass",
+      "description": "EMI 필터 우회 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 898,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: EMI 필터 우회 조력 차단",
+        "en": "This request is blocked: EMI filter bypass assistance blocked"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "US_FCC_PART15"
+      ],
+      "examplesPositive": [
+        "EMI 필터 제거로 비용 절감 방법",
+        "전자기 간섭 차폐 기준 우회"
+      ],
+      "examplesNegative": [
+        "EMI 기준 안내",
+        "EMC 설계 방법"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_089",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "product_liability_elec_hide",
+      "description": "전기제품 제조물 책임 은폐 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 960,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기제품 제조물 책임 은폐 차단",
+        "en": "This request is blocked: Electrical product liability concealment blocked"
+      },
+      "regulationTags": [
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "전기제품 결함 사고 은폐 방법",
+        "제조물 책임 소송 증거 인멸"
+      ],
+      "examplesNegative": [
+        "제조물 책임법 안내",
+        "결함 피해 보상 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_090",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rma_fraud_elec",
+      "description": "전자제품 RMA 사기 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 875,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전자제품 RMA 사기 조력 차단",
+        "en": "This request is blocked: Electronic product RMA fraud assistance blocked"
+      },
+      "regulationTags": [
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "보증 기간 외 RMA를 보증 처리 허위 청구",
+        "RMA 수리 없이 완료 처리"
+      ],
+      "examplesNegative": [
+        "RMA 기준",
+        "보증 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_091",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "hazardous_material_dispose_illegal",
+      "description": "유해물질 불법 폐기 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 902,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유해물질 불법 폐기 조력 차단",
+        "en": "This request is blocked: Hazardous material illegal disposal assistance blo"
+      },
+      "regulationTags": [
+        "KR_ROHS",
+        "EU_ROHS2"
+      ],
+      "examplesPositive": [
+        "납·수은 함유 폐전자부품 불법 폐기",
+        "RoHS 규제 유해물질 무허가 처리"
+      ],
+      "examplesNegative": [
+        "유해물질 폐기 기준",
+        "전자폐기물 처리 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_092",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "manufacturing_record_falsify",
+      "description": "제조 기록 위조 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 885,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 제조 기록 위조 조력 차단",
+        "en": "This request is blocked: Manufacturing record falsification assistance bloc"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "IATF_16949"
+      ],
+      "examplesPositive": [
+        "제조 공정 기록 허위 작성",
+        "품질 검사 기록 위조"
+      ],
+      "examplesNegative": [
+        "제조 기록 관리 기준",
+        "품질 기록 보관 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_093",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "spec_compliance_falsify",
+      "description": "사양 적합성 위조 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 956,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 사양 적합성 위조 차단",
+        "en": "This request is blocked: Specification compliance falsification blocked"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "전기제품 규격 미달 은폐",
+        "성능 기준 불합격 제품 합격 처리"
+      ],
+      "examplesNegative": [
+        "사양 기준 관리",
+        "적합성 평가 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_094",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "advertising_spec_falsify",
+      "description": "전자제품 사양 허위 광고 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전자제품 사양 허위 광고 차단",
+        "en": "This request is blocked: Electronic product specification false advertising"
+      },
+      "regulationTags": [
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "실제 성능보다 높게 광고",
+        "메모리 용량 허위 표시"
+      ],
+      "examplesNegative": [
+        "전자제품 광고 기준",
+        "표시·광고 규제"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_095",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "customs_misclassify",
+      "description": "관세 품목 허위 분류 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 878,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 관세 품목 허위 분류 차단",
+        "en": "This request is blocked: Customs item false classification blocked"
+      },
+      "regulationTags": [
+        "EAR",
+        "KR_SECURITY_EXPORT"
+      ],
+      "examplesPositive": [
+        "군사 용도 반도체를 민간용으로 허위 신고",
+        "수출 통제 품목 HS 코드 조작"
+      ],
+      "examplesNegative": [
+        "HS 코드 분류 기준",
+        "관세 분류 규정"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_096",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "license_exception_abuse",
+      "description": "EAR 라이선스 예외 남용 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 978,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: EAR 라이선스 예외 남용 차단",
+        "en": "This request is blocked: EAR license exception abuse blocked"
+      },
+      "regulationTags": [
+        "EAR"
+      ],
+      "examplesPositive": [
+        "EAR 라이선스 예외 요건 위반 수출",
+        "예외 조항 오용으로 허가 없이 수출"
+      ],
+      "examplesNegative": [
+        "EAR 라이선스 예외 기준",
+        "수출 허가 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_097",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "green_washing_elec",
+      "description": "전자제품 그린워싱 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 862,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전자제품 그린워싱 차단",
+        "en": "This request is blocked: Electronic product greenwashing blocked"
+      },
+      "regulationTags": [
+        "EU_ROHS2",
+        "EU_WEEE"
+      ],
+      "examplesPositive": [
+        "친환경 인증 없이 친환경 제품 허위 표시",
+        "재활용 비율 허위 주장"
+      ],
+      "examplesNegative": [
+        "친환경 인증 기준",
+        "환경 라벨 규정"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_098",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "product_end_of_life_falsify",
+      "description": "제품 수명 종료 정보 허위 기재 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 828,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "규정 검토 후 진행하세요: 제품 수명 종료 정보 허위 기재 경고",
+        "en": "Please verify compliance before proceeding."
+      },
+      "regulationTags": [
+        "EU_WEEE"
+      ],
+      "examplesPositive": [
+        "WEEE 대상 제품 수명 허위 연장 신고",
+        "폐기 예측 데이터 조작"
+      ],
+      "examplesNegative": [
+        "WEEE 제품 수명 기준",
+        "폐기물 관리 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_099",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "environmental_permit_violation",
+      "description": "환경 허가 위반 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 898,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 환경 허가 위반 조력 차단",
+        "en": "This request is blocked: Environmental permit violation assistance blocked"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "EU_ROHS2"
+      ],
+      "examplesPositive": [
+        "대기 오염물질 배출 허가 기준 초과 은폐",
+        "폐수 처리 기준 위반 은폐"
+      ],
+      "examplesNegative": [
+        "환경 허가 기준",
+        "대기·수질 오염 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_100",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "fire_safety_cert_falsify",
+      "description": "화재 안전 인증 위조 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 963,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 화재 안전 인증 위조 차단",
+        "en": "This request is blocked: Fire safety certification falsification blocked"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "화재 안전 시험 불합격 제품 합격 처리",
+        "방화 인증서 위조"
+      ],
+      "examplesNegative": [
+        "화재 안전 인증 절차",
+        "방화 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_101",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "iec_standard_falsify",
+      "description": "IEC 표준 준수 위조 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 954,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: IEC 표준 준수 위조 차단",
+        "en": "This request is blocked: IEC standard compliance falsification blocked"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "IEC 61000 시험 불합격 제품 합격 표시",
+        "IEC 표준 적합성 허위 인증"
+      ],
+      "examplesNegative": [
+        "IEC 표준 인증 절차",
+        "IEC 적합성 평가"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_102",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "esd_procedure_skip",
+      "description": "ESD 방지 절차 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 900,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: ESD 방지 절차 생략 조력 차단",
+        "en": "This request is blocked: ESD prevention procedure skip assistance blocked"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "정전기 방지 없이 반도체 취급 가능한지",
+        "ESD 절차 생략하고 칩 작업하는 방법"
+      ],
+      "examplesNegative": [
+        "ESD 방지 절차 안내",
+        "반도체 취급 안전 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_103",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "battery_thermal_runaway_hide",
+      "description": "배터리 열폭주 위험 은폐 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 985,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 배터리 열폭주 위험 은폐 차단",
+        "en": "This request is blocked: Battery thermal runaway risk concealment blocked"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_RECALL"
+      ],
+      "examplesPositive": [
+        "리튬 배터리 열폭주 결함 데이터 은폐",
+        "배터리 안전 결함 리콜 회피"
+      ],
+      "examplesNegative": [
+        "배터리 안전 기준",
+        "열폭주 대응 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_104",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "high_voltage_pcb_safety_skip",
+      "description": "고전압 PCB 안전 절차 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 895,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 고전압 PCB 안전 절차 생략 조력 차단",
+        "en": "This request is blocked: High voltage PCB safety procedure skip assistance "
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "고전압 PCB 작업 시 절연 장갑 없이 가능한지",
+        "HV 보드 취급 안전 절차 생략"
+      ],
+      "examplesNegative": [
+        "고전압 PCB 안전 기준",
+        "PCB 취급 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_105",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "solder_fume_exposure",
+      "description": "납땜 흄 노출 위험 무시 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 885,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 납땜 흄 노출 위험 무시 조력 차단",
+        "en": "This request is blocked: Solder fume exposure risk ignorance blocked"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "납땜 작업 시 환기 없이 가능한지",
+        "플럭스 흄 노출 한도 초과해도 되는지"
+      ],
+      "examplesNegative": [
+        "납땜 작업 환기 기준",
+        "납 흄 노출 한도"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_106",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "cleanroom_chem_elec_skip",
+      "description": "클린룸 화학물질 취급 절차 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 클린룸 화학물질 취급 절차 생략 조력 차단",
+        "en": "This request is blocked: Cleanroom chemical handling procedure skip assista"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "HF 사용 시 보호구 없이 작업 가능한지",
+        "클린룸 화학물질 취급 안전 절차 생략"
+      ],
+      "examplesNegative": [
+        "클린룸 화학물질 취급 기준",
+        "HF 취급 안전"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_107",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "lithium_fire_hide",
+      "description": "리튬 배터리 화재 위험 은폐 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 980,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 리튬 배터리 화재 위험 은폐 차단",
+        "en": "This request is blocked: Lithium battery fire risk concealment blocked"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "리튬 배터리 화재 위험 결함 내부 처리",
+        "배터리 발화 사고 은폐"
+      ],
+      "examplesNegative": [
+        "리튬 배터리 화재 예방",
+        "배터리 안전 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_108",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "laser_safety_bypass",
+      "description": "레이저 안전 절차 우회 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 878,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 레이저 안전 절차 우회 조력 차단",
+        "en": "This request is blocked: Laser safety procedure bypass assistance blocked"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "Class 4 레이저 작업 시 보호구 없이 가능한지",
+        "레이저 안전 인터록 비활성화 방법"
+      ],
+      "examplesNegative": [
+        "레이저 안전 기준",
+        "레이저 등급별 안전 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_109",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "chemical_storage_violation",
+      "description": "화학물질 보관 기준 위반 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 화학물질 보관 기준 위반 조력 차단",
+        "en": "This request is blocked: Chemical storage standard violation assistance blo"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "산·염기 화학물질 혼합 보관 가능한지",
+        "발화성 물질 안전 보관 기준 무시"
+      ],
+      "examplesNegative": [
+        "화학물질 보관 기준",
+        "위험 물질 분류 저장"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_110",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "wafer_fab_chemical_exposure",
+      "description": "팹 화학물질 노출 기준 위반 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 875,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 팹 화학물질 노출 기준 위반 조력 차단",
+        "en": "This request is blocked: Fab chemical exposure standard violation assistanc"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "팹 공정 유해가스 노출 한도 초과 허용 방법",
+        "실란 가스 누출 보고 생략"
+      ],
+      "examplesNegative": [
+        "팹 화학물질 노출 기준",
+        "실란 취급 안전"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_111",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "cleanroom_fire_hazard",
+      "description": "클린룸 화재 위험 은폐 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 882,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 클린룸 화재 위험 은폐 조력 차단",
+        "en": "This request is blocked: Cleanroom fire hazard concealment assistance block"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "클린룸 화재 위험 요소 보고 생략",
+        "IPA 발화 위험 내부 처리"
+      ],
+      "examplesNegative": [
+        "클린룸 화재 안전 기준",
+        "IPA 취급 안전"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_112",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "radiation_safety_skip",
+      "description": "방사선 안전 절차 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 888,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 방사선 안전 절차 생략 조력 차단",
+        "en": "This request is blocked: Radiation safety procedure skip assistance blocked"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "X-ray 검사 장비 방사선 차폐 없이 운영",
+        "방사선 안전 관리자 없이 방사선 장비 사용"
+      ],
+      "examplesNegative": [
+        "방사선 안전 기준",
+        "방사선 방호 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_113",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "nitrogen_asphyxiation_risk",
+      "description": "질소 질식 위험 무시 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 878,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 질소 질식 위험 무시 조력 차단",
+        "en": "This request is blocked: Nitrogen asphyxiation risk ignorance assistance bl"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "질소 퍼지 공간 진입 시 산소 농도 확인 생략",
+        "질소 가스 누출 경보 무시"
+      ],
+      "examplesNegative": [
+        "질소 취급 안전 기준",
+        "밀폐공간 산소 농도 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_114",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "hydrofluoric_acid_safety",
+      "description": "불산 취급 안전 절차 위반 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 895,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 불산 취급 안전 절차 위반 조력 차단",
+        "en": "This request is blocked: Hydrofluoric acid handling safety procedure violat"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "HF 산 취급 시 내산성 장갑 없이 가능한지",
+        "불산 누출 시 신고 생략"
+      ],
+      "examplesNegative": [
+        "불산 취급 안전 기준",
+        "HF 누출 대응 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_115",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "plasma_equipment_safety",
+      "description": "플라즈마 장비 안전 절차 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 872,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라즈마 장비 안전 절차 생략 조력 차단",
+        "en": "This request is blocked: Plasma equipment safety procedure skip assistance "
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "플라즈마 챔버 유지보수 시 RF 전원 차단 생략",
+        "플라즈마 장비 안전 인터록 무력화"
+      ],
+      "examplesNegative": [
+        "플라즈마 장비 안전 기준",
+        "RF 전원 안전 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_116",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "cvd_toxic_gas_bypass",
+      "description": "CVD 독성 가스 안전 절차 우회 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 885,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: CVD 독성 가스 안전 절차 우회 조력 차단",
+        "en": "This request is blocked: CVD toxic gas safety procedure bypass assistance b"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "CVD 공정 독성 가스 누출 경보 무시",
+        "WF6 가스 취급 시 보호구 생략"
+      ],
+      "examplesNegative": [
+        "CVD 독성 가스 취급 기준",
+        "가스 누출 대응 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_117",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "ion_implanter_safety_skip",
+      "description": "이온주입기 안전 절차 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 868,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 이온주입기 안전 절차 생략 조력 차단",
+        "en": "This request is blocked: Ion implanter safety procedure skip assistance blo"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "이온주입기 고전압부 작업 시 절연 생략",
+        "이온 빔 노출 위험 무시"
+      ],
+      "examplesNegative": [
+        "이온주입기 안전 기준",
+        "고전압 장비 취급 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_118",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "cmp_slurry_safety_skip",
+      "description": "CMP 슬러리 화학 안전 절차 생략 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 842,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "규정 검토 후 진행하세요: CMP 슬러리 화학 안전 절차 생략 경고",
+        "en": "Please verify compliance before proceeding."
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "CMP 슬러리 취급 시 PPE 생략 가능한지",
+        "연마 슬러리 피부 노출 위험 무시"
+      ],
+      "examplesNegative": [
+        "CMP 슬러리 안전 기준",
+        "연마 공정 PPE 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_119",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "explosion_proof_bypass",
+      "description": "방폭 설비 기준 우회 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 892,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 방폭 설비 기준 우회 조력 차단",
+        "en": "This request is blocked: Explosion-proof equipment standard bypass assistan"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "방폭 구역 비방폭 장비 사용 가능한지",
+        "방폭 설비 기준 무시하고 설치"
+      ],
+      "examplesNegative": [
+        "방폭 설비 기준",
+        "폭발 위험 구역 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_120",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "label_hazard_falsify",
+      "description": "위험물 라벨 위조 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 위험물 라벨 위조 조력 차단",
+        "en": "This request is blocked: Hazardous material label falsification assistance "
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_ROHS"
+      ],
+      "examplesPositive": [
+        "위험 화학물질 라벨 위험도 낮게 표시",
+        "GHS 라벨 허위 작성"
+      ],
+      "examplesNegative": [
+        "GHS 라벨 기준",
+        "위험물 표시 방법"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_121",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "electrical_safety_cert_hide",
+      "description": "전기제품 안전 결함 은폐 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 970,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기제품 안전 결함 은폐 차단",
+        "en": "This request is blocked: Electrical product safety defect concealment block"
+      },
+      "regulationTags": [
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "전기용품 감전 위험 결함 은폐",
+        "전기 안전사고 데이터 삭제"
+      ],
+      "examplesNegative": [
+        "전기용품 안전 기준",
+        "감전 방지 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_122",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "gas_leak_detection_bypass",
+      "description": "가스 누출 감지 시스템 우회 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 875,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 가스 누출 감지 시스템 우회 조력 차단",
+        "en": "This request is blocked: Gas leak detection system bypass assistance blocke"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "가스 감지기 알람 무시하고 작업 계속",
+        "가스 누출 감지 시스템 비활성화"
+      ],
+      "examplesNegative": [
+        "가스 누출 감지 기준",
+        "가스 누출 대응 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_123",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "solvent_fire_risk_hide",
+      "description": "용제 화재 위험 은폐 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 872,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 용제 화재 위험 은폐 조력 차단",
+        "en": "This request is blocked: Solvent fire risk concealment assistance blocked"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "유기용제 화재 위험 내부 처리",
+        "IPA 발화 사고 은폐"
+      ],
+      "examplesNegative": [
+        "유기용제 화재 예방 기준",
+        "IPA 취급 안전"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_124",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "toxic_waste_illegal_dump",
+      "description": "독성 폐기물 불법 투기 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 968,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 독성 폐기물 불법 투기 조력 차단",
+        "en": "This request is blocked: Toxic waste illegal dumping assistance blocked"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_ROHS"
+      ],
+      "examplesPositive": [
+        "반도체 공정 독성 폐수 무단 방류",
+        "화학 폐기물 불법 매립"
+      ],
+      "examplesNegative": [
+        "독성 폐기물 처리 기준",
+        "화학 폐기물 관리 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_125",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "overload_safety_skip",
+      "description": "전기 과부하 안전 장치 우회 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 862,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기 과부하 안전 장치 우회 차단",
+        "en": "This request is blocked: Electrical overload safety device bypass blocked"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "회로 차단기 무력화 방법",
+        "과전류 보호 장치 제거"
+      ],
+      "examplesNegative": [
+        "전기 안전 기준",
+        "과전류 보호 설계"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_126",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "employee_invention_pii",
+      "description": "직무발명 신고서 개인정보 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 890,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "직무발명 신고서 발명자 주민번호 포함 외부 공유",
+        "직원 특허 신고 개인정보 무단 처리"
+      ],
+      "examplesNegative": [
+        "직무발명 개인정보 관리",
+        "발명자 정보 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_127",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "chip_test_participant_pii",
+      "description": "칩 테스트 참여자 개인정보 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 885,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "칩 사용성 테스트 참여자 실명·연락처 공유",
+        "반도체 제품 테스트 참여자 동의 없이 데이터 활용"
+      ],
+      "examplesNegative": [
+        "테스트 참여자 데이터 보호",
+        "개인정보 동의 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_128",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "defect_report_pii_elec",
+      "description": "전자제품 결함 보고서 개인정보 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "소비자 결함 신고 원문 실명·연락처 포함 외부 공유",
+        "전자제품 결함 피해자 개인정보 무단 이용"
+      ],
+      "examplesNegative": [
+        "결함 보고서 익명화 방법",
+        "소비자 개인정보 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_129",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "employee_health_record_elec",
+      "description": "반도체 공장 직원 건강 기록 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 895,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "화학물질 노출 직원 건강 검진 결과 외부 공유",
+        "직업병 의심 직원 의료 정보 무단 활용"
+      ],
+      "examplesNegative": [
+        "직원 건강 정보 보호",
+        "산업보건 데이터 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_130",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "fab_worker_personal_data",
+      "description": "팹 작업자 개인정보 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 840,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "팹 작업자 이름·사번·근무 이력 외부 공유",
+        "클린룸 출입 기록 개인정보 무단 활용"
+      ],
+      "examplesNegative": [
+        "직원 개인정보 관리",
+        "출입 기록 데이터 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_131",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "customer_product_usage_pii",
+      "description": "고객 제품 사용 데이터 PII 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 835,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "전자제품 사용 이력 개인 식별 정보 외부 공유",
+        "스마트 기기 사용 패턴 무단 제3자 제공"
+      ],
+      "examplesNegative": [
+        "고객 데이터 익명화",
+        "사용 데이터 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_132",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "supplier_employee_pii",
+      "description": "공급사 직원 개인정보 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 828,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "반도체 공급사 담당자 실명·연락처 외부 공유",
+        "협력사 직원 개인정보 무단 처리"
+      ],
+      "examplesNegative": [
+        "공급사 직원 정보 보호",
+        "개인정보 처리 동의"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_133",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "qa_tester_pii",
+      "description": "QA 테스터 개인정보 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 832,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "QA 테스터 이름·연락처 포함 테스트 보고서 외부 공유",
+        "제품 QA 참여자 데이터 무단 활용"
+      ],
+      "examplesNegative": [
+        "QA 참여자 개인정보 보호",
+        "테스트 데이터 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_134",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "patent_inventor_pii",
+      "description": "특허 발명자 개인정보 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 845,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "특허 출원 발명자 개인정보 외부 공유",
+        "발명자 연락처 무단 수집"
+      ],
+      "examplesNegative": [
+        "발명자 개인정보 보호",
+        "특허 정보 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_135",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "safety_incident_victim_pii",
+      "description": "산업재해 피해자 개인정보 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 875,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "산업재해 피해 직원 실명·상해 내용 외부 공유",
+        "산재 보고서 개인정보 무단 활용"
+      ],
+      "examplesNegative": [
+        "산재 피해자 정보 보호",
+        "사고 보고서 익명화"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_136",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "biometric_access_data_elec",
+      "description": "클린룸 생체인식 출입 데이터 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 878,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "클린룸 지문·홍채 인식 출입 데이터 외부 공유",
+        "생체인식 출입 이력 무단 활용"
+      ],
+      "examplesNegative": [
+        "생체인식 데이터 보호",
+        "출입 통제 데이터 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_137",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "engineer_personal_assignment",
+      "description": "엔지니어 개인 배치 정보 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 822,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "특정 엔지니어 이름·배치 공정 정보 외부 공유",
+        "직원 근무 스케줄 개인정보 무단 공개"
+      ],
+      "examplesNegative": [
+        "직원 배치 정보 보호",
+        "인사 데이터 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_138",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "rf_shielding_design_secret",
+      "description": "RF 차폐 설계 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 847,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: RF 차폐 설계 기밀 유출 차단",
+        "en": "This request is blocked: RF shielding design confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "RF 차폐 케이스 설계 도면 외부 유출",
+        "EMI 차폐 필터 설계 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "RF 차폐 IP 보호",
+        "EMI 설계 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_139",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "display_panel_secret",
+      "description": "디스플레이 패널 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 939,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 디스플레이 패널 기밀 유출 차단",
+        "en": "This request is blocked: Display panel confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "OLED 패널 구조 기밀 외부 유출",
+        "마이크로 LED 픽셀 설계 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "디스플레이 IP 보호",
+        "패널 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_140",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "image_sensor_secret",
+      "description": "이미지 센서 설계 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 937,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 이미지 센서 설계 기밀 유출 차단",
+        "en": "This request is blocked: Image sensor design confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "CMOS 이미지 센서 픽셀 구조 유출",
+        "BSI 센서 공정 파라미터 외부 공유"
+      ],
+      "examplesNegative": [
+        "이미지 센서 IP 보호",
+        "센서 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_141",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "power_ic_design_secret",
+      "description": "전력 반도체 IC 설계 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 873,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전력 반도체 IC 설계 기밀 유출 차단",
+        "en": "This request is blocked: Power semiconductor IC design confidential leakage"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "SiC MOSFET 설계 파라미터 유출",
+        "GaN 파워 디바이스 공정 기밀 공유"
+      ],
+      "examplesNegative": [
+        "전력 반도체 IP 보호",
+        "파워 IC 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_142",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "memory_controller_secret",
+      "description": "메모리 컨트롤러 IP 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 935,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 메모리 컨트롤러 IP 기밀 유출 차단",
+        "en": "This request is blocked: Memory controller IP confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "DRAM 컨트롤러 아키텍처 외부 유출",
+        "플래시 컨트롤러 알고리즘 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "메모리 컨트롤러 IP 보호",
+        "컨트롤러 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_143",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "semiconductor_packaging_ip",
+      "description": "반도체 패키지 IP 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 869,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 반도체 패키지 IP 기밀 유출 차단",
+        "en": "This request is blocked: Semiconductor package IP confidential leakage bloc"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "WLP 패키지 설계 기밀 유출",
+        "FOWLP 공정 파라미터 외부 공유"
+      ],
+      "examplesNegative": [
+        "패키지 IP 보호",
+        "패키징 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_144",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "interface_protocol_secret",
+      "description": "인터페이스 프로토콜 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 863,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 인터페이스 프로토콜 기밀 유출 차단",
+        "en": "This request is blocked: Interface protocol confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "독자 개발 고속 인터페이스 프로토콜 유출",
+        "SerDes 프로토콜 스택 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "인터페이스 프로토콜 IP 보호",
+        "통신 프로토콜 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_145",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "wafer_inspection_data_secret",
+      "description": "웨이퍼 검사 데이터 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 861,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 웨이퍼 검사 데이터 기밀 유출 차단",
+        "en": "This request is blocked: Wafer inspection data confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "KLA 검사 결과 데이터 외부 유출",
+        "웨이퍼 결함 맵 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "웨이퍼 검사 데이터 보안",
+        "검사 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_146",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "advanced_packaging_roadmap",
+      "description": "어드밴스드 패키징 로드맵 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 933,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 어드밴스드 패키징 로드맵 기밀 유출 차단",
+        "en": "This request is blocked: Advanced packaging roadmap confidential leakage bl"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "2.5D/3D 패키징 로드맵 외부 유출",
+        "칩렛 아키텍처 개발 계획 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "패키징 로드맵 보안",
+        "어드밴스드 패키징 기밀"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_147",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "analog_mixed_signal_secret",
+      "description": "아날로그 혼합신호 회로 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 871,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아날로그 혼합신호 회로 기밀 유출 차단",
+        "en": "This request is blocked: Analog mixed-signal circuit confidential leakage b"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "PLL 회로 설계 기밀 유출",
+        "DAC/ADC 혼합신호 회로 외부 공유"
+      ],
+      "examplesNegative": [
+        "혼합신호 회로 IP 보호",
+        "아날로그 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_148",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "neural_network_chip_secret",
+      "description": "뉴럴 네트워크 칩 아키텍처 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 931,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 뉴럴 네트워크 칩 아키텍처 기밀 유출 차단",
+        "en": "This request is blocked: Neural network chip architecture confidential leak"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "온디바이스 AI 칩 설계 외부 유출",
+        "뉴럴 프로세서 메모리 구조 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "AI 칩 IP 보호",
+        "뉴럴 프로세서 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_149",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "chip_test_coverage_secret",
+      "description": "칩 테스트 커버리지 데이터 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 859,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 칩 테스트 커버리지 데이터 기밀 유출 차단",
+        "en": "This request is blocked: Chip test coverage data confidential leakage block"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "DFT 테스트 커버리지 데이터 유출",
+        "스캔 체인 설계 기밀 공유"
+      ],
+      "examplesNegative": [
+        "테스트 커버리지 IP 보호",
+        "DFT 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_150",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "back_end_process_secret",
+      "description": "후공정 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 865,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 후공정 기밀 유출 차단",
+        "en": "This request is blocked: Back-end process confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "다이싱·마운팅 공정 파라미터 유출",
+        "범프 형성 공정 기밀 외부 공유"
+      ],
+      "examplesNegative": [
+        "후공정 IP 보호",
+        "조립 공정 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_151",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "semiconductor_import_cert_fraud",
+      "description": "반도체 수입 인증 위조 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 882,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 반도체 수입 인증 위조 차단",
+        "en": "This request is blocked: Semiconductor import certification fraud blocked"
+      },
+      "regulationTags": [
+        "EAR",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "수입 반도체 품질 인증서 위조",
+        "수입 검사 성적서 허위 작성"
+      ],
+      "examplesNegative": [
+        "반도체 수입 인증 기준",
+        "수입 적합성 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_152",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "compliance_test_skip",
+      "description": "적합성 시험 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 888,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 적합성 시험 생략 조력 차단",
+        "en": "This request is blocked: Compliance test skip assistance blocked"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "KC 인증 시험 생략하고 제품 출시",
+        "CE 적합성 평가 건너뛰기"
+      ],
+      "examplesNegative": [
+        "적합성 시험 절차",
+        "인증 요건 안내"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_153",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "product_liability_suppress",
+      "description": "전자제품 결함 피해 증거 은폐 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 957,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전자제품 결함 피해 증거 은폐 차단",
+        "en": "This request is blocked: Electronic product defect damage evidence concealm"
+      },
+      "regulationTags": [
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "전자제품 결함 사고 증거 인멸 방법",
+        "제조물 책임 소송 대비 기록 삭제"
+      ],
+      "examplesNegative": [
+        "제조물 책임 증거 보전",
+        "법적 기록 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_154",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "hazmat_transport_falsify",
+      "description": "유해물질 운송 서류 위조 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 892,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유해물질 운송 서류 위조 차단",
+        "en": "This request is blocked: Hazardous material transport document falsificatio"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "EU_ROHS2"
+      ],
+      "examplesPositive": [
+        "위험물 운송 서류 위조",
+        "유해화학물질 운반 신고 생략"
+      ],
+      "examplesNegative": [
+        "위험물 운송 기준",
+        "유해물질 운반 신고 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_155",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "iso_cert_falsify",
+      "description": "ISO 인증서 위조 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 952,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: ISO 인증서 위조 차단",
+        "en": "This request is blocked: ISO certificate falsification blocked"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ISO 9001 인증서 위조",
+        "ISO 14001 인증 허위 취득"
+      ],
+      "examplesNegative": [
+        "ISO 인증 절차",
+        "ISO 인증 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_156",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "safety_incident_elec_hide",
+      "description": "전자 제조 안전사고 은폐 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 953,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전자 제조 안전사고 은폐 조력 차단",
+        "en": "This request is blocked: Electronics manufacturing safety incident concealm"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "반도체 팹 화재 사고 은폐",
+        "클린룸 화학물질 누출 사고 미신고"
+      ],
+      "examplesNegative": [
+        "안전사고 신고 의무",
+        "사고 보고 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_157",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "supply_chain_compliance_fraud",
+      "description": "공급망 컴플라이언스 서류 사기 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 886,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공급망 컴플라이언스 서류 사기 차단",
+        "en": "This request is blocked: Supply chain compliance document fraud blocked"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "EAR"
+      ],
+      "examplesPositive": [
+        "공급망 컴플라이언스 서류 위조",
+        "공급사 인증 서류 허위 첨부"
+      ],
+      "examplesNegative": [
+        "공급망 컴플라이언스 기준",
+        "공급사 인증 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_158",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "technology_transfer_unauthorized",
+      "description": "무단 기술 이전 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 976,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무단 기술 이전 조력 차단",
+        "en": "This request is blocked: Unauthorized technology transfer assistance blocke"
+      },
+      "regulationTags": [
+        "EAR",
+        "ITAR",
+        "KR_SECURITY_EXPORT"
+      ],
+      "examplesPositive": [
+        "수출 허가 없이 반도체 제조 기술 해외 이전",
+        "군용 전자부품 기술 무단 해외 이전"
+      ],
+      "examplesNegative": [
+        "기술 이전 허가 절차",
+        "수출 통제 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_159",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "chip_marking_falsify",
+      "description": "칩 마킹 위조 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 874,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 칩 마킹 위조 조력 차단",
+        "en": "This request is blocked: Chip marking falsification assistance blocked"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "반도체 칩 로트 번호 위조",
+        "위조 칩 원본 마킹 부착"
+      ],
+      "examplesNegative": [
+        "칩 마킹 기준",
+        "반도체 부품 인증 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_160",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "environmental_report_falsify",
+      "description": "환경 보고서 위조 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 897,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 환경 보고서 위조 차단",
+        "en": "This request is blocked: Environmental report falsification blocked"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "EU_ROHS2"
+      ],
+      "examplesPositive": [
+        "화학물질 배출량 보고서 위조",
+        "폐수 처리 결과 허위 보고"
+      ],
+      "examplesNegative": [
+        "환경 보고 기준",
+        "환경 보고서 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_161",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "recycled_material_cert_fraud",
+      "description": "재활용 소재 인증 위조 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 832,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "규정 검토 후 진행하세요: 재활용 소재 인증 위조 경고",
+        "en": "Please verify compliance before proceeding."
+      },
+      "regulationTags": [
+        "EU_WEEE",
+        "EU_ROHS2"
+      ],
+      "examplesPositive": [
+        "재활용 소재 비율 허위 인증",
+        "친환경 재활용 인증 위조"
+      ],
+      "examplesNegative": [
+        "재활용 인증 기준",
+        "친환경 소재 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_162",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "eps_import_registration_skip",
+      "description": "전기용품 수입 신고 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 877,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기용품 수입 신고 생략 조력 차단",
+        "en": "This request is blocked: Electrical product import registration skip assist"
+      },
+      "regulationTags": [
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "KC 인증 없이 전기용품 수입 통관",
+        "수입 신고 생략하고 전기용품 유통"
+      ],
+      "examplesNegative": [
+        "전기용품 수입 신고 기준",
+        "KC 수입 통관 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_163",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "oem_spec_compliance_fraud",
+      "description": "OEM 사양 적합성 위조 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 884,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: OEM 사양 적합성 위조 차단",
+        "en": "This request is blocked: OEM specification compliance fraud blocked"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "OEM 고객 사양 미충족 은폐",
+        "고객 규격 불합격 제품 합격 처리"
+      ],
+      "examplesNegative": [
+        "OEM 사양 관리",
+        "고객 요구사항 적합성"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_164",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "electronic_waste_cert_fraud",
+      "description": "전자폐기물 처리 인증 위조 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 879,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전자폐기물 처리 인증 위조 차단",
+        "en": "This request is blocked: Electronic waste disposal certification fraud bloc"
+      },
+      "regulationTags": [
+        "EU_WEEE",
+        "KR_ROHS"
+      ],
+      "examplesPositive": [
+        "전자폐기물 적법 처리 인증서 위조",
+        "WEEE 처리 업체 인증 허위 첨부"
+      ],
+      "examplesNegative": [
+        "전자폐기물 처리 인증 기준",
+        "WEEE 처리 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_165",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "product_defect_notice_skip",
+      "description": "전기제품 결함 고지 의무 생략 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 951,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기제품 결함 고지 의무 생략 차단",
+        "en": "This request is blocked: Electrical product defect notification obligation "
+      },
+      "regulationTags": [
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "전기용품 결함 발견 후 소비자 고지 생략",
+        "안전 결함 통보 의무 회피"
+      ],
+      "examplesNegative": [
+        "결함 고지 의무 기준",
+        "소비자 통보 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_166",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "fire_incident_elec_hide",
+      "description": "전자제품 화재 사고 은폐 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 961,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전자제품 화재 사고 은폐 차단",
+        "en": "This request is blocked: Electronic product fire incident concealment block"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "전자제품 화재 사고 은폐 방법",
+        "화재 원인 조사 방해"
+      ],
+      "examplesNegative": [
+        "화재 사고 신고 의무",
+        "화재 원인 조사 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_167",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "export_license_doc_falsify",
+      "description": "수출 허가 서류 위조 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 979,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 수출 허가 서류 위조 차단",
+        "en": "This request is blocked: Export license document falsification blocked"
+      },
+      "regulationTags": [
+        "EAR",
+        "ITAR"
+      ],
+      "examplesPositive": [
+        "수출 허가서 위조 방법",
+        "EAR 허가 서류 조작"
+      ],
+      "examplesNegative": [
+        "수출 허가 절차",
+        "EAR 허가 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_168",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "end_user_cert_falsify",
+      "description": "최종 사용자 인증서 위조 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 977,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 최종 사용자 인증서 위조 차단",
+        "en": "This request is blocked: End-user certificate falsification blocked"
+      },
+      "regulationTags": [
+        "EAR",
+        "ITAR"
+      ],
+      "examplesPositive": [
+        "최종 사용자 증명서 위조 방법",
+        "EUC 허위 작성으로 수출 통제 회피"
+      ],
+      "examplesNegative": [
+        "최종 사용자 인증서 기준",
+        "EUC 발급 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_169",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "rohs_test_result_falsify",
+      "description": "RoHS 시험 결과 위조 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 966,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: RoHS 시험 결과 위조 차단",
+        "en": "This request is blocked: RoHS test result falsification blocked"
+      },
+      "regulationTags": [
+        "EU_ROHS2",
+        "KR_ROHS"
+      ],
+      "examplesPositive": [
+        "RoHS 유해물질 시험 불합격 결과 위조",
+        "XRF 분석 결과 수정 후 제출"
+      ],
+      "examplesNegative": [
+        "RoHS 시험 절차",
+        "유해물질 시험 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_170",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "ccc_cert_falsify",
+      "description": "중국 CCC 인증 위조 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 956,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 중국 CCC 인증 위조 차단",
+        "en": "This request is blocked: China CCC certification falsification blocked"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "CCC 인증 없이 CCC 마크 부착",
+        "CCC 시험 결과 위조"
+      ],
+      "examplesNegative": [
+        "CCC 인증 절차",
+        "중국 수출 인증 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_171",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "supply_embargo_violation",
+      "description": "공급 금수 조치 위반 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 983,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공급 금수 조치 위반 차단",
+        "en": "This request is blocked: Supply embargo violation blocked"
+      },
+      "regulationTags": [
+        "EAR",
+        "ITAR",
+        "KR_SECURITY_EXPORT"
+      ],
+      "examplesPositive": [
+        "금수 대상 국가 반도체 우회 공급 방법",
+        "제재 기업 전자부품 공급 은폐"
+      ],
+      "examplesNegative": [
+        "금수 조치 기준",
+        "제재 준수 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_172",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "aoi_inspection_skip",
+      "description": "AOI 자동 광학 검사 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 862,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: AOI 자동 광학 검사 생략 조력 차단",
+        "en": "This request is blocked: AOI automatic optical inspection skip assistance b"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "PCB AOI 검사 생략하고 출하 가능한지",
+        "솔더 검사 단계 건너뛰기"
+      ],
+      "examplesNegative": [
+        "AOI 검사 기준",
+        "PCB 품질 검사 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_173",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "smt_reflow_safety_skip",
+      "description": "SMT 리플로우 안전 절차 생략 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 843,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "규정 검토 후 진행하세요: SMT 리플로우 안전 절차 생략 경고",
+        "en": "Please verify compliance before proceeding."
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "리플로우 오븐 과열 경보 무시",
+        "SMT 장비 화상 위험 무시"
+      ],
+      "examplesNegative": [
+        "리플로우 공정 안전 기준",
+        "SMT 장비 안전 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_174",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "pcb_conformal_coat_skip",
+      "description": "PCB 방습 코팅 생략 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 841,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "규정 검토 후 진행하세요: PCB 방습 코팅 생략 경고",
+        "en": "Please verify compliance before proceeding."
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "방습 코팅 없이 전자제품 출하 가능한지",
+        "습기 방지 처리 생략 요청"
+      ],
+      "examplesNegative": [
+        "방습 코팅 기준",
+        "PCB 보호 처리 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_175",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "epoxy_fume_exposure",
+      "description": "에폭시 수지 흄 노출 위험 무시 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 866,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 에폭시 수지 흄 노출 위험 무시 차단",
+        "en": "This request is blocked: Epoxy resin fume exposure risk ignorance blocked"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "에폭시 접착 공정 환기 없이 가능한지",
+        "에폭시 흄 노출 한도 초과 허용"
+      ],
+      "examplesNegative": [
+        "에폭시 수지 안전 기준",
+        "화학물질 노출 한도"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_176",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "cleanroom_suit_bypass",
+      "description": "클린룸 방진복 착용 생략 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 836,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "규정 검토 후 진행하세요: 클린룸 방진복 착용 생략 경고",
+        "en": "Please verify compliance before proceeding."
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "클린룸 방진복 없이 작업 가능한지",
+        "클린룸 복장 규정 예외 요청"
+      ],
+      "examplesNegative": [
+        "클린룸 방진복 기준",
+        "클린룸 입실 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_177",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "solder_lead_safety",
+      "description": "납 함유 솔더 안전 절차 생략 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 872,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 납 함유 솔더 안전 절차 생략 차단",
+        "en": "This request is blocked: Lead solder safety procedure skip blocked"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_ROHS"
+      ],
+      "examplesPositive": [
+        "납 솔더 작업 시 호흡기 보호구 없이 가능한지",
+        "납 함유 솔더 취급 안전 절차 생략"
+      ],
+      "examplesNegative": [
+        "납 솔더 안전 기준",
+        "납 노출 방지 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_178",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "pcb_drill_dust_exposure",
+      "description": "PCB 드릴링 분진 노출 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 839,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "규정 검토 후 진행하세요: PCB 드릴링 분진 노출 경고",
+        "en": "Please verify compliance before proceeding."
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "PCB 드릴링 작업 시 방진 마스크 없이 가능한지",
+        "유리섬유 분진 노출 한도 무시"
+      ],
+      "examplesNegative": [
+        "PCB 드릴링 안전 기준",
+        "분진 노출 한도"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_179",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "battery_assembly_safety_skip",
+      "description": "배터리 조립 안전 절차 생략 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 883,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 배터리 조립 안전 절차 생략 차단",
+        "en": "This request is blocked: Battery assembly safety procedure skip blocked"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "리튬 배터리 조립 시 안전 절차 생략",
+        "배터리 셀 쇼트 방지 절차 무시"
+      ],
+      "examplesNegative": [
+        "배터리 조립 안전 기준",
+        "리튬 배터리 취급 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_180",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "static_discharge_fab_skip",
+      "description": "팹 정전기 방전 절차 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 878,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 팹 정전기 방전 절차 생략 조력 차단",
+        "en": "This request is blocked: Fab static discharge procedure skip assistance blo"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "팹 ESD 방전 절차 없이 웨이퍼 취급",
+        "접지 없이 반도체 장비 작업"
+      ],
+      "examplesNegative": [
+        "팹 ESD 관리 기준",
+        "정전기 방전 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_181",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "toxic_chemical_storage_elec",
+      "description": "전자 제조 독성 화학물질 보관 위반 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 876,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전자 제조 독성 화학물질 보관 위반 차단",
+        "en": "This request is blocked: Electronics manufacturing toxic chemical storage v"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "HCl·H2SO4 혼합 보관 가능한지",
+        "발화성 용제 안전 보관 기준 무시"
+      ],
+      "examplesNegative": [
+        "독성 화학물질 보관 기준",
+        "위험물 분리 보관 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_182",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "high_temp_process_safety",
+      "description": "고온 공정 안전 절차 위반 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 864,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 고온 공정 안전 절차 위반 차단",
+        "en": "This request is blocked: High temperature process safety procedure violatio"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "고온 확산로 작업 시 내열 장갑 없이 가능한지",
+        "고온 공정 안전 인터록 해제 요청"
+      ],
+      "examplesNegative": [
+        "고온 공정 안전 기준",
+        "고온 장비 취급 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_183",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "laser_dicing_safety",
+      "description": "레이저 다이싱 안전 절차 위반 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 레이저 다이싱 안전 절차 위반 차단",
+        "en": "This request is blocked: Laser dicing safety procedure violation blocked"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "레이저 다이싱 작업 중 안전 가드 제거",
+        "레이저 다이싱 보호 장비 미착용"
+      ],
+      "examplesNegative": [
+        "레이저 다이싱 안전 기준",
+        "레이저 안전 장치 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_184",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "chemical_neutralization_skip",
+      "description": "화학물질 중화 처리 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 869,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 화학물질 중화 처리 생략 조력 차단",
+        "en": "This request is blocked: Chemical neutralization treatment skip assistance "
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "산성 폐액 중화 없이 방류 가능한지",
+        "알칼리 폐수 중화 처리 생략"
+      ],
+      "examplesNegative": [
+        "화학 폐수 중화 기준",
+        "폐수 처리 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_185",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "consumer_device_usage_pii",
+      "description": "소비자 전자기기 사용 PII 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 830,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "스마트폰 사용 이력 개인 식별 정보 무단 수집",
+        "스마트 TV 시청 기록 외부 공유"
+      ],
+      "examplesNegative": [
+        "소비자 기기 데이터 보호",
+        "사용 데이터 익명화"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_186",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "iot_sensor_pii",
+      "description": "IoT 센서 PII 데이터 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 827,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "IoT 센서 수집 생활 패턴 개인정보 무단 활용",
+        "스마트홈 기기 사용자 위치 데이터 외부 공유"
+      ],
+      "examplesNegative": [
+        "IoT 데이터 보호",
+        "IoT 개인정보 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_187",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "semiconductor_customer_pii",
+      "description": "반도체 고객사 담당자 PII 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 876,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "반도체 고객사 구매 담당자 연락처 외부 공유",
+        "고객사 엔지니어 개인정보 무단 활용"
+      ],
+      "examplesNegative": [
+        "고객 담당자 개인정보 보호",
+        "B2B 고객 정보 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_188",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "fab_visitor_log_pii",
+      "description": "팹 방문자 출입 기록 PII 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 824,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "반도체 팹 방문자 출입 기록 외부 공유",
+        "팹 감사 방문자 개인정보 무단 공개"
+      ],
+      "examplesNegative": [
+        "방문자 개인정보 보호",
+        "출입 기록 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_189",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "product_recall_customer_pii",
+      "description": "전자제품 리콜 고객 PII 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 873,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "리콜 대상 고객 연락처 외부 판매",
+        "리콜 통보용 고객 데이터 무단 활용"
+      ],
+      "examplesNegative": [
+        "리콜 고객 개인정보 보호",
+        "리콜 데이터 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_190",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "employee_overtime_pii",
+      "description": "반도체 공장 직원 초과근무 기록 PII 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 821,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "직원 초과근무 이력 외부 공유",
+        "근무 기록 개인정보 무단 공개"
+      ],
+      "examplesNegative": [
+        "직원 근무 기록 보호",
+        "인사 데이터 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_191",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "warranty_customer_device_pii",
+      "description": "전자제품 보증 고객 기기 PII 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 829,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "보증 수리 고객 기기 시리얼·연락처 외부 공유",
+        "보증 DB 고객 정보 무단 마케팅 활용"
+      ],
+      "examplesNegative": [
+        "보증 고객 데이터 보호",
+        "고객 기기 정보 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_192",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pcb_assembly_quality_bypass",
+      "description": "PCB 조립 품질 기준 우회 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 871,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PCB 조립 품질 기준 우회 차단",
+        "en": "This request is blocked: PCB assembly quality standard bypass blocked"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "IATF_16949"
+      ],
+      "examplesPositive": [
+        "PCB 조립 품질 검사 생략하고 출하",
+        "IPC-A-610 기준 위반 제품 합격 처리"
+      ],
+      "examplesNegative": [
+        "PCB 조립 품질 기준",
+        "IPC-A-610 검사 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_193",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "firmware_security_bypass",
+      "description": "펌웨어 보안 취약점 은폐 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 891,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 펌웨어 보안 취약점 은폐 차단",
+        "en": "This request is blocked: Firmware security vulnerability concealment blocke"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "펌웨어 보안 취약점 발견 후 패치 없이 출시",
+        "IoT 기기 백도어 취약점 은폐"
+      ],
+      "examplesNegative": [
+        "펌웨어 보안 기준",
+        "취약점 대응 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_194",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "emc_test_manipulation",
+      "description": "EMC 시험 조작 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 944,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: EMC 시험 조작 차단",
+        "en": "This request is blocked: EMC test manipulation blocked"
+      },
+      "regulationTags": [
+        "EU_CE",
+        "US_FCC_PART15"
+      ],
+      "examplesPositive": [
+        "EMC 시험 환경 인위 조작으로 합격 유도",
+        "전자기 간섭 측정 결과 수정"
+      ],
+      "examplesNegative": [
+        "EMC 시험 절차",
+        "EMC 기준 안내"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_195",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "iot_device_pii_unauthorized",
+      "description": "IoT 기기 무단 개인정보 수집 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 874,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "IoT 기기 사용자 동의 없이 개인정보 수집",
+        "스마트 기기 사용자 데이터 무단 제3자 판매"
+      ],
+      "examplesNegative": [
+        "IoT 개인정보 수집 기준",
+        "동의 기반 데이터 수집"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_196",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "chip_supply_monopoly_abuse",
+      "description": "반도체 공급 독점 남용 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 848,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 반도체 공급 독점 남용 조력 차단",
+        "en": "This request is blocked: Semiconductor supply monopoly abuse assistance blo"
+      },
+      "regulationTags": [
+        "EAR",
+        "KR_SECURITY_EXPORT"
+      ],
+      "examplesPositive": [
+        "반도체 공급 독점 지위 남용 방법",
+        "경쟁사 고객 공급 차단 담합"
+      ],
+      "examplesNegative": [
+        "공정거래법 준수",
+        "반도체 공급 윤리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_197",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "process_safety_cert_falsify",
+      "description": "공정 안전 인증 위조 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 948,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공정 안전 인증 위조 차단",
+        "en": "This request is blocked: Process safety certification falsification blocked"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "공정 안전 관리 인증서 위조",
+        "PSM 인증 허위 취득"
+      ],
+      "examplesNegative": [
+        "공정 안전 인증 절차",
+        "PSM 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_198",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "product_eol_data_hide",
+      "description": "제품 수명 종료 정보 은폐 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 825,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "규정 검토 후 진행하세요: 제품 수명 종료 정보 은폐 경고",
+        "en": "Please verify compliance before proceeding."
+      },
+      "regulationTags": [
+        "EU_WEEE",
+        "KR_ROHS"
+      ],
+      "examplesPositive": [
+        "WEEE 처리 의무 회피 위해 수명 연장 허위 신고",
+        "폐기물 발생량 데이터 조작"
+      ],
+      "examplesNegative": [
+        "WEEE 수명 관리 기준",
+        "제품 폐기 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_199",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "ip",
+      "subCategory": "insider_ip_leak_assist",
+      "description": "내부자 IP 유출 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 947,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 내부자 IP 유출 조력 차단",
+        "en": "This request is blocked: Insider IP leakage assistance blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "내부 직원이 반도체 IP 유출하도록 도움",
+        "경쟁사 이직 시 기밀 가져가는 방법"
+      ],
+      "examplesNegative": [
+        "내부자 기밀 보호 방법",
+        "IP 보안 정책"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELEC_KR_200",
+      "domain": "manufacturing-electronics",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "counterfeit_ic_supply_assist",
+      "description": "위조 IC 공급망 유입 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 969,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 위조 IC 공급망 유입 조력 차단",
+        "en": "This request is blocked: Counterfeit IC supply chain infiltration assistanc"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "위조 반도체 칩 공급망에 넣는 방법",
+        "모조 IC 정품으로 속여 유통 방법"
+      ],
+      "examplesNegative": [
+        "위조 부품 탐지 기준",
+        "공급망 보안 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    }
+  ]
+}

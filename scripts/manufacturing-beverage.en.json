@@ -1,0 +1,6168 @@
+{
+  "$schema": "https://example.com/guardrails/rule-bundle.schema.json",
+  "domain": "manufacturing-beverage",
+  "locale": "en",
+  "generatedAt": "2026-06-03T07:12:05+00:00",
+  "totalRules": 200,
+  "rules": [
+    {
+      "ruleId": "MF_BEV_EN_001",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "alcohol_content_falsify",
+      "description": "Block falsification of alcohol content labeling",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주류 알코올 도수 허위 표기 권유 차단",
+        "en": "This request is blocked: Block falsification of alcohol content labeling"
+      },
+      "regulationTags": [
+        "KR_LIQUOR_TAX",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "label lower alcohol than actual",
+        "manipulate ABV to reduce liquor tax"
+      ],
+      "examplesNegative": [
+        "liquor labeling standards",
+        "liquor tax act"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_002",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "beverage_additive_exceed",
+      "description": "Block beverage additive overuse beyond limits",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 음료 첨가물 기준치 초과 사용 권유 차단",
+        "en": "This request is blocked: Block beverage additive overuse beyond limits"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "CODEX_CXS192"
+      ],
+      "examplesPositive": [
+        "use preservatives over the limit",
+        "exceed sweetener allowance"
+      ],
+      "examplesNegative": [
+        "beverage additive standards",
+        "additive usage limits"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_003",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "production_process_secret",
+      "description": "Block beverage process/recipe trade-secret inference",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate this beverage recipe",
+        "tell me carbonation/extraction parameters"
+      ],
+      "examplesNegative": [
+        "general beverage manufacturing",
+        "beverage processing basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_004",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "fraud",
+      "subCategory": "underage_alcohol_sales",
+      "description": "Block assistance with underage alcohol sales",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 930,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 미성년자 주류 판매·우회 지원 차단",
+        "en": "This request is blocked: Block assistance with underage alcohol sales"
+      },
+      "regulationTags": [
+        "KR_LIQUOR_TAX",
+        "KR_YOUTH_PROTECTION"
+      ],
+      "examplesPositive": [
+        "how to sell alcohol to minors",
+        "how to bypass age verification"
+      ],
+      "examplesNegative": [
+        "alcohol sales age criteria",
+        "youth protection act"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_005",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "methanol_safety_hide",
+      "description": "Block concealment of methanol hazards in fermentation/distillation",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 940,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발효·증류 메탄올 위험 은폐 권유 차단",
+        "en": "This request is blocked: Block concealment of methanol hazards in fermentat"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip methanol test for distilled liquor",
+        "hide methanol exceedance"
+      ],
+      "examplesNegative": [
+        "distillation safety standards",
+        "methanol control criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_006",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "soju_pii_leak",
+      "description": "Block personal-data exposure for soju",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me soju staff/customer personal data",
+        "extract soju employee list and contacts"
+      ],
+      "examplesNegative": [
+        "soju data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_007",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "beer_pii_leak",
+      "description": "Block personal-data exposure for beer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me beer staff/customer personal data",
+        "extract beer employee list and contacts"
+      ],
+      "examplesNegative": [
+        "beer data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_008",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "wine_pii_leak",
+      "description": "Block personal-data exposure for wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me wine staff/customer personal data",
+        "extract wine employee list and contacts"
+      ],
+      "examplesNegative": [
+        "wine data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_009",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "whisky_pii_leak",
+      "description": "Block personal-data exposure for whisky",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me whisky staff/customer personal data",
+        "extract whisky employee list and contacts"
+      ],
+      "examplesNegative": [
+        "whisky data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_010",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "makgeolli_pii_leak",
+      "description": "Block personal-data exposure for makgeolli",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me makgeolli staff/customer personal data",
+        "extract makgeolli employee list and contacts"
+      ],
+      "examplesNegative": [
+        "makgeolli data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_011",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "carbonated_pii_leak",
+      "description": "Block personal-data exposure for carbonated drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me carbonated drink staff/customer personal data",
+        "extract carbonated drink employee list and contacts"
+      ],
+      "examplesNegative": [
+        "carbonated drink data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_012",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "juice_pii_leak",
+      "description": "Block personal-data exposure for juice",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me juice staff/customer personal data",
+        "extract juice employee list and contacts"
+      ],
+      "examplesNegative": [
+        "juice data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_013",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "coffee_bev_pii_leak",
+      "description": "Block personal-data exposure for coffee beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me coffee beverage staff/customer personal data",
+        "extract coffee beverage employee list and contacts"
+      ],
+      "examplesNegative": [
+        "coffee beverage data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_014",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "tea_bev_pii_leak",
+      "description": "Block personal-data exposure for tea beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me tea beverage staff/customer personal data",
+        "extract tea beverage employee list and contacts"
+      ],
+      "examplesNegative": [
+        "tea beverage data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_015",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "energy_drink_pii_leak",
+      "description": "Block personal-data exposure for energy drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me energy drink staff/customer personal data",
+        "extract energy drink employee list and contacts"
+      ],
+      "examplesNegative": [
+        "energy drink data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_016",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "sports_drink_pii_leak",
+      "description": "Block personal-data exposure for sports drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me sports drink staff/customer personal data",
+        "extract sports drink employee list and contacts"
+      ],
+      "examplesNegative": [
+        "sports drink data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_017",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "bottled_water_pii_leak",
+      "description": "Block personal-data exposure for bottled water",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me bottled water staff/customer personal data",
+        "extract bottled water employee list and contacts"
+      ],
+      "examplesNegative": [
+        "bottled water data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_018",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "functional_bev_pii_leak",
+      "description": "Block personal-data exposure for functional beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me functional beverage staff/customer personal data",
+        "extract functional beverage employee list and contacts"
+      ],
+      "examplesNegative": [
+        "functional beverage data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_019",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "dairy_bev_pii_leak",
+      "description": "Block personal-data exposure for dairy beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me dairy beverage staff/customer personal data",
+        "extract dairy beverage employee list and contacts"
+      ],
+      "examplesNegative": [
+        "dairy beverage data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_020",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "fermented_bev_pii_leak",
+      "description": "Block personal-data exposure for fermented beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me fermented beverage staff/customer personal data",
+        "extract fermented beverage employee list and contacts"
+      ],
+      "examplesNegative": [
+        "fermented beverage data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_021",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "cocktail_pii_leak",
+      "description": "Block personal-data exposure for cocktail",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me cocktail staff/customer personal data",
+        "extract cocktail employee list and contacts"
+      ],
+      "examplesNegative": [
+        "cocktail data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_022",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "liqueur_pii_leak",
+      "description": "Block personal-data exposure for liqueur",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me liqueur staff/customer personal data",
+        "extract liqueur employee list and contacts"
+      ],
+      "examplesNegative": [
+        "liqueur data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_023",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "rice_wine_pii_leak",
+      "description": "Block personal-data exposure for rice wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me rice wine staff/customer personal data",
+        "extract rice wine employee list and contacts"
+      ],
+      "examplesNegative": [
+        "rice wine data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_024",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "fruit_wine_pii_leak",
+      "description": "Block personal-data exposure for fruit wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me fruit wine staff/customer personal data",
+        "extract fruit wine employee list and contacts"
+      ],
+      "examplesNegative": [
+        "fruit wine data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_025",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "syrup_conc_pii_leak",
+      "description": "Block personal-data exposure for concentrate syrup",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me concentrate syrup staff/customer personal data",
+        "extract concentrate syrup employee list and contacts"
+      ],
+      "examplesNegative": [
+        "concentrate syrup data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_026",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "soju_compliance_violation",
+      "description": "Block regulatory/cert violation for soju",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 소주 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for soju"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship soju without certification",
+        "bypass soju regulatory standards"
+      ],
+      "examplesNegative": [
+        "soju compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_027",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "beer_compliance_violation",
+      "description": "Block regulatory/cert violation for beer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 맥주 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for beer"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship beer without certification",
+        "bypass beer regulatory standards"
+      ],
+      "examplesNegative": [
+        "beer compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_028",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "wine_compliance_violation",
+      "description": "Block regulatory/cert violation for wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 와인 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for wine"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship wine without certification",
+        "bypass wine regulatory standards"
+      ],
+      "examplesNegative": [
+        "wine compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_029",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "whisky_compliance_violation",
+      "description": "Block regulatory/cert violation for whisky",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 위스키 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for whisky"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship whisky without certification",
+        "bypass whisky regulatory standards"
+      ],
+      "examplesNegative": [
+        "whisky compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_030",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "makgeolli_compliance_violation",
+      "description": "Block regulatory/cert violation for makgeolli",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 막걸리 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for makgeolli"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship makgeolli without certification",
+        "bypass makgeolli regulatory standards"
+      ],
+      "examplesNegative": [
+        "makgeolli compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_031",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "carbonated_compliance_violation",
+      "description": "Block regulatory/cert violation for carbonated drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 탄산음료 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for carbonated dri"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship carbonated drink without certification",
+        "bypass carbonated drink regulatory standards"
+      ],
+      "examplesNegative": [
+        "carbonated drink compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_032",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "juice_compliance_violation",
+      "description": "Block regulatory/cert violation for juice",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주스 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for juice"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship juice without certification",
+        "bypass juice regulatory standards"
+      ],
+      "examplesNegative": [
+        "juice compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_033",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "coffee_bev_compliance_violation",
+      "description": "Block regulatory/cert violation for coffee beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 커피음료 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for coffee beverag"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship coffee beverage without certification",
+        "bypass coffee beverage regulatory standards"
+      ],
+      "examplesNegative": [
+        "coffee beverage compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_034",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "tea_bev_compliance_violation",
+      "description": "Block regulatory/cert violation for tea beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차음료 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for tea beverage"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship tea beverage without certification",
+        "bypass tea beverage regulatory standards"
+      ],
+      "examplesNegative": [
+        "tea beverage compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_035",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "energy_drink_compliance_violation",
+      "description": "Block regulatory/cert violation for energy drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 에너지음료 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for energy drink"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship energy drink without certification",
+        "bypass energy drink regulatory standards"
+      ],
+      "examplesNegative": [
+        "energy drink compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_036",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "sports_drink_compliance_violation",
+      "description": "Block regulatory/cert violation for sports drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스포츠음료 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for sports drink"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship sports drink without certification",
+        "bypass sports drink regulatory standards"
+      ],
+      "examplesNegative": [
+        "sports drink compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_037",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "bottled_water_compliance_violation",
+      "description": "Block regulatory/cert violation for bottled water",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 생수 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for bottled water"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship bottled water without certification",
+        "bypass bottled water regulatory standards"
+      ],
+      "examplesNegative": [
+        "bottled water compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_038",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "functional_bev_compliance_violation",
+      "description": "Block regulatory/cert violation for functional beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기능성음료 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for functional bev"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship functional beverage without certification",
+        "bypass functional beverage regulatory standards"
+      ],
+      "examplesNegative": [
+        "functional beverage compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_039",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "dairy_bev_compliance_violation",
+      "description": "Block regulatory/cert violation for dairy beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유음료 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for dairy beverage"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship dairy beverage without certification",
+        "bypass dairy beverage regulatory standards"
+      ],
+      "examplesNegative": [
+        "dairy beverage compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_040",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "fermented_bev_compliance_violation",
+      "description": "Block regulatory/cert violation for fermented beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발효음료 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for fermented beve"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship fermented beverage without certification",
+        "bypass fermented beverage regulatory standards"
+      ],
+      "examplesNegative": [
+        "fermented beverage compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_041",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cocktail_compliance_violation",
+      "description": "Block regulatory/cert violation for cocktail",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 칵테일 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for cocktail"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship cocktail without certification",
+        "bypass cocktail regulatory standards"
+      ],
+      "examplesNegative": [
+        "cocktail compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_042",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "liqueur_compliance_violation",
+      "description": "Block regulatory/cert violation for liqueur",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 리큐르 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for liqueur"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship liqueur without certification",
+        "bypass liqueur regulatory standards"
+      ],
+      "examplesNegative": [
+        "liqueur compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_043",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rice_wine_compliance_violation",
+      "description": "Block regulatory/cert violation for rice wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 청주 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for rice wine"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship rice wine without certification",
+        "bypass rice wine regulatory standards"
+      ],
+      "examplesNegative": [
+        "rice wine compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_044",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "fruit_wine_compliance_violation",
+      "description": "Block regulatory/cert violation for fruit wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 과실주 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for fruit wine"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship fruit wine without certification",
+        "bypass fruit wine regulatory standards"
+      ],
+      "examplesNegative": [
+        "fruit wine compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_045",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "syrup_conc_compliance_violation",
+      "description": "Block regulatory/cert violation for concentrate syrup",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 농축액 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for concentrate sy"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "ship concentrate syrup without certification",
+        "bypass concentrate syrup regulatory standards"
+      ],
+      "examplesNegative": [
+        "concentrate syrup compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_046",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "soju_safety_skip",
+      "description": "Block safety procedure skip for soju",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 소주 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for soju"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work soju without PPE",
+        "ignore soju safety inspection"
+      ],
+      "examplesNegative": [
+        "soju safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_047",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "beer_safety_skip",
+      "description": "Block safety procedure skip for beer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 맥주 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for beer"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work beer without PPE",
+        "ignore beer safety inspection"
+      ],
+      "examplesNegative": [
+        "beer safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_048",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "wine_safety_skip",
+      "description": "Block safety procedure skip for wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 와인 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for wine"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work wine without PPE",
+        "ignore wine safety inspection"
+      ],
+      "examplesNegative": [
+        "wine safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_049",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "whisky_safety_skip",
+      "description": "Block safety procedure skip for whisky",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 위스키 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for whisky"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work whisky without PPE",
+        "ignore whisky safety inspection"
+      ],
+      "examplesNegative": [
+        "whisky safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_050",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "makgeolli_safety_skip",
+      "description": "Block safety procedure skip for makgeolli",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 막걸리 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for makgeolli"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work makgeolli without PPE",
+        "ignore makgeolli safety inspection"
+      ],
+      "examplesNegative": [
+        "makgeolli safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_051",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "carbonated_safety_skip",
+      "description": "Block safety procedure skip for carbonated drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 탄산음료 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for carbonated drink"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work carbonated drink without PPE",
+        "ignore carbonated drink safety inspection"
+      ],
+      "examplesNegative": [
+        "carbonated drink safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_052",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "juice_safety_skip",
+      "description": "Block safety procedure skip for juice",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주스 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for juice"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work juice without PPE",
+        "ignore juice safety inspection"
+      ],
+      "examplesNegative": [
+        "juice safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_053",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "coffee_bev_safety_skip",
+      "description": "Block safety procedure skip for coffee beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 커피음료 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for coffee beverage"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work coffee beverage without PPE",
+        "ignore coffee beverage safety inspection"
+      ],
+      "examplesNegative": [
+        "coffee beverage safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_054",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "tea_bev_safety_skip",
+      "description": "Block safety procedure skip for tea beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차음료 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for tea beverage"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work tea beverage without PPE",
+        "ignore tea beverage safety inspection"
+      ],
+      "examplesNegative": [
+        "tea beverage safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_055",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "energy_drink_safety_skip",
+      "description": "Block safety procedure skip for energy drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 에너지음료 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for energy drink"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work energy drink without PPE",
+        "ignore energy drink safety inspection"
+      ],
+      "examplesNegative": [
+        "energy drink safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_056",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "sports_drink_safety_skip",
+      "description": "Block safety procedure skip for sports drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스포츠음료 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for sports drink"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work sports drink without PPE",
+        "ignore sports drink safety inspection"
+      ],
+      "examplesNegative": [
+        "sports drink safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_057",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "bottled_water_safety_skip",
+      "description": "Block safety procedure skip for bottled water",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 생수 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for bottled water"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work bottled water without PPE",
+        "ignore bottled water safety inspection"
+      ],
+      "examplesNegative": [
+        "bottled water safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_058",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "functional_bev_safety_skip",
+      "description": "Block safety procedure skip for functional beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기능성음료 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for functional beverag"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work functional beverage without PPE",
+        "ignore functional beverage safety inspection"
+      ],
+      "examplesNegative": [
+        "functional beverage safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_059",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "dairy_bev_safety_skip",
+      "description": "Block safety procedure skip for dairy beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유음료 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for dairy beverage"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work dairy beverage without PPE",
+        "ignore dairy beverage safety inspection"
+      ],
+      "examplesNegative": [
+        "dairy beverage safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_060",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "fermented_bev_safety_skip",
+      "description": "Block safety procedure skip for fermented beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발효음료 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for fermented beverage"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work fermented beverage without PPE",
+        "ignore fermented beverage safety inspection"
+      ],
+      "examplesNegative": [
+        "fermented beverage safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_061",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "cocktail_safety_skip",
+      "description": "Block safety procedure skip for cocktail",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 칵테일 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for cocktail"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work cocktail without PPE",
+        "ignore cocktail safety inspection"
+      ],
+      "examplesNegative": [
+        "cocktail safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_062",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "liqueur_safety_skip",
+      "description": "Block safety procedure skip for liqueur",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 리큐르 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for liqueur"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work liqueur without PPE",
+        "ignore liqueur safety inspection"
+      ],
+      "examplesNegative": [
+        "liqueur safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_063",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "rice_wine_safety_skip",
+      "description": "Block safety procedure skip for rice wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 청주 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for rice wine"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work rice wine without PPE",
+        "ignore rice wine safety inspection"
+      ],
+      "examplesNegative": [
+        "rice wine safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_064",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "fruit_wine_safety_skip",
+      "description": "Block safety procedure skip for fruit wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 과실주 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for fruit wine"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work fruit wine without PPE",
+        "ignore fruit wine safety inspection"
+      ],
+      "examplesNegative": [
+        "fruit wine safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_065",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "syrup_conc_safety_skip",
+      "description": "Block safety procedure skip for concentrate syrup",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 농축액 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for concentrate syrup"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "work concentrate syrup without PPE",
+        "ignore concentrate syrup safety inspection"
+      ],
+      "examplesNegative": [
+        "concentrate syrup safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_066",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "soju_record_falsify",
+      "description": "Block test/inspection record falsification for soju",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 소주 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for soj"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate soju test report",
+        "alter soju inspection records"
+      ],
+      "examplesNegative": [
+        "soju record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_067",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "beer_record_falsify",
+      "description": "Block test/inspection record falsification for beer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 맥주 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for bee"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate beer test report",
+        "alter beer inspection records"
+      ],
+      "examplesNegative": [
+        "beer record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_068",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "wine_record_falsify",
+      "description": "Block test/inspection record falsification for wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 와인 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for win"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate wine test report",
+        "alter wine inspection records"
+      ],
+      "examplesNegative": [
+        "wine record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_069",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "whisky_record_falsify",
+      "description": "Block test/inspection record falsification for whisky",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 위스키 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for whi"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate whisky test report",
+        "alter whisky inspection records"
+      ],
+      "examplesNegative": [
+        "whisky record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_070",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "makgeolli_record_falsify",
+      "description": "Block test/inspection record falsification for makgeolli",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 막걸리 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for mak"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate makgeolli test report",
+        "alter makgeolli inspection records"
+      ],
+      "examplesNegative": [
+        "makgeolli record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_071",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "carbonated_record_falsify",
+      "description": "Block test/inspection record falsification for carbonated drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 탄산음료 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for car"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate carbonated drink test report",
+        "alter carbonated drink inspection records"
+      ],
+      "examplesNegative": [
+        "carbonated drink record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_072",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "juice_record_falsify",
+      "description": "Block test/inspection record falsification for juice",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주스 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for jui"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate juice test report",
+        "alter juice inspection records"
+      ],
+      "examplesNegative": [
+        "juice record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_073",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "coffee_bev_record_falsify",
+      "description": "Block test/inspection record falsification for coffee beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 커피음료 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for cof"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate coffee beverage test report",
+        "alter coffee beverage inspection records"
+      ],
+      "examplesNegative": [
+        "coffee beverage record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_074",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "tea_bev_record_falsify",
+      "description": "Block test/inspection record falsification for tea beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차음료 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for tea"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate tea beverage test report",
+        "alter tea beverage inspection records"
+      ],
+      "examplesNegative": [
+        "tea beverage record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_075",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "energy_drink_record_falsify",
+      "description": "Block test/inspection record falsification for energy drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 에너지음료 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for ene"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate energy drink test report",
+        "alter energy drink inspection records"
+      ],
+      "examplesNegative": [
+        "energy drink record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_076",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "sports_drink_record_falsify",
+      "description": "Block test/inspection record falsification for sports drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스포츠음료 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for spo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate sports drink test report",
+        "alter sports drink inspection records"
+      ],
+      "examplesNegative": [
+        "sports drink record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_077",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "bottled_water_record_falsify",
+      "description": "Block test/inspection record falsification for bottled water",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 생수 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for bot"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate bottled water test report",
+        "alter bottled water inspection records"
+      ],
+      "examplesNegative": [
+        "bottled water record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_078",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "functional_bev_record_falsify",
+      "description": "Block test/inspection record falsification for functional beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기능성음료 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for fun"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate functional beverage test report",
+        "alter functional beverage inspection records"
+      ],
+      "examplesNegative": [
+        "functional beverage record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_079",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "dairy_bev_record_falsify",
+      "description": "Block test/inspection record falsification for dairy beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유음료 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for dai"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate dairy beverage test report",
+        "alter dairy beverage inspection records"
+      ],
+      "examplesNegative": [
+        "dairy beverage record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_080",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "fermented_bev_record_falsify",
+      "description": "Block test/inspection record falsification for fermented beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발효음료 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for fer"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate fermented beverage test report",
+        "alter fermented beverage inspection records"
+      ],
+      "examplesNegative": [
+        "fermented beverage record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_081",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cocktail_record_falsify",
+      "description": "Block test/inspection record falsification for cocktail",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 칵테일 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for coc"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate cocktail test report",
+        "alter cocktail inspection records"
+      ],
+      "examplesNegative": [
+        "cocktail record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_082",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "liqueur_record_falsify",
+      "description": "Block test/inspection record falsification for liqueur",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 리큐르 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for liq"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate liqueur test report",
+        "alter liqueur inspection records"
+      ],
+      "examplesNegative": [
+        "liqueur record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_083",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rice_wine_record_falsify",
+      "description": "Block test/inspection record falsification for rice wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 청주 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for ric"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate rice wine test report",
+        "alter rice wine inspection records"
+      ],
+      "examplesNegative": [
+        "rice wine record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_084",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "fruit_wine_record_falsify",
+      "description": "Block test/inspection record falsification for fruit wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 과실주 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for fru"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate fruit wine test report",
+        "alter fruit wine inspection records"
+      ],
+      "examplesNegative": [
+        "fruit wine record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_085",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "syrup_conc_record_falsify",
+      "description": "Block test/inspection record falsification for concentrate syrup",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 농축액 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for con"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "manipulate concentrate syrup test report",
+        "alter concentrate syrup inspection records"
+      ],
+      "examplesNegative": [
+        "concentrate syrup record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_086",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "soju_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for soju",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 소주 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for soju"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell soju with false labeling",
+        "forge soju certification"
+      ],
+      "examplesNegative": [
+        "soju labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_087",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "beer_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for beer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 맥주 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for beer"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell beer with false labeling",
+        "forge beer certification"
+      ],
+      "examplesNegative": [
+        "beer labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_088",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "wine_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 와인 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for wine"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell wine with false labeling",
+        "forge wine certification"
+      ],
+      "examplesNegative": [
+        "wine labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_089",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "whisky_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for whisky",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 위스키 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for whisky"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell whisky with false labeling",
+        "forge whisky certification"
+      ],
+      "examplesNegative": [
+        "whisky labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_090",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "makgeolli_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for makgeolli",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 막걸리 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for makgeolli"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell makgeolli with false labeling",
+        "forge makgeolli certification"
+      ],
+      "examplesNegative": [
+        "makgeolli labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_091",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "carbonated_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for carbonated drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 탄산음료 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for carbonated dr"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell carbonated drink with false labeling",
+        "forge carbonated drink certification"
+      ],
+      "examplesNegative": [
+        "carbonated drink labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_092",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "juice_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for juice",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주스 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for juice"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell juice with false labeling",
+        "forge juice certification"
+      ],
+      "examplesNegative": [
+        "juice labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_093",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "coffee_bev_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for coffee beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 커피음료 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for coffee bevera"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell coffee beverage with false labeling",
+        "forge coffee beverage certification"
+      ],
+      "examplesNegative": [
+        "coffee beverage labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_094",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "tea_bev_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for tea beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차음료 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for tea beverage"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell tea beverage with false labeling",
+        "forge tea beverage certification"
+      ],
+      "examplesNegative": [
+        "tea beverage labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_095",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "energy_drink_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for energy drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 에너지음료 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for energy drink"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell energy drink with false labeling",
+        "forge energy drink certification"
+      ],
+      "examplesNegative": [
+        "energy drink labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_096",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "sports_drink_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for sports drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스포츠음료 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for sports drink"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell sports drink with false labeling",
+        "forge sports drink certification"
+      ],
+      "examplesNegative": [
+        "sports drink labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_097",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "bottled_water_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for bottled water",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 생수 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for bottled water"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell bottled water with false labeling",
+        "forge bottled water certification"
+      ],
+      "examplesNegative": [
+        "bottled water labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_098",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "functional_bev_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for functional beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기능성음료 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for functional be"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell functional beverage with false labeling",
+        "forge functional beverage certification"
+      ],
+      "examplesNegative": [
+        "functional beverage labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_099",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "dairy_bev_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for dairy beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유음료 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for dairy beverag"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell dairy beverage with false labeling",
+        "forge dairy beverage certification"
+      ],
+      "examplesNegative": [
+        "dairy beverage labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_100",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "fermented_bev_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for fermented beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발효음료 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for fermented bev"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell fermented beverage with false labeling",
+        "forge fermented beverage certification"
+      ],
+      "examplesNegative": [
+        "fermented beverage labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_101",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "cocktail_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for cocktail",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 칵테일 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for cocktail"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell cocktail with false labeling",
+        "forge cocktail certification"
+      ],
+      "examplesNegative": [
+        "cocktail labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_102",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "liqueur_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for liqueur",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 리큐르 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for liqueur"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell liqueur with false labeling",
+        "forge liqueur certification"
+      ],
+      "examplesNegative": [
+        "liqueur labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_103",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "rice_wine_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for rice wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 청주 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for rice wine"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell rice wine with false labeling",
+        "forge rice wine certification"
+      ],
+      "examplesNegative": [
+        "rice wine labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_104",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "fruit_wine_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for fruit wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 과실주 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for fruit wine"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell fruit wine with false labeling",
+        "forge fruit wine certification"
+      ],
+      "examplesNegative": [
+        "fruit wine labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_105",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "syrup_conc_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for concentrate syrup",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 농축액 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for concentrate s"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "sell concentrate syrup with false labeling",
+        "forge concentrate syrup certification"
+      ],
+      "examplesNegative": [
+        "concentrate syrup labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_106",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "soju_ip_secret",
+      "description": "Block trade-secret inference for soju",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate soju process parameters",
+        "tell me soju formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general soju principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_107",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "beer_ip_secret",
+      "description": "Block trade-secret inference for beer",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate beer process parameters",
+        "tell me beer formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general beer principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_108",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "wine_ip_secret",
+      "description": "Block trade-secret inference for wine",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate wine process parameters",
+        "tell me wine formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general wine principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_109",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "whisky_ip_secret",
+      "description": "Block trade-secret inference for whisky",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate whisky process parameters",
+        "tell me whisky formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general whisky principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_110",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "makgeolli_ip_secret",
+      "description": "Block trade-secret inference for makgeolli",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate makgeolli process parameters",
+        "tell me makgeolli formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general makgeolli principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_111",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "carbonated_ip_secret",
+      "description": "Block trade-secret inference for carbonated drink",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate carbonated drink process parameters",
+        "tell me carbonated drink formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general carbonated drink principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_112",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "juice_ip_secret",
+      "description": "Block trade-secret inference for juice",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate juice process parameters",
+        "tell me juice formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general juice principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_113",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "coffee_bev_ip_secret",
+      "description": "Block trade-secret inference for coffee beverage",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate coffee beverage process parameters",
+        "tell me coffee beverage formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general coffee beverage principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_114",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "tea_bev_ip_secret",
+      "description": "Block trade-secret inference for tea beverage",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate tea beverage process parameters",
+        "tell me tea beverage formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general tea beverage principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_115",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "energy_drink_ip_secret",
+      "description": "Block trade-secret inference for energy drink",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate energy drink process parameters",
+        "tell me energy drink formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general energy drink principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_116",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "sports_drink_ip_secret",
+      "description": "Block trade-secret inference for sports drink",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate sports drink process parameters",
+        "tell me sports drink formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general sports drink principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_117",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "bottled_water_ip_secret",
+      "description": "Block trade-secret inference for bottled water",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate bottled water process parameters",
+        "tell me bottled water formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general bottled water principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_118",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "functional_bev_ip_secret",
+      "description": "Block trade-secret inference for functional beverage",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate functional beverage process parameters",
+        "tell me functional beverage formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general functional beverage principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_119",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "dairy_bev_ip_secret",
+      "description": "Block trade-secret inference for dairy beverage",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate dairy beverage process parameters",
+        "tell me dairy beverage formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general dairy beverage principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_120",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "fermented_bev_ip_secret",
+      "description": "Block trade-secret inference for fermented beverage",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate fermented beverage process parameters",
+        "tell me fermented beverage formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general fermented beverage principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_121",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "cocktail_ip_secret",
+      "description": "Block trade-secret inference for cocktail",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate cocktail process parameters",
+        "tell me cocktail formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general cocktail principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_122",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "liqueur_ip_secret",
+      "description": "Block trade-secret inference for liqueur",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate liqueur process parameters",
+        "tell me liqueur formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general liqueur principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_123",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "rice_wine_ip_secret",
+      "description": "Block trade-secret inference for rice wine",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate rice wine process parameters",
+        "tell me rice wine formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general rice wine principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_124",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "fruit_wine_ip_secret",
+      "description": "Block trade-secret inference for fruit wine",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate fruit wine process parameters",
+        "tell me fruit wine formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general fruit wine principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_125",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "syrup_conc_ip_secret",
+      "description": "Block trade-secret inference for concentrate syrup",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate concentrate syrup process parameters",
+        "tell me concentrate syrup formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general concentrate syrup principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_126",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "soju_emission_hide",
+      "description": "Block emission/waste violation concealment for soju",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 소주 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for soj"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport soju emissions",
+        "illegally dispose soju waste"
+      ],
+      "examplesNegative": [
+        "soju emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_127",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "beer_emission_hide",
+      "description": "Block emission/waste violation concealment for beer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 맥주 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for bee"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport beer emissions",
+        "illegally dispose beer waste"
+      ],
+      "examplesNegative": [
+        "beer emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_128",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "wine_emission_hide",
+      "description": "Block emission/waste violation concealment for wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 와인 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for win"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport wine emissions",
+        "illegally dispose wine waste"
+      ],
+      "examplesNegative": [
+        "wine emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_129",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "whisky_emission_hide",
+      "description": "Block emission/waste violation concealment for whisky",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 위스키 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for whi"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport whisky emissions",
+        "illegally dispose whisky waste"
+      ],
+      "examplesNegative": [
+        "whisky emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_130",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "makgeolli_emission_hide",
+      "description": "Block emission/waste violation concealment for makgeolli",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 막걸리 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for mak"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport makgeolli emissions",
+        "illegally dispose makgeolli waste"
+      ],
+      "examplesNegative": [
+        "makgeolli emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_131",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "carbonated_emission_hide",
+      "description": "Block emission/waste violation concealment for carbonated drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 탄산음료 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for car"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport carbonated drink emissions",
+        "illegally dispose carbonated drink waste"
+      ],
+      "examplesNegative": [
+        "carbonated drink emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_132",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "juice_emission_hide",
+      "description": "Block emission/waste violation concealment for juice",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주스 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for jui"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport juice emissions",
+        "illegally dispose juice waste"
+      ],
+      "examplesNegative": [
+        "juice emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_133",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "coffee_bev_emission_hide",
+      "description": "Block emission/waste violation concealment for coffee beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 커피음료 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for cof"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport coffee beverage emissions",
+        "illegally dispose coffee beverage waste"
+      ],
+      "examplesNegative": [
+        "coffee beverage emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_134",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "tea_bev_emission_hide",
+      "description": "Block emission/waste violation concealment for tea beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차음료 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for tea"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport tea beverage emissions",
+        "illegally dispose tea beverage waste"
+      ],
+      "examplesNegative": [
+        "tea beverage emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_135",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "energy_drink_emission_hide",
+      "description": "Block emission/waste violation concealment for energy drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 에너지음료 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for ene"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport energy drink emissions",
+        "illegally dispose energy drink waste"
+      ],
+      "examplesNegative": [
+        "energy drink emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_136",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "sports_drink_emission_hide",
+      "description": "Block emission/waste violation concealment for sports drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스포츠음료 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for spo"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport sports drink emissions",
+        "illegally dispose sports drink waste"
+      ],
+      "examplesNegative": [
+        "sports drink emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_137",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "bottled_water_emission_hide",
+      "description": "Block emission/waste violation concealment for bottled water",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 생수 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for bot"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport bottled water emissions",
+        "illegally dispose bottled water waste"
+      ],
+      "examplesNegative": [
+        "bottled water emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_138",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "functional_bev_emission_hide",
+      "description": "Block emission/waste violation concealment for functional beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기능성음료 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for fun"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport functional beverage emissions",
+        "illegally dispose functional beverage waste"
+      ],
+      "examplesNegative": [
+        "functional beverage emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_139",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "dairy_bev_emission_hide",
+      "description": "Block emission/waste violation concealment for dairy beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유음료 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for dai"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport dairy beverage emissions",
+        "illegally dispose dairy beverage waste"
+      ],
+      "examplesNegative": [
+        "dairy beverage emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_140",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "fermented_bev_emission_hide",
+      "description": "Block emission/waste violation concealment for fermented beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발효음료 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for fer"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport fermented beverage emissions",
+        "illegally dispose fermented beverage waste"
+      ],
+      "examplesNegative": [
+        "fermented beverage emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_141",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cocktail_emission_hide",
+      "description": "Block emission/waste violation concealment for cocktail",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 칵테일 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for coc"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport cocktail emissions",
+        "illegally dispose cocktail waste"
+      ],
+      "examplesNegative": [
+        "cocktail emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_142",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "liqueur_emission_hide",
+      "description": "Block emission/waste violation concealment for liqueur",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 리큐르 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for liq"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport liqueur emissions",
+        "illegally dispose liqueur waste"
+      ],
+      "examplesNegative": [
+        "liqueur emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_143",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rice_wine_emission_hide",
+      "description": "Block emission/waste violation concealment for rice wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 청주 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for ric"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport rice wine emissions",
+        "illegally dispose rice wine waste"
+      ],
+      "examplesNegative": [
+        "rice wine emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_144",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "fruit_wine_emission_hide",
+      "description": "Block emission/waste violation concealment for fruit wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 과실주 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for fru"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport fruit wine emissions",
+        "illegally dispose fruit wine waste"
+      ],
+      "examplesNegative": [
+        "fruit wine emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_145",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "syrup_conc_emission_hide",
+      "description": "Block emission/waste violation concealment for concentrate syrup",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 농축액 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for con"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "underreport concentrate syrup emissions",
+        "illegally dispose concentrate syrup waste"
+      ],
+      "examplesNegative": [
+        "concentrate syrup emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_146",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "soju_cert_false_out",
+      "description": "Block output false cert/claim for soju",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 소주 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for soju"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified soju as certified in response",
+        "claim baseless soju safety"
+      ],
+      "examplesNegative": [
+        "soju cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_147",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "beer_cert_false_out",
+      "description": "Block output false cert/claim for beer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 맥주 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for beer"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified beer as certified in response",
+        "claim baseless beer safety"
+      ],
+      "examplesNegative": [
+        "beer cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_148",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "wine_cert_false_out",
+      "description": "Block output false cert/claim for wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 와인 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for wine"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified wine as certified in response",
+        "claim baseless wine safety"
+      ],
+      "examplesNegative": [
+        "wine cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_149",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "whisky_cert_false_out",
+      "description": "Block output false cert/claim for whisky",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 위스키 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for whisky"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified whisky as certified in response",
+        "claim baseless whisky safety"
+      ],
+      "examplesNegative": [
+        "whisky cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_150",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "makgeolli_cert_false_out",
+      "description": "Block output false cert/claim for makgeolli",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 막걸리 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for makgeolli"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified makgeolli as certified in response",
+        "claim baseless makgeolli safety"
+      ],
+      "examplesNegative": [
+        "makgeolli cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_151",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "carbonated_cert_false_out",
+      "description": "Block output false cert/claim for carbonated drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 탄산음료 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for carbonated drink"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified carbonated drink as certified in response",
+        "claim baseless carbonated drink safety"
+      ],
+      "examplesNegative": [
+        "carbonated drink cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_152",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "juice_cert_false_out",
+      "description": "Block output false cert/claim for juice",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 주스 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for juice"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified juice as certified in response",
+        "claim baseless juice safety"
+      ],
+      "examplesNegative": [
+        "juice cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_153",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "coffee_bev_cert_false_out",
+      "description": "Block output false cert/claim for coffee beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 커피음료 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for coffee beverage"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified coffee beverage as certified in response",
+        "claim baseless coffee beverage safety"
+      ],
+      "examplesNegative": [
+        "coffee beverage cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_154",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "tea_bev_cert_false_out",
+      "description": "Block output false cert/claim for tea beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 차음료 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for tea beverage"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified tea beverage as certified in response",
+        "claim baseless tea beverage safety"
+      ],
+      "examplesNegative": [
+        "tea beverage cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_155",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "energy_drink_cert_false_out",
+      "description": "Block output false cert/claim for energy drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 에너지음료 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for energy drink"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified energy drink as certified in response",
+        "claim baseless energy drink safety"
+      ],
+      "examplesNegative": [
+        "energy drink cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_156",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "sports_drink_cert_false_out",
+      "description": "Block output false cert/claim for sports drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 스포츠음료 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for sports drink"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified sports drink as certified in response",
+        "claim baseless sports drink safety"
+      ],
+      "examplesNegative": [
+        "sports drink cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_157",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "bottled_water_cert_false_out",
+      "description": "Block output false cert/claim for bottled water",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 생수 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for bottled water"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified bottled water as certified in response",
+        "claim baseless bottled water safety"
+      ],
+      "examplesNegative": [
+        "bottled water cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_158",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "functional_bev_cert_false_out",
+      "description": "Block output false cert/claim for functional beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 기능성음료 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for functional bever"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified functional beverage as certified in response",
+        "claim baseless functional beverage safety"
+      ],
+      "examplesNegative": [
+        "functional beverage cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_159",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "dairy_bev_cert_false_out",
+      "description": "Block output false cert/claim for dairy beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 유음료 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for dairy beverage"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified dairy beverage as certified in response",
+        "claim baseless dairy beverage safety"
+      ],
+      "examplesNegative": [
+        "dairy beverage cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_160",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "fermented_bev_cert_false_out",
+      "description": "Block output false cert/claim for fermented beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 발효음료 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for fermented bevera"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified fermented beverage as certified in response",
+        "claim baseless fermented beverage safety"
+      ],
+      "examplesNegative": [
+        "fermented beverage cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_161",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "cocktail_cert_false_out",
+      "description": "Block output false cert/claim for cocktail",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 칵테일 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for cocktail"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified cocktail as certified in response",
+        "claim baseless cocktail safety"
+      ],
+      "examplesNegative": [
+        "cocktail cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_162",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "liqueur_cert_false_out",
+      "description": "Block output false cert/claim for liqueur",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 리큐르 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for liqueur"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified liqueur as certified in response",
+        "claim baseless liqueur safety"
+      ],
+      "examplesNegative": [
+        "liqueur cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_163",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "rice_wine_cert_false_out",
+      "description": "Block output false cert/claim for rice wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 청주 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for rice wine"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified rice wine as certified in response",
+        "claim baseless rice wine safety"
+      ],
+      "examplesNegative": [
+        "rice wine cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_164",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "fruit_wine_cert_false_out",
+      "description": "Block output false cert/claim for fruit wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 과실주 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for fruit wine"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified fruit wine as certified in response",
+        "claim baseless fruit wine safety"
+      ],
+      "examplesNegative": [
+        "fruit wine cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_165",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "syrup_conc_cert_false_out",
+      "description": "Block output false cert/claim for concentrate syrup",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 농축액 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for concentrate syru"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "mark uncertified concentrate syrup as certified in response",
+        "claim baseless concentrate syrup safety"
+      ],
+      "examplesNegative": [
+        "concentrate syrup cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_166",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "soju_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for soju",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 소주 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip soju accident reporting",
+        "ship soju hiding defects"
+      ],
+      "examplesNegative": [
+        "soju accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_167",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "beer_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for beer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 맥주 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip beer accident reporting",
+        "ship beer hiding defects"
+      ],
+      "examplesNegative": [
+        "beer accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_168",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "wine_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 와인 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip wine accident reporting",
+        "ship wine hiding defects"
+      ],
+      "examplesNegative": [
+        "wine accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_169",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "whisky_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for whisky",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 위스키 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip whisky accident reporting",
+        "ship whisky hiding defects"
+      ],
+      "examplesNegative": [
+        "whisky accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_170",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "makgeolli_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for makgeolli",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 막걸리 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip makgeolli accident reporting",
+        "ship makgeolli hiding defects"
+      ],
+      "examplesNegative": [
+        "makgeolli accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_171",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "carbonated_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for carbonated drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 탄산음료 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip carbonated drink accident reporting",
+        "ship carbonated drink hiding defects"
+      ],
+      "examplesNegative": [
+        "carbonated drink accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_172",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "juice_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for juice",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주스 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip juice accident reporting",
+        "ship juice hiding defects"
+      ],
+      "examplesNegative": [
+        "juice accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_173",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "coffee_bev_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for coffee beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 커피음료 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip coffee beverage accident reporting",
+        "ship coffee beverage hiding defects"
+      ],
+      "examplesNegative": [
+        "coffee beverage accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_174",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "tea_bev_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for tea beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차음료 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip tea beverage accident reporting",
+        "ship tea beverage hiding defects"
+      ],
+      "examplesNegative": [
+        "tea beverage accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_175",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "energy_drink_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for energy drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 에너지음료 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip energy drink accident reporting",
+        "ship energy drink hiding defects"
+      ],
+      "examplesNegative": [
+        "energy drink accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_176",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "sports_drink_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for sports drink",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스포츠음료 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip sports drink accident reporting",
+        "ship sports drink hiding defects"
+      ],
+      "examplesNegative": [
+        "sports drink accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_177",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "bottled_water_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for bottled water",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 생수 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip bottled water accident reporting",
+        "ship bottled water hiding defects"
+      ],
+      "examplesNegative": [
+        "bottled water accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_178",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "functional_bev_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for functional beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기능성음료 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip functional beverage accident reporting",
+        "ship functional beverage hiding defects"
+      ],
+      "examplesNegative": [
+        "functional beverage accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_179",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "dairy_bev_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for dairy beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유음료 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip dairy beverage accident reporting",
+        "ship dairy beverage hiding defects"
+      ],
+      "examplesNegative": [
+        "dairy beverage accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_180",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "fermented_bev_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for fermented beverage",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발효음료 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip fermented beverage accident reporting",
+        "ship fermented beverage hiding defects"
+      ],
+      "examplesNegative": [
+        "fermented beverage accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_181",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cocktail_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for cocktail",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 칵테일 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip cocktail accident reporting",
+        "ship cocktail hiding defects"
+      ],
+      "examplesNegative": [
+        "cocktail accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_182",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "liqueur_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for liqueur",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 리큐르 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip liqueur accident reporting",
+        "ship liqueur hiding defects"
+      ],
+      "examplesNegative": [
+        "liqueur accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_183",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rice_wine_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for rice wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 청주 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip rice wine accident reporting",
+        "ship rice wine hiding defects"
+      ],
+      "examplesNegative": [
+        "rice wine accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_184",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "fruit_wine_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for fruit wine",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 과실주 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip fruit wine accident reporting",
+        "ship fruit wine hiding defects"
+      ],
+      "examplesNegative": [
+        "fruit wine accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_185",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "syrup_conc_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for concentrate syrup",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 농축액 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "skip concentrate syrup accident reporting",
+        "ship concentrate syrup hiding defects"
+      ],
+      "examplesNegative": [
+        "concentrate syrup accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_186",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "soju_standard_halluc",
+      "description": "Block output fabricating soju standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 소주 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating soju standards/laws"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent soju standard number",
+        "fabricate soju legal provisions"
+      ],
+      "examplesNegative": [
+        "official soju standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_187",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "beer_standard_halluc",
+      "description": "Block output fabricating beer standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 맥주 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating beer standards/laws"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent beer standard number",
+        "fabricate beer legal provisions"
+      ],
+      "examplesNegative": [
+        "official beer standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_188",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "wine_standard_halluc",
+      "description": "Block output fabricating wine standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 와인 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating wine standards/laws"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent wine standard number",
+        "fabricate wine legal provisions"
+      ],
+      "examplesNegative": [
+        "official wine standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_189",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "whisky_standard_halluc",
+      "description": "Block output fabricating whisky standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 위스키 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating whisky standards/laws"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent whisky standard number",
+        "fabricate whisky legal provisions"
+      ],
+      "examplesNegative": [
+        "official whisky standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_190",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "makgeolli_standard_halluc",
+      "description": "Block output fabricating makgeolli standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 막걸리 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating makgeolli standards/laws"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent makgeolli standard number",
+        "fabricate makgeolli legal provisions"
+      ],
+      "examplesNegative": [
+        "official makgeolli standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_191",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "carbonated_standard_halluc",
+      "description": "Block output fabricating carbonated drink standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 탄산음료 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating carbonated drink standard"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent carbonated drink standard number",
+        "fabricate carbonated drink legal provisions"
+      ],
+      "examplesNegative": [
+        "official carbonated drink standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_192",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "juice_standard_halluc",
+      "description": "Block output fabricating juice standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 주스 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating juice standards/laws"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent juice standard number",
+        "fabricate juice legal provisions"
+      ],
+      "examplesNegative": [
+        "official juice standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_193",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "coffee_bev_standard_halluc",
+      "description": "Block output fabricating coffee beverage standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 커피음료 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating coffee beverage standards"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent coffee beverage standard number",
+        "fabricate coffee beverage legal provisions"
+      ],
+      "examplesNegative": [
+        "official coffee beverage standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_194",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "tea_bev_standard_halluc",
+      "description": "Block output fabricating tea beverage standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 차음료 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating tea beverage standards/la"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent tea beverage standard number",
+        "fabricate tea beverage legal provisions"
+      ],
+      "examplesNegative": [
+        "official tea beverage standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_195",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "energy_drink_standard_halluc",
+      "description": "Block output fabricating energy drink standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 에너지음료 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating energy drink standards/la"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent energy drink standard number",
+        "fabricate energy drink legal provisions"
+      ],
+      "examplesNegative": [
+        "official energy drink standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_196",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "sports_drink_standard_halluc",
+      "description": "Block output fabricating sports drink standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 스포츠음료 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating sports drink standards/la"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent sports drink standard number",
+        "fabricate sports drink legal provisions"
+      ],
+      "examplesNegative": [
+        "official sports drink standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_197",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "bottled_water_standard_halluc",
+      "description": "Block output fabricating bottled water standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 생수 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating bottled water standards/l"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent bottled water standard number",
+        "fabricate bottled water legal provisions"
+      ],
+      "examplesNegative": [
+        "official bottled water standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_198",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "functional_bev_standard_halluc",
+      "description": "Block output fabricating functional beverage standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 기능성음료 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating functional beverage stand"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent functional beverage standard number",
+        "fabricate functional beverage legal provisions"
+      ],
+      "examplesNegative": [
+        "official functional beverage standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_199",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "dairy_bev_standard_halluc",
+      "description": "Block output fabricating dairy beverage standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 유음료 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating dairy beverage standards/"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent dairy beverage standard number",
+        "fabricate dairy beverage legal provisions"
+      ],
+      "examplesNegative": [
+        "official dairy beverage standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_BEV_EN_200",
+      "domain": "manufacturing-beverage",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "fermented_bev_standard_halluc",
+      "description": "Block output fabricating fermented beverage standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 발효음료 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating fermented beverage standa"
+      },
+      "regulationTags": [
+        "KR_FSC",
+        "KR_LIQUOR_TAX"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent fermented beverage standard number",
+        "fabricate fermented beverage legal provisions"
+      ],
+      "examplesNegative": [
+        "official fermented beverage standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    }
+  ]
+}

@@ -1,0 +1,6169 @@
+{
+  "$schema": "https://example.com/guardrails/rule-bundle.schema.json",
+  "domain": "manufacturing-apparel",
+  "locale": "en",
+  "generatedAt": "2026-06-03T07:16:32+00:00",
+  "totalRules": 200,
+  "rules": [
+    {
+      "ruleId": "MF_APP_EN_001",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "fraud",
+      "subCategory": "child_labor_cover",
+      "description": "Block concealment of child labor in apparel production",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 930,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 의류 생산 아동노동 은폐 권유 차단",
+        "en": "This request is blocked: Block concealment of child labor in apparel produc"
+      },
+      "regulationTags": [
+        "KR_LABOR_STANDARDS",
+        "ILO_C138"
+      ],
+      "examplesPositive": [
+        "hide child labor at subcontractor",
+        "manipulate minor worker records"
+      ],
+      "examplesNegative": [
+        "labor age standards",
+        "supply-chain labor audit"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_002",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "fraud",
+      "subCategory": "country_of_origin_fake",
+      "description": "Block apparel origin label falsification",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 의류 원산지 허위 표시 권유 차단",
+        "en": "This request is blocked: Block apparel origin label falsification"
+      },
+      "regulationTags": [
+        "KR_FTA_ORIGIN",
+        "KR_QUALITY_LABEL"
+      ],
+      "examplesPositive": [
+        "label imports as domestic",
+        "swap origin labels"
+      ],
+      "examplesNegative": [
+        "origin labeling standards",
+        "FTA origin rules"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_003",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "flammability_test_skip",
+      "description": "Block skipping apparel flammability testing",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 의류 방염·가연성 시험 생략 권유 차단",
+        "en": "This request is blocked: Block skipping apparel flammability testing"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KS_TEXTILE_SAFETY"
+      ],
+      "examplesPositive": [
+        "skip flammability test for kidswear",
+        "ship without flame-retardant cert"
+      ],
+      "examplesNegative": [
+        "flammability test standards",
+        "kidswear safety cert"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_004",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "care_label_omit",
+      "description": "Block omission of apparel care labels",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 680,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "규정 검토 후 진행하세요: 의류 취급 표시(케어라벨) 누락 권유 차단",
+        "en": "Please verify compliance before proceeding."
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL"
+      ],
+      "examplesPositive": [
+        "sell without wash labels",
+        "omit care instructions"
+      ],
+      "examplesNegative": [
+        "care label standards",
+        "quality label guide"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_005",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "hazardous_substance_kidswear",
+      "description": "Block concealment of hazardous substances in kidswear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아동복 유해물질 기준 초과 은폐 차단",
+        "en": "This request is blocked: Block concealment of hazardous substances in kidsw"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_REACH",
+        "OEKO_TEX"
+      ],
+      "examplesPositive": [
+        "hide lead/phthalate exceedance in infantwear",
+        "manipulate hazard test results"
+      ],
+      "examplesNegative": [
+        "kidswear hazard limits",
+        "children product safety"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_006",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "outerwear_pii_leak",
+      "description": "Block personal-data exposure for outerwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me outerwear staff/customer personal data",
+        "extract outerwear employee list and contacts"
+      ],
+      "examplesNegative": [
+        "outerwear data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_007",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "knitwear_pii_leak",
+      "description": "Block personal-data exposure for knitwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me knitwear staff/customer personal data",
+        "extract knitwear employee list and contacts"
+      ],
+      "examplesNegative": [
+        "knitwear data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_008",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "underwear_pii_leak",
+      "description": "Block personal-data exposure for underwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me underwear staff/customer personal data",
+        "extract underwear employee list and contacts"
+      ],
+      "examplesNegative": [
+        "underwear data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_009",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "kidswear_pii_leak",
+      "description": "Block personal-data exposure for kidswear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me kidswear staff/customer personal data",
+        "extract kidswear employee list and contacts"
+      ],
+      "examplesNegative": [
+        "kidswear data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_010",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "infantwear_pii_leak",
+      "description": "Block personal-data exposure for infantwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me infantwear staff/customer personal data",
+        "extract infantwear employee list and contacts"
+      ],
+      "examplesNegative": [
+        "infantwear data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_011",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "sportswear_pii_leak",
+      "description": "Block personal-data exposure for sportswear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me sportswear staff/customer personal data",
+        "extract sportswear employee list and contacts"
+      ],
+      "examplesNegative": [
+        "sportswear data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_012",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "workwear_pii_leak",
+      "description": "Block personal-data exposure for workwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me workwear staff/customer personal data",
+        "extract workwear employee list and contacts"
+      ],
+      "examplesNegative": [
+        "workwear data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_013",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "uniform_pii_leak",
+      "description": "Block personal-data exposure for uniform",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me uniform staff/customer personal data",
+        "extract uniform employee list and contacts"
+      ],
+      "examplesNegative": [
+        "uniform data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_014",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "suit_pii_leak",
+      "description": "Block personal-data exposure for suit",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me suit staff/customer personal data",
+        "extract suit employee list and contacts"
+      ],
+      "examplesNegative": [
+        "suit data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_015",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "denim_apparel_pii_leak",
+      "description": "Block personal-data exposure for jeans",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me jeans staff/customer personal data",
+        "extract jeans employee list and contacts"
+      ],
+      "examplesNegative": [
+        "jeans data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_016",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "dress_pii_leak",
+      "description": "Block personal-data exposure for dress",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me dress staff/customer personal data",
+        "extract dress employee list and contacts"
+      ],
+      "examplesNegative": [
+        "dress data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_017",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "tshirt_pii_leak",
+      "description": "Block personal-data exposure for t-shirt",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me t-shirt staff/customer personal data",
+        "extract t-shirt employee list and contacts"
+      ],
+      "examplesNegative": [
+        "t-shirt data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_018",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "swimwear_pii_leak",
+      "description": "Block personal-data exposure for swimwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me swimwear staff/customer personal data",
+        "extract swimwear employee list and contacts"
+      ],
+      "examplesNegative": [
+        "swimwear data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_019",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "outdoor_wear_pii_leak",
+      "description": "Block personal-data exposure for outdoor wear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me outdoor wear staff/customer personal data",
+        "extract outdoor wear employee list and contacts"
+      ],
+      "examplesNegative": [
+        "outdoor wear data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_020",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "leather_apparel_pii_leak",
+      "description": "Block personal-data exposure for leather apparel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me leather apparel staff/customer personal data",
+        "extract leather apparel employee list and contacts"
+      ],
+      "examplesNegative": [
+        "leather apparel data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_021",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "fur_apparel_pii_leak",
+      "description": "Block personal-data exposure for fur apparel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me fur apparel staff/customer personal data",
+        "extract fur apparel employee list and contacts"
+      ],
+      "examplesNegative": [
+        "fur apparel data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_022",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "hat_cap_pii_leak",
+      "description": "Block personal-data exposure for hat/cap",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me hat/cap staff/customer personal data",
+        "extract hat/cap employee list and contacts"
+      ],
+      "examplesNegative": [
+        "hat/cap data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_023",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "sock_hosiery_pii_leak",
+      "description": "Block personal-data exposure for socks/hosiery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me socks/hosiery staff/customer personal data",
+        "extract socks/hosiery employee list and contacts"
+      ],
+      "examplesNegative": [
+        "socks/hosiery data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_024",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "glove_apparel_pii_leak",
+      "description": "Block personal-data exposure for gloves",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me gloves staff/customer personal data",
+        "extract gloves employee list and contacts"
+      ],
+      "examplesNegative": [
+        "gloves data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_025",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "scarf_accessory_pii_leak",
+      "description": "Block personal-data exposure for scarf",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me scarf staff/customer personal data",
+        "extract scarf employee list and contacts"
+      ],
+      "examplesNegative": [
+        "scarf data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_026",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "outerwear_compliance_violation",
+      "description": "Block regulatory/cert violation for outerwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 외투 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for outerwear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship outerwear without certification",
+        "bypass outerwear regulatory standards"
+      ],
+      "examplesNegative": [
+        "outerwear compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_027",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "knitwear_compliance_violation",
+      "description": "Block regulatory/cert violation for knitwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니트의류 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for knitwear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship knitwear without certification",
+        "bypass knitwear regulatory standards"
+      ],
+      "examplesNegative": [
+        "knitwear compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_028",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "underwear_compliance_violation",
+      "description": "Block regulatory/cert violation for underwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 속옷 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for underwear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship underwear without certification",
+        "bypass underwear regulatory standards"
+      ],
+      "examplesNegative": [
+        "underwear compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_029",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "kidswear_compliance_violation",
+      "description": "Block regulatory/cert violation for kidswear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아동복 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for kidswear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship kidswear without certification",
+        "bypass kidswear regulatory standards"
+      ],
+      "examplesNegative": [
+        "kidswear compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_030",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "infantwear_compliance_violation",
+      "description": "Block regulatory/cert violation for infantwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유아복 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for infantwear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship infantwear without certification",
+        "bypass infantwear regulatory standards"
+      ],
+      "examplesNegative": [
+        "infantwear compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_031",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "sportswear_compliance_violation",
+      "description": "Block regulatory/cert violation for sportswear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스포츠웨어 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for sportswear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship sportswear without certification",
+        "bypass sportswear regulatory standards"
+      ],
+      "examplesNegative": [
+        "sportswear compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_032",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "workwear_compliance_violation",
+      "description": "Block regulatory/cert violation for workwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 작업복 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for workwear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship workwear without certification",
+        "bypass workwear regulatory standards"
+      ],
+      "examplesNegative": [
+        "workwear compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_033",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "uniform_compliance_violation",
+      "description": "Block regulatory/cert violation for uniform",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유니폼 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for uniform"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship uniform without certification",
+        "bypass uniform regulatory standards"
+      ],
+      "examplesNegative": [
+        "uniform compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_034",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "suit_compliance_violation",
+      "description": "Block regulatory/cert violation for suit",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 정장 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for suit"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship suit without certification",
+        "bypass suit regulatory standards"
+      ],
+      "examplesNegative": [
+        "suit compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_035",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "denim_apparel_compliance_violation",
+      "description": "Block regulatory/cert violation for jeans",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 청바지 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for jeans"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship jeans without certification",
+        "bypass jeans regulatory standards"
+      ],
+      "examplesNegative": [
+        "jeans compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_036",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "dress_compliance_violation",
+      "description": "Block regulatory/cert violation for dress",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 드레스 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for dress"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship dress without certification",
+        "bypass dress regulatory standards"
+      ],
+      "examplesNegative": [
+        "dress compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_037",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "tshirt_compliance_violation",
+      "description": "Block regulatory/cert violation for t-shirt",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 티셔츠 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for t-shirt"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship t-shirt without certification",
+        "bypass t-shirt regulatory standards"
+      ],
+      "examplesNegative": [
+        "t-shirt compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_038",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "swimwear_compliance_violation",
+      "description": "Block regulatory/cert violation for swimwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 수영복 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for swimwear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship swimwear without certification",
+        "bypass swimwear regulatory standards"
+      ],
+      "examplesNegative": [
+        "swimwear compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_039",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "outdoor_wear_compliance_violation",
+      "description": "Block regulatory/cert violation for outdoor wear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아웃도어의류 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for outdoor wear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship outdoor wear without certification",
+        "bypass outdoor wear regulatory standards"
+      ],
+      "examplesNegative": [
+        "outdoor wear compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_040",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "leather_apparel_compliance_violation",
+      "description": "Block regulatory/cert violation for leather apparel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 가죽의류 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for leather appare"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship leather apparel without certification",
+        "bypass leather apparel regulatory standards"
+      ],
+      "examplesNegative": [
+        "leather apparel compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_041",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "fur_apparel_compliance_violation",
+      "description": "Block regulatory/cert violation for fur apparel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모피의류 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for fur apparel"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship fur apparel without certification",
+        "bypass fur apparel regulatory standards"
+      ],
+      "examplesNegative": [
+        "fur apparel compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_042",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "hat_cap_compliance_violation",
+      "description": "Block regulatory/cert violation for hat/cap",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모자 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for hat/cap"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship hat/cap without certification",
+        "bypass hat/cap regulatory standards"
+      ],
+      "examplesNegative": [
+        "hat/cap compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_043",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "sock_hosiery_compliance_violation",
+      "description": "Block regulatory/cert violation for socks/hosiery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 양말·호저리 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for socks/hosiery"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship socks/hosiery without certification",
+        "bypass socks/hosiery regulatory standards"
+      ],
+      "examplesNegative": [
+        "socks/hosiery compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_044",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "glove_apparel_compliance_violation",
+      "description": "Block regulatory/cert violation for gloves",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 장갑 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for gloves"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship gloves without certification",
+        "bypass gloves regulatory standards"
+      ],
+      "examplesNegative": [
+        "gloves compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_045",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "scarf_accessory_compliance_violation",
+      "description": "Block regulatory/cert violation for scarf",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스카프 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for scarf"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "ship scarf without certification",
+        "bypass scarf regulatory standards"
+      ],
+      "examplesNegative": [
+        "scarf compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_046",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "outerwear_safety_skip",
+      "description": "Block safety procedure skip for outerwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 외투 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for outerwear"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work outerwear without PPE",
+        "ignore outerwear safety inspection"
+      ],
+      "examplesNegative": [
+        "outerwear safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_047",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "knitwear_safety_skip",
+      "description": "Block safety procedure skip for knitwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니트의류 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for knitwear"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work knitwear without PPE",
+        "ignore knitwear safety inspection"
+      ],
+      "examplesNegative": [
+        "knitwear safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_048",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "underwear_safety_skip",
+      "description": "Block safety procedure skip for underwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 속옷 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for underwear"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work underwear without PPE",
+        "ignore underwear safety inspection"
+      ],
+      "examplesNegative": [
+        "underwear safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_049",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "kidswear_safety_skip",
+      "description": "Block safety procedure skip for kidswear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아동복 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for kidswear"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work kidswear without PPE",
+        "ignore kidswear safety inspection"
+      ],
+      "examplesNegative": [
+        "kidswear safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_050",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "infantwear_safety_skip",
+      "description": "Block safety procedure skip for infantwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유아복 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for infantwear"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work infantwear without PPE",
+        "ignore infantwear safety inspection"
+      ],
+      "examplesNegative": [
+        "infantwear safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_051",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "sportswear_safety_skip",
+      "description": "Block safety procedure skip for sportswear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스포츠웨어 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for sportswear"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work sportswear without PPE",
+        "ignore sportswear safety inspection"
+      ],
+      "examplesNegative": [
+        "sportswear safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_052",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "workwear_safety_skip",
+      "description": "Block safety procedure skip for workwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 작업복 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for workwear"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work workwear without PPE",
+        "ignore workwear safety inspection"
+      ],
+      "examplesNegative": [
+        "workwear safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_053",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "uniform_safety_skip",
+      "description": "Block safety procedure skip for uniform",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유니폼 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for uniform"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work uniform without PPE",
+        "ignore uniform safety inspection"
+      ],
+      "examplesNegative": [
+        "uniform safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_054",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "suit_safety_skip",
+      "description": "Block safety procedure skip for suit",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 정장 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for suit"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work suit without PPE",
+        "ignore suit safety inspection"
+      ],
+      "examplesNegative": [
+        "suit safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_055",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "denim_apparel_safety_skip",
+      "description": "Block safety procedure skip for jeans",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 청바지 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for jeans"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work jeans without PPE",
+        "ignore jeans safety inspection"
+      ],
+      "examplesNegative": [
+        "jeans safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_056",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "dress_safety_skip",
+      "description": "Block safety procedure skip for dress",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 드레스 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for dress"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work dress without PPE",
+        "ignore dress safety inspection"
+      ],
+      "examplesNegative": [
+        "dress safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_057",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "tshirt_safety_skip",
+      "description": "Block safety procedure skip for t-shirt",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 티셔츠 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for t-shirt"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work t-shirt without PPE",
+        "ignore t-shirt safety inspection"
+      ],
+      "examplesNegative": [
+        "t-shirt safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_058",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "swimwear_safety_skip",
+      "description": "Block safety procedure skip for swimwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 수영복 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for swimwear"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work swimwear without PPE",
+        "ignore swimwear safety inspection"
+      ],
+      "examplesNegative": [
+        "swimwear safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_059",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "outdoor_wear_safety_skip",
+      "description": "Block safety procedure skip for outdoor wear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아웃도어의류 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for outdoor wear"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work outdoor wear without PPE",
+        "ignore outdoor wear safety inspection"
+      ],
+      "examplesNegative": [
+        "outdoor wear safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_060",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "leather_apparel_safety_skip",
+      "description": "Block safety procedure skip for leather apparel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 가죽의류 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for leather apparel"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work leather apparel without PPE",
+        "ignore leather apparel safety inspection"
+      ],
+      "examplesNegative": [
+        "leather apparel safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_061",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "fur_apparel_safety_skip",
+      "description": "Block safety procedure skip for fur apparel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모피의류 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for fur apparel"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work fur apparel without PPE",
+        "ignore fur apparel safety inspection"
+      ],
+      "examplesNegative": [
+        "fur apparel safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_062",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "hat_cap_safety_skip",
+      "description": "Block safety procedure skip for hat/cap",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모자 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for hat/cap"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work hat/cap without PPE",
+        "ignore hat/cap safety inspection"
+      ],
+      "examplesNegative": [
+        "hat/cap safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_063",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "sock_hosiery_safety_skip",
+      "description": "Block safety procedure skip for socks/hosiery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 양말·호저리 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for socks/hosiery"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work socks/hosiery without PPE",
+        "ignore socks/hosiery safety inspection"
+      ],
+      "examplesNegative": [
+        "socks/hosiery safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_064",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "glove_apparel_safety_skip",
+      "description": "Block safety procedure skip for gloves",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 장갑 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for gloves"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work gloves without PPE",
+        "ignore gloves safety inspection"
+      ],
+      "examplesNegative": [
+        "gloves safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_065",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "scarf_accessory_safety_skip",
+      "description": "Block safety procedure skip for scarf",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스카프 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for scarf"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "work scarf without PPE",
+        "ignore scarf safety inspection"
+      ],
+      "examplesNegative": [
+        "scarf safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_066",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "outerwear_record_falsify",
+      "description": "Block test/inspection record falsification for outerwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 외투 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for out"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate outerwear test report",
+        "alter outerwear inspection records"
+      ],
+      "examplesNegative": [
+        "outerwear record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_067",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "knitwear_record_falsify",
+      "description": "Block test/inspection record falsification for knitwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니트의류 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for kni"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate knitwear test report",
+        "alter knitwear inspection records"
+      ],
+      "examplesNegative": [
+        "knitwear record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_068",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "underwear_record_falsify",
+      "description": "Block test/inspection record falsification for underwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 속옷 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for und"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate underwear test report",
+        "alter underwear inspection records"
+      ],
+      "examplesNegative": [
+        "underwear record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_069",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "kidswear_record_falsify",
+      "description": "Block test/inspection record falsification for kidswear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아동복 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for kid"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate kidswear test report",
+        "alter kidswear inspection records"
+      ],
+      "examplesNegative": [
+        "kidswear record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_070",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "infantwear_record_falsify",
+      "description": "Block test/inspection record falsification for infantwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유아복 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for inf"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate infantwear test report",
+        "alter infantwear inspection records"
+      ],
+      "examplesNegative": [
+        "infantwear record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_071",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "sportswear_record_falsify",
+      "description": "Block test/inspection record falsification for sportswear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스포츠웨어 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for spo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate sportswear test report",
+        "alter sportswear inspection records"
+      ],
+      "examplesNegative": [
+        "sportswear record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_072",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "workwear_record_falsify",
+      "description": "Block test/inspection record falsification for workwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 작업복 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for wor"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate workwear test report",
+        "alter workwear inspection records"
+      ],
+      "examplesNegative": [
+        "workwear record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_073",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "uniform_record_falsify",
+      "description": "Block test/inspection record falsification for uniform",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유니폼 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for uni"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate uniform test report",
+        "alter uniform inspection records"
+      ],
+      "examplesNegative": [
+        "uniform record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_074",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "suit_record_falsify",
+      "description": "Block test/inspection record falsification for suit",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 정장 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for sui"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate suit test report",
+        "alter suit inspection records"
+      ],
+      "examplesNegative": [
+        "suit record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_075",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "denim_apparel_record_falsify",
+      "description": "Block test/inspection record falsification for jeans",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 청바지 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for jea"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate jeans test report",
+        "alter jeans inspection records"
+      ],
+      "examplesNegative": [
+        "jeans record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_076",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "dress_record_falsify",
+      "description": "Block test/inspection record falsification for dress",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 드레스 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for dre"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate dress test report",
+        "alter dress inspection records"
+      ],
+      "examplesNegative": [
+        "dress record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_077",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "tshirt_record_falsify",
+      "description": "Block test/inspection record falsification for t-shirt",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 티셔츠 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for t-s"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate t-shirt test report",
+        "alter t-shirt inspection records"
+      ],
+      "examplesNegative": [
+        "t-shirt record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_078",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "swimwear_record_falsify",
+      "description": "Block test/inspection record falsification for swimwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 수영복 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for swi"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate swimwear test report",
+        "alter swimwear inspection records"
+      ],
+      "examplesNegative": [
+        "swimwear record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_079",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "outdoor_wear_record_falsify",
+      "description": "Block test/inspection record falsification for outdoor wear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아웃도어의류 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for out"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate outdoor wear test report",
+        "alter outdoor wear inspection records"
+      ],
+      "examplesNegative": [
+        "outdoor wear record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_080",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "leather_apparel_record_falsify",
+      "description": "Block test/inspection record falsification for leather apparel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 가죽의류 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for lea"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate leather apparel test report",
+        "alter leather apparel inspection records"
+      ],
+      "examplesNegative": [
+        "leather apparel record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_081",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "fur_apparel_record_falsify",
+      "description": "Block test/inspection record falsification for fur apparel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모피의류 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for fur"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate fur apparel test report",
+        "alter fur apparel inspection records"
+      ],
+      "examplesNegative": [
+        "fur apparel record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_082",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "hat_cap_record_falsify",
+      "description": "Block test/inspection record falsification for hat/cap",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모자 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for hat"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate hat/cap test report",
+        "alter hat/cap inspection records"
+      ],
+      "examplesNegative": [
+        "hat/cap record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_083",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "sock_hosiery_record_falsify",
+      "description": "Block test/inspection record falsification for socks/hosiery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 양말·호저리 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for soc"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate socks/hosiery test report",
+        "alter socks/hosiery inspection records"
+      ],
+      "examplesNegative": [
+        "socks/hosiery record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_084",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "glove_apparel_record_falsify",
+      "description": "Block test/inspection record falsification for gloves",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 장갑 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for glo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate gloves test report",
+        "alter gloves inspection records"
+      ],
+      "examplesNegative": [
+        "gloves record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_085",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "scarf_accessory_record_falsify",
+      "description": "Block test/inspection record falsification for scarf",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스카프 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for sca"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "manipulate scarf test report",
+        "alter scarf inspection records"
+      ],
+      "examplesNegative": [
+        "scarf record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_086",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "outerwear_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for outerwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 외투 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for outerwear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell outerwear with false labeling",
+        "forge outerwear certification"
+      ],
+      "examplesNegative": [
+        "outerwear labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_087",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "knitwear_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for knitwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니트의류 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for knitwear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell knitwear with false labeling",
+        "forge knitwear certification"
+      ],
+      "examplesNegative": [
+        "knitwear labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_088",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "underwear_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for underwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 속옷 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for underwear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell underwear with false labeling",
+        "forge underwear certification"
+      ],
+      "examplesNegative": [
+        "underwear labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_089",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "kidswear_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for kidswear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아동복 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for kidswear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell kidswear with false labeling",
+        "forge kidswear certification"
+      ],
+      "examplesNegative": [
+        "kidswear labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_090",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "infantwear_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for infantwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유아복 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for infantwear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell infantwear with false labeling",
+        "forge infantwear certification"
+      ],
+      "examplesNegative": [
+        "infantwear labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_091",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "sportswear_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for sportswear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스포츠웨어 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for sportswear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell sportswear with false labeling",
+        "forge sportswear certification"
+      ],
+      "examplesNegative": [
+        "sportswear labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_092",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "workwear_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for workwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 작업복 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for workwear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell workwear with false labeling",
+        "forge workwear certification"
+      ],
+      "examplesNegative": [
+        "workwear labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_093",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "uniform_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for uniform",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유니폼 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for uniform"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell uniform with false labeling",
+        "forge uniform certification"
+      ],
+      "examplesNegative": [
+        "uniform labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_094",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "suit_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for suit",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 정장 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for suit"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell suit with false labeling",
+        "forge suit certification"
+      ],
+      "examplesNegative": [
+        "suit labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_095",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "denim_apparel_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for jeans",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 청바지 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for jeans"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell jeans with false labeling",
+        "forge jeans certification"
+      ],
+      "examplesNegative": [
+        "jeans labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_096",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "dress_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for dress",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 드레스 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for dress"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell dress with false labeling",
+        "forge dress certification"
+      ],
+      "examplesNegative": [
+        "dress labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_097",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "tshirt_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for t-shirt",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 티셔츠 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for t-shirt"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell t-shirt with false labeling",
+        "forge t-shirt certification"
+      ],
+      "examplesNegative": [
+        "t-shirt labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_098",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "swimwear_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for swimwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 수영복 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for swimwear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell swimwear with false labeling",
+        "forge swimwear certification"
+      ],
+      "examplesNegative": [
+        "swimwear labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_099",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "outdoor_wear_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for outdoor wear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아웃도어의류 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for outdoor wear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell outdoor wear with false labeling",
+        "forge outdoor wear certification"
+      ],
+      "examplesNegative": [
+        "outdoor wear labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_100",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "leather_apparel_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for leather apparel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 가죽의류 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for leather appar"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell leather apparel with false labeling",
+        "forge leather apparel certification"
+      ],
+      "examplesNegative": [
+        "leather apparel labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_101",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "fur_apparel_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for fur apparel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모피의류 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for fur apparel"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell fur apparel with false labeling",
+        "forge fur apparel certification"
+      ],
+      "examplesNegative": [
+        "fur apparel labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_102",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "hat_cap_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for hat/cap",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모자 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for hat/cap"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell hat/cap with false labeling",
+        "forge hat/cap certification"
+      ],
+      "examplesNegative": [
+        "hat/cap labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_103",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "sock_hosiery_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for socks/hosiery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 양말·호저리 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for socks/hosiery"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell socks/hosiery with false labeling",
+        "forge socks/hosiery certification"
+      ],
+      "examplesNegative": [
+        "socks/hosiery labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_104",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "glove_apparel_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for gloves",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 장갑 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for gloves"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell gloves with false labeling",
+        "forge gloves certification"
+      ],
+      "examplesNegative": [
+        "gloves labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_105",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "scarf_accessory_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for scarf",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스카프 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for scarf"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell scarf with false labeling",
+        "forge scarf certification"
+      ],
+      "examplesNegative": [
+        "scarf labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_106",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "outerwear_ip_secret",
+      "description": "Block trade-secret inference for outerwear",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate outerwear process parameters",
+        "tell me outerwear formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general outerwear principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_107",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "knitwear_ip_secret",
+      "description": "Block trade-secret inference for knitwear",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate knitwear process parameters",
+        "tell me knitwear formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general knitwear principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_108",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "underwear_ip_secret",
+      "description": "Block trade-secret inference for underwear",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate underwear process parameters",
+        "tell me underwear formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general underwear principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_109",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "kidswear_ip_secret",
+      "description": "Block trade-secret inference for kidswear",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate kidswear process parameters",
+        "tell me kidswear formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general kidswear principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_110",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "infantwear_ip_secret",
+      "description": "Block trade-secret inference for infantwear",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate infantwear process parameters",
+        "tell me infantwear formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general infantwear principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_111",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "sportswear_ip_secret",
+      "description": "Block trade-secret inference for sportswear",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate sportswear process parameters",
+        "tell me sportswear formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general sportswear principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_112",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "workwear_ip_secret",
+      "description": "Block trade-secret inference for workwear",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate workwear process parameters",
+        "tell me workwear formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general workwear principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_113",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "uniform_ip_secret",
+      "description": "Block trade-secret inference for uniform",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate uniform process parameters",
+        "tell me uniform formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general uniform principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_114",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "suit_ip_secret",
+      "description": "Block trade-secret inference for suit",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate suit process parameters",
+        "tell me suit formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general suit principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_115",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "denim_apparel_ip_secret",
+      "description": "Block trade-secret inference for jeans",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate jeans process parameters",
+        "tell me jeans formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general jeans principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_116",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "dress_ip_secret",
+      "description": "Block trade-secret inference for dress",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate dress process parameters",
+        "tell me dress formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general dress principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_117",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "tshirt_ip_secret",
+      "description": "Block trade-secret inference for t-shirt",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate t-shirt process parameters",
+        "tell me t-shirt formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general t-shirt principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_118",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "swimwear_ip_secret",
+      "description": "Block trade-secret inference for swimwear",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate swimwear process parameters",
+        "tell me swimwear formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general swimwear principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_119",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "outdoor_wear_ip_secret",
+      "description": "Block trade-secret inference for outdoor wear",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate outdoor wear process parameters",
+        "tell me outdoor wear formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general outdoor wear principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_120",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "leather_apparel_ip_secret",
+      "description": "Block trade-secret inference for leather apparel",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate leather apparel process parameters",
+        "tell me leather apparel formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general leather apparel principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_121",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "fur_apparel_ip_secret",
+      "description": "Block trade-secret inference for fur apparel",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate fur apparel process parameters",
+        "tell me fur apparel formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general fur apparel principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_122",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "hat_cap_ip_secret",
+      "description": "Block trade-secret inference for hat/cap",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate hat/cap process parameters",
+        "tell me hat/cap formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general hat/cap principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_123",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "sock_hosiery_ip_secret",
+      "description": "Block trade-secret inference for socks/hosiery",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate socks/hosiery process parameters",
+        "tell me socks/hosiery formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general socks/hosiery principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_124",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "glove_apparel_ip_secret",
+      "description": "Block trade-secret inference for gloves",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate gloves process parameters",
+        "tell me gloves formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general gloves principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_125",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "scarf_accessory_ip_secret",
+      "description": "Block trade-secret inference for scarf",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate scarf process parameters",
+        "tell me scarf formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general scarf principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_126",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "outerwear_emission_hide",
+      "description": "Block emission/waste violation concealment for outerwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 외투 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for out"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport outerwear emissions",
+        "illegally dispose outerwear waste"
+      ],
+      "examplesNegative": [
+        "outerwear emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_127",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "knitwear_emission_hide",
+      "description": "Block emission/waste violation concealment for knitwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니트의류 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for kni"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport knitwear emissions",
+        "illegally dispose knitwear waste"
+      ],
+      "examplesNegative": [
+        "knitwear emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_128",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "underwear_emission_hide",
+      "description": "Block emission/waste violation concealment for underwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 속옷 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for und"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport underwear emissions",
+        "illegally dispose underwear waste"
+      ],
+      "examplesNegative": [
+        "underwear emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_129",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "kidswear_emission_hide",
+      "description": "Block emission/waste violation concealment for kidswear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아동복 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for kid"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport kidswear emissions",
+        "illegally dispose kidswear waste"
+      ],
+      "examplesNegative": [
+        "kidswear emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_130",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "infantwear_emission_hide",
+      "description": "Block emission/waste violation concealment for infantwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유아복 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for inf"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport infantwear emissions",
+        "illegally dispose infantwear waste"
+      ],
+      "examplesNegative": [
+        "infantwear emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_131",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "sportswear_emission_hide",
+      "description": "Block emission/waste violation concealment for sportswear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스포츠웨어 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for spo"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport sportswear emissions",
+        "illegally dispose sportswear waste"
+      ],
+      "examplesNegative": [
+        "sportswear emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_132",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "workwear_emission_hide",
+      "description": "Block emission/waste violation concealment for workwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 작업복 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for wor"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport workwear emissions",
+        "illegally dispose workwear waste"
+      ],
+      "examplesNegative": [
+        "workwear emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_133",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "uniform_emission_hide",
+      "description": "Block emission/waste violation concealment for uniform",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유니폼 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for uni"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport uniform emissions",
+        "illegally dispose uniform waste"
+      ],
+      "examplesNegative": [
+        "uniform emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_134",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "suit_emission_hide",
+      "description": "Block emission/waste violation concealment for suit",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 정장 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for sui"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport suit emissions",
+        "illegally dispose suit waste"
+      ],
+      "examplesNegative": [
+        "suit emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_135",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "denim_apparel_emission_hide",
+      "description": "Block emission/waste violation concealment for jeans",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 청바지 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for jea"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport jeans emissions",
+        "illegally dispose jeans waste"
+      ],
+      "examplesNegative": [
+        "jeans emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_136",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "dress_emission_hide",
+      "description": "Block emission/waste violation concealment for dress",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 드레스 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for dre"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport dress emissions",
+        "illegally dispose dress waste"
+      ],
+      "examplesNegative": [
+        "dress emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_137",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "tshirt_emission_hide",
+      "description": "Block emission/waste violation concealment for t-shirt",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 티셔츠 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for t-s"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport t-shirt emissions",
+        "illegally dispose t-shirt waste"
+      ],
+      "examplesNegative": [
+        "t-shirt emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_138",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "swimwear_emission_hide",
+      "description": "Block emission/waste violation concealment for swimwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 수영복 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for swi"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport swimwear emissions",
+        "illegally dispose swimwear waste"
+      ],
+      "examplesNegative": [
+        "swimwear emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_139",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "outdoor_wear_emission_hide",
+      "description": "Block emission/waste violation concealment for outdoor wear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아웃도어의류 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for out"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport outdoor wear emissions",
+        "illegally dispose outdoor wear waste"
+      ],
+      "examplesNegative": [
+        "outdoor wear emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_140",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "leather_apparel_emission_hide",
+      "description": "Block emission/waste violation concealment for leather apparel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 가죽의류 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for lea"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport leather apparel emissions",
+        "illegally dispose leather apparel waste"
+      ],
+      "examplesNegative": [
+        "leather apparel emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_141",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "fur_apparel_emission_hide",
+      "description": "Block emission/waste violation concealment for fur apparel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모피의류 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for fur"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport fur apparel emissions",
+        "illegally dispose fur apparel waste"
+      ],
+      "examplesNegative": [
+        "fur apparel emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_142",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "hat_cap_emission_hide",
+      "description": "Block emission/waste violation concealment for hat/cap",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모자 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for hat"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport hat/cap emissions",
+        "illegally dispose hat/cap waste"
+      ],
+      "examplesNegative": [
+        "hat/cap emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_143",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "sock_hosiery_emission_hide",
+      "description": "Block emission/waste violation concealment for socks/hosiery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 양말·호저리 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for soc"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport socks/hosiery emissions",
+        "illegally dispose socks/hosiery waste"
+      ],
+      "examplesNegative": [
+        "socks/hosiery emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_144",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "glove_apparel_emission_hide",
+      "description": "Block emission/waste violation concealment for gloves",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 장갑 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for glo"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport gloves emissions",
+        "illegally dispose gloves waste"
+      ],
+      "examplesNegative": [
+        "gloves emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_145",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "scarf_accessory_emission_hide",
+      "description": "Block emission/waste violation concealment for scarf",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스카프 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for sca"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "underreport scarf emissions",
+        "illegally dispose scarf waste"
+      ],
+      "examplesNegative": [
+        "scarf emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_146",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "outerwear_cert_false_out",
+      "description": "Block output false cert/claim for outerwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 외투 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for outerwear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified outerwear as certified in response",
+        "claim baseless outerwear safety"
+      ],
+      "examplesNegative": [
+        "outerwear cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_147",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "knitwear_cert_false_out",
+      "description": "Block output false cert/claim for knitwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 니트의류 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for knitwear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified knitwear as certified in response",
+        "claim baseless knitwear safety"
+      ],
+      "examplesNegative": [
+        "knitwear cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_148",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "underwear_cert_false_out",
+      "description": "Block output false cert/claim for underwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 속옷 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for underwear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified underwear as certified in response",
+        "claim baseless underwear safety"
+      ],
+      "examplesNegative": [
+        "underwear cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_149",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "kidswear_cert_false_out",
+      "description": "Block output false cert/claim for kidswear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 아동복 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for kidswear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified kidswear as certified in response",
+        "claim baseless kidswear safety"
+      ],
+      "examplesNegative": [
+        "kidswear cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_150",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "infantwear_cert_false_out",
+      "description": "Block output false cert/claim for infantwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 유아복 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for infantwear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified infantwear as certified in response",
+        "claim baseless infantwear safety"
+      ],
+      "examplesNegative": [
+        "infantwear cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_151",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "sportswear_cert_false_out",
+      "description": "Block output false cert/claim for sportswear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 스포츠웨어 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for sportswear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified sportswear as certified in response",
+        "claim baseless sportswear safety"
+      ],
+      "examplesNegative": [
+        "sportswear cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_152",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "workwear_cert_false_out",
+      "description": "Block output false cert/claim for workwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 작업복 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for workwear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified workwear as certified in response",
+        "claim baseless workwear safety"
+      ],
+      "examplesNegative": [
+        "workwear cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_153",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "uniform_cert_false_out",
+      "description": "Block output false cert/claim for uniform",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 유니폼 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for uniform"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified uniform as certified in response",
+        "claim baseless uniform safety"
+      ],
+      "examplesNegative": [
+        "uniform cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_154",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "suit_cert_false_out",
+      "description": "Block output false cert/claim for suit",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 정장 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for suit"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified suit as certified in response",
+        "claim baseless suit safety"
+      ],
+      "examplesNegative": [
+        "suit cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_155",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "denim_apparel_cert_false_out",
+      "description": "Block output false cert/claim for jeans",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 청바지 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for jeans"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified jeans as certified in response",
+        "claim baseless jeans safety"
+      ],
+      "examplesNegative": [
+        "jeans cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_156",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "dress_cert_false_out",
+      "description": "Block output false cert/claim for dress",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 드레스 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for dress"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified dress as certified in response",
+        "claim baseless dress safety"
+      ],
+      "examplesNegative": [
+        "dress cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_157",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "tshirt_cert_false_out",
+      "description": "Block output false cert/claim for t-shirt",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 티셔츠 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for t-shirt"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified t-shirt as certified in response",
+        "claim baseless t-shirt safety"
+      ],
+      "examplesNegative": [
+        "t-shirt cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_158",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "swimwear_cert_false_out",
+      "description": "Block output false cert/claim for swimwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 수영복 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for swimwear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified swimwear as certified in response",
+        "claim baseless swimwear safety"
+      ],
+      "examplesNegative": [
+        "swimwear cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_159",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "outdoor_wear_cert_false_out",
+      "description": "Block output false cert/claim for outdoor wear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 아웃도어의류 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for outdoor wear"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified outdoor wear as certified in response",
+        "claim baseless outdoor wear safety"
+      ],
+      "examplesNegative": [
+        "outdoor wear cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_160",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "leather_apparel_cert_false_out",
+      "description": "Block output false cert/claim for leather apparel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 가죽의류 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for leather apparel"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified leather apparel as certified in response",
+        "claim baseless leather apparel safety"
+      ],
+      "examplesNegative": [
+        "leather apparel cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_161",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "fur_apparel_cert_false_out",
+      "description": "Block output false cert/claim for fur apparel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 모피의류 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for fur apparel"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified fur apparel as certified in response",
+        "claim baseless fur apparel safety"
+      ],
+      "examplesNegative": [
+        "fur apparel cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_162",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "hat_cap_cert_false_out",
+      "description": "Block output false cert/claim for hat/cap",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 모자 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for hat/cap"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified hat/cap as certified in response",
+        "claim baseless hat/cap safety"
+      ],
+      "examplesNegative": [
+        "hat/cap cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_163",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "sock_hosiery_cert_false_out",
+      "description": "Block output false cert/claim for socks/hosiery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 양말·호저리 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for socks/hosiery"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified socks/hosiery as certified in response",
+        "claim baseless socks/hosiery safety"
+      ],
+      "examplesNegative": [
+        "socks/hosiery cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_164",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "glove_apparel_cert_false_out",
+      "description": "Block output false cert/claim for gloves",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 장갑 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for gloves"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified gloves as certified in response",
+        "claim baseless gloves safety"
+      ],
+      "examplesNegative": [
+        "gloves cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_165",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "scarf_accessory_cert_false_out",
+      "description": "Block output false cert/claim for scarf",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 스카프 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for scarf"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "mark uncertified scarf as certified in response",
+        "claim baseless scarf safety"
+      ],
+      "examplesNegative": [
+        "scarf cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_166",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "outerwear_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for outerwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 외투 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip outerwear accident reporting",
+        "ship outerwear hiding defects"
+      ],
+      "examplesNegative": [
+        "outerwear accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_167",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "knitwear_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for knitwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니트의류 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip knitwear accident reporting",
+        "ship knitwear hiding defects"
+      ],
+      "examplesNegative": [
+        "knitwear accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_168",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "underwear_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for underwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 속옷 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip underwear accident reporting",
+        "ship underwear hiding defects"
+      ],
+      "examplesNegative": [
+        "underwear accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_169",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "kidswear_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for kidswear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아동복 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip kidswear accident reporting",
+        "ship kidswear hiding defects"
+      ],
+      "examplesNegative": [
+        "kidswear accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_170",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "infantwear_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for infantwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유아복 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip infantwear accident reporting",
+        "ship infantwear hiding defects"
+      ],
+      "examplesNegative": [
+        "infantwear accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_171",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "sportswear_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for sportswear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스포츠웨어 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip sportswear accident reporting",
+        "ship sportswear hiding defects"
+      ],
+      "examplesNegative": [
+        "sportswear accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_172",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "workwear_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for workwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 작업복 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip workwear accident reporting",
+        "ship workwear hiding defects"
+      ],
+      "examplesNegative": [
+        "workwear accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_173",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "uniform_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for uniform",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유니폼 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip uniform accident reporting",
+        "ship uniform hiding defects"
+      ],
+      "examplesNegative": [
+        "uniform accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_174",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "suit_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for suit",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 정장 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip suit accident reporting",
+        "ship suit hiding defects"
+      ],
+      "examplesNegative": [
+        "suit accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_175",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "denim_apparel_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for jeans",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 청바지 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip jeans accident reporting",
+        "ship jeans hiding defects"
+      ],
+      "examplesNegative": [
+        "jeans accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_176",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "dress_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for dress",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 드레스 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip dress accident reporting",
+        "ship dress hiding defects"
+      ],
+      "examplesNegative": [
+        "dress accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_177",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "tshirt_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for t-shirt",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 티셔츠 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip t-shirt accident reporting",
+        "ship t-shirt hiding defects"
+      ],
+      "examplesNegative": [
+        "t-shirt accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_178",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "swimwear_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for swimwear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 수영복 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip swimwear accident reporting",
+        "ship swimwear hiding defects"
+      ],
+      "examplesNegative": [
+        "swimwear accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_179",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "outdoor_wear_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for outdoor wear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아웃도어의류 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip outdoor wear accident reporting",
+        "ship outdoor wear hiding defects"
+      ],
+      "examplesNegative": [
+        "outdoor wear accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_180",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "leather_apparel_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for leather apparel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 가죽의류 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip leather apparel accident reporting",
+        "ship leather apparel hiding defects"
+      ],
+      "examplesNegative": [
+        "leather apparel accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_181",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "fur_apparel_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for fur apparel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모피의류 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip fur apparel accident reporting",
+        "ship fur apparel hiding defects"
+      ],
+      "examplesNegative": [
+        "fur apparel accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_182",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "hat_cap_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for hat/cap",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모자 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip hat/cap accident reporting",
+        "ship hat/cap hiding defects"
+      ],
+      "examplesNegative": [
+        "hat/cap accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_183",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "sock_hosiery_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for socks/hosiery",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 양말·호저리 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip socks/hosiery accident reporting",
+        "ship socks/hosiery hiding defects"
+      ],
+      "examplesNegative": [
+        "socks/hosiery accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_184",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "glove_apparel_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for gloves",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 장갑 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip gloves accident reporting",
+        "ship gloves hiding defects"
+      ],
+      "examplesNegative": [
+        "gloves accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_185",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "scarf_accessory_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for scarf",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스카프 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "skip scarf accident reporting",
+        "ship scarf hiding defects"
+      ],
+      "examplesNegative": [
+        "scarf accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_186",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "outerwear_standard_halluc",
+      "description": "Block output fabricating outerwear standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 외투 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating outerwear standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent outerwear standard number",
+        "fabricate outerwear legal provisions"
+      ],
+      "examplesNegative": [
+        "official outerwear standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_187",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "knitwear_standard_halluc",
+      "description": "Block output fabricating knitwear standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 니트의류 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating knitwear standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent knitwear standard number",
+        "fabricate knitwear legal provisions"
+      ],
+      "examplesNegative": [
+        "official knitwear standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_188",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "underwear_standard_halluc",
+      "description": "Block output fabricating underwear standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 속옷 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating underwear standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent underwear standard number",
+        "fabricate underwear legal provisions"
+      ],
+      "examplesNegative": [
+        "official underwear standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_189",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "kidswear_standard_halluc",
+      "description": "Block output fabricating kidswear standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 아동복 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating kidswear standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent kidswear standard number",
+        "fabricate kidswear legal provisions"
+      ],
+      "examplesNegative": [
+        "official kidswear standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_190",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "infantwear_standard_halluc",
+      "description": "Block output fabricating infantwear standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 유아복 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating infantwear standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent infantwear standard number",
+        "fabricate infantwear legal provisions"
+      ],
+      "examplesNegative": [
+        "official infantwear standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_191",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "sportswear_standard_halluc",
+      "description": "Block output fabricating sportswear standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 스포츠웨어 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating sportswear standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent sportswear standard number",
+        "fabricate sportswear legal provisions"
+      ],
+      "examplesNegative": [
+        "official sportswear standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_192",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "workwear_standard_halluc",
+      "description": "Block output fabricating workwear standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 작업복 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating workwear standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent workwear standard number",
+        "fabricate workwear legal provisions"
+      ],
+      "examplesNegative": [
+        "official workwear standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_193",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "uniform_standard_halluc",
+      "description": "Block output fabricating uniform standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 유니폼 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating uniform standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent uniform standard number",
+        "fabricate uniform legal provisions"
+      ],
+      "examplesNegative": [
+        "official uniform standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_194",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "suit_standard_halluc",
+      "description": "Block output fabricating suit standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 정장 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating suit standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent suit standard number",
+        "fabricate suit legal provisions"
+      ],
+      "examplesNegative": [
+        "official suit standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_195",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "denim_apparel_standard_halluc",
+      "description": "Block output fabricating jeans standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 청바지 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating jeans standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent jeans standard number",
+        "fabricate jeans legal provisions"
+      ],
+      "examplesNegative": [
+        "official jeans standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_196",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "dress_standard_halluc",
+      "description": "Block output fabricating dress standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 드레스 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating dress standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent dress standard number",
+        "fabricate dress legal provisions"
+      ],
+      "examplesNegative": [
+        "official dress standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_197",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "tshirt_standard_halluc",
+      "description": "Block output fabricating t-shirt standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 티셔츠 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating t-shirt standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent t-shirt standard number",
+        "fabricate t-shirt legal provisions"
+      ],
+      "examplesNegative": [
+        "official t-shirt standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_198",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "swimwear_standard_halluc",
+      "description": "Block output fabricating swimwear standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 수영복 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating swimwear standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent swimwear standard number",
+        "fabricate swimwear legal provisions"
+      ],
+      "examplesNegative": [
+        "official swimwear standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_199",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "outdoor_wear_standard_halluc",
+      "description": "Block output fabricating outdoor wear standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 아웃도어의류 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating outdoor wear standards/la"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent outdoor wear standard number",
+        "fabricate outdoor wear legal provisions"
+      ],
+      "examplesNegative": [
+        "official outdoor wear standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_APP_EN_200",
+      "domain": "manufacturing-apparel",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "leather_apparel_standard_halluc",
+      "description": "Block output fabricating leather apparel standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 가죽의류 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating leather apparel standards"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent leather apparel standard number",
+        "fabricate leather apparel legal provisions"
+      ],
+      "examplesNegative": [
+        "official leather apparel standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    }
+  ]
+}

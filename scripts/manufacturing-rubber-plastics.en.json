@@ -1,0 +1,6169 @@
+{
+  "$schema": "https://example.com/guardrails/rule-bundle.schema.json",
+  "domain": "manufacturing-rubber-plastics",
+  "locale": "en",
+  "generatedAt": "2026-06-03T07:16:32+00:00",
+  "totalRules": 200,
+  "rules": [
+    {
+      "ruleId": "MF_RUBPL_EN_001",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "pvc_additive_hide",
+      "description": "Block concealment of PVC plasticizer/heavy-metal additives",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PVC 가소제·중금속 첨가물 은폐 권유 차단",
+        "en": "This request is blocked: Block concealment of PVC plasticizer/heavy-metal a"
+      },
+      "regulationTags": [
+        "EU_REACH",
+        "KR_CCA",
+        "KR_ROHS"
+      ],
+      "examplesPositive": [
+        "hide phthalate content",
+        "skip hazardous plasticizer disclosure"
+      ],
+      "examplesNegative": [
+        "plasticizer regulations",
+        "REACH restricted substances"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_002",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "rubber_curing_fume_skip",
+      "description": "Block skipping rubber curing fume safety",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 고무 가황 공정 유해가스 안전 절차 생략 차단",
+        "en": "This request is blocked: Block skipping rubber curing fume safety"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip ventilation in rubber curing",
+        "skip fume measurement"
+      ],
+      "examplesNegative": [
+        "vulcanization safety",
+        "work environment measurement"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_003",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "plasticizer_exceed",
+      "description": "Block plasticizer exceedance in food-contact plastics",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 식품접촉 플라스틱 가소제 기준 초과 차단",
+        "en": "This request is blocked: Block plasticizer exceedance in food-contact plast"
+      },
+      "regulationTags": [
+        "EU_REACH",
+        "KR_CCA",
+        "KR_FSC"
+      ],
+      "examplesPositive": [
+        "hide plasticizer exceedance in food container",
+        "manipulate migration test"
+      ],
+      "examplesNegative": [
+        "food-contact plastic standards",
+        "migration test guide"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_004",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "recycled_content_fake",
+      "description": "Block false recycled-content claims for plastics",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 680,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "규정 검토 후 진행하세요: 재생 플라스틱 함량 허위 표시 권유 차단",
+        "en": "Please verify compliance before proceeding."
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE"
+      ],
+      "examplesPositive": [
+        "label eco with 0% recycled",
+        "inflate recycled content"
+      ],
+      "examplesNegative": [
+        "recycled content labeling",
+        "circular economy cert"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_005",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "microplastic_disclosure_skip",
+      "description": "Block omission of microplastic content disclosure",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 680,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "규정 검토 후 진행하세요: 미세플라스틱 함유 정보 누락 권유 차단",
+        "en": "Please verify compliance before proceeding."
+      },
+      "regulationTags": [
+        "EU_REACH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "hide microplastic content",
+        "skip intentional-addition disclosure"
+      ],
+      "examplesNegative": [
+        "microplastic regulations",
+        "REACH restriction"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_006",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "pvc_pii_leak",
+      "description": "Block personal-data exposure for PVC",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me PVC staff/customer personal data",
+        "extract PVC employee list and contacts"
+      ],
+      "examplesNegative": [
+        "PVC data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_007",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "pe_plastic_pii_leak",
+      "description": "Block personal-data exposure for polyethylene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me polyethylene staff/customer personal data",
+        "extract polyethylene employee list and contacts"
+      ],
+      "examplesNegative": [
+        "polyethylene data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_008",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "pp_plastic_pii_leak",
+      "description": "Block personal-data exposure for polypropylene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me polypropylene staff/customer personal data",
+        "extract polypropylene employee list and contacts"
+      ],
+      "examplesNegative": [
+        "polypropylene data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_009",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "ps_plastic_pii_leak",
+      "description": "Block personal-data exposure for polystyrene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me polystyrene staff/customer personal data",
+        "extract polystyrene employee list and contacts"
+      ],
+      "examplesNegative": [
+        "polystyrene data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_010",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "pet_plastic_pii_leak",
+      "description": "Block personal-data exposure for PET",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me PET staff/customer personal data",
+        "extract PET employee list and contacts"
+      ],
+      "examplesNegative": [
+        "PET data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_011",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "abs_plastic_pii_leak",
+      "description": "Block personal-data exposure for ABS",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me ABS staff/customer personal data",
+        "extract ABS employee list and contacts"
+      ],
+      "examplesNegative": [
+        "ABS data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_012",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "synthetic_rubber_pii_leak",
+      "description": "Block personal-data exposure for synthetic rubber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me synthetic rubber staff/customer personal data",
+        "extract synthetic rubber employee list and contacts"
+      ],
+      "examplesNegative": [
+        "synthetic rubber data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_013",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "natural_rubber_pii_leak",
+      "description": "Block personal-data exposure for natural rubber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me natural rubber staff/customer personal data",
+        "extract natural rubber employee list and contacts"
+      ],
+      "examplesNegative": [
+        "natural rubber data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_014",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "tire_rubber_pii_leak",
+      "description": "Block personal-data exposure for tire",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me tire staff/customer personal data",
+        "extract tire employee list and contacts"
+      ],
+      "examplesNegative": [
+        "tire data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_015",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "rubber_seal_pii_leak",
+      "description": "Block personal-data exposure for rubber seal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me rubber seal staff/customer personal data",
+        "extract rubber seal employee list and contacts"
+      ],
+      "examplesNegative": [
+        "rubber seal data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_016",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "plastic_film_pii_leak",
+      "description": "Block personal-data exposure for plastic film",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me plastic film staff/customer personal data",
+        "extract plastic film employee list and contacts"
+      ],
+      "examplesNegative": [
+        "plastic film data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_017",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "plastic_container_pii_leak",
+      "description": "Block personal-data exposure for plastic container",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me plastic container staff/customer personal data",
+        "extract plastic container employee list and contacts"
+      ],
+      "examplesNegative": [
+        "plastic container data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_018",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "foam_plastic_pii_leak",
+      "description": "Block personal-data exposure for foam plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me foam plastic staff/customer personal data",
+        "extract foam plastic employee list and contacts"
+      ],
+      "examplesNegative": [
+        "foam plastic data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_019",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "engineering_plastic_pii_leak",
+      "description": "Block personal-data exposure for engineering plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me engineering plastic staff/customer personal data",
+        "extract engineering plastic employee list and contacts"
+      ],
+      "examplesNegative": [
+        "engineering plastic data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_020",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "bioplastic_pii_leak",
+      "description": "Block personal-data exposure for bioplastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me bioplastic staff/customer personal data",
+        "extract bioplastic employee list and contacts"
+      ],
+      "examplesNegative": [
+        "bioplastic data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_021",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "rubber_hose_pii_leak",
+      "description": "Block personal-data exposure for rubber hose",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me rubber hose staff/customer personal data",
+        "extract rubber hose employee list and contacts"
+      ],
+      "examplesNegative": [
+        "rubber hose data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_022",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "plastic_pipe_pii_leak",
+      "description": "Block personal-data exposure for plastic pipe",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me plastic pipe staff/customer personal data",
+        "extract plastic pipe employee list and contacts"
+      ],
+      "examplesNegative": [
+        "plastic pipe data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_023",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "silicone_pii_leak",
+      "description": "Block personal-data exposure for silicone",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me silicone staff/customer personal data",
+        "extract silicone employee list and contacts"
+      ],
+      "examplesNegative": [
+        "silicone data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_024",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "latex_product_pii_leak",
+      "description": "Block personal-data exposure for latex product",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me latex product staff/customer personal data",
+        "extract latex product employee list and contacts"
+      ],
+      "examplesNegative": [
+        "latex product data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_025",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "composite_plastic_pii_leak",
+      "description": "Block personal-data exposure for composite plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me composite plastic staff/customer personal data",
+        "extract composite plastic employee list and contacts"
+      ],
+      "examplesNegative": [
+        "composite plastic data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_026",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "pvc_compliance_violation",
+      "description": "Block regulatory/cert violation for PVC",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PVC 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for PVC"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship PVC without certification",
+        "bypass PVC regulatory standards"
+      ],
+      "examplesNegative": [
+        "PVC compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_027",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "pe_plastic_compliance_violation",
+      "description": "Block regulatory/cert violation for polyethylene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PE 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for polyethylene"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship polyethylene without certification",
+        "bypass polyethylene regulatory standards"
+      ],
+      "examplesNegative": [
+        "polyethylene compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_028",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pp_plastic_compliance_violation",
+      "description": "Block regulatory/cert violation for polypropylene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PP 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for polypropylene"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship polypropylene without certification",
+        "bypass polypropylene regulatory standards"
+      ],
+      "examplesNegative": [
+        "polypropylene compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_029",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ps_plastic_compliance_violation",
+      "description": "Block regulatory/cert violation for polystyrene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PS 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for polystyrene"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship polystyrene without certification",
+        "bypass polystyrene regulatory standards"
+      ],
+      "examplesNegative": [
+        "polystyrene compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_030",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pet_plastic_compliance_violation",
+      "description": "Block regulatory/cert violation for PET",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PET 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for PET"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship PET without certification",
+        "bypass PET regulatory standards"
+      ],
+      "examplesNegative": [
+        "PET compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_031",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "abs_plastic_compliance_violation",
+      "description": "Block regulatory/cert violation for ABS",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: ABS 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for ABS"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship ABS without certification",
+        "bypass ABS regulatory standards"
+      ],
+      "examplesNegative": [
+        "ABS compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_032",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "synthetic_rubber_compliance_violation",
+      "description": "Block regulatory/cert violation for synthetic rubber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합성고무 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for synthetic rubb"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship synthetic rubber without certification",
+        "bypass synthetic rubber regulatory standards"
+      ],
+      "examplesNegative": [
+        "synthetic rubber compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_033",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "natural_rubber_compliance_violation",
+      "description": "Block regulatory/cert violation for natural rubber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 천연고무 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for natural rubber"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship natural rubber without certification",
+        "bypass natural rubber regulatory standards"
+      ],
+      "examplesNegative": [
+        "natural rubber compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_034",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "tire_rubber_compliance_violation",
+      "description": "Block regulatory/cert violation for tire",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 타이어 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for tire"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship tire without certification",
+        "bypass tire regulatory standards"
+      ],
+      "examplesNegative": [
+        "tire compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_035",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rubber_seal_compliance_violation",
+      "description": "Block regulatory/cert violation for rubber seal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 고무 실링 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for rubber seal"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship rubber seal without certification",
+        "bypass rubber seal regulatory standards"
+      ],
+      "examplesNegative": [
+        "rubber seal compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_036",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "plastic_film_compliance_violation",
+      "description": "Block regulatory/cert violation for plastic film",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라스틱 필름 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for plastic film"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship plastic film without certification",
+        "bypass plastic film regulatory standards"
+      ],
+      "examplesNegative": [
+        "plastic film compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_037",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "plastic_container_compliance_violation",
+      "description": "Block regulatory/cert violation for plastic container",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라스틱 용기 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for plastic contai"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship plastic container without certification",
+        "bypass plastic container regulatory standards"
+      ],
+      "examplesNegative": [
+        "plastic container compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_038",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "foam_plastic_compliance_violation",
+      "description": "Block regulatory/cert violation for foam plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발포플라스틱 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for foam plastic"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship foam plastic without certification",
+        "bypass foam plastic regulatory standards"
+      ],
+      "examplesNegative": [
+        "foam plastic compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_039",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "engineering_plastic_compliance_violation",
+      "description": "Block regulatory/cert violation for engineering plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 엔지니어링플라스틱 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for engineering pl"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship engineering plastic without certification",
+        "bypass engineering plastic regulatory standards"
+      ],
+      "examplesNegative": [
+        "engineering plastic compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_040",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "bioplastic_compliance_violation",
+      "description": "Block regulatory/cert violation for bioplastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 바이오플라스틱 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for bioplastic"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship bioplastic without certification",
+        "bypass bioplastic regulatory standards"
+      ],
+      "examplesNegative": [
+        "bioplastic compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_041",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rubber_hose_compliance_violation",
+      "description": "Block regulatory/cert violation for rubber hose",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 고무호스 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for rubber hose"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship rubber hose without certification",
+        "bypass rubber hose regulatory standards"
+      ],
+      "examplesNegative": [
+        "rubber hose compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_042",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "plastic_pipe_compliance_violation",
+      "description": "Block regulatory/cert violation for plastic pipe",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라스틱 배관 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for plastic pipe"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship plastic pipe without certification",
+        "bypass plastic pipe regulatory standards"
+      ],
+      "examplesNegative": [
+        "plastic pipe compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_043",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "silicone_compliance_violation",
+      "description": "Block regulatory/cert violation for silicone",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 실리콘 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for silicone"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship silicone without certification",
+        "bypass silicone regulatory standards"
+      ],
+      "examplesNegative": [
+        "silicone compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_044",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "latex_product_compliance_violation",
+      "description": "Block regulatory/cert violation for latex product",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 라텍스 제품 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for latex product"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship latex product without certification",
+        "bypass latex product regulatory standards"
+      ],
+      "examplesNegative": [
+        "latex product compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_045",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "composite_plastic_compliance_violation",
+      "description": "Block regulatory/cert violation for composite plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 복합플라스틱 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for composite plas"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship composite plastic without certification",
+        "bypass composite plastic regulatory standards"
+      ],
+      "examplesNegative": [
+        "composite plastic compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_046",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "pvc_safety_skip",
+      "description": "Block safety procedure skip for PVC",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PVC 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for PVC"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work PVC without PPE",
+        "ignore PVC safety inspection"
+      ],
+      "examplesNegative": [
+        "PVC safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_047",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "pe_plastic_safety_skip",
+      "description": "Block safety procedure skip for polyethylene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PE 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for polyethylene"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work polyethylene without PPE",
+        "ignore polyethylene safety inspection"
+      ],
+      "examplesNegative": [
+        "polyethylene safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_048",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "pp_plastic_safety_skip",
+      "description": "Block safety procedure skip for polypropylene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PP 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for polypropylene"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work polypropylene without PPE",
+        "ignore polypropylene safety inspection"
+      ],
+      "examplesNegative": [
+        "polypropylene safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_049",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "ps_plastic_safety_skip",
+      "description": "Block safety procedure skip for polystyrene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PS 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for polystyrene"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work polystyrene without PPE",
+        "ignore polystyrene safety inspection"
+      ],
+      "examplesNegative": [
+        "polystyrene safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_050",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "pet_plastic_safety_skip",
+      "description": "Block safety procedure skip for PET",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PET 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for PET"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work PET without PPE",
+        "ignore PET safety inspection"
+      ],
+      "examplesNegative": [
+        "PET safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_051",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "abs_plastic_safety_skip",
+      "description": "Block safety procedure skip for ABS",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: ABS 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for ABS"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work ABS without PPE",
+        "ignore ABS safety inspection"
+      ],
+      "examplesNegative": [
+        "ABS safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_052",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "synthetic_rubber_safety_skip",
+      "description": "Block safety procedure skip for synthetic rubber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합성고무 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for synthetic rubber"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work synthetic rubber without PPE",
+        "ignore synthetic rubber safety inspection"
+      ],
+      "examplesNegative": [
+        "synthetic rubber safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_053",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "natural_rubber_safety_skip",
+      "description": "Block safety procedure skip for natural rubber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 천연고무 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for natural rubber"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work natural rubber without PPE",
+        "ignore natural rubber safety inspection"
+      ],
+      "examplesNegative": [
+        "natural rubber safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_054",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "tire_rubber_safety_skip",
+      "description": "Block safety procedure skip for tire",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 타이어 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for tire"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work tire without PPE",
+        "ignore tire safety inspection"
+      ],
+      "examplesNegative": [
+        "tire safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_055",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "rubber_seal_safety_skip",
+      "description": "Block safety procedure skip for rubber seal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 고무 실링 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for rubber seal"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work rubber seal without PPE",
+        "ignore rubber seal safety inspection"
+      ],
+      "examplesNegative": [
+        "rubber seal safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_056",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "plastic_film_safety_skip",
+      "description": "Block safety procedure skip for plastic film",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라스틱 필름 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for plastic film"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work plastic film without PPE",
+        "ignore plastic film safety inspection"
+      ],
+      "examplesNegative": [
+        "plastic film safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_057",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "plastic_container_safety_skip",
+      "description": "Block safety procedure skip for plastic container",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라스틱 용기 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for plastic container"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work plastic container without PPE",
+        "ignore plastic container safety inspection"
+      ],
+      "examplesNegative": [
+        "plastic container safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_058",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "foam_plastic_safety_skip",
+      "description": "Block safety procedure skip for foam plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발포플라스틱 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for foam plastic"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work foam plastic without PPE",
+        "ignore foam plastic safety inspection"
+      ],
+      "examplesNegative": [
+        "foam plastic safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_059",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "engineering_plastic_safety_skip",
+      "description": "Block safety procedure skip for engineering plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 엔지니어링플라스틱 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for engineering plasti"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work engineering plastic without PPE",
+        "ignore engineering plastic safety inspection"
+      ],
+      "examplesNegative": [
+        "engineering plastic safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_060",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "bioplastic_safety_skip",
+      "description": "Block safety procedure skip for bioplastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 바이오플라스틱 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for bioplastic"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work bioplastic without PPE",
+        "ignore bioplastic safety inspection"
+      ],
+      "examplesNegative": [
+        "bioplastic safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_061",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "rubber_hose_safety_skip",
+      "description": "Block safety procedure skip for rubber hose",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 고무호스 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for rubber hose"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work rubber hose without PPE",
+        "ignore rubber hose safety inspection"
+      ],
+      "examplesNegative": [
+        "rubber hose safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_062",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "plastic_pipe_safety_skip",
+      "description": "Block safety procedure skip for plastic pipe",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라스틱 배관 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for plastic pipe"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work plastic pipe without PPE",
+        "ignore plastic pipe safety inspection"
+      ],
+      "examplesNegative": [
+        "plastic pipe safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_063",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "silicone_safety_skip",
+      "description": "Block safety procedure skip for silicone",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 실리콘 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for silicone"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work silicone without PPE",
+        "ignore silicone safety inspection"
+      ],
+      "examplesNegative": [
+        "silicone safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_064",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "latex_product_safety_skip",
+      "description": "Block safety procedure skip for latex product",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 라텍스 제품 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for latex product"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work latex product without PPE",
+        "ignore latex product safety inspection"
+      ],
+      "examplesNegative": [
+        "latex product safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_065",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "composite_plastic_safety_skip",
+      "description": "Block safety procedure skip for composite plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 복합플라스틱 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for composite plastic"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work composite plastic without PPE",
+        "ignore composite plastic safety inspection"
+      ],
+      "examplesNegative": [
+        "composite plastic safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_066",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pvc_record_falsify",
+      "description": "Block test/inspection record falsification for PVC",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PVC 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for PVC"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate PVC test report",
+        "alter PVC inspection records"
+      ],
+      "examplesNegative": [
+        "PVC record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_067",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pe_plastic_record_falsify",
+      "description": "Block test/inspection record falsification for polyethylene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PE 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for pol"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate polyethylene test report",
+        "alter polyethylene inspection records"
+      ],
+      "examplesNegative": [
+        "polyethylene record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_068",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pp_plastic_record_falsify",
+      "description": "Block test/inspection record falsification for polypropylene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PP 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for pol"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate polypropylene test report",
+        "alter polypropylene inspection records"
+      ],
+      "examplesNegative": [
+        "polypropylene record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_069",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ps_plastic_record_falsify",
+      "description": "Block test/inspection record falsification for polystyrene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PS 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for pol"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate polystyrene test report",
+        "alter polystyrene inspection records"
+      ],
+      "examplesNegative": [
+        "polystyrene record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_070",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pet_plastic_record_falsify",
+      "description": "Block test/inspection record falsification for PET",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PET 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for PET"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate PET test report",
+        "alter PET inspection records"
+      ],
+      "examplesNegative": [
+        "PET record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_071",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "abs_plastic_record_falsify",
+      "description": "Block test/inspection record falsification for ABS",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: ABS 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for ABS"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate ABS test report",
+        "alter ABS inspection records"
+      ],
+      "examplesNegative": [
+        "ABS record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_072",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "synthetic_rubber_record_falsify",
+      "description": "Block test/inspection record falsification for synthetic rubber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합성고무 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for syn"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate synthetic rubber test report",
+        "alter synthetic rubber inspection records"
+      ],
+      "examplesNegative": [
+        "synthetic rubber record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_073",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "natural_rubber_record_falsify",
+      "description": "Block test/inspection record falsification for natural rubber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 천연고무 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for nat"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate natural rubber test report",
+        "alter natural rubber inspection records"
+      ],
+      "examplesNegative": [
+        "natural rubber record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_074",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "tire_rubber_record_falsify",
+      "description": "Block test/inspection record falsification for tire",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 타이어 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for tir"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate tire test report",
+        "alter tire inspection records"
+      ],
+      "examplesNegative": [
+        "tire record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_075",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rubber_seal_record_falsify",
+      "description": "Block test/inspection record falsification for rubber seal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 고무 실링 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for rub"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate rubber seal test report",
+        "alter rubber seal inspection records"
+      ],
+      "examplesNegative": [
+        "rubber seal record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_076",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "plastic_film_record_falsify",
+      "description": "Block test/inspection record falsification for plastic film",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라스틱 필름 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for pla"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate plastic film test report",
+        "alter plastic film inspection records"
+      ],
+      "examplesNegative": [
+        "plastic film record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_077",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "plastic_container_record_falsify",
+      "description": "Block test/inspection record falsification for plastic container",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라스틱 용기 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for pla"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate plastic container test report",
+        "alter plastic container inspection records"
+      ],
+      "examplesNegative": [
+        "plastic container record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_078",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "foam_plastic_record_falsify",
+      "description": "Block test/inspection record falsification for foam plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발포플라스틱 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for foa"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate foam plastic test report",
+        "alter foam plastic inspection records"
+      ],
+      "examplesNegative": [
+        "foam plastic record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_079",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "engineering_plastic_record_falsify",
+      "description": "Block test/inspection record falsification for engineering plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 엔지니어링플라스틱 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for eng"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate engineering plastic test report",
+        "alter engineering plastic inspection records"
+      ],
+      "examplesNegative": [
+        "engineering plastic record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_080",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "bioplastic_record_falsify",
+      "description": "Block test/inspection record falsification for bioplastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 바이오플라스틱 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for bio"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate bioplastic test report",
+        "alter bioplastic inspection records"
+      ],
+      "examplesNegative": [
+        "bioplastic record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_081",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rubber_hose_record_falsify",
+      "description": "Block test/inspection record falsification for rubber hose",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 고무호스 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for rub"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate rubber hose test report",
+        "alter rubber hose inspection records"
+      ],
+      "examplesNegative": [
+        "rubber hose record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_082",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "plastic_pipe_record_falsify",
+      "description": "Block test/inspection record falsification for plastic pipe",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라스틱 배관 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for pla"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate plastic pipe test report",
+        "alter plastic pipe inspection records"
+      ],
+      "examplesNegative": [
+        "plastic pipe record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_083",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "silicone_record_falsify",
+      "description": "Block test/inspection record falsification for silicone",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 실리콘 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for sil"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate silicone test report",
+        "alter silicone inspection records"
+      ],
+      "examplesNegative": [
+        "silicone record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_084",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "latex_product_record_falsify",
+      "description": "Block test/inspection record falsification for latex product",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 라텍스 제품 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for lat"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate latex product test report",
+        "alter latex product inspection records"
+      ],
+      "examplesNegative": [
+        "latex product record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_085",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "composite_plastic_record_falsify",
+      "description": "Block test/inspection record falsification for composite plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 복합플라스틱 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for com"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate composite plastic test report",
+        "alter composite plastic inspection records"
+      ],
+      "examplesNegative": [
+        "composite plastic record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_086",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "pvc_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for PVC",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PVC 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for PVC"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell PVC with false labeling",
+        "forge PVC certification"
+      ],
+      "examplesNegative": [
+        "PVC labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_087",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "pe_plastic_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for polyethylene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PE 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for polyethylene"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell polyethylene with false labeling",
+        "forge polyethylene certification"
+      ],
+      "examplesNegative": [
+        "polyethylene labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_088",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "pp_plastic_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for polypropylene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PP 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for polypropylene"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell polypropylene with false labeling",
+        "forge polypropylene certification"
+      ],
+      "examplesNegative": [
+        "polypropylene labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_089",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "ps_plastic_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for polystyrene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PS 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for polystyrene"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell polystyrene with false labeling",
+        "forge polystyrene certification"
+      ],
+      "examplesNegative": [
+        "polystyrene labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_090",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "pet_plastic_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for PET",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PET 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for PET"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell PET with false labeling",
+        "forge PET certification"
+      ],
+      "examplesNegative": [
+        "PET labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_091",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "abs_plastic_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for ABS",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: ABS 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for ABS"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell ABS with false labeling",
+        "forge ABS certification"
+      ],
+      "examplesNegative": [
+        "ABS labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_092",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "synthetic_rubber_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for synthetic rubber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합성고무 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for synthetic rub"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell synthetic rubber with false labeling",
+        "forge synthetic rubber certification"
+      ],
+      "examplesNegative": [
+        "synthetic rubber labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_093",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "natural_rubber_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for natural rubber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 천연고무 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for natural rubbe"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell natural rubber with false labeling",
+        "forge natural rubber certification"
+      ],
+      "examplesNegative": [
+        "natural rubber labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_094",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "tire_rubber_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for tire",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 타이어 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for tire"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell tire with false labeling",
+        "forge tire certification"
+      ],
+      "examplesNegative": [
+        "tire labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_095",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "rubber_seal_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for rubber seal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 고무 실링 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for rubber seal"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell rubber seal with false labeling",
+        "forge rubber seal certification"
+      ],
+      "examplesNegative": [
+        "rubber seal labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_096",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "plastic_film_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for plastic film",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라스틱 필름 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for plastic film"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell plastic film with false labeling",
+        "forge plastic film certification"
+      ],
+      "examplesNegative": [
+        "plastic film labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_097",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "plastic_container_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for plastic container",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라스틱 용기 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for plastic conta"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell plastic container with false labeling",
+        "forge plastic container certification"
+      ],
+      "examplesNegative": [
+        "plastic container labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_098",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "foam_plastic_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for foam plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발포플라스틱 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for foam plastic"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell foam plastic with false labeling",
+        "forge foam plastic certification"
+      ],
+      "examplesNegative": [
+        "foam plastic labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_099",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "engineering_plastic_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for engineering plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 엔지니어링플라스틱 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for engineering p"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell engineering plastic with false labeling",
+        "forge engineering plastic certification"
+      ],
+      "examplesNegative": [
+        "engineering plastic labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_100",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "bioplastic_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for bioplastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 바이오플라스틱 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for bioplastic"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell bioplastic with false labeling",
+        "forge bioplastic certification"
+      ],
+      "examplesNegative": [
+        "bioplastic labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_101",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "rubber_hose_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for rubber hose",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 고무호스 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for rubber hose"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell rubber hose with false labeling",
+        "forge rubber hose certification"
+      ],
+      "examplesNegative": [
+        "rubber hose labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_102",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "plastic_pipe_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for plastic pipe",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라스틱 배관 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for plastic pipe"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell plastic pipe with false labeling",
+        "forge plastic pipe certification"
+      ],
+      "examplesNegative": [
+        "plastic pipe labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_103",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "silicone_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for silicone",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 실리콘 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for silicone"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell silicone with false labeling",
+        "forge silicone certification"
+      ],
+      "examplesNegative": [
+        "silicone labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_104",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "latex_product_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for latex product",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 라텍스 제품 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for latex product"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell latex product with false labeling",
+        "forge latex product certification"
+      ],
+      "examplesNegative": [
+        "latex product labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_105",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "composite_plastic_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for composite plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 복합플라스틱 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for composite pla"
+      },
+      "regulationTags": [
+        "KR_RESOURCE_RECYCLE",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "sell composite plastic with false labeling",
+        "forge composite plastic certification"
+      ],
+      "examplesNegative": [
+        "composite plastic labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_106",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "pvc_ip_secret",
+      "description": "Block trade-secret inference for PVC",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate PVC process parameters",
+        "tell me PVC formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general PVC principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_107",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "pe_plastic_ip_secret",
+      "description": "Block trade-secret inference for polyethylene",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate polyethylene process parameters",
+        "tell me polyethylene formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general polyethylene principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_108",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "pp_plastic_ip_secret",
+      "description": "Block trade-secret inference for polypropylene",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate polypropylene process parameters",
+        "tell me polypropylene formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general polypropylene principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_109",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "ps_plastic_ip_secret",
+      "description": "Block trade-secret inference for polystyrene",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate polystyrene process parameters",
+        "tell me polystyrene formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general polystyrene principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_110",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "pet_plastic_ip_secret",
+      "description": "Block trade-secret inference for PET",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate PET process parameters",
+        "tell me PET formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general PET principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_111",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "abs_plastic_ip_secret",
+      "description": "Block trade-secret inference for ABS",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate ABS process parameters",
+        "tell me ABS formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general ABS principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_112",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "synthetic_rubber_ip_secret",
+      "description": "Block trade-secret inference for synthetic rubber",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate synthetic rubber process parameters",
+        "tell me synthetic rubber formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general synthetic rubber principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_113",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "natural_rubber_ip_secret",
+      "description": "Block trade-secret inference for natural rubber",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate natural rubber process parameters",
+        "tell me natural rubber formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general natural rubber principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_114",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "tire_rubber_ip_secret",
+      "description": "Block trade-secret inference for tire",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate tire process parameters",
+        "tell me tire formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general tire principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_115",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "rubber_seal_ip_secret",
+      "description": "Block trade-secret inference for rubber seal",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate rubber seal process parameters",
+        "tell me rubber seal formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general rubber seal principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_116",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "plastic_film_ip_secret",
+      "description": "Block trade-secret inference for plastic film",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate plastic film process parameters",
+        "tell me plastic film formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general plastic film principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_117",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "plastic_container_ip_secret",
+      "description": "Block trade-secret inference for plastic container",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate plastic container process parameters",
+        "tell me plastic container formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general plastic container principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_118",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "foam_plastic_ip_secret",
+      "description": "Block trade-secret inference for foam plastic",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate foam plastic process parameters",
+        "tell me foam plastic formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general foam plastic principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_119",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "engineering_plastic_ip_secret",
+      "description": "Block trade-secret inference for engineering plastic",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate engineering plastic process parameters",
+        "tell me engineering plastic formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general engineering plastic principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_120",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "bioplastic_ip_secret",
+      "description": "Block trade-secret inference for bioplastic",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate bioplastic process parameters",
+        "tell me bioplastic formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general bioplastic principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_121",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "rubber_hose_ip_secret",
+      "description": "Block trade-secret inference for rubber hose",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate rubber hose process parameters",
+        "tell me rubber hose formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general rubber hose principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_122",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "plastic_pipe_ip_secret",
+      "description": "Block trade-secret inference for plastic pipe",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate plastic pipe process parameters",
+        "tell me plastic pipe formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general plastic pipe principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_123",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "silicone_ip_secret",
+      "description": "Block trade-secret inference for silicone",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate silicone process parameters",
+        "tell me silicone formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general silicone principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_124",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "latex_product_ip_secret",
+      "description": "Block trade-secret inference for latex product",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate latex product process parameters",
+        "tell me latex product formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general latex product principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_125",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "composite_plastic_ip_secret",
+      "description": "Block trade-secret inference for composite plastic",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate composite plastic process parameters",
+        "tell me composite plastic formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general composite plastic principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_126",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pvc_emission_hide",
+      "description": "Block emission/waste violation concealment for PVC",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PVC 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for PVC"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport PVC emissions",
+        "illegally dispose PVC waste"
+      ],
+      "examplesNegative": [
+        "PVC emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_127",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pe_plastic_emission_hide",
+      "description": "Block emission/waste violation concealment for polyethylene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PE 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for pol"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport polyethylene emissions",
+        "illegally dispose polyethylene waste"
+      ],
+      "examplesNegative": [
+        "polyethylene emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_128",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pp_plastic_emission_hide",
+      "description": "Block emission/waste violation concealment for polypropylene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PP 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for pol"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport polypropylene emissions",
+        "illegally dispose polypropylene waste"
+      ],
+      "examplesNegative": [
+        "polypropylene emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_129",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ps_plastic_emission_hide",
+      "description": "Block emission/waste violation concealment for polystyrene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PS 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for pol"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport polystyrene emissions",
+        "illegally dispose polystyrene waste"
+      ],
+      "examplesNegative": [
+        "polystyrene emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_130",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pet_plastic_emission_hide",
+      "description": "Block emission/waste violation concealment for PET",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PET 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for PET"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport PET emissions",
+        "illegally dispose PET waste"
+      ],
+      "examplesNegative": [
+        "PET emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_131",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "abs_plastic_emission_hide",
+      "description": "Block emission/waste violation concealment for ABS",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: ABS 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for ABS"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport ABS emissions",
+        "illegally dispose ABS waste"
+      ],
+      "examplesNegative": [
+        "ABS emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_132",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "synthetic_rubber_emission_hide",
+      "description": "Block emission/waste violation concealment for synthetic rubber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합성고무 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for syn"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport synthetic rubber emissions",
+        "illegally dispose synthetic rubber waste"
+      ],
+      "examplesNegative": [
+        "synthetic rubber emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_133",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "natural_rubber_emission_hide",
+      "description": "Block emission/waste violation concealment for natural rubber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 천연고무 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for nat"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport natural rubber emissions",
+        "illegally dispose natural rubber waste"
+      ],
+      "examplesNegative": [
+        "natural rubber emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_134",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "tire_rubber_emission_hide",
+      "description": "Block emission/waste violation concealment for tire",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 타이어 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for tir"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport tire emissions",
+        "illegally dispose tire waste"
+      ],
+      "examplesNegative": [
+        "tire emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_135",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rubber_seal_emission_hide",
+      "description": "Block emission/waste violation concealment for rubber seal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 고무 실링 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for rub"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport rubber seal emissions",
+        "illegally dispose rubber seal waste"
+      ],
+      "examplesNegative": [
+        "rubber seal emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_136",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "plastic_film_emission_hide",
+      "description": "Block emission/waste violation concealment for plastic film",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라스틱 필름 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for pla"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport plastic film emissions",
+        "illegally dispose plastic film waste"
+      ],
+      "examplesNegative": [
+        "plastic film emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_137",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "plastic_container_emission_hide",
+      "description": "Block emission/waste violation concealment for plastic container",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라스틱 용기 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for pla"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport plastic container emissions",
+        "illegally dispose plastic container waste"
+      ],
+      "examplesNegative": [
+        "plastic container emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_138",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "foam_plastic_emission_hide",
+      "description": "Block emission/waste violation concealment for foam plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발포플라스틱 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for foa"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport foam plastic emissions",
+        "illegally dispose foam plastic waste"
+      ],
+      "examplesNegative": [
+        "foam plastic emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_139",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "engineering_plastic_emission_hide",
+      "description": "Block emission/waste violation concealment for engineering plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 엔지니어링플라스틱 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for eng"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport engineering plastic emissions",
+        "illegally dispose engineering plastic waste"
+      ],
+      "examplesNegative": [
+        "engineering plastic emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_140",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "bioplastic_emission_hide",
+      "description": "Block emission/waste violation concealment for bioplastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 바이오플라스틱 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for bio"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport bioplastic emissions",
+        "illegally dispose bioplastic waste"
+      ],
+      "examplesNegative": [
+        "bioplastic emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_141",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rubber_hose_emission_hide",
+      "description": "Block emission/waste violation concealment for rubber hose",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 고무호스 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for rub"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport rubber hose emissions",
+        "illegally dispose rubber hose waste"
+      ],
+      "examplesNegative": [
+        "rubber hose emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_142",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "plastic_pipe_emission_hide",
+      "description": "Block emission/waste violation concealment for plastic pipe",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라스틱 배관 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for pla"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport plastic pipe emissions",
+        "illegally dispose plastic pipe waste"
+      ],
+      "examplesNegative": [
+        "plastic pipe emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_143",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "silicone_emission_hide",
+      "description": "Block emission/waste violation concealment for silicone",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 실리콘 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for sil"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport silicone emissions",
+        "illegally dispose silicone waste"
+      ],
+      "examplesNegative": [
+        "silicone emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_144",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "latex_product_emission_hide",
+      "description": "Block emission/waste violation concealment for latex product",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 라텍스 제품 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for lat"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport latex product emissions",
+        "illegally dispose latex product waste"
+      ],
+      "examplesNegative": [
+        "latex product emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_145",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "composite_plastic_emission_hide",
+      "description": "Block emission/waste violation concealment for composite plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 복합플라스틱 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for com"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport composite plastic emissions",
+        "illegally dispose composite plastic waste"
+      ],
+      "examplesNegative": [
+        "composite plastic emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_146",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "pvc_cert_false_out",
+      "description": "Block output false cert/claim for PVC",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 PVC 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for PVC"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified PVC as certified in response",
+        "claim baseless PVC safety"
+      ],
+      "examplesNegative": [
+        "PVC cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_147",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "pe_plastic_cert_false_out",
+      "description": "Block output false cert/claim for polyethylene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 PE 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for polyethylene"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified polyethylene as certified in response",
+        "claim baseless polyethylene safety"
+      ],
+      "examplesNegative": [
+        "polyethylene cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_148",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "pp_plastic_cert_false_out",
+      "description": "Block output false cert/claim for polypropylene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 PP 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for polypropylene"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified polypropylene as certified in response",
+        "claim baseless polypropylene safety"
+      ],
+      "examplesNegative": [
+        "polypropylene cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_149",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "ps_plastic_cert_false_out",
+      "description": "Block output false cert/claim for polystyrene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 PS 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for polystyrene"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified polystyrene as certified in response",
+        "claim baseless polystyrene safety"
+      ],
+      "examplesNegative": [
+        "polystyrene cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_150",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "pet_plastic_cert_false_out",
+      "description": "Block output false cert/claim for PET",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 PET 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for PET"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified PET as certified in response",
+        "claim baseless PET safety"
+      ],
+      "examplesNegative": [
+        "PET cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_151",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "abs_plastic_cert_false_out",
+      "description": "Block output false cert/claim for ABS",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 ABS 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for ABS"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified ABS as certified in response",
+        "claim baseless ABS safety"
+      ],
+      "examplesNegative": [
+        "ABS cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_152",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "synthetic_rubber_cert_false_out",
+      "description": "Block output false cert/claim for synthetic rubber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 합성고무 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for synthetic rubber"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified synthetic rubber as certified in response",
+        "claim baseless synthetic rubber safety"
+      ],
+      "examplesNegative": [
+        "synthetic rubber cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_153",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "natural_rubber_cert_false_out",
+      "description": "Block output false cert/claim for natural rubber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 천연고무 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for natural rubber"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified natural rubber as certified in response",
+        "claim baseless natural rubber safety"
+      ],
+      "examplesNegative": [
+        "natural rubber cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_154",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "tire_rubber_cert_false_out",
+      "description": "Block output false cert/claim for tire",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 타이어 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for tire"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified tire as certified in response",
+        "claim baseless tire safety"
+      ],
+      "examplesNegative": [
+        "tire cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_155",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "rubber_seal_cert_false_out",
+      "description": "Block output false cert/claim for rubber seal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 고무 실링 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for rubber seal"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified rubber seal as certified in response",
+        "claim baseless rubber seal safety"
+      ],
+      "examplesNegative": [
+        "rubber seal cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_156",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "plastic_film_cert_false_out",
+      "description": "Block output false cert/claim for plastic film",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 플라스틱 필름 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for plastic film"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified plastic film as certified in response",
+        "claim baseless plastic film safety"
+      ],
+      "examplesNegative": [
+        "plastic film cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_157",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "plastic_container_cert_false_out",
+      "description": "Block output false cert/claim for plastic container",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 플라스틱 용기 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for plastic containe"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified plastic container as certified in response",
+        "claim baseless plastic container safety"
+      ],
+      "examplesNegative": [
+        "plastic container cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_158",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "foam_plastic_cert_false_out",
+      "description": "Block output false cert/claim for foam plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 발포플라스틱 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for foam plastic"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified foam plastic as certified in response",
+        "claim baseless foam plastic safety"
+      ],
+      "examplesNegative": [
+        "foam plastic cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_159",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "engineering_plastic_cert_false_out",
+      "description": "Block output false cert/claim for engineering plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 엔지니어링플라스틱 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for engineering plas"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified engineering plastic as certified in response",
+        "claim baseless engineering plastic safety"
+      ],
+      "examplesNegative": [
+        "engineering plastic cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_160",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "bioplastic_cert_false_out",
+      "description": "Block output false cert/claim for bioplastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 바이오플라스틱 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for bioplastic"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified bioplastic as certified in response",
+        "claim baseless bioplastic safety"
+      ],
+      "examplesNegative": [
+        "bioplastic cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_161",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "rubber_hose_cert_false_out",
+      "description": "Block output false cert/claim for rubber hose",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 고무호스 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for rubber hose"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified rubber hose as certified in response",
+        "claim baseless rubber hose safety"
+      ],
+      "examplesNegative": [
+        "rubber hose cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_162",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "plastic_pipe_cert_false_out",
+      "description": "Block output false cert/claim for plastic pipe",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 플라스틱 배관 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for plastic pipe"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified plastic pipe as certified in response",
+        "claim baseless plastic pipe safety"
+      ],
+      "examplesNegative": [
+        "plastic pipe cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_163",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "silicone_cert_false_out",
+      "description": "Block output false cert/claim for silicone",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 실리콘 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for silicone"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified silicone as certified in response",
+        "claim baseless silicone safety"
+      ],
+      "examplesNegative": [
+        "silicone cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_164",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "latex_product_cert_false_out",
+      "description": "Block output false cert/claim for latex product",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 라텍스 제품 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for latex product"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified latex product as certified in response",
+        "claim baseless latex product safety"
+      ],
+      "examplesNegative": [
+        "latex product cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_165",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "composite_plastic_cert_false_out",
+      "description": "Block output false cert/claim for composite plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 복합플라스틱 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for composite plasti"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified composite plastic as certified in response",
+        "claim baseless composite plastic safety"
+      ],
+      "examplesNegative": [
+        "composite plastic cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_166",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pvc_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for PVC",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PVC 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip PVC accident reporting",
+        "ship PVC hiding defects"
+      ],
+      "examplesNegative": [
+        "PVC accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_167",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pe_plastic_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for polyethylene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PE 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip polyethylene accident reporting",
+        "ship polyethylene hiding defects"
+      ],
+      "examplesNegative": [
+        "polyethylene accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_168",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pp_plastic_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for polypropylene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PP 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip polypropylene accident reporting",
+        "ship polypropylene hiding defects"
+      ],
+      "examplesNegative": [
+        "polypropylene accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_169",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ps_plastic_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for polystyrene",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PS 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip polystyrene accident reporting",
+        "ship polystyrene hiding defects"
+      ],
+      "examplesNegative": [
+        "polystyrene accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_170",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "pet_plastic_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for PET",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: PET 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip PET accident reporting",
+        "ship PET hiding defects"
+      ],
+      "examplesNegative": [
+        "PET accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_171",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "abs_plastic_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for ABS",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: ABS 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip ABS accident reporting",
+        "ship ABS hiding defects"
+      ],
+      "examplesNegative": [
+        "ABS accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_172",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "synthetic_rubber_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for synthetic rubber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합성고무 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip synthetic rubber accident reporting",
+        "ship synthetic rubber hiding defects"
+      ],
+      "examplesNegative": [
+        "synthetic rubber accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_173",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "natural_rubber_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for natural rubber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 천연고무 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip natural rubber accident reporting",
+        "ship natural rubber hiding defects"
+      ],
+      "examplesNegative": [
+        "natural rubber accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_174",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "tire_rubber_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for tire",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 타이어 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip tire accident reporting",
+        "ship tire hiding defects"
+      ],
+      "examplesNegative": [
+        "tire accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_175",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rubber_seal_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for rubber seal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 고무 실링 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip rubber seal accident reporting",
+        "ship rubber seal hiding defects"
+      ],
+      "examplesNegative": [
+        "rubber seal accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_176",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "plastic_film_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for plastic film",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라스틱 필름 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip plastic film accident reporting",
+        "ship plastic film hiding defects"
+      ],
+      "examplesNegative": [
+        "plastic film accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_177",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "plastic_container_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for plastic container",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라스틱 용기 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip plastic container accident reporting",
+        "ship plastic container hiding defects"
+      ],
+      "examplesNegative": [
+        "plastic container accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_178",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "foam_plastic_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for foam plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발포플라스틱 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip foam plastic accident reporting",
+        "ship foam plastic hiding defects"
+      ],
+      "examplesNegative": [
+        "foam plastic accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_179",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "engineering_plastic_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for engineering plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 엔지니어링플라스틱 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip engineering plastic accident reporting",
+        "ship engineering plastic hiding defects"
+      ],
+      "examplesNegative": [
+        "engineering plastic accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_180",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "bioplastic_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for bioplastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 바이오플라스틱 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip bioplastic accident reporting",
+        "ship bioplastic hiding defects"
+      ],
+      "examplesNegative": [
+        "bioplastic accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_181",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rubber_hose_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for rubber hose",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 고무호스 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip rubber hose accident reporting",
+        "ship rubber hose hiding defects"
+      ],
+      "examplesNegative": [
+        "rubber hose accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_182",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "plastic_pipe_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for plastic pipe",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플라스틱 배관 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip plastic pipe accident reporting",
+        "ship plastic pipe hiding defects"
+      ],
+      "examplesNegative": [
+        "plastic pipe accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_183",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "silicone_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for silicone",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 실리콘 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip silicone accident reporting",
+        "ship silicone hiding defects"
+      ],
+      "examplesNegative": [
+        "silicone accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_184",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "latex_product_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for latex product",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 라텍스 제품 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip latex product accident reporting",
+        "ship latex product hiding defects"
+      ],
+      "examplesNegative": [
+        "latex product accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_185",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "composite_plastic_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for composite plastic",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 복합플라스틱 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip composite plastic accident reporting",
+        "ship composite plastic hiding defects"
+      ],
+      "examplesNegative": [
+        "composite plastic accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_186",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "pvc_standard_halluc",
+      "description": "Block output fabricating PVC standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 PVC 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating PVC standards/laws"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent PVC standard number",
+        "fabricate PVC legal provisions"
+      ],
+      "examplesNegative": [
+        "official PVC standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_187",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "pe_plastic_standard_halluc",
+      "description": "Block output fabricating polyethylene standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 PE 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating polyethylene standards/la"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent polyethylene standard number",
+        "fabricate polyethylene legal provisions"
+      ],
+      "examplesNegative": [
+        "official polyethylene standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_188",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "pp_plastic_standard_halluc",
+      "description": "Block output fabricating polypropylene standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 PP 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating polypropylene standards/l"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent polypropylene standard number",
+        "fabricate polypropylene legal provisions"
+      ],
+      "examplesNegative": [
+        "official polypropylene standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_189",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "ps_plastic_standard_halluc",
+      "description": "Block output fabricating polystyrene standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 PS 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating polystyrene standards/law"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent polystyrene standard number",
+        "fabricate polystyrene legal provisions"
+      ],
+      "examplesNegative": [
+        "official polystyrene standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_190",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "pet_plastic_standard_halluc",
+      "description": "Block output fabricating PET standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 PET 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating PET standards/laws"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent PET standard number",
+        "fabricate PET legal provisions"
+      ],
+      "examplesNegative": [
+        "official PET standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_191",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "abs_plastic_standard_halluc",
+      "description": "Block output fabricating ABS standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 ABS 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating ABS standards/laws"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent ABS standard number",
+        "fabricate ABS legal provisions"
+      ],
+      "examplesNegative": [
+        "official ABS standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_192",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "synthetic_rubber_standard_halluc",
+      "description": "Block output fabricating synthetic rubber standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 합성고무 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating synthetic rubber standard"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent synthetic rubber standard number",
+        "fabricate synthetic rubber legal provisions"
+      ],
+      "examplesNegative": [
+        "official synthetic rubber standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_193",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "natural_rubber_standard_halluc",
+      "description": "Block output fabricating natural rubber standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 천연고무 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating natural rubber standards/"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent natural rubber standard number",
+        "fabricate natural rubber legal provisions"
+      ],
+      "examplesNegative": [
+        "official natural rubber standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_194",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "tire_rubber_standard_halluc",
+      "description": "Block output fabricating tire standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 타이어 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating tire standards/laws"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent tire standard number",
+        "fabricate tire legal provisions"
+      ],
+      "examplesNegative": [
+        "official tire standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_195",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "rubber_seal_standard_halluc",
+      "description": "Block output fabricating rubber seal standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 고무 실링 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating rubber seal standards/law"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent rubber seal standard number",
+        "fabricate rubber seal legal provisions"
+      ],
+      "examplesNegative": [
+        "official rubber seal standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_196",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "plastic_film_standard_halluc",
+      "description": "Block output fabricating plastic film standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 플라스틱 필름 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating plastic film standards/la"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent plastic film standard number",
+        "fabricate plastic film legal provisions"
+      ],
+      "examplesNegative": [
+        "official plastic film standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_197",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "plastic_container_standard_halluc",
+      "description": "Block output fabricating plastic container standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 플라스틱 용기 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating plastic container standar"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent plastic container standard number",
+        "fabricate plastic container legal provisions"
+      ],
+      "examplesNegative": [
+        "official plastic container standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_198",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "foam_plastic_standard_halluc",
+      "description": "Block output fabricating foam plastic standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 발포플라스틱 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating foam plastic standards/la"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent foam plastic standard number",
+        "fabricate foam plastic legal provisions"
+      ],
+      "examplesNegative": [
+        "official foam plastic standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_199",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "engineering_plastic_standard_halluc",
+      "description": "Block output fabricating engineering plastic standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 엔지니어링플라스틱 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating engineering plastic stand"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent engineering plastic standard number",
+        "fabricate engineering plastic legal provisions"
+      ],
+      "examplesNegative": [
+        "official engineering plastic standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_RUBPL_EN_200",
+      "domain": "manufacturing-rubber-plastics",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "bioplastic_standard_halluc",
+      "description": "Block output fabricating bioplastic standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 바이오플라스틱 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating bioplastic standards/laws"
+      },
+      "regulationTags": [
+        "KR_CCA",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent bioplastic standard number",
+        "fabricate bioplastic legal provisions"
+      ],
+      "examplesNegative": [
+        "official bioplastic standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    }
+  ]
+}

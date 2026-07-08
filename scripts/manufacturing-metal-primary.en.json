@@ -1,0 +1,6127 @@
+{
+  "$schema": "https://example.com/guardrails/rule-bundle.schema.json",
+  "domain": "manufacturing-metal-primary",
+  "locale": "en",
+  "generatedAt": "2026-06-03T07:16:32+00:00",
+  "totalRules": 200,
+  "rules": [
+    {
+      "ruleId": "MF_METAL_EN_001",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "heavy_metal_emission_hide",
+      "description": "Block concealment of heavy-metal emissions",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 920,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 제련·도금 중금속 배출 은폐 권유 차단",
+        "en": "This request is blocked: Block concealment of heavy-metal emissions"
+      },
+      "regulationTags": [
+        "KR_AIR_ACT",
+        "KR_WATER_ACT",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "underreport cadmium/lead emissions",
+        "manipulate emission readings"
+      ],
+      "examplesNegative": [
+        "air/water emission standards",
+        "emission measurement"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_002",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "hot_metal_loto_skip",
+      "description": "Block skipping LOTO for molten metal/hot equipment",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 930,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 용융 금속·고온 설비 LOTO 생략 권유 차단",
+        "en": "This request is blocked: Block skipping LOTO for molten metal/hot equipment"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "maintain furnace without isolation",
+        "skip LOTO for hot equipment"
+      ],
+      "examplesNegative": [
+        "LOTO procedure",
+        "molten metal safety"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_003",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "slag_disposal_falsify",
+      "description": "Block falsification of slag waste disposal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 슬래그·광재 폐기물 처리 위·변조 차단",
+        "en": "This request is blocked: Block falsification of slag waste disposal"
+      },
+      "regulationTags": [
+        "KR_WASTE_ACT",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "illegally bury slag",
+        "manipulate waste records"
+      ],
+      "examplesNegative": [
+        "designated waste disposal",
+        "slag recycling standards"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_004",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "fume_exposure_skip",
+      "description": "Block skipping metal fume/dust exposure protection",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 금속 흄·분진 노출 보호 절차 생략 차단",
+        "en": "This request is blocked: Block skipping metal fume/dust exposure protection"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "weld without fume respirator",
+        "skip metal dust ventilation"
+      ],
+      "examplesNegative": [
+        "fume/dust safety standards",
+        "respirator selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_005",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "alloy_composition_secret",
+      "description": "Block alloy composition/heat-treatment trade-secret inference",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate this steel alloy composition",
+        "tell me heat-treatment profile"
+      ],
+      "examplesNegative": [
+        "general alloy principles",
+        "heat-treatment basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_006",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "steel_pii_leak",
+      "description": "Block personal-data exposure for steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me steel staff/customer personal data",
+        "extract steel employee list and contacts"
+      ],
+      "examplesNegative": [
+        "steel data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_007",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "cast_iron_pii_leak",
+      "description": "Block personal-data exposure for cast iron",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me cast iron staff/customer personal data",
+        "extract cast iron employee list and contacts"
+      ],
+      "examplesNegative": [
+        "cast iron data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_008",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "aluminum_pii_leak",
+      "description": "Block personal-data exposure for aluminum",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me aluminum staff/customer personal data",
+        "extract aluminum employee list and contacts"
+      ],
+      "examplesNegative": [
+        "aluminum data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_009",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "copper_pii_leak",
+      "description": "Block personal-data exposure for copper",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me copper staff/customer personal data",
+        "extract copper employee list and contacts"
+      ],
+      "examplesNegative": [
+        "copper data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_010",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "zinc_pii_leak",
+      "description": "Block personal-data exposure for zinc",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me zinc staff/customer personal data",
+        "extract zinc employee list and contacts"
+      ],
+      "examplesNegative": [
+        "zinc data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_011",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "lead_metal_pii_leak",
+      "description": "Block personal-data exposure for lead",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me lead staff/customer personal data",
+        "extract lead employee list and contacts"
+      ],
+      "examplesNegative": [
+        "lead data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_012",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "nickel_pii_leak",
+      "description": "Block personal-data exposure for nickel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me nickel staff/customer personal data",
+        "extract nickel employee list and contacts"
+      ],
+      "examplesNegative": [
+        "nickel data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_013",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "titanium_pii_leak",
+      "description": "Block personal-data exposure for titanium",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me titanium staff/customer personal data",
+        "extract titanium employee list and contacts"
+      ],
+      "examplesNegative": [
+        "titanium data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_014",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "stainless_pii_leak",
+      "description": "Block personal-data exposure for stainless steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me stainless steel staff/customer personal data",
+        "extract stainless steel employee list and contacts"
+      ],
+      "examplesNegative": [
+        "stainless steel data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_015",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "alloy_steel_pii_leak",
+      "description": "Block personal-data exposure for alloy steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me alloy steel staff/customer personal data",
+        "extract alloy steel employee list and contacts"
+      ],
+      "examplesNegative": [
+        "alloy steel data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_016",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "nonferrous_pii_leak",
+      "description": "Block personal-data exposure for non-ferrous metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me non-ferrous metal staff/customer personal data",
+        "extract non-ferrous metal employee list and contacts"
+      ],
+      "examplesNegative": [
+        "non-ferrous metal data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_017",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "rebar_pii_leak",
+      "description": "Block personal-data exposure for rebar",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me rebar staff/customer personal data",
+        "extract rebar employee list and contacts"
+      ],
+      "examplesNegative": [
+        "rebar data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_018",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "steel_plate_pii_leak",
+      "description": "Block personal-data exposure for steel plate",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me steel plate staff/customer personal data",
+        "extract steel plate employee list and contacts"
+      ],
+      "examplesNegative": [
+        "steel plate data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_019",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "wire_rod_pii_leak",
+      "description": "Block personal-data exposure for wire rod",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me wire rod staff/customer personal data",
+        "extract wire rod employee list and contacts"
+      ],
+      "examplesNegative": [
+        "wire rod data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_020",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "forging_pii_leak",
+      "description": "Block personal-data exposure for forging",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me forging staff/customer personal data",
+        "extract forging employee list and contacts"
+      ],
+      "examplesNegative": [
+        "forging data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_021",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "casting_pii_leak",
+      "description": "Block personal-data exposure for casting",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me casting staff/customer personal data",
+        "extract casting employee list and contacts"
+      ],
+      "examplesNegative": [
+        "casting data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_022",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "galvanized_pii_leak",
+      "description": "Block personal-data exposure for galvanized steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me galvanized steel staff/customer personal data",
+        "extract galvanized steel employee list and contacts"
+      ],
+      "examplesNegative": [
+        "galvanized steel data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_023",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "precious_metal_pii_leak",
+      "description": "Block personal-data exposure for precious metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me precious metal staff/customer personal data",
+        "extract precious metal employee list and contacts"
+      ],
+      "examplesNegative": [
+        "precious metal data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_024",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "rare_metal_pii_leak",
+      "description": "Block personal-data exposure for rare metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me rare metal staff/customer personal data",
+        "extract rare metal employee list and contacts"
+      ],
+      "examplesNegative": [
+        "rare metal data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_025",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "metal_powder_pii_leak",
+      "description": "Block personal-data exposure for metal powder",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me metal powder staff/customer personal data",
+        "extract metal powder employee list and contacts"
+      ],
+      "examplesNegative": [
+        "metal powder data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_026",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "steel_compliance_violation",
+      "description": "Block regulatory/cert violation for steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 철강 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for steel"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship steel without certification",
+        "bypass steel regulatory standards"
+      ],
+      "examplesNegative": [
+        "steel compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_027",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cast_iron_compliance_violation",
+      "description": "Block regulatory/cert violation for cast iron",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주철 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for cast iron"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship cast iron without certification",
+        "bypass cast iron regulatory standards"
+      ],
+      "examplesNegative": [
+        "cast iron compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_028",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "aluminum_compliance_violation",
+      "description": "Block regulatory/cert violation for aluminum",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 알루미늄 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for aluminum"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship aluminum without certification",
+        "bypass aluminum regulatory standards"
+      ],
+      "examplesNegative": [
+        "aluminum compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_029",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "copper_compliance_violation",
+      "description": "Block regulatory/cert violation for copper",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 구리 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for copper"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship copper without certification",
+        "bypass copper regulatory standards"
+      ],
+      "examplesNegative": [
+        "copper compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_030",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "zinc_compliance_violation",
+      "description": "Block regulatory/cert violation for zinc",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아연 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for zinc"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship zinc without certification",
+        "bypass zinc regulatory standards"
+      ],
+      "examplesNegative": [
+        "zinc compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_031",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "lead_metal_compliance_violation",
+      "description": "Block regulatory/cert violation for lead",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 납 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for lead"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship lead without certification",
+        "bypass lead regulatory standards"
+      ],
+      "examplesNegative": [
+        "lead compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_032",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nickel_compliance_violation",
+      "description": "Block regulatory/cert violation for nickel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니켈 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for nickel"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship nickel without certification",
+        "bypass nickel regulatory standards"
+      ],
+      "examplesNegative": [
+        "nickel compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_033",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "titanium_compliance_violation",
+      "description": "Block regulatory/cert violation for titanium",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 티타늄 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for titanium"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship titanium without certification",
+        "bypass titanium regulatory standards"
+      ],
+      "examplesNegative": [
+        "titanium compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_034",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "stainless_compliance_violation",
+      "description": "Block regulatory/cert violation for stainless steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스테인리스 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for stainless stee"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship stainless steel without certification",
+        "bypass stainless steel regulatory standards"
+      ],
+      "examplesNegative": [
+        "stainless steel compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_035",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "alloy_steel_compliance_violation",
+      "description": "Block regulatory/cert violation for alloy steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합금강 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for alloy steel"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship alloy steel without certification",
+        "bypass alloy steel regulatory standards"
+      ],
+      "examplesNegative": [
+        "alloy steel compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_036",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nonferrous_compliance_violation",
+      "description": "Block regulatory/cert violation for non-ferrous metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 비철금속 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for non-ferrous me"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship non-ferrous metal without certification",
+        "bypass non-ferrous metal regulatory standards"
+      ],
+      "examplesNegative": [
+        "non-ferrous metal compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_037",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rebar_compliance_violation",
+      "description": "Block regulatory/cert violation for rebar",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 철근 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for rebar"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship rebar without certification",
+        "bypass rebar regulatory standards"
+      ],
+      "examplesNegative": [
+        "rebar compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_038",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "steel_plate_compliance_violation",
+      "description": "Block regulatory/cert violation for steel plate",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 강판 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for steel plate"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship steel plate without certification",
+        "bypass steel plate regulatory standards"
+      ],
+      "examplesNegative": [
+        "steel plate compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_039",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "wire_rod_compliance_violation",
+      "description": "Block regulatory/cert violation for wire rod",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선재 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for wire rod"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship wire rod without certification",
+        "bypass wire rod regulatory standards"
+      ],
+      "examplesNegative": [
+        "wire rod compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_040",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "forging_compliance_violation",
+      "description": "Block regulatory/cert violation for forging",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 단조품 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for forging"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship forging without certification",
+        "bypass forging regulatory standards"
+      ],
+      "examplesNegative": [
+        "forging compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_041",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "casting_compliance_violation",
+      "description": "Block regulatory/cert violation for casting",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주조품 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for casting"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship casting without certification",
+        "bypass casting regulatory standards"
+      ],
+      "examplesNegative": [
+        "casting compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_042",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "galvanized_compliance_violation",
+      "description": "Block regulatory/cert violation for galvanized steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 도금강판 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for galvanized ste"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship galvanized steel without certification",
+        "bypass galvanized steel regulatory standards"
+      ],
+      "examplesNegative": [
+        "galvanized steel compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_043",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "precious_metal_compliance_violation",
+      "description": "Block regulatory/cert violation for precious metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 귀금속 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for precious metal"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship precious metal without certification",
+        "bypass precious metal regulatory standards"
+      ],
+      "examplesNegative": [
+        "precious metal compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_044",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rare_metal_compliance_violation",
+      "description": "Block regulatory/cert violation for rare metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 희소금속 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for rare metal"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship rare metal without certification",
+        "bypass rare metal regulatory standards"
+      ],
+      "examplesNegative": [
+        "rare metal compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_045",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "metal_powder_compliance_violation",
+      "description": "Block regulatory/cert violation for metal powder",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 금속분말 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for metal powder"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "ship metal powder without certification",
+        "bypass metal powder regulatory standards"
+      ],
+      "examplesNegative": [
+        "metal powder compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_046",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "steel_safety_skip",
+      "description": "Block safety procedure skip for steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 철강 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for steel"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work steel without PPE",
+        "ignore steel safety inspection"
+      ],
+      "examplesNegative": [
+        "steel safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_047",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "cast_iron_safety_skip",
+      "description": "Block safety procedure skip for cast iron",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주철 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for cast iron"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work cast iron without PPE",
+        "ignore cast iron safety inspection"
+      ],
+      "examplesNegative": [
+        "cast iron safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_048",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "aluminum_safety_skip",
+      "description": "Block safety procedure skip for aluminum",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 알루미늄 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for aluminum"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work aluminum without PPE",
+        "ignore aluminum safety inspection"
+      ],
+      "examplesNegative": [
+        "aluminum safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_049",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "copper_safety_skip",
+      "description": "Block safety procedure skip for copper",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 구리 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for copper"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work copper without PPE",
+        "ignore copper safety inspection"
+      ],
+      "examplesNegative": [
+        "copper safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_050",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "zinc_safety_skip",
+      "description": "Block safety procedure skip for zinc",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아연 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for zinc"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work zinc without PPE",
+        "ignore zinc safety inspection"
+      ],
+      "examplesNegative": [
+        "zinc safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_051",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "lead_metal_safety_skip",
+      "description": "Block safety procedure skip for lead",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 납 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for lead"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work lead without PPE",
+        "ignore lead safety inspection"
+      ],
+      "examplesNegative": [
+        "lead safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_052",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "nickel_safety_skip",
+      "description": "Block safety procedure skip for nickel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니켈 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for nickel"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work nickel without PPE",
+        "ignore nickel safety inspection"
+      ],
+      "examplesNegative": [
+        "nickel safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_053",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "titanium_safety_skip",
+      "description": "Block safety procedure skip for titanium",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 티타늄 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for titanium"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work titanium without PPE",
+        "ignore titanium safety inspection"
+      ],
+      "examplesNegative": [
+        "titanium safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_054",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "stainless_safety_skip",
+      "description": "Block safety procedure skip for stainless steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스테인리스 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for stainless steel"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work stainless steel without PPE",
+        "ignore stainless steel safety inspection"
+      ],
+      "examplesNegative": [
+        "stainless steel safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_055",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "alloy_steel_safety_skip",
+      "description": "Block safety procedure skip for alloy steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합금강 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for alloy steel"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work alloy steel without PPE",
+        "ignore alloy steel safety inspection"
+      ],
+      "examplesNegative": [
+        "alloy steel safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_056",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "nonferrous_safety_skip",
+      "description": "Block safety procedure skip for non-ferrous metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 비철금속 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for non-ferrous metal"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work non-ferrous metal without PPE",
+        "ignore non-ferrous metal safety inspection"
+      ],
+      "examplesNegative": [
+        "non-ferrous metal safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_057",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "rebar_safety_skip",
+      "description": "Block safety procedure skip for rebar",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 철근 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for rebar"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work rebar without PPE",
+        "ignore rebar safety inspection"
+      ],
+      "examplesNegative": [
+        "rebar safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_058",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "steel_plate_safety_skip",
+      "description": "Block safety procedure skip for steel plate",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 강판 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for steel plate"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work steel plate without PPE",
+        "ignore steel plate safety inspection"
+      ],
+      "examplesNegative": [
+        "steel plate safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_059",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "wire_rod_safety_skip",
+      "description": "Block safety procedure skip for wire rod",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선재 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for wire rod"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work wire rod without PPE",
+        "ignore wire rod safety inspection"
+      ],
+      "examplesNegative": [
+        "wire rod safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_060",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "forging_safety_skip",
+      "description": "Block safety procedure skip for forging",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 단조품 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for forging"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work forging without PPE",
+        "ignore forging safety inspection"
+      ],
+      "examplesNegative": [
+        "forging safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_061",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "casting_safety_skip",
+      "description": "Block safety procedure skip for casting",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주조품 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for casting"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work casting without PPE",
+        "ignore casting safety inspection"
+      ],
+      "examplesNegative": [
+        "casting safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_062",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "galvanized_safety_skip",
+      "description": "Block safety procedure skip for galvanized steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 도금강판 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for galvanized steel"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work galvanized steel without PPE",
+        "ignore galvanized steel safety inspection"
+      ],
+      "examplesNegative": [
+        "galvanized steel safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_063",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "precious_metal_safety_skip",
+      "description": "Block safety procedure skip for precious metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 귀금속 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for precious metal"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work precious metal without PPE",
+        "ignore precious metal safety inspection"
+      ],
+      "examplesNegative": [
+        "precious metal safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_064",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "rare_metal_safety_skip",
+      "description": "Block safety procedure skip for rare metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 희소금속 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for rare metal"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work rare metal without PPE",
+        "ignore rare metal safety inspection"
+      ],
+      "examplesNegative": [
+        "rare metal safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_065",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "metal_powder_safety_skip",
+      "description": "Block safety procedure skip for metal powder",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 금속분말 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for metal powder"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "work metal powder without PPE",
+        "ignore metal powder safety inspection"
+      ],
+      "examplesNegative": [
+        "metal powder safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_066",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "steel_record_falsify",
+      "description": "Block test/inspection record falsification for steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 철강 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for ste"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate steel test report",
+        "alter steel inspection records"
+      ],
+      "examplesNegative": [
+        "steel record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_067",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cast_iron_record_falsify",
+      "description": "Block test/inspection record falsification for cast iron",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주철 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for cas"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate cast iron test report",
+        "alter cast iron inspection records"
+      ],
+      "examplesNegative": [
+        "cast iron record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_068",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "aluminum_record_falsify",
+      "description": "Block test/inspection record falsification for aluminum",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 알루미늄 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for alu"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate aluminum test report",
+        "alter aluminum inspection records"
+      ],
+      "examplesNegative": [
+        "aluminum record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_069",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "copper_record_falsify",
+      "description": "Block test/inspection record falsification for copper",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 구리 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for cop"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate copper test report",
+        "alter copper inspection records"
+      ],
+      "examplesNegative": [
+        "copper record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_070",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "zinc_record_falsify",
+      "description": "Block test/inspection record falsification for zinc",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아연 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for zin"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate zinc test report",
+        "alter zinc inspection records"
+      ],
+      "examplesNegative": [
+        "zinc record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_071",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "lead_metal_record_falsify",
+      "description": "Block test/inspection record falsification for lead",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 납 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for lea"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate lead test report",
+        "alter lead inspection records"
+      ],
+      "examplesNegative": [
+        "lead record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_072",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nickel_record_falsify",
+      "description": "Block test/inspection record falsification for nickel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니켈 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for nic"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate nickel test report",
+        "alter nickel inspection records"
+      ],
+      "examplesNegative": [
+        "nickel record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_073",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "titanium_record_falsify",
+      "description": "Block test/inspection record falsification for titanium",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 티타늄 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for tit"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate titanium test report",
+        "alter titanium inspection records"
+      ],
+      "examplesNegative": [
+        "titanium record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_074",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "stainless_record_falsify",
+      "description": "Block test/inspection record falsification for stainless steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스테인리스 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for sta"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate stainless steel test report",
+        "alter stainless steel inspection records"
+      ],
+      "examplesNegative": [
+        "stainless steel record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_075",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "alloy_steel_record_falsify",
+      "description": "Block test/inspection record falsification for alloy steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합금강 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for all"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate alloy steel test report",
+        "alter alloy steel inspection records"
+      ],
+      "examplesNegative": [
+        "alloy steel record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_076",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nonferrous_record_falsify",
+      "description": "Block test/inspection record falsification for non-ferrous metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 비철금속 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for non"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate non-ferrous metal test report",
+        "alter non-ferrous metal inspection records"
+      ],
+      "examplesNegative": [
+        "non-ferrous metal record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_077",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rebar_record_falsify",
+      "description": "Block test/inspection record falsification for rebar",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 철근 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for reb"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate rebar test report",
+        "alter rebar inspection records"
+      ],
+      "examplesNegative": [
+        "rebar record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_078",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "steel_plate_record_falsify",
+      "description": "Block test/inspection record falsification for steel plate",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 강판 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for ste"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate steel plate test report",
+        "alter steel plate inspection records"
+      ],
+      "examplesNegative": [
+        "steel plate record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_079",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "wire_rod_record_falsify",
+      "description": "Block test/inspection record falsification for wire rod",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선재 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for wir"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate wire rod test report",
+        "alter wire rod inspection records"
+      ],
+      "examplesNegative": [
+        "wire rod record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_080",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "forging_record_falsify",
+      "description": "Block test/inspection record falsification for forging",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 단조품 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for for"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate forging test report",
+        "alter forging inspection records"
+      ],
+      "examplesNegative": [
+        "forging record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_081",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "casting_record_falsify",
+      "description": "Block test/inspection record falsification for casting",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주조품 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for cas"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate casting test report",
+        "alter casting inspection records"
+      ],
+      "examplesNegative": [
+        "casting record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_082",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "galvanized_record_falsify",
+      "description": "Block test/inspection record falsification for galvanized steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 도금강판 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for gal"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate galvanized steel test report",
+        "alter galvanized steel inspection records"
+      ],
+      "examplesNegative": [
+        "galvanized steel record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_083",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "precious_metal_record_falsify",
+      "description": "Block test/inspection record falsification for precious metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 귀금속 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for pre"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate precious metal test report",
+        "alter precious metal inspection records"
+      ],
+      "examplesNegative": [
+        "precious metal record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_084",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rare_metal_record_falsify",
+      "description": "Block test/inspection record falsification for rare metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 희소금속 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for rar"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate rare metal test report",
+        "alter rare metal inspection records"
+      ],
+      "examplesNegative": [
+        "rare metal record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_085",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "metal_powder_record_falsify",
+      "description": "Block test/inspection record falsification for metal powder",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 금속분말 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for met"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "manipulate metal powder test report",
+        "alter metal powder inspection records"
+      ],
+      "examplesNegative": [
+        "metal powder record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_086",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "steel_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 철강 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for steel"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell steel with false labeling",
+        "forge steel certification"
+      ],
+      "examplesNegative": [
+        "steel labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_087",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "cast_iron_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for cast iron",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주철 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for cast iron"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell cast iron with false labeling",
+        "forge cast iron certification"
+      ],
+      "examplesNegative": [
+        "cast iron labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_088",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "aluminum_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for aluminum",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 알루미늄 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for aluminum"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell aluminum with false labeling",
+        "forge aluminum certification"
+      ],
+      "examplesNegative": [
+        "aluminum labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_089",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "copper_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for copper",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 구리 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for copper"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell copper with false labeling",
+        "forge copper certification"
+      ],
+      "examplesNegative": [
+        "copper labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_090",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "zinc_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for zinc",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아연 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for zinc"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell zinc with false labeling",
+        "forge zinc certification"
+      ],
+      "examplesNegative": [
+        "zinc labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_091",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "lead_metal_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for lead",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 납 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for lead"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell lead with false labeling",
+        "forge lead certification"
+      ],
+      "examplesNegative": [
+        "lead labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_092",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "nickel_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for nickel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니켈 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for nickel"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell nickel with false labeling",
+        "forge nickel certification"
+      ],
+      "examplesNegative": [
+        "nickel labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_093",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "titanium_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for titanium",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 티타늄 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for titanium"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell titanium with false labeling",
+        "forge titanium certification"
+      ],
+      "examplesNegative": [
+        "titanium labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_094",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "stainless_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for stainless steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스테인리스 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for stainless ste"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell stainless steel with false labeling",
+        "forge stainless steel certification"
+      ],
+      "examplesNegative": [
+        "stainless steel labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_095",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "alloy_steel_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for alloy steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합금강 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for alloy steel"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell alloy steel with false labeling",
+        "forge alloy steel certification"
+      ],
+      "examplesNegative": [
+        "alloy steel labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_096",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "nonferrous_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for non-ferrous metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 비철금속 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for non-ferrous m"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell non-ferrous metal with false labeling",
+        "forge non-ferrous metal certification"
+      ],
+      "examplesNegative": [
+        "non-ferrous metal labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_097",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "rebar_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for rebar",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 철근 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for rebar"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell rebar with false labeling",
+        "forge rebar certification"
+      ],
+      "examplesNegative": [
+        "rebar labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_098",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "steel_plate_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for steel plate",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 강판 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for steel plate"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell steel plate with false labeling",
+        "forge steel plate certification"
+      ],
+      "examplesNegative": [
+        "steel plate labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_099",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "wire_rod_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for wire rod",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선재 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for wire rod"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell wire rod with false labeling",
+        "forge wire rod certification"
+      ],
+      "examplesNegative": [
+        "wire rod labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_100",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "forging_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for forging",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 단조품 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for forging"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell forging with false labeling",
+        "forge forging certification"
+      ],
+      "examplesNegative": [
+        "forging labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_101",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "casting_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for casting",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주조품 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for casting"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell casting with false labeling",
+        "forge casting certification"
+      ],
+      "examplesNegative": [
+        "casting labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_102",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "galvanized_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for galvanized steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 도금강판 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for galvanized st"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell galvanized steel with false labeling",
+        "forge galvanized steel certification"
+      ],
+      "examplesNegative": [
+        "galvanized steel labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_103",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "precious_metal_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for precious metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 귀금속 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for precious meta"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell precious metal with false labeling",
+        "forge precious metal certification"
+      ],
+      "examplesNegative": [
+        "precious metal labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_104",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "rare_metal_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for rare metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 희소금속 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for rare metal"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell rare metal with false labeling",
+        "forge rare metal certification"
+      ],
+      "examplesNegative": [
+        "rare metal labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_105",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "metal_powder_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for metal powder",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 금속분말 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for metal powder"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_ENV_ACT"
+      ],
+      "examplesPositive": [
+        "sell metal powder with false labeling",
+        "forge metal powder certification"
+      ],
+      "examplesNegative": [
+        "metal powder labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_106",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "steel_ip_secret",
+      "description": "Block trade-secret inference for steel",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate steel process parameters",
+        "tell me steel formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general steel principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_107",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "cast_iron_ip_secret",
+      "description": "Block trade-secret inference for cast iron",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate cast iron process parameters",
+        "tell me cast iron formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general cast iron principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_108",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "aluminum_ip_secret",
+      "description": "Block trade-secret inference for aluminum",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate aluminum process parameters",
+        "tell me aluminum formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general aluminum principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_109",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "copper_ip_secret",
+      "description": "Block trade-secret inference for copper",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate copper process parameters",
+        "tell me copper formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general copper principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_110",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "zinc_ip_secret",
+      "description": "Block trade-secret inference for zinc",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate zinc process parameters",
+        "tell me zinc formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general zinc principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_111",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "lead_metal_ip_secret",
+      "description": "Block trade-secret inference for lead",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate lead process parameters",
+        "tell me lead formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general lead principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_112",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "nickel_ip_secret",
+      "description": "Block trade-secret inference for nickel",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate nickel process parameters",
+        "tell me nickel formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general nickel principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_113",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "titanium_ip_secret",
+      "description": "Block trade-secret inference for titanium",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate titanium process parameters",
+        "tell me titanium formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general titanium principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_114",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "stainless_ip_secret",
+      "description": "Block trade-secret inference for stainless steel",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate stainless steel process parameters",
+        "tell me stainless steel formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general stainless steel principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_115",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "alloy_steel_ip_secret",
+      "description": "Block trade-secret inference for alloy steel",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate alloy steel process parameters",
+        "tell me alloy steel formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general alloy steel principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_116",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "nonferrous_ip_secret",
+      "description": "Block trade-secret inference for non-ferrous metal",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate non-ferrous metal process parameters",
+        "tell me non-ferrous metal formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general non-ferrous metal principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_117",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "rebar_ip_secret",
+      "description": "Block trade-secret inference for rebar",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate rebar process parameters",
+        "tell me rebar formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general rebar principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_118",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "steel_plate_ip_secret",
+      "description": "Block trade-secret inference for steel plate",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate steel plate process parameters",
+        "tell me steel plate formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general steel plate principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_119",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "wire_rod_ip_secret",
+      "description": "Block trade-secret inference for wire rod",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate wire rod process parameters",
+        "tell me wire rod formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general wire rod principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_120",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "forging_ip_secret",
+      "description": "Block trade-secret inference for forging",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate forging process parameters",
+        "tell me forging formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general forging principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_121",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "casting_ip_secret",
+      "description": "Block trade-secret inference for casting",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate casting process parameters",
+        "tell me casting formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general casting principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_122",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "galvanized_ip_secret",
+      "description": "Block trade-secret inference for galvanized steel",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate galvanized steel process parameters",
+        "tell me galvanized steel formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general galvanized steel principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_123",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "precious_metal_ip_secret",
+      "description": "Block trade-secret inference for precious metal",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate precious metal process parameters",
+        "tell me precious metal formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general precious metal principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_124",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "rare_metal_ip_secret",
+      "description": "Block trade-secret inference for rare metal",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate rare metal process parameters",
+        "tell me rare metal formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general rare metal principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_125",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "metal_powder_ip_secret",
+      "description": "Block trade-secret inference for metal powder",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate metal powder process parameters",
+        "tell me metal powder formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general metal powder principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_126",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "steel_emission_hide",
+      "description": "Block emission/waste violation concealment for steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 철강 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for ste"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport steel emissions",
+        "illegally dispose steel waste"
+      ],
+      "examplesNegative": [
+        "steel emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_127",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cast_iron_emission_hide",
+      "description": "Block emission/waste violation concealment for cast iron",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주철 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for cas"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport cast iron emissions",
+        "illegally dispose cast iron waste"
+      ],
+      "examplesNegative": [
+        "cast iron emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_128",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "aluminum_emission_hide",
+      "description": "Block emission/waste violation concealment for aluminum",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 알루미늄 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for alu"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport aluminum emissions",
+        "illegally dispose aluminum waste"
+      ],
+      "examplesNegative": [
+        "aluminum emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_129",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "copper_emission_hide",
+      "description": "Block emission/waste violation concealment for copper",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 구리 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for cop"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport copper emissions",
+        "illegally dispose copper waste"
+      ],
+      "examplesNegative": [
+        "copper emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_130",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "zinc_emission_hide",
+      "description": "Block emission/waste violation concealment for zinc",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아연 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for zin"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport zinc emissions",
+        "illegally dispose zinc waste"
+      ],
+      "examplesNegative": [
+        "zinc emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_131",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "lead_metal_emission_hide",
+      "description": "Block emission/waste violation concealment for lead",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 납 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for lea"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport lead emissions",
+        "illegally dispose lead waste"
+      ],
+      "examplesNegative": [
+        "lead emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_132",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nickel_emission_hide",
+      "description": "Block emission/waste violation concealment for nickel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니켈 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for nic"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport nickel emissions",
+        "illegally dispose nickel waste"
+      ],
+      "examplesNegative": [
+        "nickel emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_133",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "titanium_emission_hide",
+      "description": "Block emission/waste violation concealment for titanium",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 티타늄 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for tit"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport titanium emissions",
+        "illegally dispose titanium waste"
+      ],
+      "examplesNegative": [
+        "titanium emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_134",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "stainless_emission_hide",
+      "description": "Block emission/waste violation concealment for stainless steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스테인리스 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for sta"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport stainless steel emissions",
+        "illegally dispose stainless steel waste"
+      ],
+      "examplesNegative": [
+        "stainless steel emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_135",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "alloy_steel_emission_hide",
+      "description": "Block emission/waste violation concealment for alloy steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합금강 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for all"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport alloy steel emissions",
+        "illegally dispose alloy steel waste"
+      ],
+      "examplesNegative": [
+        "alloy steel emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_136",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nonferrous_emission_hide",
+      "description": "Block emission/waste violation concealment for non-ferrous metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 비철금속 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for non"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport non-ferrous metal emissions",
+        "illegally dispose non-ferrous metal waste"
+      ],
+      "examplesNegative": [
+        "non-ferrous metal emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_137",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rebar_emission_hide",
+      "description": "Block emission/waste violation concealment for rebar",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 철근 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for reb"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport rebar emissions",
+        "illegally dispose rebar waste"
+      ],
+      "examplesNegative": [
+        "rebar emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_138",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "steel_plate_emission_hide",
+      "description": "Block emission/waste violation concealment for steel plate",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 강판 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for ste"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport steel plate emissions",
+        "illegally dispose steel plate waste"
+      ],
+      "examplesNegative": [
+        "steel plate emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_139",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "wire_rod_emission_hide",
+      "description": "Block emission/waste violation concealment for wire rod",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선재 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for wir"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport wire rod emissions",
+        "illegally dispose wire rod waste"
+      ],
+      "examplesNegative": [
+        "wire rod emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_140",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "forging_emission_hide",
+      "description": "Block emission/waste violation concealment for forging",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 단조품 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for for"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport forging emissions",
+        "illegally dispose forging waste"
+      ],
+      "examplesNegative": [
+        "forging emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_141",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "casting_emission_hide",
+      "description": "Block emission/waste violation concealment for casting",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주조품 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for cas"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport casting emissions",
+        "illegally dispose casting waste"
+      ],
+      "examplesNegative": [
+        "casting emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_142",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "galvanized_emission_hide",
+      "description": "Block emission/waste violation concealment for galvanized steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 도금강판 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for gal"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport galvanized steel emissions",
+        "illegally dispose galvanized steel waste"
+      ],
+      "examplesNegative": [
+        "galvanized steel emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_143",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "precious_metal_emission_hide",
+      "description": "Block emission/waste violation concealment for precious metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 귀금속 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for pre"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport precious metal emissions",
+        "illegally dispose precious metal waste"
+      ],
+      "examplesNegative": [
+        "precious metal emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_144",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rare_metal_emission_hide",
+      "description": "Block emission/waste violation concealment for rare metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 희소금속 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for rar"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport rare metal emissions",
+        "illegally dispose rare metal waste"
+      ],
+      "examplesNegative": [
+        "rare metal emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_145",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "metal_powder_emission_hide",
+      "description": "Block emission/waste violation concealment for metal powder",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 금속분말 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for met"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "underreport metal powder emissions",
+        "illegally dispose metal powder waste"
+      ],
+      "examplesNegative": [
+        "metal powder emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_146",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "steel_cert_false_out",
+      "description": "Block output false cert/claim for steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 철강 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for steel"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified steel as certified in response",
+        "claim baseless steel safety"
+      ],
+      "examplesNegative": [
+        "steel cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_147",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "cast_iron_cert_false_out",
+      "description": "Block output false cert/claim for cast iron",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 주철 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for cast iron"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified cast iron as certified in response",
+        "claim baseless cast iron safety"
+      ],
+      "examplesNegative": [
+        "cast iron cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_148",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "aluminum_cert_false_out",
+      "description": "Block output false cert/claim for aluminum",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 알루미늄 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for aluminum"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified aluminum as certified in response",
+        "claim baseless aluminum safety"
+      ],
+      "examplesNegative": [
+        "aluminum cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_149",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "copper_cert_false_out",
+      "description": "Block output false cert/claim for copper",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 구리 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for copper"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified copper as certified in response",
+        "claim baseless copper safety"
+      ],
+      "examplesNegative": [
+        "copper cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_150",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "zinc_cert_false_out",
+      "description": "Block output false cert/claim for zinc",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 아연 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for zinc"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified zinc as certified in response",
+        "claim baseless zinc safety"
+      ],
+      "examplesNegative": [
+        "zinc cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_151",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "lead_metal_cert_false_out",
+      "description": "Block output false cert/claim for lead",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 납 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for lead"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified lead as certified in response",
+        "claim baseless lead safety"
+      ],
+      "examplesNegative": [
+        "lead cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_152",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "nickel_cert_false_out",
+      "description": "Block output false cert/claim for nickel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 니켈 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for nickel"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified nickel as certified in response",
+        "claim baseless nickel safety"
+      ],
+      "examplesNegative": [
+        "nickel cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_153",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "titanium_cert_false_out",
+      "description": "Block output false cert/claim for titanium",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 티타늄 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for titanium"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified titanium as certified in response",
+        "claim baseless titanium safety"
+      ],
+      "examplesNegative": [
+        "titanium cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_154",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "stainless_cert_false_out",
+      "description": "Block output false cert/claim for stainless steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 스테인리스 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for stainless steel"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified stainless steel as certified in response",
+        "claim baseless stainless steel safety"
+      ],
+      "examplesNegative": [
+        "stainless steel cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_155",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "alloy_steel_cert_false_out",
+      "description": "Block output false cert/claim for alloy steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 합금강 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for alloy steel"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified alloy steel as certified in response",
+        "claim baseless alloy steel safety"
+      ],
+      "examplesNegative": [
+        "alloy steel cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_156",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "nonferrous_cert_false_out",
+      "description": "Block output false cert/claim for non-ferrous metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 비철금속 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for non-ferrous meta"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified non-ferrous metal as certified in response",
+        "claim baseless non-ferrous metal safety"
+      ],
+      "examplesNegative": [
+        "non-ferrous metal cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_157",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "rebar_cert_false_out",
+      "description": "Block output false cert/claim for rebar",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 철근 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for rebar"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified rebar as certified in response",
+        "claim baseless rebar safety"
+      ],
+      "examplesNegative": [
+        "rebar cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_158",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "steel_plate_cert_false_out",
+      "description": "Block output false cert/claim for steel plate",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 강판 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for steel plate"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified steel plate as certified in response",
+        "claim baseless steel plate safety"
+      ],
+      "examplesNegative": [
+        "steel plate cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_159",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "wire_rod_cert_false_out",
+      "description": "Block output false cert/claim for wire rod",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 선재 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for wire rod"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified wire rod as certified in response",
+        "claim baseless wire rod safety"
+      ],
+      "examplesNegative": [
+        "wire rod cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_160",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "forging_cert_false_out",
+      "description": "Block output false cert/claim for forging",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 단조품 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for forging"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified forging as certified in response",
+        "claim baseless forging safety"
+      ],
+      "examplesNegative": [
+        "forging cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_161",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "casting_cert_false_out",
+      "description": "Block output false cert/claim for casting",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 주조품 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for casting"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified casting as certified in response",
+        "claim baseless casting safety"
+      ],
+      "examplesNegative": [
+        "casting cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_162",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "galvanized_cert_false_out",
+      "description": "Block output false cert/claim for galvanized steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 도금강판 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for galvanized steel"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified galvanized steel as certified in response",
+        "claim baseless galvanized steel safety"
+      ],
+      "examplesNegative": [
+        "galvanized steel cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_163",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "precious_metal_cert_false_out",
+      "description": "Block output false cert/claim for precious metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 귀금속 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for precious metal"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified precious metal as certified in response",
+        "claim baseless precious metal safety"
+      ],
+      "examplesNegative": [
+        "precious metal cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_164",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "rare_metal_cert_false_out",
+      "description": "Block output false cert/claim for rare metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 희소금속 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for rare metal"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified rare metal as certified in response",
+        "claim baseless rare metal safety"
+      ],
+      "examplesNegative": [
+        "rare metal cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_165",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "metal_powder_cert_false_out",
+      "description": "Block output false cert/claim for metal powder",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 금속분말 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for metal powder"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "mark uncertified metal powder as certified in response",
+        "claim baseless metal powder safety"
+      ],
+      "examplesNegative": [
+        "metal powder cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_166",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "steel_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 철강 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip steel accident reporting",
+        "ship steel hiding defects"
+      ],
+      "examplesNegative": [
+        "steel accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_167",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cast_iron_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for cast iron",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주철 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip cast iron accident reporting",
+        "ship cast iron hiding defects"
+      ],
+      "examplesNegative": [
+        "cast iron accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_168",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "aluminum_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for aluminum",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 알루미늄 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip aluminum accident reporting",
+        "ship aluminum hiding defects"
+      ],
+      "examplesNegative": [
+        "aluminum accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_169",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "copper_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for copper",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 구리 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip copper accident reporting",
+        "ship copper hiding defects"
+      ],
+      "examplesNegative": [
+        "copper accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_170",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "zinc_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for zinc",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 아연 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip zinc accident reporting",
+        "ship zinc hiding defects"
+      ],
+      "examplesNegative": [
+        "zinc accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_171",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "lead_metal_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for lead",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 납 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip lead accident reporting",
+        "ship lead hiding defects"
+      ],
+      "examplesNegative": [
+        "lead accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_172",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nickel_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for nickel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 니켈 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip nickel accident reporting",
+        "ship nickel hiding defects"
+      ],
+      "examplesNegative": [
+        "nickel accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_173",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "titanium_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for titanium",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 티타늄 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip titanium accident reporting",
+        "ship titanium hiding defects"
+      ],
+      "examplesNegative": [
+        "titanium accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_174",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "stainless_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for stainless steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스테인리스 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip stainless steel accident reporting",
+        "ship stainless steel hiding defects"
+      ],
+      "examplesNegative": [
+        "stainless steel accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_175",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "alloy_steel_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for alloy steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합금강 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip alloy steel accident reporting",
+        "ship alloy steel hiding defects"
+      ],
+      "examplesNegative": [
+        "alloy steel accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_176",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nonferrous_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for non-ferrous metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 비철금속 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip non-ferrous metal accident reporting",
+        "ship non-ferrous metal hiding defects"
+      ],
+      "examplesNegative": [
+        "non-ferrous metal accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_177",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rebar_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for rebar",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 철근 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip rebar accident reporting",
+        "ship rebar hiding defects"
+      ],
+      "examplesNegative": [
+        "rebar accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_178",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "steel_plate_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for steel plate",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 강판 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip steel plate accident reporting",
+        "ship steel plate hiding defects"
+      ],
+      "examplesNegative": [
+        "steel plate accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_179",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "wire_rod_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for wire rod",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 선재 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip wire rod accident reporting",
+        "ship wire rod hiding defects"
+      ],
+      "examplesNegative": [
+        "wire rod accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_180",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "forging_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for forging",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 단조품 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip forging accident reporting",
+        "ship forging hiding defects"
+      ],
+      "examplesNegative": [
+        "forging accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_181",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "casting_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for casting",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주조품 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip casting accident reporting",
+        "ship casting hiding defects"
+      ],
+      "examplesNegative": [
+        "casting accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_182",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "galvanized_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for galvanized steel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 도금강판 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip galvanized steel accident reporting",
+        "ship galvanized steel hiding defects"
+      ],
+      "examplesNegative": [
+        "galvanized steel accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_183",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "precious_metal_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for precious metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 귀금속 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip precious metal accident reporting",
+        "ship precious metal hiding defects"
+      ],
+      "examplesNegative": [
+        "precious metal accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_184",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rare_metal_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for rare metal",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 희소금속 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip rare metal accident reporting",
+        "ship rare metal hiding defects"
+      ],
+      "examplesNegative": [
+        "rare metal accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_185",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "metal_powder_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for metal powder",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 금속분말 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "skip metal powder accident reporting",
+        "ship metal powder hiding defects"
+      ],
+      "examplesNegative": [
+        "metal powder accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_186",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "steel_standard_halluc",
+      "description": "Block output fabricating steel standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 철강 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating steel standards/laws"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent steel standard number",
+        "fabricate steel legal provisions"
+      ],
+      "examplesNegative": [
+        "official steel standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_187",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "cast_iron_standard_halluc",
+      "description": "Block output fabricating cast iron standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 주철 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating cast iron standards/laws"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent cast iron standard number",
+        "fabricate cast iron legal provisions"
+      ],
+      "examplesNegative": [
+        "official cast iron standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_188",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "aluminum_standard_halluc",
+      "description": "Block output fabricating aluminum standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 알루미늄 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating aluminum standards/laws"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent aluminum standard number",
+        "fabricate aluminum legal provisions"
+      ],
+      "examplesNegative": [
+        "official aluminum standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_189",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "copper_standard_halluc",
+      "description": "Block output fabricating copper standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 구리 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating copper standards/laws"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent copper standard number",
+        "fabricate copper legal provisions"
+      ],
+      "examplesNegative": [
+        "official copper standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_190",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "zinc_standard_halluc",
+      "description": "Block output fabricating zinc standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 아연 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating zinc standards/laws"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent zinc standard number",
+        "fabricate zinc legal provisions"
+      ],
+      "examplesNegative": [
+        "official zinc standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_191",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "lead_metal_standard_halluc",
+      "description": "Block output fabricating lead standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 납 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating lead standards/laws"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent lead standard number",
+        "fabricate lead legal provisions"
+      ],
+      "examplesNegative": [
+        "official lead standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_192",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "nickel_standard_halluc",
+      "description": "Block output fabricating nickel standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 니켈 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating nickel standards/laws"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent nickel standard number",
+        "fabricate nickel legal provisions"
+      ],
+      "examplesNegative": [
+        "official nickel standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_193",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "titanium_standard_halluc",
+      "description": "Block output fabricating titanium standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 티타늄 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating titanium standards/laws"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent titanium standard number",
+        "fabricate titanium legal provisions"
+      ],
+      "examplesNegative": [
+        "official titanium standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_194",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "stainless_standard_halluc",
+      "description": "Block output fabricating stainless steel standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 스테인리스 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating stainless steel standards"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent stainless steel standard number",
+        "fabricate stainless steel legal provisions"
+      ],
+      "examplesNegative": [
+        "official stainless steel standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_195",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "alloy_steel_standard_halluc",
+      "description": "Block output fabricating alloy steel standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 합금강 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating alloy steel standards/law"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent alloy steel standard number",
+        "fabricate alloy steel legal provisions"
+      ],
+      "examplesNegative": [
+        "official alloy steel standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_196",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "nonferrous_standard_halluc",
+      "description": "Block output fabricating non-ferrous metal standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 비철금속 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating non-ferrous metal standar"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent non-ferrous metal standard number",
+        "fabricate non-ferrous metal legal provisions"
+      ],
+      "examplesNegative": [
+        "official non-ferrous metal standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_197",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "rebar_standard_halluc",
+      "description": "Block output fabricating rebar standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 철근 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating rebar standards/laws"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent rebar standard number",
+        "fabricate rebar legal provisions"
+      ],
+      "examplesNegative": [
+        "official rebar standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_198",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "steel_plate_standard_halluc",
+      "description": "Block output fabricating steel plate standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 강판 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating steel plate standards/law"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent steel plate standard number",
+        "fabricate steel plate legal provisions"
+      ],
+      "examplesNegative": [
+        "official steel plate standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_199",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "wire_rod_standard_halluc",
+      "description": "Block output fabricating wire rod standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 선재 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating wire rod standards/laws"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent wire rod standard number",
+        "fabricate wire rod legal provisions"
+      ],
+      "examplesNegative": [
+        "official wire rod standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_METAL_EN_200",
+      "domain": "manufacturing-metal-primary",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "forging_standard_halluc",
+      "description": "Block output fabricating forging standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 단조품 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating forging standards/laws"
+      },
+      "regulationTags": [
+        "KR_ENV_ACT",
+        "KR_AIR_ACT"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent forging standard number",
+        "fabricate forging legal provisions"
+      ],
+      "examplesNegative": [
+        "official forging standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    }
+  ]
+}

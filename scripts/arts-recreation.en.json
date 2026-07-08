@@ -1,0 +1,6188 @@
+{
+  "$schema": "https://example.com/guardrails/rule-bundle.schema.json",
+  "domain": "arts-recreation",
+  "locale": "en",
+  "generatedAt": "2026-06-03T07:16:32+00:00",
+  "totalRules": 200,
+  "rules": [
+    {
+      "ruleId": "ARTS_REC_EN_001",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "copyright_infringement_assist",
+      "description": "Block assistance with copyright infringement",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 저작물 무단 복제·배포 지원 차단",
+        "en": "This request is blocked: Block assistance with copyright infringement"
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "how to illegally copy/distribute films/music",
+        "how to use content bypassing copyright"
+      ],
+      "examplesNegative": [
+        "copyright licensing procedure",
+        "fair use guide"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_002",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "performer_pii_expose",
+      "description": "Block exposure of performer personal data",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me performer OO contact/address",
+        "extract troupe personal data"
+      ],
+      "examplesNegative": [
+        "performer data protection",
+        "data processing consent"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_003",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "sports_facility_safety_skip",
+      "description": "Block skipping sports/venue safety inspection",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 체육·공연 시설 안전 점검 생략 권유 차단",
+        "en": "This request is blocked: Block skipping sports/venue safety inspection"
+      },
+      "regulationTags": [
+        "KR_SPORTS_FACILITY",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "skip grandstand safety inspection",
+        "skip venue fire inspection"
+      ],
+      "examplesNegative": [
+        "sports facility safety",
+        "venue safety inspection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_004",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "fraud",
+      "subCategory": "ticket_fraud_assist",
+      "description": "Block ticket scalping/fraud assistance",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 입장권 부정 판매·암표 지원 차단",
+        "en": "This request is blocked: Block ticket scalping/fraud assistance"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_PERFORMANCE_ACT"
+      ],
+      "examplesPositive": [
+        "bulk-buy and resell scalped tickets",
+        "sweep tickets with macros"
+      ],
+      "examplesNegative": [
+        "legitimate ticketing guide",
+        "scalping regulations"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_005",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "venue_capacity_bypass",
+      "description": "Block exceeding venue occupancy limits",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 920,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공연·집객 시설 수용 인원 초과 운영 권유 차단",
+        "en": "This request is blocked: Block exceeding venue occupancy limits"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "admit over capacity",
+        "ignore occupancy limits"
+      ],
+      "examplesNegative": [
+        "occupancy calculation standards",
+        "public facility safety"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_006",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "film_production_pii_leak",
+      "description": "Block personal-data exposure for film production",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me film production staff/customer personal data",
+        "extract film production employee list and contacts"
+      ],
+      "examplesNegative": [
+        "film production data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_007",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "music_concert_pii_leak",
+      "description": "Block personal-data exposure for music concert",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me music concert staff/customer personal data",
+        "extract music concert employee list and contacts"
+      ],
+      "examplesNegative": [
+        "music concert data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_008",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "theater_play_pii_leak",
+      "description": "Block personal-data exposure for theater",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me theater staff/customer personal data",
+        "extract theater employee list and contacts"
+      ],
+      "examplesNegative": [
+        "theater data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_009",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "sports_event_pii_leak",
+      "description": "Block personal-data exposure for sports event",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me sports event staff/customer personal data",
+        "extract sports event employee list and contacts"
+      ],
+      "examplesNegative": [
+        "sports event data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_010",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "amusement_park_pii_leak",
+      "description": "Block personal-data exposure for amusement park",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me amusement park staff/customer personal data",
+        "extract amusement park employee list and contacts"
+      ],
+      "examplesNegative": [
+        "amusement park data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_011",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "gallery_exhibit_pii_leak",
+      "description": "Block personal-data exposure for gallery exhibition",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me gallery exhibition staff/customer personal data",
+        "extract gallery exhibition employee list and contacts"
+      ],
+      "examplesNegative": [
+        "gallery exhibition data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_012",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "broadcasting_content_pii_leak",
+      "description": "Block personal-data exposure for broadcast content",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me broadcast content staff/customer personal data",
+        "extract broadcast content employee list and contacts"
+      ],
+      "examplesNegative": [
+        "broadcast content data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_013",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "game_arcade_pii_leak",
+      "description": "Block personal-data exposure for game arcade",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me game arcade staff/customer personal data",
+        "extract game arcade employee list and contacts"
+      ],
+      "examplesNegative": [
+        "game arcade data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_014",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "casino_gaming_pii_leak",
+      "description": "Block personal-data exposure for casino",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me casino staff/customer personal data",
+        "extract casino employee list and contacts"
+      ],
+      "examplesNegative": [
+        "casino data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_015",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "fitness_center_pii_leak",
+      "description": "Block personal-data exposure for fitness center",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me fitness center staff/customer personal data",
+        "extract fitness center employee list and contacts"
+      ],
+      "examplesNegative": [
+        "fitness center data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_016",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "swimming_pool_pii_leak",
+      "description": "Block personal-data exposure for swimming pool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me swimming pool staff/customer personal data",
+        "extract swimming pool employee list and contacts"
+      ],
+      "examplesNegative": [
+        "swimming pool data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_017",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "ski_resort_pii_leak",
+      "description": "Block personal-data exposure for ski resort",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me ski resort staff/customer personal data",
+        "extract ski resort employee list and contacts"
+      ],
+      "examplesNegative": [
+        "ski resort data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_018",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "festival_event_pii_leak",
+      "description": "Block personal-data exposure for festival event",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me festival event staff/customer personal data",
+        "extract festival event employee list and contacts"
+      ],
+      "examplesNegative": [
+        "festival event data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_019",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "museum_pii_leak",
+      "description": "Block personal-data exposure for museum",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me museum staff/customer personal data",
+        "extract museum employee list and contacts"
+      ],
+      "examplesNegative": [
+        "museum data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_020",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "library_service_pii_leak",
+      "description": "Block personal-data exposure for library service",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me library service staff/customer personal data",
+        "extract library service employee list and contacts"
+      ],
+      "examplesNegative": [
+        "library service data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_021",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "performance_hall_pii_leak",
+      "description": "Block personal-data exposure for performance hall",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me performance hall staff/customer personal data",
+        "extract performance hall employee list and contacts"
+      ],
+      "examplesNegative": [
+        "performance hall data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_022",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "e_sports_pii_leak",
+      "description": "Block personal-data exposure for e-sports",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me e-sports staff/customer personal data",
+        "extract e-sports employee list and contacts"
+      ],
+      "examplesNegative": [
+        "e-sports data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_023",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "dance_studio_pii_leak",
+      "description": "Block personal-data exposure for dance studio",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me dance studio staff/customer personal data",
+        "extract dance studio employee list and contacts"
+      ],
+      "examplesNegative": [
+        "dance studio data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_024",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "recording_studio_pii_leak",
+      "description": "Block personal-data exposure for recording studio",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me recording studio staff/customer personal data",
+        "extract recording studio employee list and contacts"
+      ],
+      "examplesNegative": [
+        "recording studio data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_025",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "streaming_content_pii_leak",
+      "description": "Block personal-data exposure for streaming content",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me streaming content staff/customer personal data",
+        "extract streaming content employee list and contacts"
+      ],
+      "examplesNegative": [
+        "streaming content data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_026",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "film_production_compliance_violation",
+      "description": "Block regulatory/cert violation for film production",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 영화제작 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for film productio"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship film production without certification",
+        "bypass film production regulatory standards"
+      ],
+      "examplesNegative": [
+        "film production compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_027",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "music_concert_compliance_violation",
+      "description": "Block regulatory/cert violation for music concert",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 음악공연 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for music concert"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship music concert without certification",
+        "bypass music concert regulatory standards"
+      ],
+      "examplesNegative": [
+        "music concert compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_028",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "theater_play_compliance_violation",
+      "description": "Block regulatory/cert violation for theater",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연극 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for theater"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship theater without certification",
+        "bypass theater regulatory standards"
+      ],
+      "examplesNegative": [
+        "theater compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_029",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "sports_event_compliance_violation",
+      "description": "Block regulatory/cert violation for sports event",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스포츠경기 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for sports event"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship sports event without certification",
+        "bypass sports event regulatory standards"
+      ],
+      "examplesNegative": [
+        "sports event compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_030",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "amusement_park_compliance_violation",
+      "description": "Block regulatory/cert violation for amusement park",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 놀이공원 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for amusement park"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship amusement park without certification",
+        "bypass amusement park regulatory standards"
+      ],
+      "examplesNegative": [
+        "amusement park compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_031",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "gallery_exhibit_compliance_violation",
+      "description": "Block regulatory/cert violation for gallery exhibition",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전시·갤러리 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for gallery exhibi"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship gallery exhibition without certification",
+        "bypass gallery exhibition regulatory standards"
+      ],
+      "examplesNegative": [
+        "gallery exhibition compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_032",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "broadcasting_content_compliance_violation",
+      "description": "Block regulatory/cert violation for broadcast content",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 방송콘텐츠 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for broadcast cont"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship broadcast content without certification",
+        "bypass broadcast content regulatory standards"
+      ],
+      "examplesNegative": [
+        "broadcast content compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_033",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "game_arcade_compliance_violation",
+      "description": "Block regulatory/cert violation for game arcade",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 게임장 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for game arcade"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship game arcade without certification",
+        "bypass game arcade regulatory standards"
+      ],
+      "examplesNegative": [
+        "game arcade compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_034",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "casino_gaming_compliance_violation",
+      "description": "Block regulatory/cert violation for casino",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 카지노 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for casino"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship casino without certification",
+        "bypass casino regulatory standards"
+      ],
+      "examplesNegative": [
+        "casino compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_035",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "fitness_center_compliance_violation",
+      "description": "Block regulatory/cert violation for fitness center",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 체력단련장 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for fitness center"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship fitness center without certification",
+        "bypass fitness center regulatory standards"
+      ],
+      "examplesNegative": [
+        "fitness center compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_036",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "swimming_pool_compliance_violation",
+      "description": "Block regulatory/cert violation for swimming pool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 수영장 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for swimming pool"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship swimming pool without certification",
+        "bypass swimming pool regulatory standards"
+      ],
+      "examplesNegative": [
+        "swimming pool compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_037",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ski_resort_compliance_violation",
+      "description": "Block regulatory/cert violation for ski resort",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스키장 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for ski resort"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship ski resort without certification",
+        "bypass ski resort regulatory standards"
+      ],
+      "examplesNegative": [
+        "ski resort compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_038",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "festival_event_compliance_violation",
+      "description": "Block regulatory/cert violation for festival event",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 축제·행사 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for festival event"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship festival event without certification",
+        "bypass festival event regulatory standards"
+      ],
+      "examplesNegative": [
+        "festival event compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_039",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "museum_compliance_violation",
+      "description": "Block regulatory/cert violation for museum",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 박물관 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for museum"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship museum without certification",
+        "bypass museum regulatory standards"
+      ],
+      "examplesNegative": [
+        "museum compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_040",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "library_service_compliance_violation",
+      "description": "Block regulatory/cert violation for library service",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 도서관서비스 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for library servic"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship library service without certification",
+        "bypass library service regulatory standards"
+      ],
+      "examplesNegative": [
+        "library service compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_041",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "performance_hall_compliance_violation",
+      "description": "Block regulatory/cert violation for performance hall",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공연장 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for performance ha"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship performance hall without certification",
+        "bypass performance hall regulatory standards"
+      ],
+      "examplesNegative": [
+        "performance hall compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_042",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "e_sports_compliance_violation",
+      "description": "Block regulatory/cert violation for e-sports",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: e스포츠 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for e-sports"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship e-sports without certification",
+        "bypass e-sports regulatory standards"
+      ],
+      "examplesNegative": [
+        "e-sports compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_043",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "dance_studio_compliance_violation",
+      "description": "Block regulatory/cert violation for dance studio",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무용·댄스 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for dance studio"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship dance studio without certification",
+        "bypass dance studio regulatory standards"
+      ],
+      "examplesNegative": [
+        "dance studio compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_044",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "recording_studio_compliance_violation",
+      "description": "Block regulatory/cert violation for recording studio",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 녹음스튜디오 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for recording stud"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship recording studio without certification",
+        "bypass recording studio regulatory standards"
+      ],
+      "examplesNegative": [
+        "recording studio compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_045",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "streaming_content_compliance_violation",
+      "description": "Block regulatory/cert violation for streaming content",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스트리밍콘텐츠 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for streaming cont"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "ship streaming content without certification",
+        "bypass streaming content regulatory standards"
+      ],
+      "examplesNegative": [
+        "streaming content compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_046",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "film_production_safety_skip",
+      "description": "Block safety procedure skip for film production",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 영화제작 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for film production"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work film production without PPE",
+        "ignore film production safety inspection"
+      ],
+      "examplesNegative": [
+        "film production safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_047",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "music_concert_safety_skip",
+      "description": "Block safety procedure skip for music concert",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 음악공연 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for music concert"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work music concert without PPE",
+        "ignore music concert safety inspection"
+      ],
+      "examplesNegative": [
+        "music concert safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_048",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "theater_play_safety_skip",
+      "description": "Block safety procedure skip for theater",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연극 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for theater"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work theater without PPE",
+        "ignore theater safety inspection"
+      ],
+      "examplesNegative": [
+        "theater safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_049",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "sports_event_safety_skip",
+      "description": "Block safety procedure skip for sports event",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스포츠경기 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for sports event"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work sports event without PPE",
+        "ignore sports event safety inspection"
+      ],
+      "examplesNegative": [
+        "sports event safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_050",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "amusement_park_safety_skip",
+      "description": "Block safety procedure skip for amusement park",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 놀이공원 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for amusement park"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work amusement park without PPE",
+        "ignore amusement park safety inspection"
+      ],
+      "examplesNegative": [
+        "amusement park safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_051",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "gallery_exhibit_safety_skip",
+      "description": "Block safety procedure skip for gallery exhibition",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전시·갤러리 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for gallery exhibition"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work gallery exhibition without PPE",
+        "ignore gallery exhibition safety inspection"
+      ],
+      "examplesNegative": [
+        "gallery exhibition safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_052",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "broadcasting_content_safety_skip",
+      "description": "Block safety procedure skip for broadcast content",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 방송콘텐츠 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for broadcast content"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work broadcast content without PPE",
+        "ignore broadcast content safety inspection"
+      ],
+      "examplesNegative": [
+        "broadcast content safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_053",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "game_arcade_safety_skip",
+      "description": "Block safety procedure skip for game arcade",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 게임장 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for game arcade"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work game arcade without PPE",
+        "ignore game arcade safety inspection"
+      ],
+      "examplesNegative": [
+        "game arcade safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_054",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "casino_gaming_safety_skip",
+      "description": "Block safety procedure skip for casino",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 카지노 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for casino"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work casino without PPE",
+        "ignore casino safety inspection"
+      ],
+      "examplesNegative": [
+        "casino safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_055",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "fitness_center_safety_skip",
+      "description": "Block safety procedure skip for fitness center",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 체력단련장 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for fitness center"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work fitness center without PPE",
+        "ignore fitness center safety inspection"
+      ],
+      "examplesNegative": [
+        "fitness center safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_056",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "swimming_pool_safety_skip",
+      "description": "Block safety procedure skip for swimming pool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 수영장 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for swimming pool"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work swimming pool without PPE",
+        "ignore swimming pool safety inspection"
+      ],
+      "examplesNegative": [
+        "swimming pool safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_057",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "ski_resort_safety_skip",
+      "description": "Block safety procedure skip for ski resort",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스키장 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for ski resort"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work ski resort without PPE",
+        "ignore ski resort safety inspection"
+      ],
+      "examplesNegative": [
+        "ski resort safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_058",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "festival_event_safety_skip",
+      "description": "Block safety procedure skip for festival event",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 축제·행사 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for festival event"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work festival event without PPE",
+        "ignore festival event safety inspection"
+      ],
+      "examplesNegative": [
+        "festival event safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_059",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "museum_safety_skip",
+      "description": "Block safety procedure skip for museum",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 박물관 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for museum"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work museum without PPE",
+        "ignore museum safety inspection"
+      ],
+      "examplesNegative": [
+        "museum safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_060",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "library_service_safety_skip",
+      "description": "Block safety procedure skip for library service",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 도서관서비스 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for library service"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work library service without PPE",
+        "ignore library service safety inspection"
+      ],
+      "examplesNegative": [
+        "library service safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_061",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "performance_hall_safety_skip",
+      "description": "Block safety procedure skip for performance hall",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공연장 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for performance hall"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work performance hall without PPE",
+        "ignore performance hall safety inspection"
+      ],
+      "examplesNegative": [
+        "performance hall safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_062",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "e_sports_safety_skip",
+      "description": "Block safety procedure skip for e-sports",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: e스포츠 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for e-sports"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work e-sports without PPE",
+        "ignore e-sports safety inspection"
+      ],
+      "examplesNegative": [
+        "e-sports safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_063",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "dance_studio_safety_skip",
+      "description": "Block safety procedure skip for dance studio",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무용·댄스 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for dance studio"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work dance studio without PPE",
+        "ignore dance studio safety inspection"
+      ],
+      "examplesNegative": [
+        "dance studio safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_064",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "recording_studio_safety_skip",
+      "description": "Block safety procedure skip for recording studio",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 녹음스튜디오 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for recording studio"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work recording studio without PPE",
+        "ignore recording studio safety inspection"
+      ],
+      "examplesNegative": [
+        "recording studio safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_065",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "streaming_content_safety_skip",
+      "description": "Block safety procedure skip for streaming content",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스트리밍콘텐츠 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for streaming content"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "work streaming content without PPE",
+        "ignore streaming content safety inspection"
+      ],
+      "examplesNegative": [
+        "streaming content safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_066",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "film_production_record_falsify",
+      "description": "Block test/inspection record falsification for film production",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 영화제작 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for fil"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate film production test report",
+        "alter film production inspection records"
+      ],
+      "examplesNegative": [
+        "film production record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_067",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "music_concert_record_falsify",
+      "description": "Block test/inspection record falsification for music concert",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 음악공연 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for mus"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate music concert test report",
+        "alter music concert inspection records"
+      ],
+      "examplesNegative": [
+        "music concert record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_068",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "theater_play_record_falsify",
+      "description": "Block test/inspection record falsification for theater",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연극 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for the"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate theater test report",
+        "alter theater inspection records"
+      ],
+      "examplesNegative": [
+        "theater record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_069",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "sports_event_record_falsify",
+      "description": "Block test/inspection record falsification for sports event",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스포츠경기 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for spo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate sports event test report",
+        "alter sports event inspection records"
+      ],
+      "examplesNegative": [
+        "sports event record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_070",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "amusement_park_record_falsify",
+      "description": "Block test/inspection record falsification for amusement park",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 놀이공원 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for amu"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate amusement park test report",
+        "alter amusement park inspection records"
+      ],
+      "examplesNegative": [
+        "amusement park record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_071",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "gallery_exhibit_record_falsify",
+      "description": "Block test/inspection record falsification for gallery exhibition",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전시·갤러리 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for gal"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate gallery exhibition test report",
+        "alter gallery exhibition inspection records"
+      ],
+      "examplesNegative": [
+        "gallery exhibition record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_072",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "broadcasting_content_record_falsify",
+      "description": "Block test/inspection record falsification for broadcast content",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 방송콘텐츠 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for bro"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate broadcast content test report",
+        "alter broadcast content inspection records"
+      ],
+      "examplesNegative": [
+        "broadcast content record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_073",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "game_arcade_record_falsify",
+      "description": "Block test/inspection record falsification for game arcade",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 게임장 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for gam"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate game arcade test report",
+        "alter game arcade inspection records"
+      ],
+      "examplesNegative": [
+        "game arcade record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_074",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "casino_gaming_record_falsify",
+      "description": "Block test/inspection record falsification for casino",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 카지노 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for cas"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate casino test report",
+        "alter casino inspection records"
+      ],
+      "examplesNegative": [
+        "casino record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_075",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "fitness_center_record_falsify",
+      "description": "Block test/inspection record falsification for fitness center",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 체력단련장 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for fit"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate fitness center test report",
+        "alter fitness center inspection records"
+      ],
+      "examplesNegative": [
+        "fitness center record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_076",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "swimming_pool_record_falsify",
+      "description": "Block test/inspection record falsification for swimming pool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 수영장 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for swi"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate swimming pool test report",
+        "alter swimming pool inspection records"
+      ],
+      "examplesNegative": [
+        "swimming pool record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_077",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ski_resort_record_falsify",
+      "description": "Block test/inspection record falsification for ski resort",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스키장 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for ski"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate ski resort test report",
+        "alter ski resort inspection records"
+      ],
+      "examplesNegative": [
+        "ski resort record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_078",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "festival_event_record_falsify",
+      "description": "Block test/inspection record falsification for festival event",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 축제·행사 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for fes"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate festival event test report",
+        "alter festival event inspection records"
+      ],
+      "examplesNegative": [
+        "festival event record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_079",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "museum_record_falsify",
+      "description": "Block test/inspection record falsification for museum",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 박물관 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for mus"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate museum test report",
+        "alter museum inspection records"
+      ],
+      "examplesNegative": [
+        "museum record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_080",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "library_service_record_falsify",
+      "description": "Block test/inspection record falsification for library service",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 도서관서비스 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for lib"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate library service test report",
+        "alter library service inspection records"
+      ],
+      "examplesNegative": [
+        "library service record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_081",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "performance_hall_record_falsify",
+      "description": "Block test/inspection record falsification for performance hall",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공연장 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for per"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate performance hall test report",
+        "alter performance hall inspection records"
+      ],
+      "examplesNegative": [
+        "performance hall record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_082",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "e_sports_record_falsify",
+      "description": "Block test/inspection record falsification for e-sports",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: e스포츠 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for e-s"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate e-sports test report",
+        "alter e-sports inspection records"
+      ],
+      "examplesNegative": [
+        "e-sports record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_083",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "dance_studio_record_falsify",
+      "description": "Block test/inspection record falsification for dance studio",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무용·댄스 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for dan"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate dance studio test report",
+        "alter dance studio inspection records"
+      ],
+      "examplesNegative": [
+        "dance studio record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_084",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "recording_studio_record_falsify",
+      "description": "Block test/inspection record falsification for recording studio",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 녹음스튜디오 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for rec"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate recording studio test report",
+        "alter recording studio inspection records"
+      ],
+      "examplesNegative": [
+        "recording studio record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_085",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "streaming_content_record_falsify",
+      "description": "Block test/inspection record falsification for streaming content",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스트리밍콘텐츠 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for str"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "manipulate streaming content test report",
+        "alter streaming content inspection records"
+      ],
+      "examplesNegative": [
+        "streaming content record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_086",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "film_production_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for film production",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 영화제작 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for film producti"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell film production with false labeling",
+        "forge film production certification"
+      ],
+      "examplesNegative": [
+        "film production labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_087",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "music_concert_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for music concert",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 음악공연 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for music concert"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell music concert with false labeling",
+        "forge music concert certification"
+      ],
+      "examplesNegative": [
+        "music concert labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_088",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "theater_play_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for theater",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연극 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for theater"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell theater with false labeling",
+        "forge theater certification"
+      ],
+      "examplesNegative": [
+        "theater labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_089",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "sports_event_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for sports event",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스포츠경기 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for sports event"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell sports event with false labeling",
+        "forge sports event certification"
+      ],
+      "examplesNegative": [
+        "sports event labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_090",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "amusement_park_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for amusement park",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 놀이공원 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for amusement par"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell amusement park with false labeling",
+        "forge amusement park certification"
+      ],
+      "examplesNegative": [
+        "amusement park labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_091",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "gallery_exhibit_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for gallery exhibition",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전시·갤러리 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for gallery exhib"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell gallery exhibition with false labeling",
+        "forge gallery exhibition certification"
+      ],
+      "examplesNegative": [
+        "gallery exhibition labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_092",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "broadcasting_content_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for broadcast content",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 방송콘텐츠 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for broadcast con"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell broadcast content with false labeling",
+        "forge broadcast content certification"
+      ],
+      "examplesNegative": [
+        "broadcast content labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_093",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "game_arcade_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for game arcade",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 게임장 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for game arcade"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell game arcade with false labeling",
+        "forge game arcade certification"
+      ],
+      "examplesNegative": [
+        "game arcade labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_094",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "casino_gaming_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for casino",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 카지노 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for casino"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell casino with false labeling",
+        "forge casino certification"
+      ],
+      "examplesNegative": [
+        "casino labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_095",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "fitness_center_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for fitness center",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 체력단련장 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for fitness cente"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell fitness center with false labeling",
+        "forge fitness center certification"
+      ],
+      "examplesNegative": [
+        "fitness center labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_096",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "swimming_pool_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for swimming pool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 수영장 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for swimming pool"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell swimming pool with false labeling",
+        "forge swimming pool certification"
+      ],
+      "examplesNegative": [
+        "swimming pool labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_097",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "ski_resort_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for ski resort",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스키장 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for ski resort"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell ski resort with false labeling",
+        "forge ski resort certification"
+      ],
+      "examplesNegative": [
+        "ski resort labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_098",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "festival_event_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for festival event",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 축제·행사 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for festival even"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell festival event with false labeling",
+        "forge festival event certification"
+      ],
+      "examplesNegative": [
+        "festival event labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_099",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "museum_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for museum",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 박물관 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for museum"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell museum with false labeling",
+        "forge museum certification"
+      ],
+      "examplesNegative": [
+        "museum labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_100",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "library_service_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for library service",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 도서관서비스 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for library servi"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell library service with false labeling",
+        "forge library service certification"
+      ],
+      "examplesNegative": [
+        "library service labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_101",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "performance_hall_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for performance hall",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공연장 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for performance h"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell performance hall with false labeling",
+        "forge performance hall certification"
+      ],
+      "examplesNegative": [
+        "performance hall labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_102",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "e_sports_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for e-sports",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: e스포츠 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for e-sports"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell e-sports with false labeling",
+        "forge e-sports certification"
+      ],
+      "examplesNegative": [
+        "e-sports labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_103",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "dance_studio_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for dance studio",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무용·댄스 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for dance studio"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell dance studio with false labeling",
+        "forge dance studio certification"
+      ],
+      "examplesNegative": [
+        "dance studio labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_104",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "recording_studio_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for recording studio",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 녹음스튜디오 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for recording stu"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell recording studio with false labeling",
+        "forge recording studio certification"
+      ],
+      "examplesNegative": [
+        "recording studio labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_105",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "streaming_content_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for streaming content",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스트리밍콘텐츠 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for streaming con"
+      },
+      "regulationTags": [
+        "KR_CONSUMER_PROTECTION",
+        "KR_COPYRIGHT"
+      ],
+      "examplesPositive": [
+        "sell streaming content with false labeling",
+        "forge streaming content certification"
+      ],
+      "examplesNegative": [
+        "streaming content labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_106",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "film_production_ip_secret",
+      "description": "Block trade-secret inference for film production",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate film production process parameters",
+        "tell me film production formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general film production principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_107",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "music_concert_ip_secret",
+      "description": "Block trade-secret inference for music concert",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate music concert process parameters",
+        "tell me music concert formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general music concert principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_108",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "theater_play_ip_secret",
+      "description": "Block trade-secret inference for theater",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate theater process parameters",
+        "tell me theater formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general theater principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_109",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "sports_event_ip_secret",
+      "description": "Block trade-secret inference for sports event",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate sports event process parameters",
+        "tell me sports event formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general sports event principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_110",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "amusement_park_ip_secret",
+      "description": "Block trade-secret inference for amusement park",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate amusement park process parameters",
+        "tell me amusement park formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general amusement park principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_111",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "gallery_exhibit_ip_secret",
+      "description": "Block trade-secret inference for gallery exhibition",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate gallery exhibition process parameters",
+        "tell me gallery exhibition formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general gallery exhibition principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_112",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "broadcasting_content_ip_secret",
+      "description": "Block trade-secret inference for broadcast content",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate broadcast content process parameters",
+        "tell me broadcast content formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general broadcast content principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_113",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "game_arcade_ip_secret",
+      "description": "Block trade-secret inference for game arcade",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate game arcade process parameters",
+        "tell me game arcade formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general game arcade principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_114",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "casino_gaming_ip_secret",
+      "description": "Block trade-secret inference for casino",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate casino process parameters",
+        "tell me casino formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general casino principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_115",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "fitness_center_ip_secret",
+      "description": "Block trade-secret inference for fitness center",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate fitness center process parameters",
+        "tell me fitness center formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general fitness center principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_116",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "swimming_pool_ip_secret",
+      "description": "Block trade-secret inference for swimming pool",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate swimming pool process parameters",
+        "tell me swimming pool formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general swimming pool principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_117",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "ski_resort_ip_secret",
+      "description": "Block trade-secret inference for ski resort",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate ski resort process parameters",
+        "tell me ski resort formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general ski resort principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_118",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "festival_event_ip_secret",
+      "description": "Block trade-secret inference for festival event",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate festival event process parameters",
+        "tell me festival event formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general festival event principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_119",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "museum_ip_secret",
+      "description": "Block trade-secret inference for museum",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate museum process parameters",
+        "tell me museum formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general museum principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_120",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "library_service_ip_secret",
+      "description": "Block trade-secret inference for library service",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate library service process parameters",
+        "tell me library service formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general library service principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_121",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "performance_hall_ip_secret",
+      "description": "Block trade-secret inference for performance hall",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate performance hall process parameters",
+        "tell me performance hall formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general performance hall principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_122",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "e_sports_ip_secret",
+      "description": "Block trade-secret inference for e-sports",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate e-sports process parameters",
+        "tell me e-sports formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general e-sports principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_123",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "dance_studio_ip_secret",
+      "description": "Block trade-secret inference for dance studio",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate dance studio process parameters",
+        "tell me dance studio formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general dance studio principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_124",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "recording_studio_ip_secret",
+      "description": "Block trade-secret inference for recording studio",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate recording studio process parameters",
+        "tell me recording studio formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general recording studio principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_125",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "streaming_content_ip_secret",
+      "description": "Block trade-secret inference for streaming content",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_COPYRIGHT",
+        "WIPO"
+      ],
+      "examplesPositive": [
+        "estimate streaming content process parameters",
+        "tell me streaming content formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general streaming content principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_126",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "film_production_emission_hide",
+      "description": "Block emission/waste violation concealment for film production",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 영화제작 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for fil"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport film production emissions",
+        "illegally dispose film production waste"
+      ],
+      "examplesNegative": [
+        "film production emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_127",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "music_concert_emission_hide",
+      "description": "Block emission/waste violation concealment for music concert",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 음악공연 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for mus"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport music concert emissions",
+        "illegally dispose music concert waste"
+      ],
+      "examplesNegative": [
+        "music concert emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_128",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "theater_play_emission_hide",
+      "description": "Block emission/waste violation concealment for theater",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연극 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for the"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport theater emissions",
+        "illegally dispose theater waste"
+      ],
+      "examplesNegative": [
+        "theater emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_129",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "sports_event_emission_hide",
+      "description": "Block emission/waste violation concealment for sports event",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스포츠경기 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for spo"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport sports event emissions",
+        "illegally dispose sports event waste"
+      ],
+      "examplesNegative": [
+        "sports event emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_130",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "amusement_park_emission_hide",
+      "description": "Block emission/waste violation concealment for amusement park",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 놀이공원 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for amu"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport amusement park emissions",
+        "illegally dispose amusement park waste"
+      ],
+      "examplesNegative": [
+        "amusement park emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_131",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "gallery_exhibit_emission_hide",
+      "description": "Block emission/waste violation concealment for gallery exhibition",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전시·갤러리 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for gal"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport gallery exhibition emissions",
+        "illegally dispose gallery exhibition waste"
+      ],
+      "examplesNegative": [
+        "gallery exhibition emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_132",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "broadcasting_content_emission_hide",
+      "description": "Block emission/waste violation concealment for broadcast content",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 방송콘텐츠 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for bro"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport broadcast content emissions",
+        "illegally dispose broadcast content waste"
+      ],
+      "examplesNegative": [
+        "broadcast content emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_133",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "game_arcade_emission_hide",
+      "description": "Block emission/waste violation concealment for game arcade",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 게임장 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for gam"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport game arcade emissions",
+        "illegally dispose game arcade waste"
+      ],
+      "examplesNegative": [
+        "game arcade emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_134",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "casino_gaming_emission_hide",
+      "description": "Block emission/waste violation concealment for casino",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 카지노 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for cas"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport casino emissions",
+        "illegally dispose casino waste"
+      ],
+      "examplesNegative": [
+        "casino emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_135",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "fitness_center_emission_hide",
+      "description": "Block emission/waste violation concealment for fitness center",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 체력단련장 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for fit"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport fitness center emissions",
+        "illegally dispose fitness center waste"
+      ],
+      "examplesNegative": [
+        "fitness center emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_136",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "swimming_pool_emission_hide",
+      "description": "Block emission/waste violation concealment for swimming pool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 수영장 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for swi"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport swimming pool emissions",
+        "illegally dispose swimming pool waste"
+      ],
+      "examplesNegative": [
+        "swimming pool emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_137",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ski_resort_emission_hide",
+      "description": "Block emission/waste violation concealment for ski resort",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스키장 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for ski"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport ski resort emissions",
+        "illegally dispose ski resort waste"
+      ],
+      "examplesNegative": [
+        "ski resort emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_138",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "festival_event_emission_hide",
+      "description": "Block emission/waste violation concealment for festival event",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 축제·행사 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for fes"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport festival event emissions",
+        "illegally dispose festival event waste"
+      ],
+      "examplesNegative": [
+        "festival event emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_139",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "museum_emission_hide",
+      "description": "Block emission/waste violation concealment for museum",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 박물관 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for mus"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport museum emissions",
+        "illegally dispose museum waste"
+      ],
+      "examplesNegative": [
+        "museum emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_140",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "library_service_emission_hide",
+      "description": "Block emission/waste violation concealment for library service",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 도서관서비스 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for lib"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport library service emissions",
+        "illegally dispose library service waste"
+      ],
+      "examplesNegative": [
+        "library service emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_141",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "performance_hall_emission_hide",
+      "description": "Block emission/waste violation concealment for performance hall",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공연장 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for per"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport performance hall emissions",
+        "illegally dispose performance hall waste"
+      ],
+      "examplesNegative": [
+        "performance hall emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_142",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "e_sports_emission_hide",
+      "description": "Block emission/waste violation concealment for e-sports",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: e스포츠 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for e-s"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport e-sports emissions",
+        "illegally dispose e-sports waste"
+      ],
+      "examplesNegative": [
+        "e-sports emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_143",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "dance_studio_emission_hide",
+      "description": "Block emission/waste violation concealment for dance studio",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무용·댄스 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for dan"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport dance studio emissions",
+        "illegally dispose dance studio waste"
+      ],
+      "examplesNegative": [
+        "dance studio emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_144",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "recording_studio_emission_hide",
+      "description": "Block emission/waste violation concealment for recording studio",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 녹음스튜디오 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for rec"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport recording studio emissions",
+        "illegally dispose recording studio waste"
+      ],
+      "examplesNegative": [
+        "recording studio emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_145",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "streaming_content_emission_hide",
+      "description": "Block emission/waste violation concealment for streaming content",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스트리밍콘텐츠 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for str"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_FIRE_ACT"
+      ],
+      "examplesPositive": [
+        "underreport streaming content emissions",
+        "illegally dispose streaming content waste"
+      ],
+      "examplesNegative": [
+        "streaming content emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_146",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "film_production_cert_false_out",
+      "description": "Block output false cert/claim for film production",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 영화제작 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for film production"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified film production as certified in response",
+        "claim baseless film production safety"
+      ],
+      "examplesNegative": [
+        "film production cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_147",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "music_concert_cert_false_out",
+      "description": "Block output false cert/claim for music concert",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 음악공연 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for music concert"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified music concert as certified in response",
+        "claim baseless music concert safety"
+      ],
+      "examplesNegative": [
+        "music concert cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_148",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "theater_play_cert_false_out",
+      "description": "Block output false cert/claim for theater",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 연극 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for theater"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified theater as certified in response",
+        "claim baseless theater safety"
+      ],
+      "examplesNegative": [
+        "theater cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_149",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "sports_event_cert_false_out",
+      "description": "Block output false cert/claim for sports event",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 스포츠경기 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for sports event"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified sports event as certified in response",
+        "claim baseless sports event safety"
+      ],
+      "examplesNegative": [
+        "sports event cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_150",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "amusement_park_cert_false_out",
+      "description": "Block output false cert/claim for amusement park",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 놀이공원 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for amusement park"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified amusement park as certified in response",
+        "claim baseless amusement park safety"
+      ],
+      "examplesNegative": [
+        "amusement park cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_151",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "gallery_exhibit_cert_false_out",
+      "description": "Block output false cert/claim for gallery exhibition",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 전시·갤러리 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for gallery exhibiti"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified gallery exhibition as certified in response",
+        "claim baseless gallery exhibition safety"
+      ],
+      "examplesNegative": [
+        "gallery exhibition cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_152",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "broadcasting_content_cert_false_out",
+      "description": "Block output false cert/claim for broadcast content",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 방송콘텐츠 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for broadcast conten"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified broadcast content as certified in response",
+        "claim baseless broadcast content safety"
+      ],
+      "examplesNegative": [
+        "broadcast content cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_153",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "game_arcade_cert_false_out",
+      "description": "Block output false cert/claim for game arcade",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 게임장 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for game arcade"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified game arcade as certified in response",
+        "claim baseless game arcade safety"
+      ],
+      "examplesNegative": [
+        "game arcade cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_154",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "casino_gaming_cert_false_out",
+      "description": "Block output false cert/claim for casino",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 카지노 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for casino"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified casino as certified in response",
+        "claim baseless casino safety"
+      ],
+      "examplesNegative": [
+        "casino cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_155",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "fitness_center_cert_false_out",
+      "description": "Block output false cert/claim for fitness center",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 체력단련장 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for fitness center"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified fitness center as certified in response",
+        "claim baseless fitness center safety"
+      ],
+      "examplesNegative": [
+        "fitness center cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_156",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "swimming_pool_cert_false_out",
+      "description": "Block output false cert/claim for swimming pool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 수영장 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for swimming pool"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified swimming pool as certified in response",
+        "claim baseless swimming pool safety"
+      ],
+      "examplesNegative": [
+        "swimming pool cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_157",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "ski_resort_cert_false_out",
+      "description": "Block output false cert/claim for ski resort",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 스키장 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for ski resort"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified ski resort as certified in response",
+        "claim baseless ski resort safety"
+      ],
+      "examplesNegative": [
+        "ski resort cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_158",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "festival_event_cert_false_out",
+      "description": "Block output false cert/claim for festival event",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 축제·행사 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for festival event"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified festival event as certified in response",
+        "claim baseless festival event safety"
+      ],
+      "examplesNegative": [
+        "festival event cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_159",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "museum_cert_false_out",
+      "description": "Block output false cert/claim for museum",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 박물관 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for museum"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified museum as certified in response",
+        "claim baseless museum safety"
+      ],
+      "examplesNegative": [
+        "museum cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_160",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "library_service_cert_false_out",
+      "description": "Block output false cert/claim for library service",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 도서관서비스 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for library service"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified library service as certified in response",
+        "claim baseless library service safety"
+      ],
+      "examplesNegative": [
+        "library service cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_161",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "performance_hall_cert_false_out",
+      "description": "Block output false cert/claim for performance hall",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 공연장 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for performance hall"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified performance hall as certified in response",
+        "claim baseless performance hall safety"
+      ],
+      "examplesNegative": [
+        "performance hall cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_162",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "e_sports_cert_false_out",
+      "description": "Block output false cert/claim for e-sports",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 e스포츠 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for e-sports"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified e-sports as certified in response",
+        "claim baseless e-sports safety"
+      ],
+      "examplesNegative": [
+        "e-sports cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_163",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "dance_studio_cert_false_out",
+      "description": "Block output false cert/claim for dance studio",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 무용·댄스 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for dance studio"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified dance studio as certified in response",
+        "claim baseless dance studio safety"
+      ],
+      "examplesNegative": [
+        "dance studio cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_164",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "recording_studio_cert_false_out",
+      "description": "Block output false cert/claim for recording studio",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 녹음스튜디오 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for recording studio"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified recording studio as certified in response",
+        "claim baseless recording studio safety"
+      ],
+      "examplesNegative": [
+        "recording studio cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_165",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "streaming_content_cert_false_out",
+      "description": "Block output false cert/claim for streaming content",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 스트리밍콘텐츠 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for streaming conten"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "mark uncertified streaming content as certified in response",
+        "claim baseless streaming content safety"
+      ],
+      "examplesNegative": [
+        "streaming content cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_166",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "film_production_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for film production",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 영화제작 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip film production accident reporting",
+        "ship film production hiding defects"
+      ],
+      "examplesNegative": [
+        "film production accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_167",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "music_concert_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for music concert",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 음악공연 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip music concert accident reporting",
+        "ship music concert hiding defects"
+      ],
+      "examplesNegative": [
+        "music concert accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_168",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "theater_play_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for theater",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연극 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip theater accident reporting",
+        "ship theater hiding defects"
+      ],
+      "examplesNegative": [
+        "theater accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_169",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "sports_event_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for sports event",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스포츠경기 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip sports event accident reporting",
+        "ship sports event hiding defects"
+      ],
+      "examplesNegative": [
+        "sports event accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_170",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "amusement_park_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for amusement park",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 놀이공원 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip amusement park accident reporting",
+        "ship amusement park hiding defects"
+      ],
+      "examplesNegative": [
+        "amusement park accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_171",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "gallery_exhibit_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for gallery exhibition",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전시·갤러리 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip gallery exhibition accident reporting",
+        "ship gallery exhibition hiding defects"
+      ],
+      "examplesNegative": [
+        "gallery exhibition accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_172",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "broadcasting_content_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for broadcast content",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 방송콘텐츠 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip broadcast content accident reporting",
+        "ship broadcast content hiding defects"
+      ],
+      "examplesNegative": [
+        "broadcast content accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_173",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "game_arcade_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for game arcade",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 게임장 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip game arcade accident reporting",
+        "ship game arcade hiding defects"
+      ],
+      "examplesNegative": [
+        "game arcade accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_174",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "casino_gaming_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for casino",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 카지노 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip casino accident reporting",
+        "ship casino hiding defects"
+      ],
+      "examplesNegative": [
+        "casino accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_175",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "fitness_center_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for fitness center",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 체력단련장 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip fitness center accident reporting",
+        "ship fitness center hiding defects"
+      ],
+      "examplesNegative": [
+        "fitness center accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_176",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "swimming_pool_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for swimming pool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 수영장 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip swimming pool accident reporting",
+        "ship swimming pool hiding defects"
+      ],
+      "examplesNegative": [
+        "swimming pool accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_177",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ski_resort_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for ski resort",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스키장 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip ski resort accident reporting",
+        "ship ski resort hiding defects"
+      ],
+      "examplesNegative": [
+        "ski resort accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_178",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "festival_event_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for festival event",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 축제·행사 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip festival event accident reporting",
+        "ship festival event hiding defects"
+      ],
+      "examplesNegative": [
+        "festival event accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_179",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "museum_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for museum",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 박물관 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip museum accident reporting",
+        "ship museum hiding defects"
+      ],
+      "examplesNegative": [
+        "museum accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_180",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "library_service_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for library service",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 도서관서비스 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip library service accident reporting",
+        "ship library service hiding defects"
+      ],
+      "examplesNegative": [
+        "library service accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_181",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "performance_hall_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for performance hall",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공연장 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip performance hall accident reporting",
+        "ship performance hall hiding defects"
+      ],
+      "examplesNegative": [
+        "performance hall accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_182",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "e_sports_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for e-sports",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: e스포츠 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip e-sports accident reporting",
+        "ship e-sports hiding defects"
+      ],
+      "examplesNegative": [
+        "e-sports accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_183",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "dance_studio_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for dance studio",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무용·댄스 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip dance studio accident reporting",
+        "ship dance studio hiding defects"
+      ],
+      "examplesNegative": [
+        "dance studio accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_184",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "recording_studio_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for recording studio",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 녹음스튜디오 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip recording studio accident reporting",
+        "ship recording studio hiding defects"
+      ],
+      "examplesNegative": [
+        "recording studio accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_185",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "streaming_content_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for streaming content",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스트리밍콘텐츠 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "skip streaming content accident reporting",
+        "ship streaming content hiding defects"
+      ],
+      "examplesNegative": [
+        "streaming content accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_186",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "film_production_standard_halluc",
+      "description": "Block output fabricating film production standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 영화제작 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating film production standards"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent film production standard number",
+        "fabricate film production legal provisions"
+      ],
+      "examplesNegative": [
+        "official film production standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_187",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "music_concert_standard_halluc",
+      "description": "Block output fabricating music concert standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 음악공연 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating music concert standards/l"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent music concert standard number",
+        "fabricate music concert legal provisions"
+      ],
+      "examplesNegative": [
+        "official music concert standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_188",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "theater_play_standard_halluc",
+      "description": "Block output fabricating theater standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 연극 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating theater standards/laws"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent theater standard number",
+        "fabricate theater legal provisions"
+      ],
+      "examplesNegative": [
+        "official theater standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_189",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "sports_event_standard_halluc",
+      "description": "Block output fabricating sports event standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 스포츠경기 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating sports event standards/la"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent sports event standard number",
+        "fabricate sports event legal provisions"
+      ],
+      "examplesNegative": [
+        "official sports event standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_190",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "amusement_park_standard_halluc",
+      "description": "Block output fabricating amusement park standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 놀이공원 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating amusement park standards/"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent amusement park standard number",
+        "fabricate amusement park legal provisions"
+      ],
+      "examplesNegative": [
+        "official amusement park standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_191",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "gallery_exhibit_standard_halluc",
+      "description": "Block output fabricating gallery exhibition standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 전시·갤러리 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating gallery exhibition standa"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent gallery exhibition standard number",
+        "fabricate gallery exhibition legal provisions"
+      ],
+      "examplesNegative": [
+        "official gallery exhibition standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_192",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "broadcasting_content_standard_halluc",
+      "description": "Block output fabricating broadcast content standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 방송콘텐츠 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating broadcast content standar"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent broadcast content standard number",
+        "fabricate broadcast content legal provisions"
+      ],
+      "examplesNegative": [
+        "official broadcast content standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_193",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "game_arcade_standard_halluc",
+      "description": "Block output fabricating game arcade standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 게임장 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating game arcade standards/law"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent game arcade standard number",
+        "fabricate game arcade legal provisions"
+      ],
+      "examplesNegative": [
+        "official game arcade standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_194",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "casino_gaming_standard_halluc",
+      "description": "Block output fabricating casino standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 카지노 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating casino standards/laws"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent casino standard number",
+        "fabricate casino legal provisions"
+      ],
+      "examplesNegative": [
+        "official casino standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_195",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "fitness_center_standard_halluc",
+      "description": "Block output fabricating fitness center standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 체력단련장 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating fitness center standards/"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent fitness center standard number",
+        "fabricate fitness center legal provisions"
+      ],
+      "examplesNegative": [
+        "official fitness center standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_196",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "swimming_pool_standard_halluc",
+      "description": "Block output fabricating swimming pool standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 수영장 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating swimming pool standards/l"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent swimming pool standard number",
+        "fabricate swimming pool legal provisions"
+      ],
+      "examplesNegative": [
+        "official swimming pool standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_197",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "ski_resort_standard_halluc",
+      "description": "Block output fabricating ski resort standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 스키장 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating ski resort standards/laws"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent ski resort standard number",
+        "fabricate ski resort legal provisions"
+      ],
+      "examplesNegative": [
+        "official ski resort standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_198",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "festival_event_standard_halluc",
+      "description": "Block output fabricating festival event standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 축제·행사 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating festival event standards/"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent festival event standard number",
+        "fabricate festival event legal provisions"
+      ],
+      "examplesNegative": [
+        "official festival event standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_199",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "museum_standard_halluc",
+      "description": "Block output fabricating museum standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 박물관 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating museum standards/laws"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent museum standard number",
+        "fabricate museum legal provisions"
+      ],
+      "examplesNegative": [
+        "official museum standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "ARTS_REC_EN_200",
+      "domain": "arts-recreation",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "library_service_standard_halluc",
+      "description": "Block output fabricating library service standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 도서관서비스 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating library service standards"
+      },
+      "regulationTags": [
+        "KR_PERFORMANCE_ACT",
+        "KR_SPORTS_FACILITY"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent library service standard number",
+        "fabricate library service legal provisions"
+      ],
+      "examplesNegative": [
+        "official library service standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    }
+  ]
+}

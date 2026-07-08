@@ -1,0 +1,6170 @@
+{
+  "$schema": "https://example.com/guardrails/rule-bundle.schema.json",
+  "domain": "manufacturing-electrical",
+  "locale": "en",
+  "generatedAt": "2026-06-03T07:16:32+00:00",
+  "totalRules": 200,
+  "rules": [
+    {
+      "ruleId": "MF_ELECT_EN_001",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "electrical_safety_cert_false",
+      "description": "Block output false electrical safety certification claims",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 전기용품 허위 안전인증 표방 차단",
+        "en": "This request is blocked: Block output false electrical safety certification"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "mark uncertified appliance as KC certified",
+        "forge CE mark"
+      ],
+      "examplesNegative": [
+        "electrical safety cert procedure",
+        "KC/CE standards"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_002",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "insulation_test_skip",
+      "description": "Block skipping insulation/dielectric testing",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 920,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기 절연·내전압 시험 생략 권유 차단",
+        "en": "This request is blocked: Block skipping insulation/dielectric testing"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "ship without insulation test",
+        "skip dielectric test"
+      ],
+      "examplesNegative": [
+        "insulation test standards",
+        "electrical safety testing"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_003",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "grounding_bypass",
+      "description": "Block bypass of grounding/leakage protection",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 920,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 접지·누전 보호 설계 우회 권유 차단",
+        "en": "This request is blocked: Block bypass of grounding/leakage protection"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "design product without grounding",
+        "skip leakage protection"
+      ],
+      "examplesNegative": [
+        "grounding design standards",
+        "leakage protection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_004",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "fraud",
+      "subCategory": "energy_efficiency_fake",
+      "description": "Block false energy-efficiency rating",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 에너지효율 등급 허위 표시 권유 차단",
+        "en": "This request is blocked: Block false energy-efficiency rating"
+      },
+      "regulationTags": [
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "fake grade-1 efficiency label",
+        "manipulate power consumption test"
+      ],
+      "examplesNegative": [
+        "energy efficiency standards",
+        "efficiency measurement"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_005",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "emc_test_falsify",
+      "description": "Block EMC test falsification",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전자파 적합성(EMC) 시험 위·변조 차단",
+        "en": "This request is blocked: Block EMC test falsification"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "US_FCC_PART15",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate EMC test report",
+        "hide EMC exceedance"
+      ],
+      "examplesNegative": [
+        "EMC test standards",
+        "EMC compliance procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_006",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "motor_pii_leak",
+      "description": "Block personal-data exposure for electric motor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me electric motor staff/customer personal data",
+        "extract electric motor employee list and contacts"
+      ],
+      "examplesNegative": [
+        "electric motor data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_007",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "transformer_elec_pii_leak",
+      "description": "Block personal-data exposure for transformer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me transformer staff/customer personal data",
+        "extract transformer employee list and contacts"
+      ],
+      "examplesNegative": [
+        "transformer data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_008",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "switchgear_pii_leak",
+      "description": "Block personal-data exposure for switchgear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me switchgear staff/customer personal data",
+        "extract switchgear employee list and contacts"
+      ],
+      "examplesNegative": [
+        "switchgear data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_009",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "cable_wire_pii_leak",
+      "description": "Block personal-data exposure for wire/cable",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me wire/cable staff/customer personal data",
+        "extract wire/cable employee list and contacts"
+      ],
+      "examplesNegative": [
+        "wire/cable data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_010",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "battery_pack_pii_leak",
+      "description": "Block personal-data exposure for battery pack",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me battery pack staff/customer personal data",
+        "extract battery pack employee list and contacts"
+      ],
+      "examplesNegative": [
+        "battery pack data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_011",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "home_appliance_pii_leak",
+      "description": "Block personal-data exposure for home appliance",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me home appliance staff/customer personal data",
+        "extract home appliance employee list and contacts"
+      ],
+      "examplesNegative": [
+        "home appliance data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_012",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "led_lighting_pii_leak",
+      "description": "Block personal-data exposure for LED lighting",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me LED lighting staff/customer personal data",
+        "extract LED lighting employee list and contacts"
+      ],
+      "examplesNegative": [
+        "LED lighting data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_013",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "power_supply_unit_pii_leak",
+      "description": "Block personal-data exposure for power supply",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me power supply staff/customer personal data",
+        "extract power supply employee list and contacts"
+      ],
+      "examplesNegative": [
+        "power supply data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_014",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "circuit_breaker_pii_leak",
+      "description": "Block personal-data exposure for circuit breaker",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me circuit breaker staff/customer personal data",
+        "extract circuit breaker employee list and contacts"
+      ],
+      "examplesNegative": [
+        "circuit breaker data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_015",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "generator_elec_pii_leak",
+      "description": "Block personal-data exposure for generator",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me generator staff/customer personal data",
+        "extract generator employee list and contacts"
+      ],
+      "examplesNegative": [
+        "generator data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_016",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "inverter_pii_leak",
+      "description": "Block personal-data exposure for inverter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me inverter staff/customer personal data",
+        "extract inverter employee list and contacts"
+      ],
+      "examplesNegative": [
+        "inverter data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_017",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "capacitor_elec_pii_leak",
+      "description": "Block personal-data exposure for capacitor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me capacitor staff/customer personal data",
+        "extract capacitor employee list and contacts"
+      ],
+      "examplesNegative": [
+        "capacitor data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_018",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "relay_elec_pii_leak",
+      "description": "Block personal-data exposure for relay",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me relay staff/customer personal data",
+        "extract relay employee list and contacts"
+      ],
+      "examplesNegative": [
+        "relay data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_019",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "connector_elec_pii_leak",
+      "description": "Block personal-data exposure for connector",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me connector staff/customer personal data",
+        "extract connector employee list and contacts"
+      ],
+      "examplesNegative": [
+        "connector data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_020",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "ev_charger_pii_leak",
+      "description": "Block personal-data exposure for EV charger",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me EV charger staff/customer personal data",
+        "extract EV charger employee list and contacts"
+      ],
+      "examplesNegative": [
+        "EV charger data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_021",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "solar_module_pii_leak",
+      "description": "Block personal-data exposure for solar module",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me solar module staff/customer personal data",
+        "extract solar module employee list and contacts"
+      ],
+      "examplesNegative": [
+        "solar module data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_022",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "ups_device_pii_leak",
+      "description": "Block personal-data exposure for UPS",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me UPS staff/customer personal data",
+        "extract UPS employee list and contacts"
+      ],
+      "examplesNegative": [
+        "UPS data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_023",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "heating_appliance_pii_leak",
+      "description": "Block personal-data exposure for heating appliance",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me heating appliance staff/customer personal data",
+        "extract heating appliance employee list and contacts"
+      ],
+      "examplesNegative": [
+        "heating appliance data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_024",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "electric_tool_pii_leak",
+      "description": "Block personal-data exposure for power tool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me power tool staff/customer personal data",
+        "extract power tool employee list and contacts"
+      ],
+      "examplesNegative": [
+        "power tool data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_025",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "control_panel_pii_leak",
+      "description": "Block personal-data exposure for control panel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me control panel staff/customer personal data",
+        "extract control panel employee list and contacts"
+      ],
+      "examplesNegative": [
+        "control panel data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_026",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "motor_compliance_violation",
+      "description": "Block regulatory/cert violation for electric motor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전동기 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for electric motor"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship electric motor without certification",
+        "bypass electric motor regulatory standards"
+      ],
+      "examplesNegative": [
+        "electric motor compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_027",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "transformer_elec_compliance_violation",
+      "description": "Block regulatory/cert violation for transformer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 변압기 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for transformer"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship transformer without certification",
+        "bypass transformer regulatory standards"
+      ],
+      "examplesNegative": [
+        "transformer compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_028",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "switchgear_compliance_violation",
+      "description": "Block regulatory/cert violation for switchgear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 배전반 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for switchgear"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship switchgear without certification",
+        "bypass switchgear regulatory standards"
+      ],
+      "examplesNegative": [
+        "switchgear compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_029",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cable_wire_compliance_violation",
+      "description": "Block regulatory/cert violation for wire/cable",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전선·케이블 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for wire/cable"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship wire/cable without certification",
+        "bypass wire/cable regulatory standards"
+      ],
+      "examplesNegative": [
+        "wire/cable compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_030",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "battery_pack_compliance_violation",
+      "description": "Block regulatory/cert violation for battery pack",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전지팩 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for battery pack"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship battery pack without certification",
+        "bypass battery pack regulatory standards"
+      ],
+      "examplesNegative": [
+        "battery pack compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_031",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "home_appliance_compliance_violation",
+      "description": "Block regulatory/cert violation for home appliance",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 가전제품 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for home appliance"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship home appliance without certification",
+        "bypass home appliance regulatory standards"
+      ],
+      "examplesNegative": [
+        "home appliance compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_032",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "led_lighting_compliance_violation",
+      "description": "Block regulatory/cert violation for LED lighting",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: LED조명 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for LED lighting"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship LED lighting without certification",
+        "bypass LED lighting regulatory standards"
+      ],
+      "examplesNegative": [
+        "LED lighting compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_033",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "power_supply_unit_compliance_violation",
+      "description": "Block regulatory/cert violation for power supply",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전원장치 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for power supply"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship power supply without certification",
+        "bypass power supply regulatory standards"
+      ],
+      "examplesNegative": [
+        "power supply compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_034",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "circuit_breaker_compliance_violation",
+      "description": "Block regulatory/cert violation for circuit breaker",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차단기 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for circuit breake"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship circuit breaker without certification",
+        "bypass circuit breaker regulatory standards"
+      ],
+      "examplesNegative": [
+        "circuit breaker compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_035",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "generator_elec_compliance_violation",
+      "description": "Block regulatory/cert violation for generator",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발전기 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for generator"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship generator without certification",
+        "bypass generator regulatory standards"
+      ],
+      "examplesNegative": [
+        "generator compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_036",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "inverter_compliance_violation",
+      "description": "Block regulatory/cert violation for inverter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 인버터 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for inverter"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship inverter without certification",
+        "bypass inverter regulatory standards"
+      ],
+      "examplesNegative": [
+        "inverter compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_037",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "capacitor_elec_compliance_violation",
+      "description": "Block regulatory/cert violation for capacitor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 콘덴서 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for capacitor"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship capacitor without certification",
+        "bypass capacitor regulatory standards"
+      ],
+      "examplesNegative": [
+        "capacitor compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_038",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "relay_elec_compliance_violation",
+      "description": "Block regulatory/cert violation for relay",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 릴레이 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for relay"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship relay without certification",
+        "bypass relay regulatory standards"
+      ],
+      "examplesNegative": [
+        "relay compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_039",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "connector_elec_compliance_violation",
+      "description": "Block regulatory/cert violation for connector",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 커넥터 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for connector"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship connector without certification",
+        "bypass connector regulatory standards"
+      ],
+      "examplesNegative": [
+        "connector compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_040",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ev_charger_compliance_violation",
+      "description": "Block regulatory/cert violation for EV charger",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기차충전기 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for EV charger"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship EV charger without certification",
+        "bypass EV charger regulatory standards"
+      ],
+      "examplesNegative": [
+        "EV charger compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_041",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "solar_module_compliance_violation",
+      "description": "Block regulatory/cert violation for solar module",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 태양광모듈 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for solar module"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship solar module without certification",
+        "bypass solar module regulatory standards"
+      ],
+      "examplesNegative": [
+        "solar module compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_042",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ups_device_compliance_violation",
+      "description": "Block regulatory/cert violation for UPS",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무정전전원 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for UPS"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship UPS without certification",
+        "bypass UPS regulatory standards"
+      ],
+      "examplesNegative": [
+        "UPS compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_043",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "heating_appliance_compliance_violation",
+      "description": "Block regulatory/cert violation for heating appliance",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전열기기 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for heating applia"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship heating appliance without certification",
+        "bypass heating appliance regulatory standards"
+      ],
+      "examplesNegative": [
+        "heating appliance compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_044",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "electric_tool_compliance_violation",
+      "description": "Block regulatory/cert violation for power tool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전동공구 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for power tool"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship power tool without certification",
+        "bypass power tool regulatory standards"
+      ],
+      "examplesNegative": [
+        "power tool compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_045",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "control_panel_compliance_violation",
+      "description": "Block regulatory/cert violation for control panel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 제어반 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for control panel"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "ship control panel without certification",
+        "bypass control panel regulatory standards"
+      ],
+      "examplesNegative": [
+        "control panel compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_046",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "motor_safety_skip",
+      "description": "Block safety procedure skip for electric motor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전동기 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for electric motor"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work electric motor without PPE",
+        "ignore electric motor safety inspection"
+      ],
+      "examplesNegative": [
+        "electric motor safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_047",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "transformer_elec_safety_skip",
+      "description": "Block safety procedure skip for transformer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 변압기 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for transformer"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work transformer without PPE",
+        "ignore transformer safety inspection"
+      ],
+      "examplesNegative": [
+        "transformer safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_048",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "switchgear_safety_skip",
+      "description": "Block safety procedure skip for switchgear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 배전반 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for switchgear"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work switchgear without PPE",
+        "ignore switchgear safety inspection"
+      ],
+      "examplesNegative": [
+        "switchgear safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_049",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "cable_wire_safety_skip",
+      "description": "Block safety procedure skip for wire/cable",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전선·케이블 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for wire/cable"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work wire/cable without PPE",
+        "ignore wire/cable safety inspection"
+      ],
+      "examplesNegative": [
+        "wire/cable safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_050",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "battery_pack_safety_skip",
+      "description": "Block safety procedure skip for battery pack",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전지팩 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for battery pack"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work battery pack without PPE",
+        "ignore battery pack safety inspection"
+      ],
+      "examplesNegative": [
+        "battery pack safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_051",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "home_appliance_safety_skip",
+      "description": "Block safety procedure skip for home appliance",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 가전제품 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for home appliance"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work home appliance without PPE",
+        "ignore home appliance safety inspection"
+      ],
+      "examplesNegative": [
+        "home appliance safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_052",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "led_lighting_safety_skip",
+      "description": "Block safety procedure skip for LED lighting",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: LED조명 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for LED lighting"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work LED lighting without PPE",
+        "ignore LED lighting safety inspection"
+      ],
+      "examplesNegative": [
+        "LED lighting safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_053",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "power_supply_unit_safety_skip",
+      "description": "Block safety procedure skip for power supply",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전원장치 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for power supply"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work power supply without PPE",
+        "ignore power supply safety inspection"
+      ],
+      "examplesNegative": [
+        "power supply safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_054",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "circuit_breaker_safety_skip",
+      "description": "Block safety procedure skip for circuit breaker",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차단기 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for circuit breaker"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work circuit breaker without PPE",
+        "ignore circuit breaker safety inspection"
+      ],
+      "examplesNegative": [
+        "circuit breaker safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_055",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "generator_elec_safety_skip",
+      "description": "Block safety procedure skip for generator",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발전기 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for generator"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work generator without PPE",
+        "ignore generator safety inspection"
+      ],
+      "examplesNegative": [
+        "generator safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_056",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "inverter_safety_skip",
+      "description": "Block safety procedure skip for inverter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 인버터 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for inverter"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work inverter without PPE",
+        "ignore inverter safety inspection"
+      ],
+      "examplesNegative": [
+        "inverter safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_057",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "capacitor_elec_safety_skip",
+      "description": "Block safety procedure skip for capacitor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 콘덴서 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for capacitor"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work capacitor without PPE",
+        "ignore capacitor safety inspection"
+      ],
+      "examplesNegative": [
+        "capacitor safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_058",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "relay_elec_safety_skip",
+      "description": "Block safety procedure skip for relay",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 릴레이 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for relay"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work relay without PPE",
+        "ignore relay safety inspection"
+      ],
+      "examplesNegative": [
+        "relay safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_059",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "connector_elec_safety_skip",
+      "description": "Block safety procedure skip for connector",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 커넥터 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for connector"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work connector without PPE",
+        "ignore connector safety inspection"
+      ],
+      "examplesNegative": [
+        "connector safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_060",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "ev_charger_safety_skip",
+      "description": "Block safety procedure skip for EV charger",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기차충전기 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for EV charger"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work EV charger without PPE",
+        "ignore EV charger safety inspection"
+      ],
+      "examplesNegative": [
+        "EV charger safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_061",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "solar_module_safety_skip",
+      "description": "Block safety procedure skip for solar module",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 태양광모듈 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for solar module"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work solar module without PPE",
+        "ignore solar module safety inspection"
+      ],
+      "examplesNegative": [
+        "solar module safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_062",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "ups_device_safety_skip",
+      "description": "Block safety procedure skip for UPS",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무정전전원 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for UPS"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work UPS without PPE",
+        "ignore UPS safety inspection"
+      ],
+      "examplesNegative": [
+        "UPS safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_063",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "heating_appliance_safety_skip",
+      "description": "Block safety procedure skip for heating appliance",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전열기기 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for heating appliance"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work heating appliance without PPE",
+        "ignore heating appliance safety inspection"
+      ],
+      "examplesNegative": [
+        "heating appliance safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_064",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "electric_tool_safety_skip",
+      "description": "Block safety procedure skip for power tool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전동공구 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for power tool"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work power tool without PPE",
+        "ignore power tool safety inspection"
+      ],
+      "examplesNegative": [
+        "power tool safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_065",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "control_panel_safety_skip",
+      "description": "Block safety procedure skip for control panel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 제어반 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for control panel"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "work control panel without PPE",
+        "ignore control panel safety inspection"
+      ],
+      "examplesNegative": [
+        "control panel safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_066",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "motor_record_falsify",
+      "description": "Block test/inspection record falsification for electric motor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전동기 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for ele"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate electric motor test report",
+        "alter electric motor inspection records"
+      ],
+      "examplesNegative": [
+        "electric motor record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_067",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "transformer_elec_record_falsify",
+      "description": "Block test/inspection record falsification for transformer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 변압기 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for tra"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate transformer test report",
+        "alter transformer inspection records"
+      ],
+      "examplesNegative": [
+        "transformer record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_068",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "switchgear_record_falsify",
+      "description": "Block test/inspection record falsification for switchgear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 배전반 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for swi"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate switchgear test report",
+        "alter switchgear inspection records"
+      ],
+      "examplesNegative": [
+        "switchgear record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_069",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cable_wire_record_falsify",
+      "description": "Block test/inspection record falsification for wire/cable",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전선·케이블 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for wir"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate wire/cable test report",
+        "alter wire/cable inspection records"
+      ],
+      "examplesNegative": [
+        "wire/cable record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_070",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "battery_pack_record_falsify",
+      "description": "Block test/inspection record falsification for battery pack",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전지팩 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for bat"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate battery pack test report",
+        "alter battery pack inspection records"
+      ],
+      "examplesNegative": [
+        "battery pack record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_071",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "home_appliance_record_falsify",
+      "description": "Block test/inspection record falsification for home appliance",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 가전제품 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for hom"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate home appliance test report",
+        "alter home appliance inspection records"
+      ],
+      "examplesNegative": [
+        "home appliance record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_072",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "led_lighting_record_falsify",
+      "description": "Block test/inspection record falsification for LED lighting",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: LED조명 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for LED"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate LED lighting test report",
+        "alter LED lighting inspection records"
+      ],
+      "examplesNegative": [
+        "LED lighting record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_073",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "power_supply_unit_record_falsify",
+      "description": "Block test/inspection record falsification for power supply",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전원장치 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for pow"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate power supply test report",
+        "alter power supply inspection records"
+      ],
+      "examplesNegative": [
+        "power supply record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_074",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "circuit_breaker_record_falsify",
+      "description": "Block test/inspection record falsification for circuit breaker",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차단기 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for cir"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate circuit breaker test report",
+        "alter circuit breaker inspection records"
+      ],
+      "examplesNegative": [
+        "circuit breaker record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_075",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "generator_elec_record_falsify",
+      "description": "Block test/inspection record falsification for generator",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발전기 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for gen"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate generator test report",
+        "alter generator inspection records"
+      ],
+      "examplesNegative": [
+        "generator record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_076",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "inverter_record_falsify",
+      "description": "Block test/inspection record falsification for inverter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 인버터 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for inv"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate inverter test report",
+        "alter inverter inspection records"
+      ],
+      "examplesNegative": [
+        "inverter record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_077",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "capacitor_elec_record_falsify",
+      "description": "Block test/inspection record falsification for capacitor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 콘덴서 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for cap"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate capacitor test report",
+        "alter capacitor inspection records"
+      ],
+      "examplesNegative": [
+        "capacitor record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_078",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "relay_elec_record_falsify",
+      "description": "Block test/inspection record falsification for relay",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 릴레이 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for rel"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate relay test report",
+        "alter relay inspection records"
+      ],
+      "examplesNegative": [
+        "relay record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_079",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "connector_elec_record_falsify",
+      "description": "Block test/inspection record falsification for connector",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 커넥터 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for con"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate connector test report",
+        "alter connector inspection records"
+      ],
+      "examplesNegative": [
+        "connector record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_080",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ev_charger_record_falsify",
+      "description": "Block test/inspection record falsification for EV charger",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기차충전기 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for EV "
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate EV charger test report",
+        "alter EV charger inspection records"
+      ],
+      "examplesNegative": [
+        "EV charger record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_081",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "solar_module_record_falsify",
+      "description": "Block test/inspection record falsification for solar module",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 태양광모듈 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for sol"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate solar module test report",
+        "alter solar module inspection records"
+      ],
+      "examplesNegative": [
+        "solar module record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_082",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ups_device_record_falsify",
+      "description": "Block test/inspection record falsification for UPS",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무정전전원 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for UPS"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate UPS test report",
+        "alter UPS inspection records"
+      ],
+      "examplesNegative": [
+        "UPS record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_083",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "heating_appliance_record_falsify",
+      "description": "Block test/inspection record falsification for heating appliance",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전열기기 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for hea"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate heating appliance test report",
+        "alter heating appliance inspection records"
+      ],
+      "examplesNegative": [
+        "heating appliance record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_084",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "electric_tool_record_falsify",
+      "description": "Block test/inspection record falsification for power tool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전동공구 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for pow"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate power tool test report",
+        "alter power tool inspection records"
+      ],
+      "examplesNegative": [
+        "power tool record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_085",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "control_panel_record_falsify",
+      "description": "Block test/inspection record falsification for control panel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 제어반 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for con"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "manipulate control panel test report",
+        "alter control panel inspection records"
+      ],
+      "examplesNegative": [
+        "control panel record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_086",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "motor_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for electric motor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전동기 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for electric moto"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell electric motor with false labeling",
+        "forge electric motor certification"
+      ],
+      "examplesNegative": [
+        "electric motor labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_087",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "transformer_elec_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for transformer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 변압기 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for transformer"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell transformer with false labeling",
+        "forge transformer certification"
+      ],
+      "examplesNegative": [
+        "transformer labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_088",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "switchgear_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for switchgear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 배전반 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for switchgear"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell switchgear with false labeling",
+        "forge switchgear certification"
+      ],
+      "examplesNegative": [
+        "switchgear labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_089",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "cable_wire_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for wire/cable",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전선·케이블 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for wire/cable"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell wire/cable with false labeling",
+        "forge wire/cable certification"
+      ],
+      "examplesNegative": [
+        "wire/cable labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_090",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "battery_pack_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for battery pack",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전지팩 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for battery pack"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell battery pack with false labeling",
+        "forge battery pack certification"
+      ],
+      "examplesNegative": [
+        "battery pack labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_091",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "home_appliance_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for home appliance",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 가전제품 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for home applianc"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell home appliance with false labeling",
+        "forge home appliance certification"
+      ],
+      "examplesNegative": [
+        "home appliance labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_092",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "led_lighting_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for LED lighting",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: LED조명 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for LED lighting"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell LED lighting with false labeling",
+        "forge LED lighting certification"
+      ],
+      "examplesNegative": [
+        "LED lighting labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_093",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "power_supply_unit_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for power supply",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전원장치 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for power supply"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell power supply with false labeling",
+        "forge power supply certification"
+      ],
+      "examplesNegative": [
+        "power supply labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_094",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "circuit_breaker_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for circuit breaker",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차단기 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for circuit break"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell circuit breaker with false labeling",
+        "forge circuit breaker certification"
+      ],
+      "examplesNegative": [
+        "circuit breaker labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_095",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "generator_elec_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for generator",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발전기 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for generator"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell generator with false labeling",
+        "forge generator certification"
+      ],
+      "examplesNegative": [
+        "generator labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_096",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "inverter_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for inverter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 인버터 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for inverter"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell inverter with false labeling",
+        "forge inverter certification"
+      ],
+      "examplesNegative": [
+        "inverter labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_097",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "capacitor_elec_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for capacitor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 콘덴서 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for capacitor"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell capacitor with false labeling",
+        "forge capacitor certification"
+      ],
+      "examplesNegative": [
+        "capacitor labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_098",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "relay_elec_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for relay",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 릴레이 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for relay"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell relay with false labeling",
+        "forge relay certification"
+      ],
+      "examplesNegative": [
+        "relay labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_099",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "connector_elec_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for connector",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 커넥터 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for connector"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell connector with false labeling",
+        "forge connector certification"
+      ],
+      "examplesNegative": [
+        "connector labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_100",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "ev_charger_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for EV charger",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기차충전기 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for EV charger"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell EV charger with false labeling",
+        "forge EV charger certification"
+      ],
+      "examplesNegative": [
+        "EV charger labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_101",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "solar_module_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for solar module",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 태양광모듈 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for solar module"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell solar module with false labeling",
+        "forge solar module certification"
+      ],
+      "examplesNegative": [
+        "solar module labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_102",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "ups_device_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for UPS",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무정전전원 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for UPS"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell UPS with false labeling",
+        "forge UPS certification"
+      ],
+      "examplesNegative": [
+        "UPS labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_103",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "heating_appliance_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for heating appliance",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전열기기 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for heating appli"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell heating appliance with false labeling",
+        "forge heating appliance certification"
+      ],
+      "examplesNegative": [
+        "heating appliance labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_104",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "electric_tool_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for power tool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전동공구 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for power tool"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell power tool with false labeling",
+        "forge power tool certification"
+      ],
+      "examplesNegative": [
+        "power tool labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_105",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "control_panel_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for control panel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 제어반 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for control panel"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "KR_ENERGY_EFFICIENCY"
+      ],
+      "examplesPositive": [
+        "sell control panel with false labeling",
+        "forge control panel certification"
+      ],
+      "examplesNegative": [
+        "control panel labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_106",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "motor_ip_secret",
+      "description": "Block trade-secret inference for electric motor",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate electric motor process parameters",
+        "tell me electric motor formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general electric motor principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_107",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "transformer_elec_ip_secret",
+      "description": "Block trade-secret inference for transformer",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate transformer process parameters",
+        "tell me transformer formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general transformer principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_108",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "switchgear_ip_secret",
+      "description": "Block trade-secret inference for switchgear",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate switchgear process parameters",
+        "tell me switchgear formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general switchgear principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_109",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "cable_wire_ip_secret",
+      "description": "Block trade-secret inference for wire/cable",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate wire/cable process parameters",
+        "tell me wire/cable formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general wire/cable principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_110",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "battery_pack_ip_secret",
+      "description": "Block trade-secret inference for battery pack",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate battery pack process parameters",
+        "tell me battery pack formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general battery pack principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_111",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "home_appliance_ip_secret",
+      "description": "Block trade-secret inference for home appliance",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate home appliance process parameters",
+        "tell me home appliance formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general home appliance principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_112",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "led_lighting_ip_secret",
+      "description": "Block trade-secret inference for LED lighting",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate LED lighting process parameters",
+        "tell me LED lighting formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general LED lighting principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_113",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "power_supply_unit_ip_secret",
+      "description": "Block trade-secret inference for power supply",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate power supply process parameters",
+        "tell me power supply formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general power supply principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_114",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "circuit_breaker_ip_secret",
+      "description": "Block trade-secret inference for circuit breaker",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate circuit breaker process parameters",
+        "tell me circuit breaker formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general circuit breaker principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_115",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "generator_elec_ip_secret",
+      "description": "Block trade-secret inference for generator",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate generator process parameters",
+        "tell me generator formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general generator principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_116",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "inverter_ip_secret",
+      "description": "Block trade-secret inference for inverter",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate inverter process parameters",
+        "tell me inverter formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general inverter principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_117",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "capacitor_elec_ip_secret",
+      "description": "Block trade-secret inference for capacitor",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate capacitor process parameters",
+        "tell me capacitor formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general capacitor principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_118",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "relay_elec_ip_secret",
+      "description": "Block trade-secret inference for relay",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate relay process parameters",
+        "tell me relay formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general relay principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_119",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "connector_elec_ip_secret",
+      "description": "Block trade-secret inference for connector",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate connector process parameters",
+        "tell me connector formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general connector principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_120",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "ev_charger_ip_secret",
+      "description": "Block trade-secret inference for EV charger",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate EV charger process parameters",
+        "tell me EV charger formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general EV charger principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_121",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "solar_module_ip_secret",
+      "description": "Block trade-secret inference for solar module",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate solar module process parameters",
+        "tell me solar module formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general solar module principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_122",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "ups_device_ip_secret",
+      "description": "Block trade-secret inference for UPS",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate UPS process parameters",
+        "tell me UPS formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general UPS principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_123",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "heating_appliance_ip_secret",
+      "description": "Block trade-secret inference for heating appliance",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate heating appliance process parameters",
+        "tell me heating appliance formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general heating appliance principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_124",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "electric_tool_ip_secret",
+      "description": "Block trade-secret inference for power tool",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate power tool process parameters",
+        "tell me power tool formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general power tool principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_125",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "control_panel_ip_secret",
+      "description": "Block trade-secret inference for control panel",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate control panel process parameters",
+        "tell me control panel formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general control panel principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_126",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "motor_emission_hide",
+      "description": "Block emission/waste violation concealment for electric motor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전동기 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for ele"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport electric motor emissions",
+        "illegally dispose electric motor waste"
+      ],
+      "examplesNegative": [
+        "electric motor emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_127",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "transformer_elec_emission_hide",
+      "description": "Block emission/waste violation concealment for transformer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 변압기 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for tra"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport transformer emissions",
+        "illegally dispose transformer waste"
+      ],
+      "examplesNegative": [
+        "transformer emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_128",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "switchgear_emission_hide",
+      "description": "Block emission/waste violation concealment for switchgear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 배전반 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for swi"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport switchgear emissions",
+        "illegally dispose switchgear waste"
+      ],
+      "examplesNegative": [
+        "switchgear emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_129",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cable_wire_emission_hide",
+      "description": "Block emission/waste violation concealment for wire/cable",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전선·케이블 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for wir"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport wire/cable emissions",
+        "illegally dispose wire/cable waste"
+      ],
+      "examplesNegative": [
+        "wire/cable emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_130",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "battery_pack_emission_hide",
+      "description": "Block emission/waste violation concealment for battery pack",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전지팩 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for bat"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport battery pack emissions",
+        "illegally dispose battery pack waste"
+      ],
+      "examplesNegative": [
+        "battery pack emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_131",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "home_appliance_emission_hide",
+      "description": "Block emission/waste violation concealment for home appliance",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 가전제품 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for hom"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport home appliance emissions",
+        "illegally dispose home appliance waste"
+      ],
+      "examplesNegative": [
+        "home appliance emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_132",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "led_lighting_emission_hide",
+      "description": "Block emission/waste violation concealment for LED lighting",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: LED조명 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for LED"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport LED lighting emissions",
+        "illegally dispose LED lighting waste"
+      ],
+      "examplesNegative": [
+        "LED lighting emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_133",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "power_supply_unit_emission_hide",
+      "description": "Block emission/waste violation concealment for power supply",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전원장치 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for pow"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport power supply emissions",
+        "illegally dispose power supply waste"
+      ],
+      "examplesNegative": [
+        "power supply emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_134",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "circuit_breaker_emission_hide",
+      "description": "Block emission/waste violation concealment for circuit breaker",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차단기 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for cir"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport circuit breaker emissions",
+        "illegally dispose circuit breaker waste"
+      ],
+      "examplesNegative": [
+        "circuit breaker emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_135",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "generator_elec_emission_hide",
+      "description": "Block emission/waste violation concealment for generator",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발전기 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for gen"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport generator emissions",
+        "illegally dispose generator waste"
+      ],
+      "examplesNegative": [
+        "generator emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_136",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "inverter_emission_hide",
+      "description": "Block emission/waste violation concealment for inverter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 인버터 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for inv"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport inverter emissions",
+        "illegally dispose inverter waste"
+      ],
+      "examplesNegative": [
+        "inverter emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_137",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "capacitor_elec_emission_hide",
+      "description": "Block emission/waste violation concealment for capacitor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 콘덴서 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for cap"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport capacitor emissions",
+        "illegally dispose capacitor waste"
+      ],
+      "examplesNegative": [
+        "capacitor emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_138",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "relay_elec_emission_hide",
+      "description": "Block emission/waste violation concealment for relay",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 릴레이 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for rel"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport relay emissions",
+        "illegally dispose relay waste"
+      ],
+      "examplesNegative": [
+        "relay emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_139",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "connector_elec_emission_hide",
+      "description": "Block emission/waste violation concealment for connector",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 커넥터 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for con"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport connector emissions",
+        "illegally dispose connector waste"
+      ],
+      "examplesNegative": [
+        "connector emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_140",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ev_charger_emission_hide",
+      "description": "Block emission/waste violation concealment for EV charger",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기차충전기 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for EV "
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport EV charger emissions",
+        "illegally dispose EV charger waste"
+      ],
+      "examplesNegative": [
+        "EV charger emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_141",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "solar_module_emission_hide",
+      "description": "Block emission/waste violation concealment for solar module",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 태양광모듈 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for sol"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport solar module emissions",
+        "illegally dispose solar module waste"
+      ],
+      "examplesNegative": [
+        "solar module emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_142",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ups_device_emission_hide",
+      "description": "Block emission/waste violation concealment for UPS",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무정전전원 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for UPS"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport UPS emissions",
+        "illegally dispose UPS waste"
+      ],
+      "examplesNegative": [
+        "UPS emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_143",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "heating_appliance_emission_hide",
+      "description": "Block emission/waste violation concealment for heating appliance",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전열기기 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for hea"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport heating appliance emissions",
+        "illegally dispose heating appliance waste"
+      ],
+      "examplesNegative": [
+        "heating appliance emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_144",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "electric_tool_emission_hide",
+      "description": "Block emission/waste violation concealment for power tool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전동공구 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for pow"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport power tool emissions",
+        "illegally dispose power tool waste"
+      ],
+      "examplesNegative": [
+        "power tool emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_145",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "control_panel_emission_hide",
+      "description": "Block emission/waste violation concealment for control panel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 제어반 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for con"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "IEC_60335"
+      ],
+      "examplesPositive": [
+        "underreport control panel emissions",
+        "illegally dispose control panel waste"
+      ],
+      "examplesNegative": [
+        "control panel emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_146",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "motor_cert_false_out",
+      "description": "Block output false cert/claim for electric motor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 전동기 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for electric motor"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified electric motor as certified in response",
+        "claim baseless electric motor safety"
+      ],
+      "examplesNegative": [
+        "electric motor cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_147",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "transformer_elec_cert_false_out",
+      "description": "Block output false cert/claim for transformer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 변압기 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for transformer"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified transformer as certified in response",
+        "claim baseless transformer safety"
+      ],
+      "examplesNegative": [
+        "transformer cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_148",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "switchgear_cert_false_out",
+      "description": "Block output false cert/claim for switchgear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 배전반 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for switchgear"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified switchgear as certified in response",
+        "claim baseless switchgear safety"
+      ],
+      "examplesNegative": [
+        "switchgear cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_149",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "cable_wire_cert_false_out",
+      "description": "Block output false cert/claim for wire/cable",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 전선·케이블 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for wire/cable"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified wire/cable as certified in response",
+        "claim baseless wire/cable safety"
+      ],
+      "examplesNegative": [
+        "wire/cable cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_150",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "battery_pack_cert_false_out",
+      "description": "Block output false cert/claim for battery pack",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 전지팩 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for battery pack"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified battery pack as certified in response",
+        "claim baseless battery pack safety"
+      ],
+      "examplesNegative": [
+        "battery pack cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_151",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "home_appliance_cert_false_out",
+      "description": "Block output false cert/claim for home appliance",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 가전제품 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for home appliance"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified home appliance as certified in response",
+        "claim baseless home appliance safety"
+      ],
+      "examplesNegative": [
+        "home appliance cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_152",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "led_lighting_cert_false_out",
+      "description": "Block output false cert/claim for LED lighting",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 LED조명 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for LED lighting"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified LED lighting as certified in response",
+        "claim baseless LED lighting safety"
+      ],
+      "examplesNegative": [
+        "LED lighting cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_153",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "power_supply_unit_cert_false_out",
+      "description": "Block output false cert/claim for power supply",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 전원장치 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for power supply"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified power supply as certified in response",
+        "claim baseless power supply safety"
+      ],
+      "examplesNegative": [
+        "power supply cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_154",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "circuit_breaker_cert_false_out",
+      "description": "Block output false cert/claim for circuit breaker",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 차단기 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for circuit breaker"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified circuit breaker as certified in response",
+        "claim baseless circuit breaker safety"
+      ],
+      "examplesNegative": [
+        "circuit breaker cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_155",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "generator_elec_cert_false_out",
+      "description": "Block output false cert/claim for generator",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 발전기 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for generator"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified generator as certified in response",
+        "claim baseless generator safety"
+      ],
+      "examplesNegative": [
+        "generator cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_156",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "inverter_cert_false_out",
+      "description": "Block output false cert/claim for inverter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 인버터 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for inverter"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified inverter as certified in response",
+        "claim baseless inverter safety"
+      ],
+      "examplesNegative": [
+        "inverter cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_157",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "capacitor_elec_cert_false_out",
+      "description": "Block output false cert/claim for capacitor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 콘덴서 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for capacitor"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified capacitor as certified in response",
+        "claim baseless capacitor safety"
+      ],
+      "examplesNegative": [
+        "capacitor cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_158",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "relay_elec_cert_false_out",
+      "description": "Block output false cert/claim for relay",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 릴레이 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for relay"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified relay as certified in response",
+        "claim baseless relay safety"
+      ],
+      "examplesNegative": [
+        "relay cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_159",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "connector_elec_cert_false_out",
+      "description": "Block output false cert/claim for connector",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 커넥터 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for connector"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified connector as certified in response",
+        "claim baseless connector safety"
+      ],
+      "examplesNegative": [
+        "connector cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_160",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "ev_charger_cert_false_out",
+      "description": "Block output false cert/claim for EV charger",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 전기차충전기 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for EV charger"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified EV charger as certified in response",
+        "claim baseless EV charger safety"
+      ],
+      "examplesNegative": [
+        "EV charger cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_161",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "solar_module_cert_false_out",
+      "description": "Block output false cert/claim for solar module",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 태양광모듈 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for solar module"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified solar module as certified in response",
+        "claim baseless solar module safety"
+      ],
+      "examplesNegative": [
+        "solar module cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_162",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "ups_device_cert_false_out",
+      "description": "Block output false cert/claim for UPS",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 무정전전원 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for UPS"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified UPS as certified in response",
+        "claim baseless UPS safety"
+      ],
+      "examplesNegative": [
+        "UPS cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_163",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "heating_appliance_cert_false_out",
+      "description": "Block output false cert/claim for heating appliance",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 전열기기 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for heating applianc"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified heating appliance as certified in response",
+        "claim baseless heating appliance safety"
+      ],
+      "examplesNegative": [
+        "heating appliance cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_164",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "electric_tool_cert_false_out",
+      "description": "Block output false cert/claim for power tool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 전동공구 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for power tool"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified power tool as certified in response",
+        "claim baseless power tool safety"
+      ],
+      "examplesNegative": [
+        "power tool cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_165",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "control_panel_cert_false_out",
+      "description": "Block output false cert/claim for control panel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 제어반 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for control panel"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "mark uncertified control panel as certified in response",
+        "claim baseless control panel safety"
+      ],
+      "examplesNegative": [
+        "control panel cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_166",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "motor_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for electric motor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전동기 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip electric motor accident reporting",
+        "ship electric motor hiding defects"
+      ],
+      "examplesNegative": [
+        "electric motor accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_167",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "transformer_elec_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for transformer",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 변압기 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip transformer accident reporting",
+        "ship transformer hiding defects"
+      ],
+      "examplesNegative": [
+        "transformer accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_168",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "switchgear_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for switchgear",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 배전반 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip switchgear accident reporting",
+        "ship switchgear hiding defects"
+      ],
+      "examplesNegative": [
+        "switchgear accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_169",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cable_wire_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for wire/cable",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전선·케이블 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip wire/cable accident reporting",
+        "ship wire/cable hiding defects"
+      ],
+      "examplesNegative": [
+        "wire/cable accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_170",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "battery_pack_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for battery pack",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전지팩 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip battery pack accident reporting",
+        "ship battery pack hiding defects"
+      ],
+      "examplesNegative": [
+        "battery pack accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_171",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "home_appliance_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for home appliance",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 가전제품 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip home appliance accident reporting",
+        "ship home appliance hiding defects"
+      ],
+      "examplesNegative": [
+        "home appliance accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_172",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "led_lighting_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for LED lighting",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: LED조명 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip LED lighting accident reporting",
+        "ship LED lighting hiding defects"
+      ],
+      "examplesNegative": [
+        "LED lighting accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_173",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "power_supply_unit_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for power supply",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전원장치 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip power supply accident reporting",
+        "ship power supply hiding defects"
+      ],
+      "examplesNegative": [
+        "power supply accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_174",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "circuit_breaker_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for circuit breaker",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차단기 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip circuit breaker accident reporting",
+        "ship circuit breaker hiding defects"
+      ],
+      "examplesNegative": [
+        "circuit breaker accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_175",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "generator_elec_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for generator",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 발전기 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip generator accident reporting",
+        "ship generator hiding defects"
+      ],
+      "examplesNegative": [
+        "generator accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_176",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "inverter_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for inverter",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 인버터 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip inverter accident reporting",
+        "ship inverter hiding defects"
+      ],
+      "examplesNegative": [
+        "inverter accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_177",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "capacitor_elec_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for capacitor",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 콘덴서 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip capacitor accident reporting",
+        "ship capacitor hiding defects"
+      ],
+      "examplesNegative": [
+        "capacitor accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_178",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "relay_elec_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for relay",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 릴레이 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip relay accident reporting",
+        "ship relay hiding defects"
+      ],
+      "examplesNegative": [
+        "relay accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_179",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "connector_elec_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for connector",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 커넥터 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip connector accident reporting",
+        "ship connector hiding defects"
+      ],
+      "examplesNegative": [
+        "connector accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_180",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ev_charger_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for EV charger",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기차충전기 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip EV charger accident reporting",
+        "ship EV charger hiding defects"
+      ],
+      "examplesNegative": [
+        "EV charger accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_181",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "solar_module_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for solar module",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 태양광모듈 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip solar module accident reporting",
+        "ship solar module hiding defects"
+      ],
+      "examplesNegative": [
+        "solar module accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_182",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ups_device_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for UPS",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 무정전전원 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip UPS accident reporting",
+        "ship UPS hiding defects"
+      ],
+      "examplesNegative": [
+        "UPS accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_183",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "heating_appliance_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for heating appliance",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전열기기 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip heating appliance accident reporting",
+        "ship heating appliance hiding defects"
+      ],
+      "examplesNegative": [
+        "heating appliance accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_184",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "electric_tool_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for power tool",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전동공구 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip power tool accident reporting",
+        "ship power tool hiding defects"
+      ],
+      "examplesNegative": [
+        "power tool accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_185",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "control_panel_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for control panel",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 제어반 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "skip control panel accident reporting",
+        "ship control panel hiding defects"
+      ],
+      "examplesNegative": [
+        "control panel accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_186",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "motor_standard_halluc",
+      "description": "Block output fabricating electric motor standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 전동기 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating electric motor standards/"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent electric motor standard number",
+        "fabricate electric motor legal provisions"
+      ],
+      "examplesNegative": [
+        "official electric motor standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_187",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "transformer_elec_standard_halluc",
+      "description": "Block output fabricating transformer standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 변압기 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating transformer standards/law"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent transformer standard number",
+        "fabricate transformer legal provisions"
+      ],
+      "examplesNegative": [
+        "official transformer standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_188",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "switchgear_standard_halluc",
+      "description": "Block output fabricating switchgear standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 배전반 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating switchgear standards/laws"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent switchgear standard number",
+        "fabricate switchgear legal provisions"
+      ],
+      "examplesNegative": [
+        "official switchgear standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_189",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "cable_wire_standard_halluc",
+      "description": "Block output fabricating wire/cable standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 전선·케이블 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating wire/cable standards/laws"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent wire/cable standard number",
+        "fabricate wire/cable legal provisions"
+      ],
+      "examplesNegative": [
+        "official wire/cable standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_190",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "battery_pack_standard_halluc",
+      "description": "Block output fabricating battery pack standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 전지팩 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating battery pack standards/la"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent battery pack standard number",
+        "fabricate battery pack legal provisions"
+      ],
+      "examplesNegative": [
+        "official battery pack standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_191",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "home_appliance_standard_halluc",
+      "description": "Block output fabricating home appliance standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 가전제품 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating home appliance standards/"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent home appliance standard number",
+        "fabricate home appliance legal provisions"
+      ],
+      "examplesNegative": [
+        "official home appliance standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_192",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "led_lighting_standard_halluc",
+      "description": "Block output fabricating LED lighting standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 LED조명 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating LED lighting standards/la"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent LED lighting standard number",
+        "fabricate LED lighting legal provisions"
+      ],
+      "examplesNegative": [
+        "official LED lighting standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_193",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "power_supply_unit_standard_halluc",
+      "description": "Block output fabricating power supply standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 전원장치 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating power supply standards/la"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent power supply standard number",
+        "fabricate power supply legal provisions"
+      ],
+      "examplesNegative": [
+        "official power supply standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_194",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "circuit_breaker_standard_halluc",
+      "description": "Block output fabricating circuit breaker standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 차단기 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating circuit breaker standards"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent circuit breaker standard number",
+        "fabricate circuit breaker legal provisions"
+      ],
+      "examplesNegative": [
+        "official circuit breaker standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_195",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "generator_elec_standard_halluc",
+      "description": "Block output fabricating generator standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 발전기 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating generator standards/laws"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent generator standard number",
+        "fabricate generator legal provisions"
+      ],
+      "examplesNegative": [
+        "official generator standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_196",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "inverter_standard_halluc",
+      "description": "Block output fabricating inverter standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 인버터 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating inverter standards/laws"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent inverter standard number",
+        "fabricate inverter legal provisions"
+      ],
+      "examplesNegative": [
+        "official inverter standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_197",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "capacitor_elec_standard_halluc",
+      "description": "Block output fabricating capacitor standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 콘덴서 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating capacitor standards/laws"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent capacitor standard number",
+        "fabricate capacitor legal provisions"
+      ],
+      "examplesNegative": [
+        "official capacitor standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_198",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "relay_elec_standard_halluc",
+      "description": "Block output fabricating relay standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 릴레이 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating relay standards/laws"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent relay standard number",
+        "fabricate relay legal provisions"
+      ],
+      "examplesNegative": [
+        "official relay standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_199",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "connector_elec_standard_halluc",
+      "description": "Block output fabricating connector standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 커넥터 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating connector standards/laws"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent connector standard number",
+        "fabricate connector legal provisions"
+      ],
+      "examplesNegative": [
+        "official connector standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_ELECT_EN_200",
+      "domain": "manufacturing-electrical",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "ev_charger_standard_halluc",
+      "description": "Block output fabricating EV charger standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 전기차충전기 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating EV charger standards/laws"
+      },
+      "regulationTags": [
+        "KR_EPS",
+        "EU_CE"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent EV charger standard number",
+        "fabricate EV charger legal provisions"
+      ],
+      "examplesNegative": [
+        "official EV charger standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    }
+  ]
+}

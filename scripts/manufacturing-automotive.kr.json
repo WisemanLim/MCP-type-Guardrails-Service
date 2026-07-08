@@ -1,0 +1,6130 @@
+{
+  "$schema": "https://example.com/guardrails/rule-bundle.schema.json",
+  "domain": "manufacturing-automotive",
+  "locale": "ko-KR",
+  "generatedAt": "2026-06-03T06:39:55+00:00",
+  "totalRules": 200,
+  "rules": [
+    {
+      "ruleId": "MF_AUTO_KR_001",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "safety_defect_coverup",
+      "description": "차량 안전결함 은폐 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 980,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차량 안전결함 은폐 요청 차단",
+        "en": "This request is blocked: Vehicle safety defect concealment request blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "ISO_26262"
+      ],
+      "examplesPositive": [
+        "이번 결함은 내부에서만 처리하고 리콜 신고는 하지 말자",
+        "안전 문제 보고 안 해도 될 것 같아"
+      ],
+      "examplesNegative": [
+        "리콜 절차 일반 안내",
+        "결함 보고 모범사례"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_002",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "recall_delay_cover",
+      "description": "리콜 지연·은폐 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 975,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 리콜 지연·은폐 조력 차단",
+        "en": "This request is blocked: Recall delay or concealment assistance blocked"
+      },
+      "regulationTags": [
+        "KR_RECALL",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "리콜 발표를 6개월 뒤로 미룰 방법",
+        "결함 인지 날짜를 수정하는 방법"
+      ],
+      "examplesNegative": [
+        "리콜 신고 기한 안내",
+        "자발적 리콜 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_003",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "airbag_defect_hide",
+      "description": "에어백 결함 은폐 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 990,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 에어백 결함 은폐 요청 차단",
+        "en": "This request is blocked: Airbag defect concealment request blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "KR_RECALL",
+        "UNECE_WP29"
+      ],
+      "examplesPositive": [
+        "에어백 오작동 데이터 숨기는 법",
+        "에어백 결함 내부 보고서 삭제 요청"
+      ],
+      "examplesNegative": [
+        "에어백 안전기준 안내",
+        "에어백 리콜 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_004",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "brake_failure_hide",
+      "description": "제동장치 결함 은폐 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 985,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 제동장치 결함 은폐 요청 차단",
+        "en": "This request is blocked: Brake failure concealment request blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "ISO_26262"
+      ],
+      "examplesPositive": [
+        "브레이크 결함 테스트 결과 숨기기",
+        "제동력 저하 보고서 수정 방법"
+      ],
+      "examplesNegative": [
+        "제동장치 검사 기준",
+        "브레이크 결함 보고 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_005",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "vehicle_fire_risk_hide",
+      "description": "차량 화재 위험 은폐 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 985,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차량 화재 위험 은폐 요청 차단",
+        "en": "This request is blocked: Vehicle fire risk concealment request blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "KR_RECALL"
+      ],
+      "examplesPositive": [
+        "배터리 화재 위험 데이터 은폐 방법",
+        "차량 화재 사고 내부 처리만 하는 법"
+      ],
+      "examplesNegative": [
+        "배터리 화재 예방 지침",
+        "화재 위험 리콜 사례"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_006",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "autonomy_liability_evasion",
+      "description": "자율주행 사고 책임 회피 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 970,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 자율주행 사고 책임 회피 조력 차단",
+        "en": "This request is blocked: Autonomous driving liability evasion assistance bl"
+      },
+      "regulationTags": [
+        "ISO_26262",
+        "ISO_21448",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "자율주행 사고 원인 데이터 삭제 요청",
+        "ADAS 오작동 로그 은폐 방법"
+      ],
+      "examplesNegative": [
+        "자율주행 사고 조사 절차",
+        "ADAS 안전 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_007",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "ota_update_risk_hide",
+      "description": "OTA 업데이트 위험성 은폐 요청 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 920,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: OTA 업데이트 위험성 은폐 요청 차단",
+        "en": "This request is blocked: OTA update risk concealment request blocked"
+      },
+      "regulationTags": [
+        "ISO_26262",
+        "ISO_21448",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "OTA 업데이트 결함 보고 생략 방법",
+        "소프트웨어 버그 은폐 후 배포"
+      ],
+      "examplesNegative": [
+        "OTA 업데이트 안전 요건",
+        "소프트웨어 검증 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_008",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "sotif_scenario_omit",
+      "description": "SOTIF 위험 시나리오 의도적 누락 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 910,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: SOTIF 위험 시나리오 의도적 누락 차단",
+        "en": "This request is blocked: Intentional SOTIF scenario omission blocked"
+      },
+      "regulationTags": [
+        "ISO_21448",
+        "ISO_26262"
+      ],
+      "examplesPositive": [
+        "SOTIF 검증에서 불리한 시나리오 제외 방법",
+        "위험 시나리오 보고서 축소 요청"
+      ],
+      "examplesNegative": [
+        "SOTIF 시나리오 분류 방법",
+        "ISO 21448 검증 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_009",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "cyber_vuln_automotive_hide",
+      "description": "커넥티드카 사이버보안 취약점 은폐 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 900,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 커넥티드카 사이버보안 취약점 은폐 차단",
+        "en": "This request is blocked: Connected car cybersecurity vulnerability concealm"
+      },
+      "regulationTags": [
+        "ISO_21448",
+        "KR_VSSA",
+        "UNECE_WP29"
+      ],
+      "examplesPositive": [
+        "차량 해킹 취약점 발견 후 보고 생략 방법",
+        "OBD 포트 취약점 내부 처리만 하기"
+      ],
+      "examplesNegative": [
+        "차량 사이버보안 기준 안내",
+        "UNECE WP.29 사이버보안 요건"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_010",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "emission_defeat_device",
+      "description": "배출가스 조작 장치(defeat device) 설계 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 995,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 배출가스 조작 장치(defeat device) 설계 조력 차단",
+        "en": "This request is blocked: Emission defeat device design assistance blocked"
+      },
+      "regulationTags": [
+        "EU_WLTP",
+        "US_EPA_CAFE",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "검사 시에만 배출가스 저감 장치 작동시키는 로직 구현",
+        "WLTP 검사 환경 감지 코드 작성"
+      ],
+      "examplesNegative": [
+        "배출가스 기준 준수 방법",
+        "WLTP 시험 절차 안내"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_011",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "fuel_economy_falsify",
+      "description": "연비 데이터 위조 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 970,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연비 데이터 위조 요청 차단",
+        "en": "This request is blocked: Fuel economy data falsification request blocked"
+      },
+      "regulationTags": [
+        "EU_WLTP",
+        "US_EPA_CAFE"
+      ],
+      "examplesPositive": [
+        "공인 연비보다 높게 수치 조작하는 방법",
+        "연비 측정 결과 보고서 수정"
+      ],
+      "examplesNegative": [
+        "연비 측정 방법 안내",
+        "CAFE 기준 연비 계산법"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_012",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "loto_automotive_assembly_skip",
+      "description": "조립라인 LOTO 절차 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 조립라인 LOTO 절차 생략 조력 차단",
+        "en": "This request is blocked: Assembly line LOTO procedure bypass assistance blo"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "프레스 금형 교체 시 전원 차단 없이 진행하는 법",
+        "LOTO 절차 생략하고 빠르게 작업하는 방법"
+      ],
+      "examplesNegative": [
+        "LOTO 절차 일반 안내",
+        "조립라인 안전 교육 자료"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_013",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "press_die_safety_skip",
+      "description": "프레스 금형 안전장치 해제 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 875,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 프레스 금형 안전장치 해제 조력 차단",
+        "en": "This request is blocked: Press die safety device bypass assistance blocked"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "프레스 안전 인터록 무력화 방법",
+        "금형 교환 중 센서 비활성화"
+      ],
+      "examplesNegative": [
+        "프레스 안전 기준",
+        "금형 교환 절차 모범사례"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_014",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "painting_fume_exposure_skip",
+      "description": "도장 공정 유해가스 노출 위험 무시 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 도장 공정 유해가스 노출 위험 무시 조력 차단",
+        "en": "This request is blocked: Painting process fume exposure risk bypass assista"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "도장 부스 환기장치 없이 작업 가능한지",
+        "유기용제 노출 한도 초과해도 괜찮은지"
+      ],
+      "examplesNegative": [
+        "도장 공정 환기 기준",
+        "유기용제 안전 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_015",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "weld_spark_ppe_skip",
+      "description": "용접 불꽃·자외선 PPE 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 855,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 용접 불꽃·자외선 PPE 생략 조력 차단",
+        "en": "This request is blocked: Welding spark/UV PPE bypass assistance blocked"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "용접 작업 시 보호구 착용 생략해도 되는지",
+        "자동화 라인 용접 PPE 규정 예외 방법"
+      ],
+      "examplesNegative": [
+        "용접 작업 PPE 기준",
+        "자동화 용접 안전 지침"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_016",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "quality_gate_bypass",
+      "description": "품질 게이트 우회 요청 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 품질 게이트 우회 요청 차단",
+        "en": "This request is blocked: Quality gate bypass request blocked"
+      },
+      "regulationTags": [
+        "IATF_16949",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "품질 검사 결과 무시하고 출고하는 방법",
+        "게이트 검사 단계 건너뛰는 로직"
+      ],
+      "examplesNegative": [
+        "IATF 16949 품질 절차",
+        "품질 게이트 운영 지침"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_017",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "rollover_test_falsify",
+      "description": "전복시험 데이터 위조 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 965,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전복시험 데이터 위조 요청 차단",
+        "en": "This request is blocked: Rollover test data falsification request blocked"
+      },
+      "regulationTags": [
+        "UNECE_WP29",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "전복 시험 결과를 합격으로 수정하는 방법",
+        "ESC 시험 데이터 조작 요청"
+      ],
+      "examplesNegative": [
+        "전복 시험 기준 안내",
+        "UNECE 차량 안전기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_018",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "crashtest_data_hide",
+      "description": "충돌시험 결과 은폐 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 960,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 충돌시험 결과 은폐 요청 차단",
+        "en": "This request is blocked: Crash test result concealment request blocked"
+      },
+      "regulationTags": [
+        "UNECE_WP29",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "충돌시험 불합격 데이터 내부 처리 방법",
+        "NCAP 충돌 결과 제출 전 수정"
+      ],
+      "examplesNegative": [
+        "충돌시험 기준 안내",
+        "NCAP 평가 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_019",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "tire_defect_hide",
+      "description": "타이어 결함 은폐 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 955,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 타이어 결함 은폐 요청 차단",
+        "en": "This request is blocked: Tire defect concealment request blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "KR_RECALL"
+      ],
+      "examplesPositive": [
+        "타이어 편마모 결함 리콜 대신 내부 조치로 처리",
+        "타이어 결함 소비자 통보 생략 방법"
+      ],
+      "examplesNegative": [
+        "타이어 결함 리콜 절차",
+        "타이어 안전기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_020",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "steering_failure_cover",
+      "description": "조향장치 결함 은폐 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 965,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 조향장치 결함 은폐 요청 차단",
+        "en": "This request is blocked: Steering failure concealment request blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "ISO_26262"
+      ],
+      "examplesPositive": [
+        "조향 결함 보고서 미제출 방법",
+        "스티어링 오작동 로그 삭제 요청"
+      ],
+      "examplesNegative": [
+        "조향장치 안전기준",
+        "ISO 26262 기능안전 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_021",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "suspension_defect_hide",
+      "description": "현가장치 결함 은폐 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 958,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 현가장치 결함 은폐 요청 차단",
+        "en": "This request is blocked: Suspension defect concealment request blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "KR_RECALL"
+      ],
+      "examplesPositive": [
+        "서스펜션 파단 결함 리콜 신고 회피 방법",
+        "현가장치 결함 내부 처리"
+      ],
+      "examplesNegative": [
+        "현가장치 안전검사 절차",
+        "리콜 신고 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_022",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "adas_malfunction_hide",
+      "description": "ADAS 오작동 정보 은폐 요청 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 915,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: ADAS 오작동 정보 은폐 요청 차단",
+        "en": "This request is blocked: ADAS malfunction information concealment blocked"
+      },
+      "regulationTags": [
+        "ISO_21448",
+        "ISO_26262"
+      ],
+      "examplesPositive": [
+        "ADAS 긴급제동 오작동 데이터 숨기기",
+        "자동 조향 결함 보고서 누락"
+      ],
+      "examplesNegative": [
+        "ADAS 안전 검증 절차",
+        "ISO 21448 SOTIF 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_023",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "ev_battery_defect_hide",
+      "description": "전기차 배터리 결함 은폐 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 980,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기차 배터리 결함 은폐 요청 차단",
+        "en": "This request is blocked: EV battery defect concealment request blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "KR_RECALL"
+      ],
+      "examplesPositive": [
+        "배터리 셀 불량 리콜 신고 생략 방법",
+        "BMS 결함 데이터 은폐"
+      ],
+      "examplesNegative": [
+        "전기차 배터리 안전기준",
+        "배터리 결함 리콜 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_024",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "fuel_leak_hide",
+      "description": "연료 누출 결함 은폐 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 975,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연료 누출 결함 은폐 요청 차단",
+        "en": "This request is blocked: Fuel leak defect concealment request blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "KR_RECALL"
+      ],
+      "examplesPositive": [
+        "연료탱크 누출 결함 내부 처리만 하는 법",
+        "연료 계통 결함 보고서 은폐"
+      ],
+      "examplesNegative": [
+        "연료 누출 안전기준",
+        "결함 보고 의무"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_025",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "seatbelt_defect_hide",
+      "description": "안전벨트 결함 은폐 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 970,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 안전벨트 결함 은폐 요청 차단",
+        "en": "This request is blocked: Seatbelt defect concealment request blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "UNECE_WP29"
+      ],
+      "examplesPositive": [
+        "안전벨트 버클 결함 리콜 회피 방법",
+        "안전벨트 장력 불량 데이터 숨기기"
+      ],
+      "examplesNegative": [
+        "안전벨트 안전기준",
+        "UNECE WP.29 안전장치 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_026",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "engine_stall_hide",
+      "description": "주행 중 엔진 시동 꺼짐 결함 은폐 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 962,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주행 중 엔진 시동 꺼짐 결함 은폐 차단",
+        "en": "This request is blocked: Engine stall while driving defect concealment bloc"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "KR_RECALL"
+      ],
+      "examplesPositive": [
+        "주행 중 시동 꺼짐 결함 은폐 방법",
+        "엔진 스톨 불만 데이터 내부 처리"
+      ],
+      "examplesNegative": [
+        "엔진 결함 리콜 절차",
+        "주행 안전 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_027",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "child_seat_anchor_defect",
+      "description": "유아용 시트 앵커 결함 은폐 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 978,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유아용 시트 앵커 결함 은폐 요청 차단",
+        "en": "This request is blocked: Child seat anchor defect concealment request block"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "UNECE_WP29"
+      ],
+      "examplesPositive": [
+        "ISOFIX 앵커 강도 불량 리콜 회피",
+        "유아 안전시트 결함 내부 처리"
+      ],
+      "examplesNegative": [
+        "유아 안전시트 안전기준",
+        "ISOFIX 검사 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_028",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "transmission_defect_hide",
+      "description": "변속기 결함 은폐 요청 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 905,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 변속기 결함 은폐 요청 차단",
+        "en": "This request is blocked: Transmission defect concealment request blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "KR_RECALL"
+      ],
+      "examplesPositive": [
+        "DCT 변속 충격 결함 보고 회피",
+        "자동변속기 슬립 결함 내부 처리"
+      ],
+      "examplesNegative": [
+        "변속기 결함 기준",
+        "리콜 보고 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_029",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "headlight_defect_hide",
+      "description": "전조등 결함 은폐 요청 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 895,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전조등 결함 은폐 요청 차단",
+        "en": "This request is blocked: Headlight defect concealment request blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "UNECE_WP29"
+      ],
+      "examplesPositive": [
+        "전조등 조도 불량 리콜 생략 방법",
+        "ADB 헤드램프 결함 은폐"
+      ],
+      "examplesNegative": [
+        "전조등 안전기준",
+        "리콜 신고 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_030",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "emission_test_manipulation",
+      "description": "배출가스 검사 결과 조작 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 988,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 배출가스 검사 결과 조작 요청 차단",
+        "en": "This request is blocked: Emission test result manipulation request blocked"
+      },
+      "regulationTags": [
+        "EU_WLTP",
+        "US_EPA_CAFE",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "NOx 수치 검사 통과 위해 SCR 작동 조건 변조",
+        "배출가스 데이터 수정 후 제출"
+      ],
+      "examplesNegative": [
+        "배출가스 기준 준수 방법",
+        "검사 절차 안내"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_031",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "co2_target_falsify",
+      "description": "CO2 배출 목표 달성 데이터 위조 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 968,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: CO2 배출 목표 달성 데이터 위조 차단",
+        "en": "This request is blocked: CO2 emission target data falsification blocked"
+      },
+      "regulationTags": [
+        "EU_WLTP"
+      ],
+      "examplesPositive": [
+        "CO2 플릿 평균 목표 달성을 위한 수치 조작",
+        "유럽 CO2 규제 보고 데이터 위조"
+      ],
+      "examplesNegative": [
+        "CO2 배출 목표 산정 방법",
+        "유럽 CO2 규제 안내"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_032",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "nox_standard_bypass",
+      "description": "NOx 배출 기준 우회 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 982,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: NOx 배출 기준 우회 조력 차단",
+        "en": "This request is blocked: NOx emission standard bypass assistance blocked"
+      },
+      "regulationTags": [
+        "EU_WLTP",
+        "US_EPA_CAFE"
+      ],
+      "examplesPositive": [
+        "RDE 시험에서만 NOx 저감 장치 활성화",
+        "실도로 주행 시 NOx 저감 비활성화 로직"
+      ],
+      "examplesNegative": [
+        "NOx 배출 기준 안내",
+        "RDE 시험 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_033",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "hybrid_soc_falsify",
+      "description": "하이브리드 SOC 조건 위조 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 935,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 하이브리드 SOC 조건 위조 차단",
+        "en": "This request is blocked: Hybrid SOC condition falsification blocked"
+      },
+      "regulationTags": [
+        "EU_WLTP",
+        "US_EPA_CAFE"
+      ],
+      "examplesPositive": [
+        "WLTP 측정 시작 전 배터리 SOC 인위 조작",
+        "하이브리드 전비 측정 조건 변조"
+      ],
+      "examplesNegative": [
+        "하이브리드 연비 측정 방법",
+        "WLTP 하이브리드 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_034",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "particulate_filter_defeat",
+      "description": "입자상물질 필터 무력화 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 987,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 입자상물질 필터 무력화 조력 차단",
+        "en": "This request is blocked: Particulate filter defeat assistance blocked"
+      },
+      "regulationTags": [
+        "EU_WLTP",
+        "US_EPA_CAFE"
+      ],
+      "examplesPositive": [
+        "DPF 강제 재생 주기 우회 로직",
+        "GPF 성능 인위 저하 방법"
+      ],
+      "examplesNegative": [
+        "DPF 관리 기준",
+        "배출가스 후처리 장치 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_035",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "worker_injury_coverup",
+      "description": "작업장 재해 은폐 요청 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 885,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 작업장 재해 은폐 요청 차단",
+        "en": "This request is blocked: Workplace injury coverup request blocked"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "산업재해 미신고 처리 방법",
+        "작업자 부상 사실 은폐 조력"
+      ],
+      "examplesNegative": [
+        "산업재해 신고 절차",
+        "작업환경 개선 방법"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_036",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "chemical_exposure_skip",
+      "description": "유해화학물질 노출 기준 초과 무시 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 865,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유해화학물질 노출 기준 초과 무시 차단",
+        "en": "This request is blocked: Chemical exposure limit exceedance ignorance block"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "세정제 노출 허용기준 초과해도 괜찮은지",
+        "도장 라인 화학물질 측정 생략 방법"
+      ],
+      "examplesNegative": [
+        "유해화학물질 노출 기준",
+        "도장 라인 안전 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_037",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "fire_extinguisher_skip",
+      "description": "소화 장비 점검 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 845,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 소화 장비 점검 생략 조력 차단",
+        "en": "This request is blocked: Fire extinguisher inspection skip assistance block"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "소화기 점검 기록 없이 운영 가능한지",
+        "스프링클러 테스트 생략 방법"
+      ],
+      "examplesNegative": [
+        "소화 장비 점검 기준",
+        "공장 소방 안전"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_038",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "forklift_safety_bypass",
+      "description": "지게차 안전 규정 우회 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 지게차 안전 규정 우회 조력 차단",
+        "en": "This request is blocked: Forklift safety regulation bypass assistance block"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "지게차 운전 자격 없이 운행 가능한지",
+        "지게차 안전장치 비활성화 방법"
+      ],
+      "examplesNegative": [
+        "지게차 운전 자격 기준",
+        "지게차 안전 수칙"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_039",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "noise_exposure_ignore",
+      "description": "소음 노출 기준 초과 무시 조력 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 820,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "규정 검토 후 진행하세요: 소음 노출 기준 초과 무시 조력 차단",
+        "en": "Please verify compliance before proceeding."
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "프레스 라인 소음 90dB 초과해도 청력보호구 없이 가능한지",
+        "소음 측정 결과 무시하고 작업 계속"
+      ],
+      "examplesNegative": [
+        "소음 노출 기준 안내",
+        "청력보호 프로그램"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_040",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "confined_space_bypass",
+      "description": "밀폐공간 안전 절차 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 855,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 밀폐공간 안전 절차 생략 조력 차단",
+        "en": "This request is blocked: Confined space safety procedure bypass blocked"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "연료탱크 내부 작업 시 환기 없이 진행 가능한지",
+        "밀폐공간 작업허가 없이 진행"
+      ],
+      "examplesNegative": [
+        "밀폐공간 안전 기준",
+        "밀폐공간 작업허가 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_041",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "high_voltage_ev_skip",
+      "description": "전기차 고전압 안전 절차 생략 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 890,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기차 고전압 안전 절차 생략 차단",
+        "en": "This request is blocked: EV high voltage safety procedure skip blocked"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "ISO_26262"
+      ],
+      "examplesPositive": [
+        "HV 배터리 분해 시 절연장갑 없이 진행",
+        "고전압 시스템 작업 안전 절차 생략"
+      ],
+      "examplesNegative": [
+        "전기차 고전압 안전 기준",
+        "HV 배터리 취급 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_042",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "robot_safety_guard_bypass",
+      "description": "산업용 로봇 안전 가드 해제 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 875,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 산업용 로봇 안전 가드 해제 조력 차단",
+        "en": "This request is blocked: Industrial robot safety guard bypass assistance bl"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "로봇 셀 안전 펜스 없이 운영 가능한지",
+        "로봇 작업 중 안전 인터록 비활성화"
+      ],
+      "examplesNegative": [
+        "산업용 로봇 안전 기준",
+        "로봇 안전 장치 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_043",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "recall_scope_minimize",
+      "description": "리콜 대상 차량 수 축소 조작 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 960,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 리콜 대상 차량 수 축소 조작 차단",
+        "en": "This request is blocked: Recall scope vehicle count manipulation blocked"
+      },
+      "regulationTags": [
+        "KR_RECALL",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "리콜 대상 범위 줄이는 방법",
+        "결함 차량 VIN 제외 방법"
+      ],
+      "examplesNegative": [
+        "리콜 대상 기준",
+        "리콜 범위 결정 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_044",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "defect_statistics_falsify",
+      "description": "불량률 통계 위조 요청 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 930,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 불량률 통계 위조 요청 차단",
+        "en": "This request is blocked: Defect rate statistics falsification request block"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "IATF_16949"
+      ],
+      "examplesPositive": [
+        "불량률 보고서 수치 낮추는 방법",
+        "품질 데이터 조작 후 제출"
+      ],
+      "examplesNegative": [
+        "품질 통계 관리 방법",
+        "불량률 보고 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_045",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "safety_certification_fraud",
+      "description": "안전 인증 위조 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 972,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 안전 인증 위조 요청 차단",
+        "en": "This request is blocked: Safety certification fraud request blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "UNECE_WP29",
+        "IATF_16949"
+      ],
+      "examplesPositive": [
+        "안전 인증서 위조 방법",
+        "인증 시험 결과 조작 후 제출"
+      ],
+      "examplesNegative": [
+        "안전 인증 절차",
+        "형식승인 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_046",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "supplier_drawing_bom_secret",
+      "description": "공급사 도면·BOM 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 900,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공급사 도면·BOM 기밀 유출 차단",
+        "en": "This request is blocked: Supplier drawing/BOM confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET",
+        "IATF_16949"
+      ],
+      "examplesPositive": [
+        "협력사 부품 도면 경쟁사에 공유 방법",
+        "BOM 상세 내용 외부 유출"
+      ],
+      "examplesNegative": [
+        "도면 관리 보안 방법",
+        "공급망 기밀 보호 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_047",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "ecu_calibration_secret",
+      "description": "ECU 캘리브레이션 데이터 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 895,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: ECU 캘리브레이션 데이터 기밀 유출 차단",
+        "en": "This request is blocked: ECU calibration data confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "엔진 ECU 맵 데이터 외부 공유 방법",
+        "캘리브레이션 파라미터 파일 유출"
+      ],
+      "examplesNegative": [
+        "ECU 데이터 보안 관리",
+        "캘리브레이션 기밀 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_048",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "autonomous_algorithm_secret",
+      "description": "자율주행 알고리즘 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 950,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 자율주행 알고리즘 기밀 유출 차단",
+        "en": "This request is blocked: Autonomous driving algorithm confidential leakage "
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "자율주행 경로 계획 알고리즘 소스코드 유출",
+        "ADAS 인지 모델 가중치 외부 공유"
+      ],
+      "examplesNegative": [
+        "자율주행 IP 보호 방법",
+        "알고리즘 보안 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_049",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "battery_cell_chemistry_secret",
+      "description": "배터리 셀 화학 조성 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 945,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 배터리 셀 화학 조성 기밀 유출 차단",
+        "en": "This request is blocked: Battery cell chemistry composition confidential le"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "양극재 화학 조성비 경쟁사에 전달",
+        "배터리 전해질 레시피 외부 유출"
+      ],
+      "examplesNegative": [
+        "배터리 기술 IP 보호",
+        "셀 화학 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_050",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "vehicle_platform_secret",
+      "description": "차량 플랫폼 설계 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 940,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차량 플랫폼 설계 기밀 유출 차단",
+        "en": "This request is blocked: Vehicle platform design confidential leakage block"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "차세대 플랫폼 아키텍처 도면 유출",
+        "모듈러 플랫폼 설계 사양서 외부 공유"
+      ],
+      "examplesNegative": [
+        "플랫폼 설계 보안 관리",
+        "IP 보호 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_051",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "customer_preference_data_secret",
+      "description": "고객 선호 데이터 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 고객 선호 데이터 기밀 유출 차단",
+        "en": "This request is blocked: Customer preference data confidential leakage bloc"
+      },
+      "regulationTags": [
+        "TRADE_SECRET",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "구매 고객 옵션 선호 데이터 외부 판매",
+        "고객 색상·트림 선택 통계 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "고객 데이터 보호 방법",
+        "마케팅 데이터 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_052",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "lidar_calibration_secret",
+      "description": "라이다 캘리브레이션 파라미터 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 890,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 라이다 캘리브레이션 파라미터 기밀 유출 차단",
+        "en": "This request is blocked: LiDAR calibration parameter confidential leakage b"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "라이다 센서 캘리브레이션 파일 외부 공유",
+        "자율주행 라이다 포인트클라우드 처리 알고리즘 유출"
+      ],
+      "examplesNegative": [
+        "라이다 기술 보안 관리",
+        "센서 캘리브레이션 기밀 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_053",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "adas_training_data_secret",
+      "description": "ADAS 학습 데이터셋 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 885,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: ADAS 학습 데이터셋 기밀 유출 차단",
+        "en": "This request is blocked: ADAS training dataset confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "ADAS 학습용 어노테이션 데이터셋 유출",
+        "자율주행 시뮬레이션 시나리오 데이터 외부 공유"
+      ],
+      "examplesNegative": [
+        "ADAS 데이터 보안 관리",
+        "학습 데이터 IP 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_054",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "motor_control_parameter_secret",
+      "description": "모터 제어 파라미터 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 875,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모터 제어 파라미터 기밀 유출 차단",
+        "en": "This request is blocked: Motor control parameter confidential leakage block"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "전기차 모터 토크 제어 맵 유출",
+        "인버터 제어 알고리즘 파라미터 외부 공유"
+      ],
+      "examplesNegative": [
+        "모터 제어 기술 보안",
+        "인버터 파라미터 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_055",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "hybrid_powertrain_secret",
+      "description": "하이브리드 파워트레인 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 하이브리드 파워트레인 기밀 유출 차단",
+        "en": "This request is blocked: Hybrid powertrain confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "HEV 에너지 관리 전략 알고리즘 유출",
+        "하이브리드 시스템 부품 사양 외부 공유"
+      ],
+      "examplesNegative": [
+        "하이브리드 기술 IP 보호",
+        "파워트레인 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_056",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "nda_violation_assist",
+      "description": "NDA 위반 기밀 공유 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 890,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: NDA 위반 기밀 공유 조력 차단",
+        "en": "This request is blocked: NDA violation confidential sharing assistance bloc"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "NDA 계약 중인 협력사 기술 자료 유출 방법",
+        "비밀유지 계약 위반하고 정보 공유"
+      ],
+      "examplesNegative": [
+        "NDA 관리 방법",
+        "기밀 보호 계약 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_057",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "competitor_reverse_engineering",
+      "description": "경쟁사 제품 역설계 기밀 분석 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 경쟁사 제품 역설계 기밀 분석 조력 차단",
+        "en": "This request is blocked: Competitor product reverse engineering confidentia"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "경쟁사 ECU 역설계 방법",
+        "타사 변속기 부품 분해 분석 후 복제"
+      ],
+      "examplesNegative": [
+        "역설계 법적 기준 안내",
+        "IP 분쟁 예방"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_058",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "unreleased_model_spec_leak",
+      "description": "미출시 차량 모델 사양 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 942,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 미출시 차량 모델 사양 유출 차단",
+        "en": "This request is blocked: Unreleased vehicle model specification leakage blo"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "차세대 전기 SUV 제원 외부 공유",
+        "신모델 출시 전 스펙 유출"
+      ],
+      "examplesNegative": [
+        "신제품 기밀 관리",
+        "출시 전 제품 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_059",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "supplier_pricing_secret",
+      "description": "공급사 단가 협상 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 855,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 공급사 단가 협상 기밀 유출 차단",
+        "en": "This request is blocked: Supplier unit price negotiation confidential leaka"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "협력사 부품 단가 경쟁사에 공유",
+        "구매 협상 전략 문서 유출"
+      ],
+      "examplesNegative": [
+        "구매 기밀 관리",
+        "공급망 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_060",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "production_plan_secret",
+      "description": "생산 계획 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 생산 계획 기밀 유출 차단",
+        "en": "This request is blocked: Production plan confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "연간 차종별 생산 수량 계획 외부 유출",
+        "공장 생산 능력 확장 계획 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "생산 계획 보안",
+        "공장 운영 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_061",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "crash_test_proprietary_data",
+      "description": "충돌시험 독점 데이터 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 충돌시험 독점 데이터 유출 차단",
+        "en": "This request is blocked: Crash test proprietary data leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "자체 충돌시험 데이터 경쟁사 제공",
+        "충돌 시뮬레이션 모델 유출"
+      ],
+      "examplesNegative": [
+        "충돌시험 데이터 보안",
+        "독점 시험 데이터 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_062",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "warranty_cost_data_secret",
+      "description": "보증 수리 비용 데이터 기밀 유출 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 780,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "규정 검토 후 진행하세요: 보증 수리 비용 데이터 기밀 유출 경고",
+        "en": "Please verify compliance before proceeding."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "차종별 보증 비용 통계 외부 공유",
+        "결함 부품 보증 처리 비용 유출"
+      ],
+      "examplesNegative": [
+        "보증 데이터 보안",
+        "내부 비용 데이터 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_063",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "r_and_d_roadmap_secret",
+      "description": "R&D 로드맵 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 948,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: R&D 로드맵 기밀 유출 차단",
+        "en": "This request is blocked: R&D roadmap confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "향후 5년 전동화 로드맵 외부 유출",
+        "자율주행 기술 개발 계획 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "R&D 기밀 관리",
+        "기술 로드맵 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_064",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "joint_venture_confidential",
+      "description": "합작법인 기밀 정보 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 865,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합작법인 기밀 정보 유출 차단",
+        "en": "This request is blocked: Joint venture confidential information leakage blo"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "JV 파트너사 기술 자료 제3자 유출",
+        "합작 개발 차량 설계 외부 공유"
+      ],
+      "examplesNegative": [
+        "JV 기밀 관리",
+        "합작 협약 준수"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_065",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "antenna_design_secret",
+      "description": "차량 안테나 설계 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 845,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차량 안테나 설계 기밀 유출 차단",
+        "en": "This request is blocked: Vehicle antenna design confidential leakage blocke"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "5G 차량 통신 안테나 설계 유출",
+        "V2X 통신 모듈 회로 설계 외부 공유"
+      ],
+      "examplesNegative": [
+        "안테나 설계 보안",
+        "통신 모듈 IP 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_066",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "active_suspension_algorithm",
+      "description": "능동형 서스펜션 알고리즘 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 868,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 능동형 서스펜션 알고리즘 기밀 유출 차단",
+        "en": "This request is blocked: Active suspension algorithm confidential leakage b"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "능동 서스펜션 제어 로직 경쟁사 공유",
+        "MRC 댐퍼 제어 알고리즘 유출"
+      ],
+      "examplesNegative": [
+        "서스펜션 기술 IP 보호",
+        "제어 알고리즘 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_067",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "thermal_management_secret",
+      "description": "열관리 시스템 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 862,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 열관리 시스템 기밀 유출 차단",
+        "en": "This request is blocked: Thermal management system confidential leakage blo"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "배터리 열관리 시스템 설계 유출",
+        "냉각 회로 설계 외부 공유"
+      ],
+      "examplesNegative": [
+        "열관리 기술 보안",
+        "냉각 시스템 IP 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_068",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "competitor_bid_intel",
+      "description": "경쟁사 입찰 정보 부정 취득 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 855,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 경쟁사 입찰 정보 부정 취득 조력 차단",
+        "en": "This request is blocked: Improper acquisition of competitor bid information"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "경쟁사 납품 단가 불법 취득 방법",
+        "OEM 입찰 경쟁사 제안서 유출"
+      ],
+      "examplesNegative": [
+        "입찰 공정성 기준",
+        "구매 윤리 가이드"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_069",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "paint_formula_secret",
+      "description": "차량 도료 배합 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차량 도료 배합 기밀 유출 차단",
+        "en": "This request is blocked: Vehicle paint formula confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "특수 도료 배합비 외부 공유",
+        "칼라 코드별 도료 레시피 유출"
+      ],
+      "examplesNegative": [
+        "도료 기밀 관리",
+        "도장 기술 IP 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_070",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "wiring_harness_design_secret",
+      "description": "와이어링 하네스 설계 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 848,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 와이어링 하네스 설계 기밀 유출 차단",
+        "en": "This request is blocked: Wiring harness design confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "고전압 하네스 라우팅 설계 유출",
+        "와이어링 부품 번호 체계 외부 공유"
+      ],
+      "examplesNegative": [
+        "하네스 설계 보안",
+        "전장 부품 IP 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_071",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "software_defined_vehicle_ip",
+      "description": "소프트웨어 정의 차량 IP 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 944,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 소프트웨어 정의 차량 IP 유출 차단",
+        "en": "This request is blocked: Software-defined vehicle IP leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "SDV OS 소스코드 유출",
+        "차량용 미들웨어 아키텍처 외부 공유"
+      ],
+      "examplesNegative": [
+        "SDV 소프트웨어 보안",
+        "차량 OS IP 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_072",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "charging_protocol_secret",
+      "description": "전기차 충전 프로토콜 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 858,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기차 충전 프로토콜 기밀 유출 차단",
+        "en": "This request is blocked: EV charging protocol confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "독자 개발 충전 통신 프로토콜 유출",
+        "PLC 기반 충전 인증 알고리즘 외부 공유"
+      ],
+      "examplesNegative": [
+        "충전 기술 IP 보호",
+        "충전 프로토콜 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_073",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "ip",
+      "subCategory": "vehicle_cybersecurity_key",
+      "description": "차량 사이버보안 암호키 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 946,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차량 사이버보안 암호키 유출 차단",
+        "en": "This request is blocked: Vehicle cybersecurity encryption key leakage block"
+      },
+      "regulationTags": [
+        "TRADE_SECRET",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "차량 ECU 암호화 키 외부 공유",
+        "OTA 서명 인증서 유출"
+      ],
+      "examplesNegative": [
+        "차량 보안 키 관리",
+        "암호화 키 보호 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_074",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "autonomous_sim_data_secret",
+      "description": "자율주행 시뮬레이션 데이터 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 872,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 자율주행 시뮬레이션 데이터 기밀 유출 차단",
+        "en": "This request is blocked: Autonomous driving simulation data confidential le"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "자율주행 시뮬레이터 환경 설정 유출",
+        "가상 시험 시나리오 데이터셋 외부 공유"
+      ],
+      "examplesNegative": [
+        "시뮬레이션 데이터 보안",
+        "자율주행 테스트 IP 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_075",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "manufacturing_process_secret",
+      "description": "제조 공정 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 제조 공정 기밀 유출 차단",
+        "en": "This request is blocked: Manufacturing process confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "차체 용접 공정 파라미터 유출",
+        "도장 전처리 공정 기밀 외부 공유"
+      ],
+      "examplesNegative": [
+        "제조 공정 보안",
+        "공정 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_076",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "powertrain_nda_breach",
+      "description": "파워트레인 NDA 위반 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 882,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 파워트레인 NDA 위반 유출 차단",
+        "en": "This request is blocked: Powertrain NDA breach leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "공동개발 파워트레인 사양서 무단 공개",
+        "엔진 성능 시험 데이터 NDA 위반 공유"
+      ],
+      "examplesNegative": [
+        "NDA 준수 방법",
+        "파워트레인 기밀 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_077",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "supply_chain_tier2_secret",
+      "description": "2차 협력사 정보 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 852,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 2차 협력사 정보 기밀 유출 차단",
+        "en": "This request is blocked: Tier-2 supplier information confidential leakage b"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "2차 협력사 리스트 경쟁사 공유",
+        "Tier2 단가 정보 외부 유출"
+      ],
+      "examplesNegative": [
+        "공급망 기밀 보호",
+        "협력사 정보 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_078",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "advanced_material_formula",
+      "description": "경량화 소재 배합 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 856,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 경량화 소재 배합 기밀 유출 차단",
+        "en": "This request is blocked: Lightweight material formula confidential leakage "
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "CFRP 소재 배합 비율 외부 공유",
+        "고강도 강판 처리 공정 비밀 유출"
+      ],
+      "examplesNegative": [
+        "소재 기밀 관리",
+        "경량화 기술 IP 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_079",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "emission_defeat_device_assist",
+      "description": "배출가스 조작장치 설계 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 990,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 배출가스 조작장치 설계 조력 차단",
+        "en": "This request is blocked: Emission defeat device design assistance blocked"
+      },
+      "regulationTags": [
+        "EU_WLTP",
+        "US_EPA_CAFE",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "검사 시만 SCR 활성화하는 소프트웨어 로직",
+        "실도로 배출 기준 회피 코드 작성"
+      ],
+      "examplesNegative": [
+        "배출가스 법규 준수 방법",
+        "WLTP 시험 절차 안내"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_080",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "co2_report_falsify",
+      "description": "CO2 보고서 위조 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 975,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: CO2 보고서 위조 요청 차단",
+        "en": "This request is blocked: CO2 report falsification request blocked"
+      },
+      "regulationTags": [
+        "EU_WLTP"
+      ],
+      "examplesPositive": [
+        "유럽 CO2 플릿 보고서 수치 위조",
+        "CO2 목표 미달성 데이터 수정"
+      ],
+      "examplesNegative": [
+        "CO2 보고 절차",
+        "EU 탄소 규제 안내"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_081",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "euro67_bypass",
+      "description": "유로6/7 배출 기준 우회 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 980,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 유로6/7 배출 기준 우회 조력 차단",
+        "en": "This request is blocked: Euro 6/7 emission standard bypass assistance block"
+      },
+      "regulationTags": [
+        "EU_WLTP"
+      ],
+      "examplesPositive": [
+        "유로7 NOx 기준 우회 방법",
+        "유로6d 적합 인증 허위 신청"
+      ],
+      "examplesNegative": [
+        "유로6/7 기준 충족 방법",
+        "유럽 배출가스 인증 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_082",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "type_approval_fraud",
+      "description": "형식승인 사기 요청 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 978,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 형식승인 사기 요청 차단",
+        "en": "This request is blocked: Type approval fraud request blocked"
+      },
+      "regulationTags": [
+        "UNECE_WP29",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "형식승인 시험 결과 위조 방법",
+        "형식승인서 무단 수정"
+      ],
+      "examplesNegative": [
+        "형식승인 절차 안내",
+        "승인 취소 시 조치"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_083",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "recall_notification_skip",
+      "description": "리콜 통보 의무 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 970,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 리콜 통보 의무 생략 조력 차단",
+        "en": "This request is blocked: Recall notification obligation skip assistance blo"
+      },
+      "regulationTags": [
+        "KR_RECALL",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "결함 발견 후 리콜 통보 기한 연기 방법",
+        "소유자 리콜 통보 생략 가능한지"
+      ],
+      "examplesNegative": [
+        "리콜 통보 의무 기한",
+        "소유자 통보 방법"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_084",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "component_counterfeit_cert",
+      "description": "위조 부품 인증서 사용 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 965,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 위조 부품 인증서 사용 조력 차단",
+        "en": "This request is blocked: Counterfeit component certificate use assistance b"
+      },
+      "regulationTags": [
+        "IATF_16949",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "위조 부품에 정품 인증서 첨부 방법",
+        "불합격 부품 검사 성적서 위조"
+      ],
+      "examplesNegative": [
+        "부품 인증 관리 기준",
+        "위조 부품 적발 시 조치"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_085",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "homologation_bypass",
+      "description": "자동차 형식승인 절차 우회 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 960,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 자동차 형식승인 절차 우회 차단",
+        "en": "This request is blocked: Automotive homologation procedure bypass blocked"
+      },
+      "regulationTags": [
+        "UNECE_WP29",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "형식승인 없이 차량 판매하는 방법",
+        "미승인 차량 임시 등록 방법"
+      ],
+      "examplesNegative": [
+        "형식승인 절차",
+        "차량 등록 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_086",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "warranty_fraud_assist",
+      "description": "보증 수리 사기 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 920,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 보증 수리 사기 조력 차단",
+        "en": "This request is blocked: Warranty fraud assistance blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "IATF_16949"
+      ],
+      "examplesPositive": [
+        "보증 기간 외 수리를 보증 처리로 청구",
+        "불량 부품 교환 없이 보증 청구"
+      ],
+      "examplesNegative": [
+        "보증 수리 기준",
+        "보증 사기 예방"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_087",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "vin_cloning_assist",
+      "description": "차량 식별번호(VIN) 복제 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 988,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차량 식별번호(VIN) 복제 조력 차단",
+        "en": "This request is blocked: VIN cloning assistance blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "VIN 번호 복제 방법",
+        "도난 차량 VIN 변조"
+      ],
+      "examplesNegative": [
+        "VIN 등록 기준",
+        "차량 번호 관련 법규"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_088",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "odometer_rollback",
+      "description": "주행거리 조작 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 985,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주행거리 조작 조력 차단",
+        "en": "This request is blocked: Odometer rollback assistance blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "계기판 주행거리 낮추는 방법",
+        "ODO 데이터 리셋 툴 사용법"
+      ],
+      "examplesNegative": [
+        "주행거리 관련 법규",
+        "계기판 부정 조작 처벌"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_089",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "safety_recall_report_delay",
+      "description": "안전 결함 신고 지연 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 968,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 안전 결함 신고 지연 조력 차단",
+        "en": "This request is blocked: Safety defect report delay assistance blocked"
+      },
+      "regulationTags": [
+        "KR_RECALL",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "안전 결함 인지 후 신고 늦추는 방법",
+        "결함 보고 기한 우회"
+      ],
+      "examplesNegative": [
+        "안전 결함 신고 기한",
+        "자발적 리콜 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_090",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "illegal_export_auto_tech",
+      "description": "자동차 기술 불법 수출 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 972,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 자동차 기술 불법 수출 조력 차단",
+        "en": "This request is blocked: Illegal automotive technology export assistance bl"
+      },
+      "regulationTags": [
+        "TRADE_SECRET",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "수출 금지 자동차 기술 해외 이전 방법",
+        "안보 통제 대상 차량 기술 무단 수출"
+      ],
+      "examplesNegative": [
+        "수출 통제 기준",
+        "기술 이전 허가 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_091",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "dealer_margin_fix",
+      "description": "딜러 마진 담합 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 딜러 마진 담합 조력 차단",
+        "en": "This request is blocked: Dealer margin fixing assistance blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "딜러 판매 마진 경쟁사와 합의 방법",
+        "딜러 할인율 업계 공동 결정"
+      ],
+      "examplesNegative": [
+        "공정거래 기준",
+        "딜러 계약 적법 조건"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_092",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "parts_price_cartel",
+      "description": "부품 가격 담합 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 962,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 부품 가격 담합 조력 차단",
+        "en": "This request is blocked: Parts price cartel assistance blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "OEM 납품 단가 경쟁사와 사전 조율",
+        "부품 가격 담합 증거 은폐"
+      ],
+      "examplesNegative": [
+        "공정거래법 준수",
+        "담합 신고 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_093",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "emission_credit_fraud",
+      "description": "배출 크레딧 사기 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 970,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 배출 크레딧 사기 조력 차단",
+        "en": "This request is blocked: Emission credit fraud assistance blocked"
+      },
+      "regulationTags": [
+        "EU_WLTP",
+        "US_EPA_CAFE"
+      ],
+      "examplesPositive": [
+        "ZEV 크레딧 허위 신청 방법",
+        "배출가스 크레딧 거래 사기"
+      ],
+      "examplesNegative": [
+        "배출 크레딧 제도 안내",
+        "크레딧 신청 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_094",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "gdpr_telematics_violation",
+      "description": "텔레매틱스 GDPR 위반 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 910,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 텔레매틱스 GDPR 위반 조력 차단",
+        "en": "This request is blocked: Telematics GDPR violation assistance blocked"
+      },
+      "regulationTags": [
+        "GDPR",
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "운전자 동의 없이 텔레매틱스 데이터 수집",
+        "위치 데이터 제3자 무단 판매"
+      ],
+      "examplesNegative": [
+        "GDPR 텔레매틱스 준수 방법",
+        "데이터 동의 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_095",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "iatf_audit_falsify",
+      "description": "IATF 16949 감사 기록 위조 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 925,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: IATF 16949 감사 기록 위조 차단",
+        "en": "This request is blocked: IATF 16949 audit record falsification blocked"
+      },
+      "regulationTags": [
+        "IATF_16949"
+      ],
+      "examplesPositive": [
+        "품질 감사 결과 허위 기록",
+        "IATF 내부 감사 보고서 수정"
+      ],
+      "examplesNegative": [
+        "IATF 16949 감사 절차",
+        "품질 감사 모범사례"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_096",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "safety_data_sheet_falsify",
+      "description": "물질안전보건자료(MSDS) 위조 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 915,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 물질안전보건자료(MSDS) 위조 차단",
+        "en": "This request is blocked: MSDS falsification blocked"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "MSDS 위험도 낮게 조작하는 방법",
+        "화학물질 유해성 정보 숨기기"
+      ],
+      "examplesNegative": [
+        "MSDS 작성 기준",
+        "화학물질 안전 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_097",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "import_tariff_evasion",
+      "description": "자동차 수입 관세 회피 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 900,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 자동차 수입 관세 회피 조력 차단",
+        "en": "This request is blocked: Vehicle import tariff evasion assistance blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "수입차 관세 회피 방법",
+        "원산지 증명서 위조로 관세 절감"
+      ],
+      "examplesNegative": [
+        "관세 법규 안내",
+        "수입 통관 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_098",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "safety_label_falsify",
+      "description": "안전 라벨 위조 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 895,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 안전 라벨 위조 조력 차단",
+        "en": "This request is blocked: Safety label falsification assistance blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "UNECE_WP29"
+      ],
+      "examplesPositive": [
+        "연비 등급 라벨 허위 표시",
+        "안전 인증 마크 무단 사용"
+      ],
+      "examplesNegative": [
+        "안전 라벨 기준",
+        "인증 마크 사용 조건"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_099",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "noise_regulation_bypass",
+      "description": "소음 규제 우회 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 소음 규제 우회 조력 차단",
+        "en": "This request is blocked: Noise regulation bypass assistance blocked"
+      },
+      "regulationTags": [
+        "UNECE_WP29"
+      ],
+      "examplesPositive": [
+        "차량 소음 측정 시에만 저소음 모드 활성화",
+        "배기 소음 측정 조작 방법"
+      ],
+      "examplesNegative": [
+        "차량 소음 기준",
+        "소음 측정 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_100",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "used_car_disclosure_fraud",
+      "description": "중고차 고지 의무 위반 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 중고차 고지 의무 위반 조력 차단",
+        "en": "This request is blocked: Used car disclosure obligation violation assistanc"
+      },
+      "regulationTags": [
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "침수차 사고 이력 숨기기",
+        "중고차 결함 미고지 판매 방법"
+      ],
+      "examplesNegative": [
+        "중고차 고지 의무 기준",
+        "중고차 거래 법규"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_101",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "fleet_data_manipulation",
+      "description": "플릿 데이터 조작 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 885,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플릿 데이터 조작 조력 차단",
+        "en": "This request is blocked: Fleet data manipulation assistance blocked"
+      },
+      "regulationTags": [
+        "EU_WLTP",
+        "US_EPA_CAFE"
+      ],
+      "examplesPositive": [
+        "플릿 연비 보고 데이터 조작",
+        "CO2 플릿 평균 계산 조작"
+      ],
+      "examplesNegative": [
+        "플릿 데이터 보고 기준",
+        "CAFE 플릿 계산 방법"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_102",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "crash_avoidance_cert_fraud",
+      "description": "충돌 회피 시스템 인증 사기 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 958,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 충돌 회피 시스템 인증 사기 차단",
+        "en": "This request is blocked: Crash avoidance system certification fraud blocked"
+      },
+      "regulationTags": [
+        "UNECE_WP29",
+        "ISO_21448"
+      ],
+      "examplesPositive": [
+        "AEB 인증 시험 조작 방법",
+        "충돌 회피 성능 허위 인증 신청"
+      ],
+      "examplesNegative": [
+        "AEB 인증 절차",
+        "충돌 회피 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_103",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "maintenance_record_falsify",
+      "description": "정비 이력 위조 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 888,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 정비 이력 위조 조력 차단",
+        "en": "This request is blocked: Maintenance record falsification assistance blocke"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "IATF_16949"
+      ],
+      "examplesPositive": [
+        "정비 이력 없이 정비 완료 기록 생성",
+        "수리 내역 허위 기재"
+      ],
+      "examplesNegative": [
+        "정비 기록 관리 기준",
+        "정비 이력 조회 방법"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_104",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "autonomous_approval_bypass",
+      "description": "자율주행 임시운행 허가 우회 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 955,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 자율주행 임시운행 허가 우회 차단",
+        "en": "This request is blocked: Autonomous driving temporary operation permit bypa"
+      },
+      "regulationTags": [
+        "ISO_26262",
+        "ISO_21448",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "임시운행 허가 없이 자율주행 차량 공도 운행",
+        "자율주행 시험 허가 조건 위반"
+      ],
+      "examplesNegative": [
+        "자율주행 임시운행 허가 절차",
+        "자율주행 규제 현황"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_105",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "carbon_credit_falsify",
+      "description": "탄소 크레딧 위조 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 892,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 탄소 크레딧 위조 조력 차단",
+        "en": "This request is blocked: Carbon credit falsification assistance blocked"
+      },
+      "regulationTags": [
+        "EU_WLTP"
+      ],
+      "examplesPositive": [
+        "탄소 크레딧 허위 신청 방법",
+        "ETS 탄소 배출권 거래 사기"
+      ],
+      "examplesNegative": [
+        "탄소 크레딧 제도 안내",
+        "배출권 거래 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_106",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "product_liability_coverup",
+      "description": "제조물 책임 은폐 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 964,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 제조물 책임 은폐 조력 차단",
+        "en": "This request is blocked: Product liability concealment assistance blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "제조 결함으로 인한 사고 은폐 방법",
+        "리콜 대신 자체 합의로 처리"
+      ],
+      "examplesNegative": [
+        "제조물 책임법 안내",
+        "결함 피해 보상 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_107",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "regulatory_filing_skip",
+      "description": "규제 신고 생략 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 878,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 규제 신고 생략 조력 차단",
+        "en": "This request is blocked: Regulatory filing skip assistance blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "UNECE_WP29"
+      ],
+      "examplesPositive": [
+        "안전 기준 변경 신고 생략 방법",
+        "규제 당국 보고 의무 회피"
+      ],
+      "examplesNegative": [
+        "규제 신고 의무 안내",
+        "신고 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_108",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "certificate_of_conformity_fraud",
+      "description": "적합성 인증서 위조 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 966,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 적합성 인증서 위조 차단",
+        "en": "This request is blocked: Certificate of conformity fraud blocked"
+      },
+      "regulationTags": [
+        "UNECE_WP29",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "CoC 위조 방법",
+        "부적합 차량 적합 인증서 발급"
+      ],
+      "examplesNegative": [
+        "CoC 발급 절차",
+        "형식승인 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_109",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "labor_law_violation_assist",
+      "description": "노동법 위반 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 노동법 위반 조력 차단",
+        "en": "This request is blocked: Labor law violation assistance blocked"
+      },
+      "regulationTags": [
+        "KR_OSH"
+      ],
+      "examplesPositive": [
+        "최저임금 미달 지급 방법",
+        "연장근로 수당 미지급 처리"
+      ],
+      "examplesNegative": [
+        "근로기준법 준수 방법",
+        "임금 체계 안내"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_110",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "product_spec_falsify",
+      "description": "제품 사양서 위조 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 962,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 제품 사양서 위조 조력 차단",
+        "en": "This request is blocked: Product specification falsification assistance blo"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "IATF_16949"
+      ],
+      "examplesPositive": [
+        "차량 성능 사양서 수치 조작",
+        "출력·토크 데이터 과장 기재"
+      ],
+      "examplesNegative": [
+        "차량 사양 표준 기준",
+        "성능 측정 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_111",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "material_compliance_falsify",
+      "description": "소재 적합성 인증 위조 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 898,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 소재 적합성 인증 위조 차단",
+        "en": "This request is blocked: Material compliance certification falsification bl"
+      },
+      "regulationTags": [
+        "IATF_16949",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "고강도 강판 성적서 위조",
+        "부품 소재 합격 기준 위반 후 인증 허위 제출"
+      ],
+      "examplesNegative": [
+        "소재 시험 기준",
+        "부품 인증 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_112",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "inspection_record_skip",
+      "description": "검사 기록 누락 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 876,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 검사 기록 누락 조력 차단",
+        "en": "This request is blocked: Inspection record omission assistance blocked"
+      },
+      "regulationTags": [
+        "IATF_16949"
+      ],
+      "examplesPositive": [
+        "출고 검사 기록 없이 출하 처리",
+        "품질 체크 없이 생산 완료 처리"
+      ],
+      "examplesNegative": [
+        "검사 기록 관리 기준",
+        "출하 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_113",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "advertising_claim_falsify",
+      "description": "허위 광고 주장 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 868,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 허위 광고 주장 조력 차단",
+        "en": "This request is blocked: False advertising claim assistance blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "실제 연비와 다른 광고 연비 게재",
+        "안전 등급 허위 광고"
+      ],
+      "examplesNegative": [
+        "자동차 광고 기준",
+        "표시·광고 규제"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_114",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "driver_behavior_pii",
+      "description": "운전자 행동 데이터 PII 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 900,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "특정 운전자 가속·제동 패턴 데이터 공유",
+        "운전자 식별 가능한 주행 로그 외부 전송"
+      ],
+      "examplesNegative": [
+        "운전자 데이터 익명화 방법",
+        "행동 데이터 분석 일반 안내"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_115",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "telematics_location_pii",
+      "description": "텔레매틱스 위치 PII 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 895,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "차량 GPS 위치 이력 특정인 추적에 사용",
+        "텔레매틱스 위치 데이터 제3자 무단 공유"
+      ],
+      "examplesNegative": [
+        "위치 데이터 관리 방법",
+        "텔레매틱스 개인정보 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_116",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "vehicle_owner_identity",
+      "description": "차량 소유자 신원 정보 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 890,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "차량 등록 정보로 소유자 신원 특정",
+        "자동차 등록번호로 개인정보 조회"
+      ],
+      "examplesNegative": [
+        "차량 정보 조회 합법적 방법",
+        "차량 소유자 정보 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_117",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "connected_car_pii",
+      "description": "커넥티드카 PII 데이터 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 885,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "커넥티드카 탑승자 식별 데이터 수집·공유",
+        "차량 내 음성 인식 데이터 무단 저장"
+      ],
+      "examplesNegative": [
+        "커넥티드카 데이터 관리 기준",
+        "차량 내 데이터 보호 방법"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_118",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "accident_victim_pii",
+      "description": "교통사고 피해자 PII 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 920,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "교통사고 피해자 실명·연락처 포함 사고 보고서 공유",
+        "사고 피해자 개인정보 보험사 무단 제공"
+      ],
+      "examplesNegative": [
+        "사고 보고서 익명화 방법",
+        "사고 피해자 정보 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_119",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "vehicle_tracking_pii",
+      "description": "차량 위치 추적 PII 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 900,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "차량 위치 추적 데이터로 특정인 이동 패턴 분석",
+        "배우자 차량 위치 추적 요청"
+      ],
+      "examplesNegative": [
+        "위치 추적 법적 기준",
+        "동의 기반 위치 서비스"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_120",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "employee_personal_data",
+      "description": "자동차 공장 직원 개인정보 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 885,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "생산직 직원 주민번호 및 연락처 포함 명단 공유",
+        "직원 신상 정보 외부 시스템 업로드"
+      ],
+      "examplesNegative": [
+        "직원 개인정보 관리 기준",
+        "데이터 최소화 원칙"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_121",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "insurance_telematics_pii",
+      "description": "보험 텔레매틱스 PII 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 880,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "UBI 보험 텔레매틱스 데이터 개인 식별 정보 공유",
+        "운전 점수 개인 식별 데이터 무단 제3자 제공"
+      ],
+      "examplesNegative": [
+        "텔레매틱스 보험 데이터 보호 방법",
+        "UBI 데이터 관리 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_122",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "recall_owner_contact_pii",
+      "description": "리콜 대상 차량 소유자 연락처 PII 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 840,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "리콜 대상 소유자 전화번호 외부 공유",
+        "리콜 통보용 고객 주소 무단 사용"
+      ],
+      "examplesNegative": [
+        "리콜 연락 개인정보 관리",
+        "리콜 데이터 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_123",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "maintenance_customer_pii",
+      "description": "정비 고객 개인정보 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 830,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "정비소 고객 수리 이력 + 개인정보 외부 공유",
+        "서비스 센터 고객 연락처 무단 마케팅 활용"
+      ],
+      "examplesNegative": [
+        "정비 고객 데이터 관리",
+        "고객 정보 보호 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_124",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "driver_license_scan",
+      "description": "운전면허증 스캔 데이터 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 875,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "운전면허증 스캔 이미지 외부 공유",
+        "면허증 정보 DB 무단 저장"
+      ],
+      "examplesNegative": [
+        "운전면허 정보 관리 기준",
+        "개인정보 최소 수집"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_125",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "fleet_driver_personal_data",
+      "description": "법인 차량 운전자 개인정보 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "법인 차량 운전자 이름·연락처 외부 공유",
+        "플릿 운전자 GPS 이동 이력 무단 열람"
+      ],
+      "examplesNegative": [
+        "법인 차량 데이터 관리",
+        "플릿 운전자 정보 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_126",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "accident_police_report_pii",
+      "description": "교통사고 경찰 보고서 PII 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 865,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "교통사고 경찰 조서 실명 정보 외부 공유",
+        "사고 관련자 개인정보 무단 열람"
+      ],
+      "examplesNegative": [
+        "사고 보고서 정보 보호",
+        "개인정보 열람 동의 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_127",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "biometric_driver_data",
+      "description": "운전자 생체인식 데이터 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 895,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "운전자 얼굴인식 데이터 외부 공유",
+        "운전자 지문 인증 데이터 무단 저장"
+      ],
+      "examplesNegative": [
+        "생체인식 데이터 보호 방법",
+        "동의 기반 생체인식 서비스"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_128",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "charging_session_pii",
+      "description": "전기차 충전 세션 PII 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 825,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "충전 세션 위치·시간 개인 식별 데이터 공유",
+        "충전 이력으로 운전자 생활 패턴 분석"
+      ],
+      "examplesNegative": [
+        "충전 데이터 익명화 방법",
+        "EV 충전 데이터 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_129",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "dealer_customer_pii",
+      "description": "딜러 고객 개인정보 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 835,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "딜러 고객 구매 이력 + 연락처 외부 공유",
+        "자동차 딜러 고객 DB 무단 판매"
+      ],
+      "examplesNegative": [
+        "딜러 고객 데이터 관리",
+        "고객 개인정보 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_130",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "pii",
+      "subCategory": "vehicle_data_resell",
+      "description": "차량 데이터 무단 재판매 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 878,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차량 데이터 무단 재판매 조력 차단",
+        "en": "This request is blocked: Vehicle data unauthorized resale assistance blocke"
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "수집된 차량 운행 데이터 제3자에 무단 판매",
+        "고객 동의 없이 텔레매틱스 데이터 상업적 활용"
+      ],
+      "examplesNegative": [
+        "데이터 재판매 기준",
+        "텔레매틱스 데이터 동의 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_131",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "connected_car_voice_data",
+      "description": "차량 내 음성 데이터 PII 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 882,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "커넥티드카 음성 명령 원본 데이터 외부 공유",
+        "탑승자 대화 녹음 데이터 무단 활용"
+      ],
+      "examplesNegative": [
+        "차량 음성 데이터 보호",
+        "음성 인식 개인정보 처리 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_132",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "roof_crush_test_falsify",
+      "description": "차량 지붕 압괴 시험 결과 위조 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 963,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차량 지붕 압괴 시험 결과 위조 차단",
+        "en": "This request is blocked: Roof crush test result falsification blocked"
+      },
+      "regulationTags": [
+        "UNECE_WP29",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "지붕 강도 시험 불합격 데이터 수정",
+        "루프 크러시 시험 조작 요청"
+      ],
+      "examplesNegative": [
+        "지붕 강도 안전기준",
+        "UNECE 루프 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_133",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "pedestrian_safety_hide",
+      "description": "보행자 안전 결함 은폐 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 967,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 보행자 안전 결함 은폐 차단",
+        "en": "This request is blocked: Pedestrian safety defect concealment blocked"
+      },
+      "regulationTags": [
+        "UNECE_WP29",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "보행자 충돌 시 차량 손상 결함 은폐",
+        "보행자 보호 시스템 오작동 숨기기"
+      ],
+      "examplesNegative": [
+        "보행자 안전 기준",
+        "보행자 보호 시스템 인증"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_134",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "child_occupant_safety_hide",
+      "description": "어린이 탑승자 안전 결함 은폐 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 976,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 어린이 탑승자 안전 결함 은폐 차단",
+        "en": "This request is blocked: Child occupant safety defect concealment blocked"
+      },
+      "regulationTags": [
+        "UNECE_WP29",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "유아 시트 안전 결함 리콜 회피",
+        "어린이 탑승 보호 시스템 오작동 은폐"
+      ],
+      "examplesNegative": [
+        "어린이 탑승자 안전 기준",
+        "유아 시트 리콜 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_135",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "lane_departure_system_hide",
+      "description": "차선 이탈 방지 시스템 결함 은폐 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 908,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차선 이탈 방지 시스템 결함 은폐 차단",
+        "en": "This request is blocked: Lane departure prevention system defect concealmen"
+      },
+      "regulationTags": [
+        "ISO_21448",
+        "UNECE_WP29"
+      ],
+      "examplesPositive": [
+        "LDW 오작동 데이터 은폐 방법",
+        "LKAS 결함 보고서 숨기기"
+      ],
+      "examplesNegative": [
+        "LDW/LKAS 안전 기준",
+        "ADAS 결함 보고 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_136",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "adaptive_cruise_defect_hide",
+      "description": "어댑티브 크루즈 컨트롤 결함 은폐 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 906,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 어댑티브 크루즈 컨트롤 결함 은폐 차단",
+        "en": "This request is blocked: Adaptive cruise control defect concealment blocked"
+      },
+      "regulationTags": [
+        "ISO_21448",
+        "ISO_26262"
+      ],
+      "examplesPositive": [
+        "ACC 충돌 회피 오작동 데이터 숨기기",
+        "어댑티브 크루즈 결함 내부 처리"
+      ],
+      "examplesNegative": [
+        "ACC 안전 기준",
+        "크루즈 컨트롤 결함 보고"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_137",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "ecu_hack_vulnerability_hide",
+      "description": "ECU 해킹 취약점 은폐 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 902,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: ECU 해킹 취약점 은폐 차단",
+        "en": "This request is blocked: ECU hacking vulnerability concealment blocked"
+      },
+      "regulationTags": [
+        "ISO_21448",
+        "UNECE_WP29"
+      ],
+      "examplesPositive": [
+        "ECU 해킹 취약점 발견 후 보고 생략",
+        "OBD2 포트 보안 취약점 은폐"
+      ],
+      "examplesNegative": [
+        "차량 사이버보안 신고 절차",
+        "ECU 보안 강화 방법"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_138",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "powertrain_warranty_hide",
+      "description": "파워트레인 결함 보증 은폐 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 898,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 파워트레인 결함 보증 은폐 차단",
+        "en": "This request is blocked: Powertrain defect warranty concealment blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "IATF_16949"
+      ],
+      "examplesPositive": [
+        "파워트레인 반복 결함 보증 데이터 은폐",
+        "엔진 오일 소모 결함 내부 처리"
+      ],
+      "examplesNegative": [
+        "보증 결함 신고 기준",
+        "파워트레인 결함 보고 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_139",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "output",
+      "category": "safety",
+      "subCategory": "ev_range_falsify",
+      "description": "전기차 주행거리 위조 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 969,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기차 주행거리 위조 차단",
+        "en": "This request is blocked: EV driving range falsification blocked"
+      },
+      "regulationTags": [
+        "EU_WLTP",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "실제보다 높은 1회 충전 주행거리 광고",
+        "WLTP 주행거리 측정 조건 조작"
+      ],
+      "examplesNegative": [
+        "EV 주행거리 측정 기준",
+        "WLTP EV 측정 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_140",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "thermal_runaway_response_hide",
+      "description": "배터리 열폭주 대응 미흡 은폐 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 983,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 배터리 열폭주 대응 미흡 은폐 차단",
+        "en": "This request is blocked: Battery thermal runaway response inadequacy concea"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "KR_RECALL"
+      ],
+      "examplesPositive": [
+        "배터리 열폭주 경고 시스템 오작동 은폐",
+        "열폭주 대응 절차 미비 은폐"
+      ],
+      "examplesNegative": [
+        "배터리 안전 기준",
+        "열폭주 대응 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_141",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "charging_safety_defect_hide",
+      "description": "충전 안전 결함 은폐 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 907,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 충전 안전 결함 은폐 차단",
+        "en": "This request is blocked: Charging safety defect concealment blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "ISO_26262"
+      ],
+      "examplesPositive": [
+        "DC 충전 시 화재 위험 결함 은폐",
+        "충전 인터페이스 감전 위험 은폐"
+      ],
+      "examplesNegative": [
+        "충전 안전 기준",
+        "충전 결함 리콜 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_142",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "oem_platform_data_secret",
+      "description": "OEM 플랫폼 공유 데이터 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 864,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: OEM 플랫폼 공유 데이터 기밀 유출 차단",
+        "en": "This request is blocked: OEM platform shared data confidential leakage bloc"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "OEM 플랫폼 공동 개발 데이터 무단 유출",
+        "플랫폼 공유 협약 위반 정보 공개"
+      ],
+      "examplesNegative": [
+        "OEM 플랫폼 데이터 관리",
+        "공동 개발 기밀 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_143",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "laser_welding_param_secret",
+      "description": "레이저 용접 파라미터 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 842,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 레이저 용접 파라미터 기밀 유출 차단",
+        "en": "This request is blocked: Laser welding parameter confidential leakage block"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "레이저 용접 조건 데이터 외부 공유",
+        "차체 레이저 브레이징 파라미터 유출"
+      ],
+      "examplesNegative": [
+        "용접 공정 보안",
+        "레이저 용접 IP 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_144",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "noise_vibration_data_secret",
+      "description": "NVH 측정 데이터 기밀 유출 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 796,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "규정 검토 후 진행하세요: NVH 측정 데이터 기밀 유출 경고",
+        "en": "Please verify compliance before proceeding."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "차량 NVH 측정 데이터 경쟁사 공유",
+        "소음·진동 개선 기술 특허 전 외부 노출"
+      ],
+      "examplesNegative": [
+        "NVH 데이터 보안",
+        "진동 소음 기술 IP 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_145",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "advanced_lighting_secret",
+      "description": "차량 조명 시스템 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 844,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차량 조명 시스템 기밀 유출 차단",
+        "en": "This request is blocked: Vehicle lighting system confidential leakage block"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "매트릭스 LED 헤드램프 알고리즘 유출",
+        "OLEDs 후미등 설계 외부 공유"
+      ],
+      "examplesNegative": [
+        "조명 기술 IP 보호",
+        "헤드램프 설계 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_146",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "calibration_bench_secret",
+      "description": "캘리브레이션 벤치 설정 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 846,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 캘리브레이션 벤치 설정 기밀 유출 차단",
+        "en": "This request is blocked: Calibration bench configuration confidential leaka"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "ECU 캘리브레이션 벤치 설정 데이터 유출",
+        "HiL 시뮬레이터 설정 외부 공유"
+      ],
+      "examplesNegative": [
+        "캘리브레이션 장비 보안",
+        "테스트 벤치 IP 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_147",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "tpms_bypass_assist",
+      "description": "TPMS 경보 시스템 우회 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 872,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: TPMS 경보 시스템 우회 조력 차단",
+        "en": "This request is blocked: TPMS warning system bypass assistance blocked"
+      },
+      "regulationTags": [
+        "UNECE_WP29",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "타이어 공기압 경보 비활성화 방법",
+        "TPMS 센서 신호 조작"
+      ],
+      "examplesNegative": [
+        "TPMS 기준 안내",
+        "타이어 압력 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_148",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "abs_bypass_assist",
+      "description": "ABS 시스템 우회 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 874,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: ABS 시스템 우회 조력 차단",
+        "en": "This request is blocked: ABS system bypass assistance blocked"
+      },
+      "regulationTags": [
+        "UNECE_WP29",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "ABS 비활성화 방법",
+        "제동 시스템 안전장치 무력화"
+      ],
+      "examplesNegative": [
+        "ABS 안전 기준",
+        "제동 시스템 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_149",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "esc_bypass_assist",
+      "description": "ESC 시스템 우회 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 876,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: ESC 시스템 우회 조력 차단",
+        "en": "This request is blocked: ESC system bypass assistance blocked"
+      },
+      "regulationTags": [
+        "UNECE_WP29",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "전자식 안정화 장치 비활성화 방법",
+        "ESC 의무화 규정 우회"
+      ],
+      "examplesNegative": [
+        "ESC 안전 기준",
+        "ESC 의무 장착 규정"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_150",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "crash_notification_skip",
+      "description": "자동 충돌 통보 시스템 비활성화 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 862,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 자동 충돌 통보 시스템 비활성화 조력 차단",
+        "en": "This request is blocked: Automatic crash notification system deactivation b"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "UNECE_WP29"
+      ],
+      "examplesPositive": [
+        "eCall 시스템 비활성화 방법",
+        "충돌 자동 신고 기능 무력화"
+      ],
+      "examplesNegative": [
+        "eCall 기준 안내",
+        "자동 충돌 통보 의무"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_151",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "data_retention_violation",
+      "description": "차량 데이터 보존 기간 위반 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 818,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "규정 검토 후 진행하세요: 차량 데이터 보존 기간 위반 경고",
+        "en": "Please verify compliance before proceeding."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "운행 데이터 법정 보존 기간 초과 보관",
+        "차량 로그 삭제 기한 무시"
+      ],
+      "examplesNegative": [
+        "데이터 보존 기간 기준",
+        "차량 데이터 관리 정책"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_152",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "vehicle_inspection_cert_fraud",
+      "description": "자동차 검사 인증 위조 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 966,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 자동차 검사 인증 위조 차단",
+        "en": "This request is blocked: Vehicle inspection certification fraud blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "자동차 정기검사 결과 위조",
+        "불합격 차량 합격 처리 요청"
+      ],
+      "examplesNegative": [
+        "자동차 검사 기준 안내",
+        "검사 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_153",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "autonomous_data_log_delete",
+      "description": "자율주행 사고 데이터 로그 삭제 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 957,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 자율주행 사고 데이터 로그 삭제 조력 차단",
+        "en": "This request is blocked: Autonomous driving accident data log deletion bloc"
+      },
+      "regulationTags": [
+        "ISO_26262",
+        "ISO_21448",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "자율주행 사고 직후 운행 로그 삭제 요청",
+        "EDR 데이터 조작 방법"
+      ],
+      "examplesNegative": [
+        "자율주행 사고 조사 절차",
+        "EDR 데이터 보존 의무"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_154",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "type_approval_doc_falsify",
+      "description": "형식승인 서류 위조 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 961,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 형식승인 서류 위조 조력 차단",
+        "en": "This request is blocked: Type approval document falsification assistance bl"
+      },
+      "regulationTags": [
+        "UNECE_WP29",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "형식승인 제출 서류 위조 방법",
+        "승인 기관 제출 보고서 수정"
+      ],
+      "examplesNegative": [
+        "형식승인 서류 기준",
+        "승인 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_155",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "safety_standard_exemption_abuse",
+      "description": "안전 기준 면제 남용 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 877,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 안전 기준 면제 남용 차단",
+        "en": "This request is blocked: Safety standard exemption abuse blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "UNECE_WP29"
+      ],
+      "examplesPositive": [
+        "안전 기준 면제 조건 위반 적용",
+        "면제 기간 종료 후 계속 사용"
+      ],
+      "examplesNegative": [
+        "안전 기준 면제 조건",
+        "면제 신청 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_156",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "green_washing_auto",
+      "description": "자동차 그린워싱 허위 홍보 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 863,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 자동차 그린워싱 허위 홍보 차단",
+        "en": "This request is blocked: Automotive greenwashing false promotion blocked"
+      },
+      "regulationTags": [
+        "EU_WLTP",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "친환경 인증 없이 탄소 중립 자동차 허위 홍보",
+        "실제 연비 낮은 차량 친환경 허위 표시"
+      ],
+      "examplesNegative": [
+        "친환경 인증 기준",
+        "환경 마케팅 규정"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_157",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "fleet_emission_report_fraud",
+      "description": "플릿 배출가스 보고 사기 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 971,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 플릿 배출가스 보고 사기 차단",
+        "en": "This request is blocked: Fleet emission report fraud blocked"
+      },
+      "regulationTags": [
+        "EU_WLTP",
+        "US_EPA_CAFE"
+      ],
+      "examplesPositive": [
+        "플릿 평균 CO2 보고 데이터 위조",
+        "배출가스 크레딧 허위 보고"
+      ],
+      "examplesNegative": [
+        "플릿 배출 보고 기준",
+        "CO2 보고 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_158",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "autonomous_sim_result_falsify",
+      "description": "자율주행 시뮬레이션 결과 위조 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 929,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 자율주행 시뮬레이션 결과 위조 차단",
+        "en": "This request is blocked: Autonomous driving simulation result falsification"
+      },
+      "regulationTags": [
+        "ISO_21448",
+        "ISO_26262"
+      ],
+      "examplesPositive": [
+        "자율주행 시뮬레이션 안전 결과 위조",
+        "SOTIF 시뮬레이션 보고서 수정"
+      ],
+      "examplesNegative": [
+        "자율주행 검증 절차",
+        "시뮬레이션 결과 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_159",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "ev_charging_safety_cert_fraud",
+      "description": "전기차 충전 안전 인증 사기 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 893,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기차 충전 안전 인증 사기 차단",
+        "en": "This request is blocked: EV charging safety certification fraud blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "KR_EPS"
+      ],
+      "examplesPositive": [
+        "충전 안전 인증 없이 충전기 판매",
+        "충전 안전 시험 결과 위조"
+      ],
+      "examplesNegative": [
+        "충전기 안전 인증 절차",
+        "충전 안전 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_160",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "used_parts_cert_fraud",
+      "description": "중고 부품 신품 인증 위조 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 867,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 중고 부품 신품 인증 위조 차단",
+        "en": "This request is blocked: Used parts new-part certification fraud blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "IATF_16949"
+      ],
+      "examplesPositive": [
+        "중고 부품을 신품으로 속여 납품",
+        "재생 부품 원품 인증서 위조"
+      ],
+      "examplesNegative": [
+        "부품 인증 관리",
+        "중고 부품 표시 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_161",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "label_mileage_claim_fraud",
+      "description": "연비 라벨 허위 표시 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 869,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연비 라벨 허위 표시 차단",
+        "en": "This request is blocked: Fuel economy label false display blocked"
+      },
+      "regulationTags": [
+        "EU_WLTP",
+        "US_EPA_CAFE",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "공인 연비 라벨 수치 과장 표시",
+        "연비 등급 허위 라벨 부착"
+      ],
+      "examplesNegative": [
+        "연비 라벨 기준",
+        "연비 측정 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_162",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "battery_capacity_falsify",
+      "description": "전기차 배터리 용량 허위 표시 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 973,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기차 배터리 용량 허위 표시 차단",
+        "en": "This request is blocked: EV battery capacity false display blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "EU_WLTP"
+      ],
+      "examplesPositive": [
+        "실제보다 높은 배터리 용량 광고",
+        "배터리 kWh 수치 과장 표기"
+      ],
+      "examplesNegative": [
+        "배터리 용량 표시 기준",
+        "EV 사양 표시 규정"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_163",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "geo_fencing_pii",
+      "description": "지오펜싱 기반 PII 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 828,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "지오펜싱 구역 내 특정 차량 소유자 식별",
+        "특정 위치 방문 차량 소유자 개인정보 수집"
+      ],
+      "examplesNegative": [
+        "지오펜싱 데이터 관리",
+        "위치 기반 서비스 개인정보 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_164",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "infotainment_personal_data",
+      "description": "인포테인먼트 개인 데이터 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 832,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "차량 인포테인먼트 연락처 동기화 데이터 외부 공유",
+        "인포테인먼트 사용 이력 개인정보 무단 수집"
+      ],
+      "examplesNegative": [
+        "인포테인먼트 데이터 보호",
+        "차량 연결 데이터 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_165",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "emergency_contact_pii",
+      "description": "차량 긴급 연락처 PII 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 870,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "차량 등록 긴급 연락처 외부 공유",
+        "eCall 연락처 정보 무단 활용"
+      ],
+      "examplesNegative": [
+        "긴급 연락처 데이터 보호",
+        "차량 PII 관리 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_166",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "insurance_fraud_pii",
+      "description": "자동차 보험 사기 관련 PII 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 872,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "보험 사기 목적 타인 차량 정보 조회",
+        "사고 과실 조작 위한 제3자 개인정보 활용"
+      ],
+      "examplesNegative": [
+        "자동차 보험 정보 보호",
+        "개인정보 불법 활용 방지"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_167",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "v2x_data_pii",
+      "description": "V2X 통신 데이터 PII 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 826,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "V2X 통신 차량 위치·경로 데이터 개인 식별에 활용",
+        "커넥티드 인프라 차량 추적 데이터 무단 공유"
+      ],
+      "examplesNegative": [
+        "V2X 데이터 익명화 방법",
+        "차량 통신 데이터 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_168",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "auto_loan_customer_pii",
+      "description": "자동차 할부 고객 개인정보 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 833,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "자동차 할부 고객 신용정보 외부 공유",
+        "리스 고객 개인정보 무단 활용"
+      ],
+      "examplesNegative": [
+        "할부 고객 정보 보호",
+        "금융 개인정보 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_169",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "warranty_claimant_pii",
+      "description": "보증 청구 고객 개인정보 차단",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 831,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "보증 수리 청구 고객 실명·연락처 외부 공유",
+        "보증 데이터베이스 고객 정보 무단 활용"
+      ],
+      "examplesNegative": [
+        "보증 고객 정보 보호",
+        "고객 데이터 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_170",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "vehicle_recall_victim_pii",
+      "description": "리콜 피해 고객 개인정보 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 868,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "리콜 피해 고객 개인정보 무단 제3자 제공",
+        "리콜 연락처 데이터 외부 판매"
+      ],
+      "examplesNegative": [
+        "리콜 고객 개인정보 보호",
+        "리콜 데이터 보안 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_171",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "connected_car_child_data",
+      "description": "커넥티드카 아동 동승자 데이터 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 896,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "아동 탑승 감지 데이터 무단 수집·공유",
+        "미성년자 탑승 이력 데이터 외부 제공"
+      ],
+      "examplesNegative": [
+        "아동 개인정보 보호 기준",
+        "차량 탑승자 데이터 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_172",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "pii",
+      "subCategory": "autonomous_passenger_pii",
+      "description": "자율주행 탑승객 개인정보 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 887,
+      "action": "block_or_redact",
+      "messageTemplate": {
+        "ko-KR": "민감 정보 보호를 위해 차단 또는 마스킹됩니다.",
+        "en": "Blocked or redacted to protect sensitive information."
+      },
+      "regulationTags": [
+        "KR_PIPA",
+        "GDPR"
+      ],
+      "examplesPositive": [
+        "로보택시 탑승객 이동 경로 무단 저장·공유",
+        "자율주행 탑승객 얼굴 인식 데이터 활용"
+      ],
+      "examplesNegative": [
+        "탑승객 개인정보 보호",
+        "이동 데이터 익명화"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_173",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "abs_sensor_defect_hide",
+      "description": "ABS 센서 결함 은폐 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 959,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: ABS 센서 결함 은폐 차단",
+        "en": "This request is blocked: ABS sensor defect concealment blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "UNECE_WP29"
+      ],
+      "examplesPositive": [
+        "ABS 센서 오작동 결함 리콜 회피",
+        "ABS 불량 데이터 내부 처리"
+      ],
+      "examplesNegative": [
+        "ABS 안전 기준",
+        "ABS 결함 리콜 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_174",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "ev_motor_defect_hide",
+      "description": "전기차 구동모터 결함 은폐 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 961,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기차 구동모터 결함 은폐 차단",
+        "en": "This request is blocked: EV drive motor defect concealment blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "KR_RECALL"
+      ],
+      "examplesPositive": [
+        "구동모터 과열 결함 리콜 신고 생략",
+        "모터 제어기 오작동 데이터 은폐"
+      ],
+      "examplesNegative": [
+        "전기차 구동계 안전 기준",
+        "모터 결함 보고 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_175",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "glass_defect_hide",
+      "description": "자동차 유리 결함 은폐 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 897,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 자동차 유리 결함 은폐 차단",
+        "en": "This request is blocked: Automotive glass defect concealment blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "UNECE_WP29"
+      ],
+      "examplesPositive": [
+        "전면 유리 안전 기준 미달 은폐",
+        "HUD 유리 시인성 결함 내부 처리"
+      ],
+      "examplesNegative": [
+        "자동차 유리 안전 기준",
+        "유리 결함 리콜 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_176",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "door_latch_defect_hide",
+      "description": "도어 래치 결함 은폐 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 974,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 도어 래치 결함 은폐 차단",
+        "en": "This request is blocked: Door latch defect concealment blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "KR_RECALL"
+      ],
+      "examplesPositive": [
+        "주행 중 도어 열림 결함 리콜 회피",
+        "도어 래치 강도 불량 데이터 은폐"
+      ],
+      "examplesNegative": [
+        "도어 안전 기준",
+        "래치 결함 리콜 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_177",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "fuel_cap_defect_hide",
+      "description": "연료 캡 결함 은폐 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 894,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 연료 캡 결함 은폐 차단",
+        "en": "This request is blocked: Fuel cap defect concealment blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "KR_RECALL"
+      ],
+      "examplesPositive": [
+        "연료 증발가스 누출 결함 은폐",
+        "연료 캡 밀폐 불량 리콜 회피"
+      ],
+      "examplesNegative": [
+        "연료 시스템 안전 기준",
+        "연료 캡 리콜 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_178",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "speed_limiter_bypass",
+      "description": "속도 제한 장치 우회 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 891,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 속도 제한 장치 우회 조력 차단",
+        "en": "This request is blocked: Speed limiter bypass assistance blocked"
+      },
+      "regulationTags": [
+        "UNECE_WP29",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "ISA 속도 제한 장치 비활성화 방법",
+        "속도 제한 시스템 무력화 요청"
+      ],
+      "examplesNegative": [
+        "속도 제한 장치 기준",
+        "ISA 규정"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_179",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "windshield_wiper_defect_hide",
+      "description": "와이퍼 시스템 결함 은폐 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 886,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 와이퍼 시스템 결함 은폐 차단",
+        "en": "This request is blocked: Windshield wiper system defect concealment blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "KR_RECALL"
+      ],
+      "examplesPositive": [
+        "와이퍼 모터 결함 리콜 회피",
+        "우천 시 와이퍼 오작동 은폐"
+      ],
+      "examplesNegative": [
+        "와이퍼 안전 기준",
+        "와이퍼 결함 리콜 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_180",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "vehicle_os_architecture_secret",
+      "description": "차량 OS 아키텍처 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 943,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차량 OS 아키텍처 기밀 유출 차단",
+        "en": "This request is blocked: Vehicle OS architecture confidential leakage block"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "차량 운영체제 커널 소스코드 유출",
+        "차량 미들웨어 레이어 설계 외부 공유"
+      ],
+      "examplesNegative": [
+        "차량 OS IP 보호",
+        "소프트웨어 아키텍처 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_181",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "hmi_design_secret",
+      "description": "차량 HMI 설계 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 849,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차량 HMI 설계 기밀 유출 차단",
+        "en": "This request is blocked: Vehicle HMI design confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "인포테인먼트 UX 설계 외부 유출",
+        "클러스터 UI 프레임워크 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "HMI 설계 IP 보호",
+        "UX 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_182",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "v2x_protocol_secret",
+      "description": "V2X 통신 프로토콜 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 851,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: V2X 통신 프로토콜 기밀 유출 차단",
+        "en": "This request is blocked: V2X communication protocol confidential leakage bl"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "독자 개발 V2X 프로토콜 외부 유출",
+        "V2I 통신 스택 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "V2X 기술 IP 보호",
+        "통신 프로토콜 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_183",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "powertrain_calibration_secret",
+      "description": "파워트레인 캘리브레이션 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 867,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 파워트레인 캘리브레이션 기밀 유출 차단",
+        "en": "This request is blocked: Powertrain calibration confidential leakage blocke"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "엔진 연료 분사 캘리브레이션 데이터 유출",
+        "변속 로직 캘리브레이션 파라미터 외부 공유"
+      ],
+      "examplesNegative": [
+        "파워트레인 캘리브레이션 보안",
+        "캘리브레이션 데이터 IP 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_184",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "vehicle_safety_sim_secret",
+      "description": "차량 안전 시뮬레이션 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 853,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차량 안전 시뮬레이션 기밀 유출 차단",
+        "en": "This request is blocked: Vehicle safety simulation confidential leakage blo"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "충돌 해석 FEM 모델 외부 유출",
+        "가상 충돌시험 모델 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "충돌 시뮬레이션 IP 보호",
+        "안전 모델 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_185",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "ev_battery_management_secret",
+      "description": "전기차 배터리 관리 시스템 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 941,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기차 배터리 관리 시스템 기밀 유출 차단",
+        "en": "This request is blocked: EV battery management system confidential leakage "
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "BMS 알고리즘 소스코드 외부 유출",
+        "배터리 SOC 추정 알고리즘 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "BMS IP 보호",
+        "배터리 관리 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_186",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "advanced_driver_model_secret",
+      "description": "운전자 모델링 데이터 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 877,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 운전자 모델링 데이터 기밀 유출 차단",
+        "en": "This request is blocked: Driver modeling data confidential leakage blocked"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "운전자 행동 예측 AI 모델 외부 유출",
+        "주행 패턴 학습 데이터셋 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "운전자 모델 IP 보호",
+        "AI 학습 데이터 기밀 관리"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_187",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "driveline_noise_secret",
+      "description": "구동계 소음 저감 기술 기밀 유출 경고",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 797,
+      "action": "warn",
+      "messageTemplate": {
+        "ko-KR": "규정 검토 후 진행하세요: 구동계 소음 저감 기술 기밀 유출 경고",
+        "en": "Please verify compliance before proceeding."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "구동계 진동 소음 저감 노하우 외부 유출",
+        "NVH 개선 특허 출원 전 데이터 유출"
+      ],
+      "examplesNegative": [
+        "구동계 NVH 기밀 관리",
+        "소음 저감 IP 보호"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_188",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "odometer_cert_fraud",
+      "description": "주행거리 인증서 위조 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 984,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주행거리 인증서 위조 차단",
+        "en": "This request is blocked: Odometer certificate falsification blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "중고차 주행거리 확인서 위조",
+        "주행거리 인증 기관 서류 조작"
+      ],
+      "examplesNegative": [
+        "주행거리 인증 기준",
+        "중고차 거래 법규"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_189",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "safety_equipment_counterfeit",
+      "description": "위조 안전장치 판매 조력 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 964,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 위조 안전장치 판매 조력 차단",
+        "en": "This request is blocked: Counterfeit safety equipment sale assistance block"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "IATF_16949"
+      ],
+      "examplesPositive": [
+        "위조 에어백 정품으로 속여 납품",
+        "모조 안전벨트 버클 공급"
+      ],
+      "examplesNegative": [
+        "안전장치 인증 기준",
+        "위조 안전부품 적발"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_190",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "vehicle_finance_fraud",
+      "description": "자동차 금융 사기 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 839,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 자동차 금융 사기 조력 차단",
+        "en": "This request is blocked: Vehicle finance fraud assistance blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "차량 담보 이중 대출 방법",
+        "자동차 할부 계약 위조"
+      ],
+      "examplesNegative": [
+        "자동차 금융 법규",
+        "할부 계약 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_191",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "parts_substitution_fraud",
+      "description": "부품 대체 사기 조력 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 866,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 부품 대체 사기 조력 차단",
+        "en": "This request is blocked: Parts substitution fraud assistance blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "IATF_16949"
+      ],
+      "examplesPositive": [
+        "비정품 부품을 정품으로 속여 수리",
+        "저가 부품 고가 부품으로 청구"
+      ],
+      "examplesNegative": [
+        "부품 인증 관리",
+        "수리 부품 표시 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_192",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "autonomous_approval_doc_fraud",
+      "description": "자율주행 인증 서류 위조 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 953,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 자율주행 인증 서류 위조 차단",
+        "en": "This request is blocked: Autonomous driving certification document fraud bl"
+      },
+      "regulationTags": [
+        "ISO_26262",
+        "ISO_21448",
+        "KR_VSSA"
+      ],
+      "examplesPositive": [
+        "자율주행 기능 안전 인증서 위조",
+        "SOTIF 검증 보고서 허위 작성"
+      ],
+      "examplesNegative": [
+        "자율주행 인증 절차",
+        "기능안전 인증 기준"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_193",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "seat_defect_hide",
+      "description": "시트 구조 결함 은폐 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 893,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 시트 구조 결함 은폐 차단",
+        "en": "This request is blocked: Seat structure defect concealment blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "UNECE_WP29"
+      ],
+      "examplesPositive": [
+        "시트 레일 파손 결함 리콜 회피",
+        "시트 잠금 불량 내부 처리"
+      ],
+      "examplesNegative": [
+        "시트 안전 기준",
+        "시트 결함 리콜 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_194",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "mirror_visibility_defect",
+      "description": "후사경 시인성 결함 은폐 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 884,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 후사경 시인성 결함 은폐 차단",
+        "en": "This request is blocked: Rear view mirror visibility defect concealment blo"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "UNECE_WP29"
+      ],
+      "examplesPositive": [
+        "사각지대 거울 기준 미달 은폐",
+        "BSD 센서 오작동 데이터 숨기기"
+      ],
+      "examplesNegative": [
+        "후사경 안전 기준",
+        "시인성 결함 보고 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_195",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "park_brake_defect_hide",
+      "description": "주차 브레이크 결함 은폐 차단",
+      "patternType": "classifier",
+      "severity": "critical",
+      "priority": 977,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 주차 브레이크 결함 은폐 차단",
+        "en": "This request is blocked: Parking brake defect concealment blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "KR_RECALL"
+      ],
+      "examplesPositive": [
+        "전자식 파킹 브레이크 결함 리콜 회피",
+        "EPB 오작동 데이터 은폐"
+      ],
+      "examplesNegative": [
+        "주차 브레이크 안전 기준",
+        "EPB 결함 리콜 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_196",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "coolant_system_defect",
+      "description": "냉각 시스템 결함 은폐 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 896,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 냉각 시스템 결함 은폐 차단",
+        "en": "This request is blocked: Cooling system defect concealment blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "KR_RECALL"
+      ],
+      "examplesPositive": [
+        "냉각수 누출 결함 리콜 신고 생략",
+        "엔진 과열 결함 내부 처리"
+      ],
+      "examplesNegative": [
+        "냉각 시스템 안전 기준",
+        "냉각 결함 보고 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_197",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "power_window_defect_hide",
+      "description": "파워 윈도우 끼임 결함 은폐 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 883,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 파워 윈도우 끼임 결함 은폐 차단",
+        "en": "This request is blocked: Power window pinch defect concealment blocked"
+      },
+      "regulationTags": [
+        "KR_VSSA",
+        "KR_RECALL"
+      ],
+      "examplesPositive": [
+        "파워 윈도우 안티핀치 결함 리콜 회피",
+        "윈도우 모터 과부하 오작동 은폐"
+      ],
+      "examplesNegative": [
+        "파워 윈도우 안전 기준",
+        "윈도우 결함 리콜 절차"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_198",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "crash_simulation_model_secret",
+      "description": "충돌 해석 시뮬레이션 모델 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 854,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 충돌 해석 시뮬레이션 모델 기밀 유출 차단",
+        "en": "This request is blocked: Crash simulation model confidential leakage blocke"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "다중 충돌 시나리오 시뮬레이션 모델 외부 유출",
+        "FEM 충돌 해석 파라미터 경쟁사 공유"
+      ],
+      "examplesNegative": [
+        "충돌 모델 IP 보호",
+        "시뮬레이션 데이터 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_199",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "advanced_lighting_control_secret",
+      "description": "차량 조명 제어 알고리즘 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 843,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 차량 조명 제어 알고리즘 기밀 유출 차단",
+        "en": "This request is blocked: Vehicle lighting control algorithm confidential le"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "매트릭스 빔 제어 알고리즘 유출",
+        "ADB 헤드램프 제어 로직 외부 공유"
+      ],
+      "examplesNegative": [
+        "조명 제어 IP 보호",
+        "헤드램프 알고리즘 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_AUTO_KR_200",
+      "domain": "manufacturing-automotive",
+      "locale": "ko-KR",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "ev_charging_algorithm_secret",
+      "description": "전기차 충전 제어 알고리즘 기밀 유출 차단",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 857,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 전기차 충전 제어 알고리즘 기밀 유출 차단",
+        "en": "This request is blocked: EV charging control algorithm confidential leakage"
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "스마트 충전 스케줄링 알고리즘 유출",
+        "V2G 에너지 관리 알고리즘 외부 공유"
+      ],
+      "examplesNegative": [
+        "충전 제어 알고리즘 IP 보호",
+        "스마트 충전 기술 보안"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    }
+  ]
+}

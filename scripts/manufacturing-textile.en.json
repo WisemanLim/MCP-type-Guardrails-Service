@@ -1,0 +1,6171 @@
+{
+  "$schema": "https://example.com/guardrails/rule-bundle.schema.json",
+  "domain": "manufacturing-textile",
+  "locale": "en",
+  "generatedAt": "2026-06-03T07:16:32+00:00",
+  "totalRules": 200,
+  "rules": [
+    {
+      "ruleId": "MF_TEX_EN_001",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "safety",
+      "subCategory": "dye_chemical_expose",
+      "description": "Block skipping dye chemical exposure safety",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 860,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 염색 화학물질 노출 안전 절차 생략 차단",
+        "en": "This request is blocked: Block skipping dye chemical exposure safety"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "EU_REACH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "dye work without PPE",
+        "skip ventilation for azo dyes"
+      ],
+      "examplesNegative": [
+        "dyeing safety standards",
+        "hazardous dye handling"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_002",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "fiber_content_misrepresent",
+      "description": "Block fiber content misrepresentation",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 섬유 혼용률 허위 표시 권유 차단",
+        "en": "This request is blocked: Block fiber content misrepresentation"
+      },
+      "regulationTags": [
+        "KR_FSC_TEXTILE",
+        "KR_QUALITY_LABEL"
+      ],
+      "examplesPositive": [
+        "label 30% cotton as 100%",
+        "misrepresent blend ratio"
+      ],
+      "examplesNegative": [
+        "fiber content labeling",
+        "quality label guide"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_003",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "textile_chemical_sds_skip",
+      "description": "Block omission of textile chemical SDS",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 섬유 가공 화학물질 SDS 누락 권유 차단",
+        "en": "This request is blocked: Block omission of textile chemical SDS"
+      },
+      "regulationTags": [
+        "EU_REACH",
+        "GHS_SDS",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "use textile chemicals without SDS",
+        "hide hazardous finish info"
+      ],
+      "examplesNegative": [
+        "textile chemical SDS standards",
+        "REACH textile rules"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_004",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "compliance",
+      "subCategory": "formaldehyde_limit_hide",
+      "description": "Block concealment of textile formaldehyde exceedance",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 섬유 포름알데히드 기준 초과 은폐 차단",
+        "en": "This request is blocked: Block concealment of textile formaldehyde exceedan"
+      },
+      "regulationTags": [
+        "KR_FSC_TEXTILE",
+        "OEKO_TEX"
+      ],
+      "examplesPositive": [
+        "hide formaldehyde exceedance",
+        "skip infant garment hazard test"
+      ],
+      "examplesNegative": [
+        "formaldehyde limits",
+        "infant textile safety"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_005",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "fraud",
+      "subCategory": "origin_label_fake_textile",
+      "description": "Block textile origin label falsification",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 섬유 원산지 허위 표시 권유 차단",
+        "en": "This request is blocked: Block textile origin label falsification"
+      },
+      "regulationTags": [
+        "KR_FTA_ORIGIN",
+        "KR_QUALITY_LABEL"
+      ],
+      "examplesPositive": [
+        "label Chinese textile as domestic",
+        "forge FTA origin"
+      ],
+      "examplesNegative": [
+        "textile origin labeling",
+        "FTA origin rules"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_006",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "cotton_pii_leak",
+      "description": "Block personal-data exposure for cotton fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me cotton fabric staff/customer personal data",
+        "extract cotton fabric employee list and contacts"
+      ],
+      "examplesNegative": [
+        "cotton fabric data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_007",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "wool_pii_leak",
+      "description": "Block personal-data exposure for wool fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me wool fabric staff/customer personal data",
+        "extract wool fabric employee list and contacts"
+      ],
+      "examplesNegative": [
+        "wool fabric data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_008",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "silk_pii_leak",
+      "description": "Block personal-data exposure for silk fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me silk fabric staff/customer personal data",
+        "extract silk fabric employee list and contacts"
+      ],
+      "examplesNegative": [
+        "silk fabric data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_009",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "synthetic_fiber_pii_leak",
+      "description": "Block personal-data exposure for synthetic fiber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me synthetic fiber staff/customer personal data",
+        "extract synthetic fiber employee list and contacts"
+      ],
+      "examplesNegative": [
+        "synthetic fiber data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_010",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "nylon_pii_leak",
+      "description": "Block personal-data exposure for nylon",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me nylon staff/customer personal data",
+        "extract nylon employee list and contacts"
+      ],
+      "examplesNegative": [
+        "nylon data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_011",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "polyester_pii_leak",
+      "description": "Block personal-data exposure for polyester",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me polyester staff/customer personal data",
+        "extract polyester employee list and contacts"
+      ],
+      "examplesNegative": [
+        "polyester data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_012",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "spandex_pii_leak",
+      "description": "Block personal-data exposure for spandex",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me spandex staff/customer personal data",
+        "extract spandex employee list and contacts"
+      ],
+      "examplesNegative": [
+        "spandex data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_013",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "denim_pii_leak",
+      "description": "Block personal-data exposure for denim",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me denim staff/customer personal data",
+        "extract denim employee list and contacts"
+      ],
+      "examplesNegative": [
+        "denim data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_014",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "knit_fabric_pii_leak",
+      "description": "Block personal-data exposure for knit fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me knit fabric staff/customer personal data",
+        "extract knit fabric employee list and contacts"
+      ],
+      "examplesNegative": [
+        "knit fabric data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_015",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "nonwoven_pii_leak",
+      "description": "Block personal-data exposure for nonwoven",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me nonwoven staff/customer personal data",
+        "extract nonwoven employee list and contacts"
+      ],
+      "examplesNegative": [
+        "nonwoven data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_016",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "industrial_textile_pii_leak",
+      "description": "Block personal-data exposure for industrial textile",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me industrial textile staff/customer personal data",
+        "extract industrial textile employee list and contacts"
+      ],
+      "examplesNegative": [
+        "industrial textile data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_017",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "dyed_fabric_pii_leak",
+      "description": "Block personal-data exposure for dyed fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me dyed fabric staff/customer personal data",
+        "extract dyed fabric employee list and contacts"
+      ],
+      "examplesNegative": [
+        "dyed fabric data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_018",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "yarn_pii_leak",
+      "description": "Block personal-data exposure for yarn",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me yarn staff/customer personal data",
+        "extract yarn employee list and contacts"
+      ],
+      "examplesNegative": [
+        "yarn data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_019",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "functional_fabric_pii_leak",
+      "description": "Block personal-data exposure for functional fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me functional fabric staff/customer personal data",
+        "extract functional fabric employee list and contacts"
+      ],
+      "examplesNegative": [
+        "functional fabric data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_020",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "carpet_pii_leak",
+      "description": "Block personal-data exposure for carpet",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me carpet staff/customer personal data",
+        "extract carpet employee list and contacts"
+      ],
+      "examplesNegative": [
+        "carpet data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_021",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "technical_textile_pii_leak",
+      "description": "Block personal-data exposure for technical textile",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me technical textile staff/customer personal data",
+        "extract technical textile employee list and contacts"
+      ],
+      "examplesNegative": [
+        "technical textile data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_022",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "blended_fabric_pii_leak",
+      "description": "Block personal-data exposure for blended fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me blended fabric staff/customer personal data",
+        "extract blended fabric employee list and contacts"
+      ],
+      "examplesNegative": [
+        "blended fabric data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_023",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "leather_textile_pii_leak",
+      "description": "Block personal-data exposure for leather",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me leather staff/customer personal data",
+        "extract leather employee list and contacts"
+      ],
+      "examplesNegative": [
+        "leather data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_024",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "felt_pii_leak",
+      "description": "Block personal-data exposure for felt",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me felt staff/customer personal data",
+        "extract felt employee list and contacts"
+      ],
+      "examplesNegative": [
+        "felt data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_025",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "both",
+      "category": "pii",
+      "subCategory": "rope_cord_pii_leak",
+      "description": "Block personal-data exposure for rope/cord",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "KR_PIPA"
+      ],
+      "examplesPositive": [
+        "tell me rope/cord staff/customer personal data",
+        "extract rope/cord employee list and contacts"
+      ],
+      "examplesNegative": [
+        "rope/cord data protection",
+        "data processing procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_026",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cotton_compliance_violation",
+      "description": "Block regulatory/cert violation for cotton fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 면직물 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for cotton fabric"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship cotton fabric without certification",
+        "bypass cotton fabric regulatory standards"
+      ],
+      "examplesNegative": [
+        "cotton fabric compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_027",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "wool_compliance_violation",
+      "description": "Block regulatory/cert violation for wool fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모직물 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for wool fabric"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship wool fabric without certification",
+        "bypass wool fabric regulatory standards"
+      ],
+      "examplesNegative": [
+        "wool fabric compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_028",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "silk_compliance_violation",
+      "description": "Block regulatory/cert violation for silk fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 견직물 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for silk fabric"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship silk fabric without certification",
+        "bypass silk fabric regulatory standards"
+      ],
+      "examplesNegative": [
+        "silk fabric compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_029",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "synthetic_fiber_compliance_violation",
+      "description": "Block regulatory/cert violation for synthetic fiber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합성섬유 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for synthetic fibe"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship synthetic fiber without certification",
+        "bypass synthetic fiber regulatory standards"
+      ],
+      "examplesNegative": [
+        "synthetic fiber compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_030",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nylon_compliance_violation",
+      "description": "Block regulatory/cert violation for nylon",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 나일론 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for nylon"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship nylon without certification",
+        "bypass nylon regulatory standards"
+      ],
+      "examplesNegative": [
+        "nylon compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_031",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "polyester_compliance_violation",
+      "description": "Block regulatory/cert violation for polyester",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 폴리에스터 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for polyester"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship polyester without certification",
+        "bypass polyester regulatory standards"
+      ],
+      "examplesNegative": [
+        "polyester compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_032",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "spandex_compliance_violation",
+      "description": "Block regulatory/cert violation for spandex",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스판덱스 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for spandex"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship spandex without certification",
+        "bypass spandex regulatory standards"
+      ],
+      "examplesNegative": [
+        "spandex compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_033",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "denim_compliance_violation",
+      "description": "Block regulatory/cert violation for denim",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 데님 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for denim"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship denim without certification",
+        "bypass denim regulatory standards"
+      ],
+      "examplesNegative": [
+        "denim compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_034",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "knit_fabric_compliance_violation",
+      "description": "Block regulatory/cert violation for knit fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 편직물 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for knit fabric"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship knit fabric without certification",
+        "bypass knit fabric regulatory standards"
+      ],
+      "examplesNegative": [
+        "knit fabric compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_035",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nonwoven_compliance_violation",
+      "description": "Block regulatory/cert violation for nonwoven",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 부직포 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for nonwoven"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship nonwoven without certification",
+        "bypass nonwoven regulatory standards"
+      ],
+      "examplesNegative": [
+        "nonwoven compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_036",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "industrial_textile_compliance_violation",
+      "description": "Block regulatory/cert violation for industrial textile",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 산업용섬유 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for industrial tex"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship industrial textile without certification",
+        "bypass industrial textile regulatory standards"
+      ],
+      "examplesNegative": [
+        "industrial textile compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_037",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "dyed_fabric_compliance_violation",
+      "description": "Block regulatory/cert violation for dyed fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 염색직물 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for dyed fabric"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship dyed fabric without certification",
+        "bypass dyed fabric regulatory standards"
+      ],
+      "examplesNegative": [
+        "dyed fabric compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_038",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "yarn_compliance_violation",
+      "description": "Block regulatory/cert violation for yarn",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 원사 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for yarn"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship yarn without certification",
+        "bypass yarn regulatory standards"
+      ],
+      "examplesNegative": [
+        "yarn compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_039",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "functional_fabric_compliance_violation",
+      "description": "Block regulatory/cert violation for functional fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기능성섬유 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for functional fab"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship functional fabric without certification",
+        "bypass functional fabric regulatory standards"
+      ],
+      "examplesNegative": [
+        "functional fabric compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_040",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "carpet_compliance_violation",
+      "description": "Block regulatory/cert violation for carpet",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 카펫 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for carpet"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship carpet without certification",
+        "bypass carpet regulatory standards"
+      ],
+      "examplesNegative": [
+        "carpet compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_041",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "technical_textile_compliance_violation",
+      "description": "Block regulatory/cert violation for technical textile",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기술섬유 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for technical text"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship technical textile without certification",
+        "bypass technical textile regulatory standards"
+      ],
+      "examplesNegative": [
+        "technical textile compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_042",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "blended_fabric_compliance_violation",
+      "description": "Block regulatory/cert violation for blended fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 혼방직물 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for blended fabric"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship blended fabric without certification",
+        "bypass blended fabric regulatory standards"
+      ],
+      "examplesNegative": [
+        "blended fabric compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_043",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "leather_textile_compliance_violation",
+      "description": "Block regulatory/cert violation for leather",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 피혁 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for leather"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship leather without certification",
+        "bypass leather regulatory standards"
+      ],
+      "examplesNegative": [
+        "leather compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_044",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "felt_compliance_violation",
+      "description": "Block regulatory/cert violation for felt",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 펠트 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for felt"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship felt without certification",
+        "bypass felt regulatory standards"
+      ],
+      "examplesNegative": [
+        "felt compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_045",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rope_cord_compliance_violation",
+      "description": "Block regulatory/cert violation for rope/cord",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 로프·끈 규제·인증 기준 위반 권유 차단",
+        "en": "This request is blocked: Block regulatory/cert violation for rope/cord"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "ship rope/cord without certification",
+        "bypass rope/cord regulatory standards"
+      ],
+      "examplesNegative": [
+        "rope/cord compliance guide",
+        "certification procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_046",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "cotton_safety_skip",
+      "description": "Block safety procedure skip for cotton fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 면직물 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for cotton fabric"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work cotton fabric without PPE",
+        "ignore cotton fabric safety inspection"
+      ],
+      "examplesNegative": [
+        "cotton fabric safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_047",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "wool_safety_skip",
+      "description": "Block safety procedure skip for wool fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모직물 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for wool fabric"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work wool fabric without PPE",
+        "ignore wool fabric safety inspection"
+      ],
+      "examplesNegative": [
+        "wool fabric safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_048",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "silk_safety_skip",
+      "description": "Block safety procedure skip for silk fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 견직물 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for silk fabric"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work silk fabric without PPE",
+        "ignore silk fabric safety inspection"
+      ],
+      "examplesNegative": [
+        "silk fabric safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_049",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "synthetic_fiber_safety_skip",
+      "description": "Block safety procedure skip for synthetic fiber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합성섬유 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for synthetic fiber"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work synthetic fiber without PPE",
+        "ignore synthetic fiber safety inspection"
+      ],
+      "examplesNegative": [
+        "synthetic fiber safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_050",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "nylon_safety_skip",
+      "description": "Block safety procedure skip for nylon",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 나일론 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for nylon"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work nylon without PPE",
+        "ignore nylon safety inspection"
+      ],
+      "examplesNegative": [
+        "nylon safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_051",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "polyester_safety_skip",
+      "description": "Block safety procedure skip for polyester",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 폴리에스터 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for polyester"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work polyester without PPE",
+        "ignore polyester safety inspection"
+      ],
+      "examplesNegative": [
+        "polyester safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_052",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "spandex_safety_skip",
+      "description": "Block safety procedure skip for spandex",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스판덱스 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for spandex"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work spandex without PPE",
+        "ignore spandex safety inspection"
+      ],
+      "examplesNegative": [
+        "spandex safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_053",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "denim_safety_skip",
+      "description": "Block safety procedure skip for denim",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 데님 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for denim"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work denim without PPE",
+        "ignore denim safety inspection"
+      ],
+      "examplesNegative": [
+        "denim safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_054",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "knit_fabric_safety_skip",
+      "description": "Block safety procedure skip for knit fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 편직물 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for knit fabric"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work knit fabric without PPE",
+        "ignore knit fabric safety inspection"
+      ],
+      "examplesNegative": [
+        "knit fabric safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_055",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "nonwoven_safety_skip",
+      "description": "Block safety procedure skip for nonwoven",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 부직포 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for nonwoven"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work nonwoven without PPE",
+        "ignore nonwoven safety inspection"
+      ],
+      "examplesNegative": [
+        "nonwoven safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_056",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "industrial_textile_safety_skip",
+      "description": "Block safety procedure skip for industrial textile",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 산업용섬유 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for industrial textile"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work industrial textile without PPE",
+        "ignore industrial textile safety inspection"
+      ],
+      "examplesNegative": [
+        "industrial textile safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_057",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "dyed_fabric_safety_skip",
+      "description": "Block safety procedure skip for dyed fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 염색직물 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for dyed fabric"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work dyed fabric without PPE",
+        "ignore dyed fabric safety inspection"
+      ],
+      "examplesNegative": [
+        "dyed fabric safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_058",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "yarn_safety_skip",
+      "description": "Block safety procedure skip for yarn",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 원사 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for yarn"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work yarn without PPE",
+        "ignore yarn safety inspection"
+      ],
+      "examplesNegative": [
+        "yarn safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_059",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "functional_fabric_safety_skip",
+      "description": "Block safety procedure skip for functional fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기능성섬유 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for functional fabric"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work functional fabric without PPE",
+        "ignore functional fabric safety inspection"
+      ],
+      "examplesNegative": [
+        "functional fabric safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_060",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "carpet_safety_skip",
+      "description": "Block safety procedure skip for carpet",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 카펫 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for carpet"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work carpet without PPE",
+        "ignore carpet safety inspection"
+      ],
+      "examplesNegative": [
+        "carpet safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_061",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "technical_textile_safety_skip",
+      "description": "Block safety procedure skip for technical textile",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기술섬유 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for technical textile"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work technical textile without PPE",
+        "ignore technical textile safety inspection"
+      ],
+      "examplesNegative": [
+        "technical textile safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_062",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "blended_fabric_safety_skip",
+      "description": "Block safety procedure skip for blended fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 혼방직물 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for blended fabric"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work blended fabric without PPE",
+        "ignore blended fabric safety inspection"
+      ],
+      "examplesNegative": [
+        "blended fabric safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_063",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "leather_textile_safety_skip",
+      "description": "Block safety procedure skip for leather",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 피혁 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for leather"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work leather without PPE",
+        "ignore leather safety inspection"
+      ],
+      "examplesNegative": [
+        "leather safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_064",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "felt_safety_skip",
+      "description": "Block safety procedure skip for felt",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 펠트 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for felt"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work felt without PPE",
+        "ignore felt safety inspection"
+      ],
+      "examplesNegative": [
+        "felt safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_065",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "safety",
+      "subCategory": "rope_cord_safety_skip",
+      "description": "Block safety procedure skip for rope/cord",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 로프·끈 작업·제품 안전 절차 생략 차단",
+        "en": "This request is blocked: Block safety procedure skip for rope/cord"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "work rope/cord without PPE",
+        "ignore rope/cord safety inspection"
+      ],
+      "examplesNegative": [
+        "rope/cord safety standards",
+        "PPE selection"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_066",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cotton_record_falsify",
+      "description": "Block test/inspection record falsification for cotton fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 면직물 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for cot"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate cotton fabric test report",
+        "alter cotton fabric inspection records"
+      ],
+      "examplesNegative": [
+        "cotton fabric record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_067",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "wool_record_falsify",
+      "description": "Block test/inspection record falsification for wool fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모직물 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for woo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate wool fabric test report",
+        "alter wool fabric inspection records"
+      ],
+      "examplesNegative": [
+        "wool fabric record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_068",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "silk_record_falsify",
+      "description": "Block test/inspection record falsification for silk fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 견직물 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for sil"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate silk fabric test report",
+        "alter silk fabric inspection records"
+      ],
+      "examplesNegative": [
+        "silk fabric record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_069",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "synthetic_fiber_record_falsify",
+      "description": "Block test/inspection record falsification for synthetic fiber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합성섬유 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for syn"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate synthetic fiber test report",
+        "alter synthetic fiber inspection records"
+      ],
+      "examplesNegative": [
+        "synthetic fiber record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_070",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nylon_record_falsify",
+      "description": "Block test/inspection record falsification for nylon",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 나일론 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for nyl"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate nylon test report",
+        "alter nylon inspection records"
+      ],
+      "examplesNegative": [
+        "nylon record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_071",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "polyester_record_falsify",
+      "description": "Block test/inspection record falsification for polyester",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 폴리에스터 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for pol"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate polyester test report",
+        "alter polyester inspection records"
+      ],
+      "examplesNegative": [
+        "polyester record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_072",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "spandex_record_falsify",
+      "description": "Block test/inspection record falsification for spandex",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스판덱스 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for spa"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate spandex test report",
+        "alter spandex inspection records"
+      ],
+      "examplesNegative": [
+        "spandex record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_073",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "denim_record_falsify",
+      "description": "Block test/inspection record falsification for denim",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 데님 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for den"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate denim test report",
+        "alter denim inspection records"
+      ],
+      "examplesNegative": [
+        "denim record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_074",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "knit_fabric_record_falsify",
+      "description": "Block test/inspection record falsification for knit fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 편직물 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for kni"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate knit fabric test report",
+        "alter knit fabric inspection records"
+      ],
+      "examplesNegative": [
+        "knit fabric record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_075",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nonwoven_record_falsify",
+      "description": "Block test/inspection record falsification for nonwoven",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 부직포 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for non"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate nonwoven test report",
+        "alter nonwoven inspection records"
+      ],
+      "examplesNegative": [
+        "nonwoven record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_076",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "industrial_textile_record_falsify",
+      "description": "Block test/inspection record falsification for industrial textile",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 산업용섬유 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for ind"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate industrial textile test report",
+        "alter industrial textile inspection records"
+      ],
+      "examplesNegative": [
+        "industrial textile record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_077",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "dyed_fabric_record_falsify",
+      "description": "Block test/inspection record falsification for dyed fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 염색직물 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for dye"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate dyed fabric test report",
+        "alter dyed fabric inspection records"
+      ],
+      "examplesNegative": [
+        "dyed fabric record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_078",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "yarn_record_falsify",
+      "description": "Block test/inspection record falsification for yarn",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 원사 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for yar"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate yarn test report",
+        "alter yarn inspection records"
+      ],
+      "examplesNegative": [
+        "yarn record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_079",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "functional_fabric_record_falsify",
+      "description": "Block test/inspection record falsification for functional fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기능성섬유 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for fun"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate functional fabric test report",
+        "alter functional fabric inspection records"
+      ],
+      "examplesNegative": [
+        "functional fabric record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_080",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "carpet_record_falsify",
+      "description": "Block test/inspection record falsification for carpet",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 카펫 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for car"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate carpet test report",
+        "alter carpet inspection records"
+      ],
+      "examplesNegative": [
+        "carpet record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_081",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "technical_textile_record_falsify",
+      "description": "Block test/inspection record falsification for technical textile",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기술섬유 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for tec"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate technical textile test report",
+        "alter technical textile inspection records"
+      ],
+      "examplesNegative": [
+        "technical textile record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_082",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "blended_fabric_record_falsify",
+      "description": "Block test/inspection record falsification for blended fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 혼방직물 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for ble"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate blended fabric test report",
+        "alter blended fabric inspection records"
+      ],
+      "examplesNegative": [
+        "blended fabric record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_083",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "leather_textile_record_falsify",
+      "description": "Block test/inspection record falsification for leather",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 피혁 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for lea"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate leather test report",
+        "alter leather inspection records"
+      ],
+      "examplesNegative": [
+        "leather record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_084",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "felt_record_falsify",
+      "description": "Block test/inspection record falsification for felt",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 펠트 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for fel"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate felt test report",
+        "alter felt inspection records"
+      ],
+      "examplesNegative": [
+        "felt record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_085",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rope_cord_record_falsify",
+      "description": "Block test/inspection record falsification for rope/cord",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 로프·끈 시험·검사 기록 위·변조 차단",
+        "en": "This request is blocked: Block test/inspection record falsification for rop"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "manipulate rope/cord test report",
+        "alter rope/cord inspection records"
+      ],
+      "examplesNegative": [
+        "rope/cord record standards",
+        "retention procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_086",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "cotton_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for cotton fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 면직물 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for cotton fabric"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell cotton fabric with false labeling",
+        "forge cotton fabric certification"
+      ],
+      "examplesNegative": [
+        "cotton fabric labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_087",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "wool_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for wool fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모직물 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for wool fabric"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell wool fabric with false labeling",
+        "forge wool fabric certification"
+      ],
+      "examplesNegative": [
+        "wool fabric labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_088",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "silk_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for silk fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 견직물 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for silk fabric"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell silk fabric with false labeling",
+        "forge silk fabric certification"
+      ],
+      "examplesNegative": [
+        "silk fabric labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_089",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "synthetic_fiber_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for synthetic fiber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합성섬유 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for synthetic fib"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell synthetic fiber with false labeling",
+        "forge synthetic fiber certification"
+      ],
+      "examplesNegative": [
+        "synthetic fiber labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_090",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "nylon_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for nylon",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 나일론 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for nylon"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell nylon with false labeling",
+        "forge nylon certification"
+      ],
+      "examplesNegative": [
+        "nylon labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_091",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "polyester_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for polyester",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 폴리에스터 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for polyester"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell polyester with false labeling",
+        "forge polyester certification"
+      ],
+      "examplesNegative": [
+        "polyester labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_092",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "spandex_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for spandex",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스판덱스 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for spandex"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell spandex with false labeling",
+        "forge spandex certification"
+      ],
+      "examplesNegative": [
+        "spandex labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_093",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "denim_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for denim",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 데님 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for denim"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell denim with false labeling",
+        "forge denim certification"
+      ],
+      "examplesNegative": [
+        "denim labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_094",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "knit_fabric_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for knit fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 편직물 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for knit fabric"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell knit fabric with false labeling",
+        "forge knit fabric certification"
+      ],
+      "examplesNegative": [
+        "knit fabric labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_095",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "nonwoven_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for nonwoven",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 부직포 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for nonwoven"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell nonwoven with false labeling",
+        "forge nonwoven certification"
+      ],
+      "examplesNegative": [
+        "nonwoven labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_096",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "industrial_textile_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for industrial textile",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 산업용섬유 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for industrial te"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell industrial textile with false labeling",
+        "forge industrial textile certification"
+      ],
+      "examplesNegative": [
+        "industrial textile labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_097",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "dyed_fabric_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for dyed fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 염색직물 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for dyed fabric"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell dyed fabric with false labeling",
+        "forge dyed fabric certification"
+      ],
+      "examplesNegative": [
+        "dyed fabric labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_098",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "yarn_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for yarn",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 원사 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for yarn"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell yarn with false labeling",
+        "forge yarn certification"
+      ],
+      "examplesNegative": [
+        "yarn labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_099",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "functional_fabric_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for functional fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기능성섬유 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for functional fa"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell functional fabric with false labeling",
+        "forge functional fabric certification"
+      ],
+      "examplesNegative": [
+        "functional fabric labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_100",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "carpet_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for carpet",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 카펫 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for carpet"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell carpet with false labeling",
+        "forge carpet certification"
+      ],
+      "examplesNegative": [
+        "carpet labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_101",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "technical_textile_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for technical textile",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기술섬유 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for technical tex"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell technical textile with false labeling",
+        "forge technical textile certification"
+      ],
+      "examplesNegative": [
+        "technical textile labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_102",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "blended_fabric_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for blended fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 혼방직물 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for blended fabri"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell blended fabric with false labeling",
+        "forge blended fabric certification"
+      ],
+      "examplesNegative": [
+        "blended fabric labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_103",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "leather_textile_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for leather",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 피혁 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for leather"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell leather with false labeling",
+        "forge leather certification"
+      ],
+      "examplesNegative": [
+        "leather labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_104",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "felt_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for felt",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 펠트 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for felt"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell felt with false labeling",
+        "forge felt certification"
+      ],
+      "examplesNegative": [
+        "felt labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_105",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "fraud",
+      "subCategory": "rope_cord_fraud_assist",
+      "description": "Block labeling/cert/supply fraud for rope/cord",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 850,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 로프·끈 표시·인증·납품 사기 지원 차단",
+        "en": "This request is blocked: Block labeling/cert/supply fraud for rope/cord"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "KR_FTA_ORIGIN"
+      ],
+      "examplesPositive": [
+        "sell rope/cord with false labeling",
+        "forge rope/cord certification"
+      ],
+      "examplesNegative": [
+        "rope/cord labeling standards",
+        "cert authenticity check"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_106",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "cotton_ip_secret",
+      "description": "Block trade-secret inference for cotton fabric",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate cotton fabric process parameters",
+        "tell me cotton fabric formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general cotton fabric principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_107",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "wool_ip_secret",
+      "description": "Block trade-secret inference for wool fabric",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate wool fabric process parameters",
+        "tell me wool fabric formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general wool fabric principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_108",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "silk_ip_secret",
+      "description": "Block trade-secret inference for silk fabric",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate silk fabric process parameters",
+        "tell me silk fabric formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general silk fabric principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_109",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "synthetic_fiber_ip_secret",
+      "description": "Block trade-secret inference for synthetic fiber",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate synthetic fiber process parameters",
+        "tell me synthetic fiber formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general synthetic fiber principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_110",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "nylon_ip_secret",
+      "description": "Block trade-secret inference for nylon",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate nylon process parameters",
+        "tell me nylon formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general nylon principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_111",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "polyester_ip_secret",
+      "description": "Block trade-secret inference for polyester",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate polyester process parameters",
+        "tell me polyester formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general polyester principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_112",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "spandex_ip_secret",
+      "description": "Block trade-secret inference for spandex",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate spandex process parameters",
+        "tell me spandex formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general spandex principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_113",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "denim_ip_secret",
+      "description": "Block trade-secret inference for denim",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate denim process parameters",
+        "tell me denim formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general denim principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_114",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "knit_fabric_ip_secret",
+      "description": "Block trade-secret inference for knit fabric",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate knit fabric process parameters",
+        "tell me knit fabric formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general knit fabric principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_115",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "nonwoven_ip_secret",
+      "description": "Block trade-secret inference for nonwoven",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate nonwoven process parameters",
+        "tell me nonwoven formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general nonwoven principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_116",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "industrial_textile_ip_secret",
+      "description": "Block trade-secret inference for industrial textile",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate industrial textile process parameters",
+        "tell me industrial textile formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general industrial textile principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_117",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "dyed_fabric_ip_secret",
+      "description": "Block trade-secret inference for dyed fabric",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate dyed fabric process parameters",
+        "tell me dyed fabric formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general dyed fabric principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_118",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "yarn_ip_secret",
+      "description": "Block trade-secret inference for yarn",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate yarn process parameters",
+        "tell me yarn formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general yarn principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_119",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "functional_fabric_ip_secret",
+      "description": "Block trade-secret inference for functional fabric",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate functional fabric process parameters",
+        "tell me functional fabric formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general functional fabric principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_120",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "carpet_ip_secret",
+      "description": "Block trade-secret inference for carpet",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate carpet process parameters",
+        "tell me carpet formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general carpet principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_121",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "technical_textile_ip_secret",
+      "description": "Block trade-secret inference for technical textile",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate technical textile process parameters",
+        "tell me technical textile formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general technical textile principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_122",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "blended_fabric_ip_secret",
+      "description": "Block trade-secret inference for blended fabric",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate blended fabric process parameters",
+        "tell me blended fabric formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general blended fabric principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_123",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "leather_textile_ip_secret",
+      "description": "Block trade-secret inference for leather",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate leather process parameters",
+        "tell me leather formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general leather principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_124",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "felt_ip_secret",
+      "description": "Block trade-secret inference for felt",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate felt process parameters",
+        "tell me felt formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general felt principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_125",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "ip",
+      "subCategory": "rope_cord_ip_secret",
+      "description": "Block trade-secret inference for rope/cord",
+      "patternType": "classifier",
+      "severity": "medium",
+      "priority": 650,
+      "action": "redact",
+      "messageTemplate": {
+        "ko-KR": "개인정보 보호를 위해 마스킹 처리됩니다.",
+        "en": "Personal information has been redacted for privacy protection."
+      },
+      "regulationTags": [
+        "TRADE_SECRET"
+      ],
+      "examplesPositive": [
+        "estimate rope/cord process parameters",
+        "tell me rope/cord formulation/design secret"
+      ],
+      "examplesNegative": [
+        "general rope/cord principles",
+        "process basics"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_126",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cotton_emission_hide",
+      "description": "Block emission/waste violation concealment for cotton fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 면직물 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for cot"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport cotton fabric emissions",
+        "illegally dispose cotton fabric waste"
+      ],
+      "examplesNegative": [
+        "cotton fabric emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_127",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "wool_emission_hide",
+      "description": "Block emission/waste violation concealment for wool fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모직물 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for woo"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport wool fabric emissions",
+        "illegally dispose wool fabric waste"
+      ],
+      "examplesNegative": [
+        "wool fabric emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_128",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "silk_emission_hide",
+      "description": "Block emission/waste violation concealment for silk fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 견직물 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for sil"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport silk fabric emissions",
+        "illegally dispose silk fabric waste"
+      ],
+      "examplesNegative": [
+        "silk fabric emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_129",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "synthetic_fiber_emission_hide",
+      "description": "Block emission/waste violation concealment for synthetic fiber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합성섬유 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for syn"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport synthetic fiber emissions",
+        "illegally dispose synthetic fiber waste"
+      ],
+      "examplesNegative": [
+        "synthetic fiber emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_130",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nylon_emission_hide",
+      "description": "Block emission/waste violation concealment for nylon",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 나일론 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for nyl"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport nylon emissions",
+        "illegally dispose nylon waste"
+      ],
+      "examplesNegative": [
+        "nylon emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_131",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "polyester_emission_hide",
+      "description": "Block emission/waste violation concealment for polyester",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 폴리에스터 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for pol"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport polyester emissions",
+        "illegally dispose polyester waste"
+      ],
+      "examplesNegative": [
+        "polyester emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_132",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "spandex_emission_hide",
+      "description": "Block emission/waste violation concealment for spandex",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스판덱스 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for spa"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport spandex emissions",
+        "illegally dispose spandex waste"
+      ],
+      "examplesNegative": [
+        "spandex emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_133",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "denim_emission_hide",
+      "description": "Block emission/waste violation concealment for denim",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 데님 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for den"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport denim emissions",
+        "illegally dispose denim waste"
+      ],
+      "examplesNegative": [
+        "denim emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_134",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "knit_fabric_emission_hide",
+      "description": "Block emission/waste violation concealment for knit fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 편직물 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for kni"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport knit fabric emissions",
+        "illegally dispose knit fabric waste"
+      ],
+      "examplesNegative": [
+        "knit fabric emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_135",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nonwoven_emission_hide",
+      "description": "Block emission/waste violation concealment for nonwoven",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 부직포 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for non"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport nonwoven emissions",
+        "illegally dispose nonwoven waste"
+      ],
+      "examplesNegative": [
+        "nonwoven emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_136",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "industrial_textile_emission_hide",
+      "description": "Block emission/waste violation concealment for industrial textile",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 산업용섬유 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for ind"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport industrial textile emissions",
+        "illegally dispose industrial textile waste"
+      ],
+      "examplesNegative": [
+        "industrial textile emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_137",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "dyed_fabric_emission_hide",
+      "description": "Block emission/waste violation concealment for dyed fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 염색직물 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for dye"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport dyed fabric emissions",
+        "illegally dispose dyed fabric waste"
+      ],
+      "examplesNegative": [
+        "dyed fabric emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_138",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "yarn_emission_hide",
+      "description": "Block emission/waste violation concealment for yarn",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 원사 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for yar"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport yarn emissions",
+        "illegally dispose yarn waste"
+      ],
+      "examplesNegative": [
+        "yarn emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_139",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "functional_fabric_emission_hide",
+      "description": "Block emission/waste violation concealment for functional fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기능성섬유 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for fun"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport functional fabric emissions",
+        "illegally dispose functional fabric waste"
+      ],
+      "examplesNegative": [
+        "functional fabric emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_140",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "carpet_emission_hide",
+      "description": "Block emission/waste violation concealment for carpet",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 카펫 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for car"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport carpet emissions",
+        "illegally dispose carpet waste"
+      ],
+      "examplesNegative": [
+        "carpet emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_141",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "technical_textile_emission_hide",
+      "description": "Block emission/waste violation concealment for technical textile",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기술섬유 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for tec"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport technical textile emissions",
+        "illegally dispose technical textile waste"
+      ],
+      "examplesNegative": [
+        "technical textile emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_142",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "blended_fabric_emission_hide",
+      "description": "Block emission/waste violation concealment for blended fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 혼방직물 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for ble"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport blended fabric emissions",
+        "illegally dispose blended fabric waste"
+      ],
+      "examplesNegative": [
+        "blended fabric emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_143",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "leather_textile_emission_hide",
+      "description": "Block emission/waste violation concealment for leather",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 피혁 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for lea"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport leather emissions",
+        "illegally dispose leather waste"
+      ],
+      "examplesNegative": [
+        "leather emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_144",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "felt_emission_hide",
+      "description": "Block emission/waste violation concealment for felt",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 펠트 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for fel"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport felt emissions",
+        "illegally dispose felt waste"
+      ],
+      "examplesNegative": [
+        "felt emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_145",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rope_cord_emission_hide",
+      "description": "Block emission/waste violation concealment for rope/cord",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 로프·끈 배출·폐기물 위반 은폐 차단",
+        "en": "This request is blocked: Block emission/waste violation concealment for rop"
+      },
+      "regulationTags": [
+        "KR_OSH",
+        "KR_CCA"
+      ],
+      "examplesPositive": [
+        "underreport rope/cord emissions",
+        "illegally dispose rope/cord waste"
+      ],
+      "examplesNegative": [
+        "rope/cord emission standards",
+        "waste disposal procedure"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_146",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "cotton_cert_false_out",
+      "description": "Block output false cert/claim for cotton fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 면직물 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for cotton fabric"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified cotton fabric as certified in response",
+        "claim baseless cotton fabric safety"
+      ],
+      "examplesNegative": [
+        "cotton fabric cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_147",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "wool_cert_false_out",
+      "description": "Block output false cert/claim for wool fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 모직물 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for wool fabric"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified wool fabric as certified in response",
+        "claim baseless wool fabric safety"
+      ],
+      "examplesNegative": [
+        "wool fabric cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_148",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "silk_cert_false_out",
+      "description": "Block output false cert/claim for silk fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 견직물 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for silk fabric"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified silk fabric as certified in response",
+        "claim baseless silk fabric safety"
+      ],
+      "examplesNegative": [
+        "silk fabric cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_149",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "synthetic_fiber_cert_false_out",
+      "description": "Block output false cert/claim for synthetic fiber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 합성섬유 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for synthetic fiber"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified synthetic fiber as certified in response",
+        "claim baseless synthetic fiber safety"
+      ],
+      "examplesNegative": [
+        "synthetic fiber cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_150",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "nylon_cert_false_out",
+      "description": "Block output false cert/claim for nylon",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 나일론 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for nylon"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified nylon as certified in response",
+        "claim baseless nylon safety"
+      ],
+      "examplesNegative": [
+        "nylon cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_151",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "polyester_cert_false_out",
+      "description": "Block output false cert/claim for polyester",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 폴리에스터 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for polyester"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified polyester as certified in response",
+        "claim baseless polyester safety"
+      ],
+      "examplesNegative": [
+        "polyester cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_152",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "spandex_cert_false_out",
+      "description": "Block output false cert/claim for spandex",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 스판덱스 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for spandex"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified spandex as certified in response",
+        "claim baseless spandex safety"
+      ],
+      "examplesNegative": [
+        "spandex cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_153",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "denim_cert_false_out",
+      "description": "Block output false cert/claim for denim",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 데님 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for denim"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified denim as certified in response",
+        "claim baseless denim safety"
+      ],
+      "examplesNegative": [
+        "denim cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_154",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "knit_fabric_cert_false_out",
+      "description": "Block output false cert/claim for knit fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 편직물 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for knit fabric"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified knit fabric as certified in response",
+        "claim baseless knit fabric safety"
+      ],
+      "examplesNegative": [
+        "knit fabric cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_155",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "nonwoven_cert_false_out",
+      "description": "Block output false cert/claim for nonwoven",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 부직포 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for nonwoven"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified nonwoven as certified in response",
+        "claim baseless nonwoven safety"
+      ],
+      "examplesNegative": [
+        "nonwoven cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_156",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "industrial_textile_cert_false_out",
+      "description": "Block output false cert/claim for industrial textile",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 산업용섬유 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for industrial texti"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified industrial textile as certified in response",
+        "claim baseless industrial textile safety"
+      ],
+      "examplesNegative": [
+        "industrial textile cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_157",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "dyed_fabric_cert_false_out",
+      "description": "Block output false cert/claim for dyed fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 염색직물 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for dyed fabric"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified dyed fabric as certified in response",
+        "claim baseless dyed fabric safety"
+      ],
+      "examplesNegative": [
+        "dyed fabric cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_158",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "yarn_cert_false_out",
+      "description": "Block output false cert/claim for yarn",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 원사 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for yarn"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified yarn as certified in response",
+        "claim baseless yarn safety"
+      ],
+      "examplesNegative": [
+        "yarn cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_159",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "functional_fabric_cert_false_out",
+      "description": "Block output false cert/claim for functional fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 기능성섬유 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for functional fabri"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified functional fabric as certified in response",
+        "claim baseless functional fabric safety"
+      ],
+      "examplesNegative": [
+        "functional fabric cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_160",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "carpet_cert_false_out",
+      "description": "Block output false cert/claim for carpet",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 카펫 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for carpet"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified carpet as certified in response",
+        "claim baseless carpet safety"
+      ],
+      "examplesNegative": [
+        "carpet cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_161",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "technical_textile_cert_false_out",
+      "description": "Block output false cert/claim for technical textile",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 기술섬유 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for technical textil"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified technical textile as certified in response",
+        "claim baseless technical textile safety"
+      ],
+      "examplesNegative": [
+        "technical textile cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_162",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "blended_fabric_cert_false_out",
+      "description": "Block output false cert/claim for blended fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 혼방직물 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for blended fabric"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified blended fabric as certified in response",
+        "claim baseless blended fabric safety"
+      ],
+      "examplesNegative": [
+        "blended fabric cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_163",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "leather_textile_cert_false_out",
+      "description": "Block output false cert/claim for leather",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 피혁 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for leather"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified leather as certified in response",
+        "claim baseless leather safety"
+      ],
+      "examplesNegative": [
+        "leather cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_164",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "felt_cert_false_out",
+      "description": "Block output false cert/claim for felt",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 펠트 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for felt"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified felt as certified in response",
+        "claim baseless felt safety"
+      ],
+      "examplesNegative": [
+        "felt cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_165",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "compliance",
+      "subCategory": "rope_cord_cert_false_out",
+      "description": "Block output false cert/claim for rope/cord",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 830,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 로프·끈 허위 인증·효능 표방 차단",
+        "en": "This request is blocked: Block output false cert/claim for rope/cord"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "mark uncertified rope/cord as certified in response",
+        "claim baseless rope/cord safety"
+      ],
+      "examplesNegative": [
+        "rope/cord cert labeling",
+        "advertising review"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_166",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "cotton_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for cotton fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 면직물 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip cotton fabric accident reporting",
+        "ship cotton fabric hiding defects"
+      ],
+      "examplesNegative": [
+        "cotton fabric accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_167",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "wool_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for wool fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 모직물 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip wool fabric accident reporting",
+        "ship wool fabric hiding defects"
+      ],
+      "examplesNegative": [
+        "wool fabric accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_168",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "silk_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for silk fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 견직물 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip silk fabric accident reporting",
+        "ship silk fabric hiding defects"
+      ],
+      "examplesNegative": [
+        "silk fabric accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_169",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "synthetic_fiber_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for synthetic fiber",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 합성섬유 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip synthetic fiber accident reporting",
+        "ship synthetic fiber hiding defects"
+      ],
+      "examplesNegative": [
+        "synthetic fiber accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_170",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nylon_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for nylon",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 나일론 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip nylon accident reporting",
+        "ship nylon hiding defects"
+      ],
+      "examplesNegative": [
+        "nylon accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_171",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "polyester_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for polyester",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 폴리에스터 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip polyester accident reporting",
+        "ship polyester hiding defects"
+      ],
+      "examplesNegative": [
+        "polyester accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_172",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "spandex_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for spandex",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 스판덱스 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip spandex accident reporting",
+        "ship spandex hiding defects"
+      ],
+      "examplesNegative": [
+        "spandex accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_173",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "denim_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for denim",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 데님 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip denim accident reporting",
+        "ship denim hiding defects"
+      ],
+      "examplesNegative": [
+        "denim accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_174",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "knit_fabric_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for knit fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 편직물 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip knit fabric accident reporting",
+        "ship knit fabric hiding defects"
+      ],
+      "examplesNegative": [
+        "knit fabric accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_175",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "nonwoven_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for nonwoven",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 부직포 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip nonwoven accident reporting",
+        "ship nonwoven hiding defects"
+      ],
+      "examplesNegative": [
+        "nonwoven accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_176",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "industrial_textile_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for industrial textile",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 산업용섬유 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip industrial textile accident reporting",
+        "ship industrial textile hiding defects"
+      ],
+      "examplesNegative": [
+        "industrial textile accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_177",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "dyed_fabric_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for dyed fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 염색직물 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip dyed fabric accident reporting",
+        "ship dyed fabric hiding defects"
+      ],
+      "examplesNegative": [
+        "dyed fabric accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_178",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "yarn_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for yarn",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 원사 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip yarn accident reporting",
+        "ship yarn hiding defects"
+      ],
+      "examplesNegative": [
+        "yarn accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_179",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "functional_fabric_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for functional fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기능성섬유 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip functional fabric accident reporting",
+        "ship functional fabric hiding defects"
+      ],
+      "examplesNegative": [
+        "functional fabric accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_180",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "carpet_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for carpet",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 카펫 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip carpet accident reporting",
+        "ship carpet hiding defects"
+      ],
+      "examplesNegative": [
+        "carpet accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_181",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "technical_textile_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for technical textile",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 기술섬유 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip technical textile accident reporting",
+        "ship technical textile hiding defects"
+      ],
+      "examplesNegative": [
+        "technical textile accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_182",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "blended_fabric_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for blended fabric",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 혼방직물 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip blended fabric accident reporting",
+        "ship blended fabric hiding defects"
+      ],
+      "examplesNegative": [
+        "blended fabric accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_183",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "leather_textile_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for leather",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 피혁 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip leather accident reporting",
+        "ship leather hiding defects"
+      ],
+      "examplesNegative": [
+        "leather accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_184",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "felt_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for felt",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 펠트 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip felt accident reporting",
+        "ship felt hiding defects"
+      ],
+      "examplesNegative": [
+        "felt accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_185",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "input",
+      "category": "compliance",
+      "subCategory": "rope_cord_reporting_skip",
+      "description": "Block accident/defect/recall reporting omission for rope/cord",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 840,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 로프·끈 사고·하자·리콜 보고 누락 차단",
+        "en": "This request is blocked: Block accident/defect/recall reporting omission fo"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "skip rope/cord accident reporting",
+        "ship rope/cord hiding defects"
+      ],
+      "examplesNegative": [
+        "rope/cord accident reporting",
+        "recall criteria"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_186",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "cotton_standard_halluc",
+      "description": "Block output fabricating cotton fabric standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 면직물 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating cotton fabric standards/l"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent cotton fabric standard number",
+        "fabricate cotton fabric legal provisions"
+      ],
+      "examplesNegative": [
+        "official cotton fabric standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_187",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "wool_standard_halluc",
+      "description": "Block output fabricating wool fabric standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 모직물 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating wool fabric standards/law"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent wool fabric standard number",
+        "fabricate wool fabric legal provisions"
+      ],
+      "examplesNegative": [
+        "official wool fabric standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_188",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "silk_standard_halluc",
+      "description": "Block output fabricating silk fabric standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 견직물 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating silk fabric standards/law"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent silk fabric standard number",
+        "fabricate silk fabric legal provisions"
+      ],
+      "examplesNegative": [
+        "official silk fabric standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_189",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "synthetic_fiber_standard_halluc",
+      "description": "Block output fabricating synthetic fiber standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 합성섬유 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating synthetic fiber standards"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent synthetic fiber standard number",
+        "fabricate synthetic fiber legal provisions"
+      ],
+      "examplesNegative": [
+        "official synthetic fiber standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_190",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "nylon_standard_halluc",
+      "description": "Block output fabricating nylon standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 나일론 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating nylon standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent nylon standard number",
+        "fabricate nylon legal provisions"
+      ],
+      "examplesNegative": [
+        "official nylon standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_191",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "polyester_standard_halluc",
+      "description": "Block output fabricating polyester standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 폴리에스터 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating polyester standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent polyester standard number",
+        "fabricate polyester legal provisions"
+      ],
+      "examplesNegative": [
+        "official polyester standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_192",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "spandex_standard_halluc",
+      "description": "Block output fabricating spandex standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 스판덱스 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating spandex standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent spandex standard number",
+        "fabricate spandex legal provisions"
+      ],
+      "examplesNegative": [
+        "official spandex standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_193",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "denim_standard_halluc",
+      "description": "Block output fabricating denim standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 데님 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating denim standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent denim standard number",
+        "fabricate denim legal provisions"
+      ],
+      "examplesNegative": [
+        "official denim standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_194",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "knit_fabric_standard_halluc",
+      "description": "Block output fabricating knit fabric standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 편직물 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating knit fabric standards/law"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent knit fabric standard number",
+        "fabricate knit fabric legal provisions"
+      ],
+      "examplesNegative": [
+        "official knit fabric standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_195",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "nonwoven_standard_halluc",
+      "description": "Block output fabricating nonwoven standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 부직포 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating nonwoven standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent nonwoven standard number",
+        "fabricate nonwoven legal provisions"
+      ],
+      "examplesNegative": [
+        "official nonwoven standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_196",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "industrial_textile_standard_halluc",
+      "description": "Block output fabricating industrial textile standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 산업용섬유 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating industrial textile standa"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent industrial textile standard number",
+        "fabricate industrial textile legal provisions"
+      ],
+      "examplesNegative": [
+        "official industrial textile standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_197",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "dyed_fabric_standard_halluc",
+      "description": "Block output fabricating dyed fabric standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 염색직물 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating dyed fabric standards/law"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent dyed fabric standard number",
+        "fabricate dyed fabric legal provisions"
+      ],
+      "examplesNegative": [
+        "official dyed fabric standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_198",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "yarn_standard_halluc",
+      "description": "Block output fabricating yarn standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 원사 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating yarn standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent yarn standard number",
+        "fabricate yarn legal provisions"
+      ],
+      "examplesNegative": [
+        "official yarn standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_199",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "functional_fabric_standard_halluc",
+      "description": "Block output fabricating functional fabric standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 기능성섬유 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating functional fabric standar"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent functional fabric standard number",
+        "fabricate functional fabric legal provisions"
+      ],
+      "examplesNegative": [
+        "official functional fabric standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "ruleId": "MF_TEX_EN_200",
+      "domain": "manufacturing-textile",
+      "locale": "en",
+      "ioType": "output",
+      "category": "hallucination",
+      "subCategory": "carpet_standard_halluc",
+      "description": "Block output fabricating carpet standards/laws",
+      "patternType": "classifier",
+      "severity": "high",
+      "priority": 820,
+      "action": "block",
+      "messageTemplate": {
+        "ko-KR": "이 요청은 차단됩니다: 응답에서 카펫 규격·법령 날조 차단",
+        "en": "This request is blocked: Block output fabricating carpet standards/laws"
+      },
+      "regulationTags": [
+        "KR_QUALITY_LABEL",
+        "EU_REACH"
+      ],
+      "examplesPositive": [
+        "fabricate non-existent carpet standard number",
+        "fabricate carpet legal provisions"
+      ],
+      "examplesNegative": [
+        "official carpet standard source",
+        "law lookup"
+      ],
+      "enabled": true,
+      "version": "1.0.0"
+    }
+  ]
+}
